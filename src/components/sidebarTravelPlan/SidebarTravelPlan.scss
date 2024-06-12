@@ -1,0 +1,28 @@
+$background-icon: #122620;
+
+.sidebar{
+    .container{
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+
+        .sidebar-item{
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: $background-icon;
+            color: white;
+            border-radius: 10px;
+
+            i{
+                margin-right: 5px;
+            }
+
+            span{
+
+            }
+        }
+    }
+
+}
