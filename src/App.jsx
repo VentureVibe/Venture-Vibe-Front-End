@@ -1,14 +1,14 @@
+import { useState } from "react";
+import "./App.css";
 
-import { useState } from 'react'
-import './App.css'
-
-import React from 'react';
-import Register from './pages/register/Register';
-import Login from './pages/login/Login';
-import Home from './pages/home/Home';
-import TravelPlan from './pages/travelPlan/TravelPlan';
-import Navbar from './components/navbar/Navbar';
-import { RouterProvider, createBrowserRouter, Outlet } from 'react-router-dom';
+import React from "react";
+import Register from "./pages/register/Register";
+import Login from "./pages/login/Login";
+import Home from "./pages/home/Home";
+import TravelPlan from "./pages/travelPlan/TravelPlan";
+import Admin from "./pages/admin/Admin";
+import Navbar from "./components/navbar/Navbar";
+import { RouterProvider, createBrowserRouter, Outlet } from "react-router-dom";
 
 const Layout = () => {
   return (
@@ -23,7 +23,7 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Layout />,  // Use the Layout component for the root path
+      element: <Layout />, // Use the Layout component for the root path
       children: [
         {
           path: "/register",
@@ -34,20 +34,22 @@ function App() {
           element: <Login />,
         },
         {
+          path: "/admin",
+          element: <Admin />,
+        },
+        {
           path: "/",
           element: <Home />,
-        }
+        },
       ],
     },
     {
       path: "/travelplan",
       element: <TravelPlan />,
-    }
+    },
   ]);
 
-  return (
-    <RouterProvider router={router} />
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

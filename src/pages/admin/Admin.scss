@@ -1,0 +1,28 @@
+/* Admin.scss */
+
+.root {
+    display: flex;
+  }
+  
+  .drawer {
+    width: 240px;
+    flex-shrink: 0;
+  }
+  
+  .drawerPaper {
+    width: 240px;
+  }
+  
+  .content {
+    flex-grow: 1;
+    padding: 20px; /* Adjust as needed */
+  }
+  
+  .toolbar {
+    min-height: 64px; /* Adjust as needed */
+  }
+  
+  .typography {
+    margin-left: 20px; /* Adjust as needed */
+  }
+  
