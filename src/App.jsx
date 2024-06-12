@@ -1,7 +1,7 @@
-<<<<<<< HEAD
+
 import { useState } from 'react'
 import './App.css'
-=======
+
 import React from 'react';
 import Register from './pages/register/Register';
 import Login from './pages/login/Login';
@@ -18,7 +18,6 @@ const Layout = () => {
     </div>
   );
 };
->>>>>>> 6ae04900e14e87283a352aab02beb7835b9130fe
 
 function App() {
   const router = createBrowserRouter([
