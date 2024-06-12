@@ -11,6 +11,7 @@ const TravelPlan = () => {
           <div className='container'>
             <div className='planning'>
               <NavbarTravelplan />
+              <hr />
               <div className='plan-container'>
                 <div className='plan-sidebar'>
                   <SidebarTravelPlan />
