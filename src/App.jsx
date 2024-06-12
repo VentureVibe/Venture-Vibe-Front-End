@@ -1,6 +1,6 @@
 
-import { useState } from 'react'
 import './App.css'
+
 
 import React from 'react';
 import Register from './pages/register/Register';
