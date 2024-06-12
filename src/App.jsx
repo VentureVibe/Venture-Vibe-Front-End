@@ -32,13 +32,13 @@ function App() {
         {
           path: "/",
           element: <Home />,
-        },
-        {
-          path: "/travelplan",
-          element: <TravelPlan />,
-        },
+        }
       ],
     },
+    {
+      path: "/travelplan",
+      element: <TravelPlan />,
+    }
   ]);
 
   return (
