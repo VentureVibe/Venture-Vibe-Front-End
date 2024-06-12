@@ -10,8 +10,19 @@
 
 :root {
     --text-color: #414143;
-    --orange: #F4931E;
+    --orange: #f4931e;
     --green: #1BBC9B;
     --blue: #15BAD3;
     --white: white;
+
+
+    /*fonts*/
+    --header: 18px;
+    --paragraph-1: 14px;
+    --paragraph-2: 15px;
+    --topic: 21px;
+
+    /*box-shadows*/
+    --boxshadow-1: ;
+    --boxshadow-2: ;
 }

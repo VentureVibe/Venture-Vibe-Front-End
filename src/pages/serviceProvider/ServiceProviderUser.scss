@@ -1,7 +1,17 @@
 div {
-    center {
-        .sp {
-            border: 1px solid red;
+    .title {
+            border: 1px solid var(--green);
+    }
+    .page {
+        height: 100px;
+        .left {
+            width: 70%;
+            border: 1px solid var(--green);
+        }
+        .right {
+            width: 30%;
+            border: 1px solid var(--green);
         }
     }
+       
 }
