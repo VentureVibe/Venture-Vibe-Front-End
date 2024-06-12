@@ -1,6 +1,8 @@
+$background-icon: rgb(22, 22, 22);
+
 .navbar{
     width: 100%;
-    height: 40px;
+    height: 60px;
     border: 1px solid red;
     padding: 10px 0px 10px 0px;
     display: flex;
@@ -9,38 +11,50 @@
 
     .logo{
         width: 150px;
-        height: 30px;
-        margin-left: 70px;
-        border: 1px solid red;
+        height: 40px;
+        margin-left: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        img{
+            width: 22px;
+            height: 35px;
+        }
+
+        .logo-name{
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--orange);
+        }
     }
 
     .nav-right{
         width: 250px;
         height: 30px;
-        margin-right: 70px;
+        margin-right: 80px;
         display: flex;
         align-items: center;
         justify-content: space-between;
 
         .share{
-            width: 100px;
+            width: 120px;
             height: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: black;
+            background-color: $background-icon;
             color: white;
             border-radius: 20px;
         }
 
         .print{
-            width: 100px;
+            width: 120px;
             height: 30px;
-            border: 1px solid red;
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: black;
+            background-color: $background-icon;
             color: white;
             border-radius: 20px;
         }
