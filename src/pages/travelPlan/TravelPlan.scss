@@ -5,23 +5,27 @@
     .container{
         display: flex;
         width: 100%;
-        border: 1px solid red;
+        //border: 1px solid red;
         
         .planning{
             width: 60%;
             height: 400px;
-            border: 1px solid red;
+            //border: 1px solid red;
 
+            hr{
+                width: 100%;
+                height: 1px;
+                background-color: #c9c8c8;
+            }
 
             .plan-container{
                 display: flex;
                 width: 100%;
-                border: 1px solid red;
+                //border: 1px solid red;
 
                 .plan-sidebar{
                     width: 20%;
                     height: 350px;
-                    border: 1px solid red;
                 }
 
                 .plan-list{
