@@ -1,14 +1,54 @@
+<<<<<<< HEAD
 import { useState } from 'react'
 import './App.css'
+=======
+import React from 'react';
+import Register from './pages/register/Register';
+import Login from './pages/login/Login';
+import Home from './pages/home/Home';
+import TravelPlan from './pages/travelPlan/TravelPlan';
+import Navbar from './components/navbar/Navbar';
+import { RouterProvider, createBrowserRouter, Outlet } from 'react-router-dom';
+
+const Layout = () => {
+  return (
+    <div>
+      <Navbar />
+      <Outlet />
+    </div>
+  );
+};
+>>>>>>> 6ae04900e14e87283a352aab02beb7835b9130fe
 
 function App() {
-  const [count, setCount] = useState(0)
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Layout />,  // Use the Layout component for the root path
+      children: [
+        {
+          path: "/register",
+          element: <Register />,
+        },
+        {
+          path: "/login",
+          element: <Login />,
+        },
+        {
+          path: "/",
+          element: <Home />,
+        }
+      ],
+    },
+    {
+      path: "/travelplan",
+      element: <TravelPlan />,
+    }
+  ]);
 
   return (
-    <>
-      <h1>Hello vite</h1>
-    </>
-  )
+    <RouterProvider router={router} />
+  );
 }
 
-export default App
+export default App;
