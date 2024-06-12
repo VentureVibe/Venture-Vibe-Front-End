@@ -1,0 +1,48 @@
+.navbar{
+    width: 100%;
+    height: 40px;
+    border: 1px solid red;
+    padding: 10px 0px 10px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .logo{
+        width: 150px;
+        height: 30px;
+        margin-left: 70px;
+        border: 1px solid red;
+    }
+
+    .nav-right{
+        width: 250px;
+        height: 30px;
+        margin-right: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .share{
+            width: 100px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: black;
+            color: white;
+            border-radius: 20px;
+        }
+
+        .print{
+            width: 100px;
+            height: 30px;
+            border: 1px solid red;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: black;
+            color: white;
+            border-radius: 20px;
+        }
+    }
+}
