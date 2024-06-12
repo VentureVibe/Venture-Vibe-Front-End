@@ -1,6 +1,42 @@
 .trvelplan{
+    display: flex;
+    justify-content: center;  
+    
     .container{
         display: flex;
+        width: 100%;
+        border: 1px solid red;
+        
+        .planning{
+            width: 60%;
+            height: 400px;
+            border: 1px solid red;
+
+
+            .plan-container{
+                display: flex;
+                width: 100%;
+                border: 1px solid red;
+
+                .plan-sidebar{
+                    width: 20%;
+                    height: 350px;
+                    border: 1px solid red;
+                }
+
+                .plan-list{
+                    width: 80%;
+                    height: 350px;
+                    border: 1px solid red;
+                }
+            }
+        }
+
+        .map{
+            width: 40%;
+            height: 200px;
+            border: 1px solid red;
+        }
 
         
     }
