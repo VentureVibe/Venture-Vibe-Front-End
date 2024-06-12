@@ -2,6 +2,7 @@ import React from 'react'
 import "./TravelPlan.scss"
 import NavbarTravelplan from '../../components/navbar_travelplan/NavbarTravelplan'
 
+
 const TravelPlan = () => {
   return (
     <>

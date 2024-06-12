@@ -1,8 +1,14 @@
+
+import './App.css'
+
+
 import React from 'react';
 import Register from './pages/register/Register';
 import Login from './pages/login/Login';
 import Home from './pages/home/Home';
 import TravelPlan from './pages/travelPlan/TravelPlan';
+import Community from './pages/community/Community';
+import ServiceProviderUser from './pages/serviceProvider/ServiceProviderUser';
 import Navbar from './components/navbar/Navbar';
 import { RouterProvider, createBrowserRouter, Outlet } from 'react-router-dom';
 
@@ -38,6 +44,14 @@ function App() {
     {
       path: "/travelplan",
       element: <TravelPlan />,
+    },
+    {
+      path: "/community",
+      element: <Community />,
+    },
+    {
+      path: "serviceprovideruser",
+      element: <ServiceProviderUser />,
     }
   ]);
 
