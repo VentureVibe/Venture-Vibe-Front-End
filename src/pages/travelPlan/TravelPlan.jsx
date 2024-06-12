@@ -1,6 +1,7 @@
 import React from 'react'
 import "./TravelPlan.scss"
-import NavbarTravelplan from '../../components/navbar_travelplan/NavbarTravelplan'
+import NavbarTravelplan from '../../components/navbarTravelplan/NavbarTravelplan'
+import SidebarTravelPlan from '../../components/sidebarTravelPlan/SidebarTravelPlan.jsx'
 
 
 const TravelPlan = () => {
@@ -11,7 +12,9 @@ const TravelPlan = () => {
             <div className='planning'>
               <NavbarTravelplan />
               <div className='plan-container'>
-                <div className='plan-sidebar'></div>
+                <div className='plan-sidebar'>
+                  <SidebarTravelPlan />
+                </div>
                 <div className='plan-list'></div>
               </div>
             </div>
