@@ -1,6 +1,7 @@
 import React from 'react'
 import "./SidebarTravelPlan.scss"
 import SidebarTravelPlanExtend from '../sidebarTravelPlanExtend/SidebarTravelPlanExtend'
+import KeyboardArrowRightOutlinedIcon from '@mui/icons-material/KeyboardArrowRightOutlined';
 
 const SidebarTravelPlan = () => {
     const overview = ["Explore", "Notes", "Hotels and Logging", "Places to visit", "Restaurants", "Activities", "Transportation"]
@@ -11,21 +12,21 @@ const SidebarTravelPlan = () => {
         <div className='container'>
             <div className='sidebar-item-tab'>
                 <div className='sidebar-item-select'>
-                    <i>{'>'}</i>
+                    <i><KeyboardArrowRightOutlinedIcon /></i>
                     <span>Overview</span>
                 </div>
                 <SidebarTravelPlanExtend items={overview}/>
             </div>
             <div className='sidebar-item-tab'>
                 <div className='sidebar-item-select'>
-                    <i>{'>'}</i>
+                    <i><KeyboardArrowRightOutlinedIcon /></i>
                     <span>Itinerary</span>
                 </div>
                 <SidebarTravelPlanExtend items={itinerary}/>
             </div>
             <div className='sidebar-item-tab'>
                 <div className='sidebar-item-select'>
-                    <i>{'>'}</i>
+                    <i><KeyboardArrowRightOutlinedIcon /></i>
                     <span>Budget</span>
                 </div>
                 <SidebarTravelPlanExtend items={budget}/>
