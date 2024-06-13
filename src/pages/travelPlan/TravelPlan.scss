@@ -8,38 +8,71 @@
         //border: 1px solid red;
         
         .planning{
-            width: 60%;
-            height: 400px;
+            width: 61%;
+            height: 100vh;
             //border: 1px solid red;
 
             hr{
                 width: 100%;
                 height: 1px;
-                background-color: #c9c8c8;
+                background-color: #f1f4f7;
             }
 
             .plan-container{
                 display: flex;
                 width: 100%;
-                //border: 1px solid red;
 
-                .plan-sidebar{
+                .plan-sidebar {
                     width: 20%;
                     height: 350px;
-                }
+                    cursor: pointer;
+                    top: 50px;
+                    //border: 1px solid black; 
+                  }
 
-                .plan-list{
+                .plan-list-container{
+                    display: flex;
+                    flex-direction: column;
                     width: 80%;
-                    height: 350px;
-                    border: 1px solid red;
+                    //border: 1px solid red;
+                    background-color: #f1f4f7;
+                    z-index: 500;
+
+                    .plan-list{
+                        width: 100%;
+                        height: 350px;
+                        position: relative;
+    
+                        img{
+                            width: 100%;
+                            height: 230px;
+                            object-fit: cover;
+                        }
+                    }
+
+                    hr{
+                        width: 100%;
+                        height: 2px;
+                        background-color: #f1f4f7;
+                    }
                 }
+               
             }
         }
 
         .map{
-            width: 40%;
-            height: 200px;
-            border: 1px solid red;
+            width: 39%;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 926px;
+            //border: 1px solid red;
+
+            img{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
         }
 
         

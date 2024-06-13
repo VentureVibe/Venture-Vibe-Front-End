@@ -7,6 +7,12 @@ $background-icon: #31352E;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: -webkit-sticky;
+    position: sticky;
+    z-index: 1000;
+    top: 0;
+    //left: 0;
+    background-color: white;
 
     .logo{
         width: 150px;
@@ -15,6 +21,7 @@ $background-icon: #31352E;
         display: flex;
         align-items: center;
         justify-content: space-between;
+        cursor: pointer;
 
         img{
             width: 22px;
@@ -29,41 +36,46 @@ $background-icon: #31352E;
     }
 
     .nav-right{
-        width: 250px;
-        height: 30px;
+        width: 190px;
+        height: 25px;
         margin-right: 80px;
         display: flex;
         align-items: center;
         justify-content: space-between;
 
         .share{
-            width: 120px;
-            height: 35px;
+            width: 90px;
+            height: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
             background-color: $background-icon;
             color: white;
             border-radius: 20px;
+            cursor: pointer;
 
             h3{
                 font-size: var(--paragraph-1);
+                margin-left: 8px;
             }
         }
 
         .print{
-            width: 120px;
-            height: 35px;
+            width: 90px;
+            height: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
             background-color: $background-icon;
             color: white;
             border-radius: 20px;
+            cursor: pointer;
 
             h3{
                 font-size: var(--paragraph-1);
+                margin-left: 8px;
             }
+
         }
     }
 }
