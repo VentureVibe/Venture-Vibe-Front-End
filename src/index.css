@@ -11,9 +11,22 @@
 
 :root {
     --text-color: #414143;
-    --orange: #F4931E;
+    --text-color-light: #747474;
+    --orange: #F68712;
     --green: #1BBC9B;
     --blue: #15BAD3;
     --white: white;
+
+
+    /*fonts*/
+    --header: 18px;
+    --sidebar: 16px;
+    --paragraph-1: 14px;
+    --paragraph-2: 15px;
+    --topic: 21px;
+
+    /*box-shadows*/
+    --boxshadow-1: ;
+    --boxshadow-2: ;
 }
 
