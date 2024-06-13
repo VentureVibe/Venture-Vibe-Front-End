@@ -7,6 +7,12 @@ $background-icon: #31352E;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: -webkit-sticky;
+    position: sticky;
+    z-index: 1000;
+    top: 0;
+    //left: 0;
+    background-color: white;
 
     .logo{
         width: 150px;

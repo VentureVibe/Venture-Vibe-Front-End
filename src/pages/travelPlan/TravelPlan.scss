@@ -9,7 +9,7 @@
         
         .planning{
             width: 61%;
-            height: 400px;
+            height: 100vh;
             //border: 1px solid red;
 
             hr{
@@ -21,12 +21,14 @@
             .plan-container{
                 display: flex;
                 width: 100%;
-                //border: 1px solid red;
 
-                .plan-sidebar{
+                .plan-sidebar {
                     width: 20%;
                     height: 350px;
-                }
+                    cursor: pointer;
+                    top: 50px;
+                    //border: 1px solid black; 
+                  }
 
                 .plan-list-container{
                     display: flex;
@@ -34,6 +36,7 @@
                     width: 80%;
                     //border: 1px solid red;
                     background-color: #f1f4f7;
+                    z-index: 500;
 
                     .plan-list{
                         width: 100%;
@@ -43,7 +46,14 @@
                         img{
                             width: 100%;
                             height: 230px;
+                            object-fit: cover;
                         }
+                    }
+
+                    hr{
+                        width: 100%;
+                        height: 2px;
+                        background-color: #f1f4f7;
                     }
                 }
                
@@ -52,8 +62,17 @@
 
         .map{
             width: 39%;
-            height: 200px;
-            border: 1px solid red;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 926px;
+            //border: 1px solid red;
+
+            img{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
         }
 
         
