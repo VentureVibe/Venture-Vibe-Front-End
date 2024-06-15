@@ -8,6 +8,7 @@ import ExploreTravelPlan from '../../components/exploreTravelPlan/ExploreTravelP
 import map from '../../assets/map.png';
 import NotesTravelPlan from '../../components/notesTravelPlan/NotesTravelPlan';
 import HotelsTravelPlan from '../../components/hotelsTravelPlan/HotelsTravelPlan';
+import PlacesToVisitTravelPlan from '../../components/placesToVisitTravelPlan/PlacesToVisitTravelPlan';
 
 const TravelPlan = () => {
   const [sidebarTop, setSidebarTop] = useState(50); // Initial top position of the sidebar
@@ -43,6 +44,8 @@ const TravelPlan = () => {
               <NotesTravelPlan />
               <hr />
               <HotelsTravelPlan />
+              <hr />
+              <PlacesToVisitTravelPlan />
             </div>
           </div>
         </div>
