@@ -1,31 +1,27 @@
 import React from 'react'
-import './HotelsTravelPlan.scss';
+import './RestaurantsTravelPlan.scss';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import AddIcon from '@mui/icons-material/Add';
-import HotelIcon from '@mui/icons-material/Hotel';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-const HotelsTravelPlan = () => {
+const RestaurantsTravelPlan = () => {
   return (
-    <div className='hotelsTravelPlan'>
+    <div className='restaurantsTravelPlan'>
         <div className='container'>
-            <div className='hotels-tag'>
+            <div className='places-heading-container'>
                 <i><KeyboardArrowDownIcon sx={{ color: '#747474' }}/></i>
-                <h2>Hotels and lodging</h2>
+                <h2>Restaurants</h2>
             </div>
-            <div className='show-hotel-container'>
-                <div className="hotel-name">
-                    <span>Radisson Blu Resort, Galle</span>
+            <div className='show-place-container'>
+                <div className="place-name">
+                    <div className="icon-tag">
+                        <i><LocationOnIcon sx={{ color: '#F68712', fontSize: 35 }}/></i>
+                        <span>1</span>   
+                    </div>
+                    <span>Hungry Restaurant Galle</span>
                     <i className='delete'><DeleteIcon sx={{ color: '#747474', fontSize: 20 }}/></i>
-                </div>
-                <div className="address-hotel">
-                    <span>523C Colombo Main Rd, Galle 80280, Sri Lanka</span>
-                </div>
-                <div className="date-hotel">
-                    <span>Mon, Jun 10th - Tue, Jun 11th</span>
                 </div>
                 <div className="add-notes">
                     <input type="text" placeholder='Add notes, links, etc. here'/>
@@ -41,24 +37,23 @@ const HotelsTravelPlan = () => {
                     </div>
                 </div>
             </div>
-            <div className='add-find-hotels'>
-                <div className='add-lodging'>
-                    <i><AddIcon sx={{ color: '#747474', fontSize: 20 }}/></i>
-                    <span>Add lodging</span>
-                </div>
-                <div className='find-hotel'>
-                    <i><HotelIcon sx={{ color: '#747474', fontSize: 20 }}/></i>
-                    <span>Find hotels</span>
-                </div>
+            <div className='add-place-container'>
+                <i><LocationOnIcon sx={{ color: '#414143', fontSize: 25 }}/></i>
+                <input type='text' placeholder='Add a restaurant'></input>
+            </div>
+            <div className='recommended-places-heading-container'>
+                <i><KeyboardArrowDownIcon sx={{ color: '#747474' }}/></i>
+                <span>Recommended Restaurants</span>
             </div>
             <div className='bottom-container'>
-                <div className='article'></div>
-                <div className='article'></div>
-                <div className='article'></div>
+                <div className='place'></div>
+                <div className='place'></div>
+                <div className='place'></div>
             </div>
+
         </div>
     </div>
   )
 }
 
-export default HotelsTravelPlan
+export default RestaurantsTravelPlan

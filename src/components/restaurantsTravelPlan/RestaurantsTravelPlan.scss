@@ -1,19 +1,20 @@
-.hotelsTravelPlan{
+.restaurantsTravelPlan{
     .container{
         display: flex;
         flex-direction: column;
         justify-content: center;
         width: 100%;
         //border: 1px solid red;
-        //margin-top: 20px;
-        padding: 30px 90px 0 35px;
+        //margin-top: 30px;
+        padding: 0 90px 0 35px;
         background-color: white;
 
-        .hotels-tag{
+        .places-heading-container{
             display: flex;
             align-items: center;
             width: 250px;
             height: 50px;
+            margin-top: 30px;
 
             i{
 
@@ -24,58 +25,31 @@
                 font-size: var(--topic);
                 color: var(--text-color);
             }
+
         }
 
-        .add-find-hotels{
+        .recommended-places-heading-container{
             display: flex;
             align-items: center;
-            //margin-top: 5px;
-            width: 100%;
+            width: 250px;
+            height: 50px;
+            margin-top: 20px;
+            margin-left: 30px;
 
-            .add-lodging{
-                display: flex;
-                align-items: center;
-                width: 110px;
-                height: 40px;
-                justify-content: center;
-                margin-left: 20px;
-                cursor: pointer;
-
-                i{
-                    margin-top: 4px;
-                }
-
-                span{
-                    margin-left: 10px;
-                    font-size: var(--paragraph-2);
-                    color: var(--text-color);
-                }
+            i{
 
             }
 
-            .find-hotel{
-                display: flex;
-                align-items: center;
-                width: 108px;
-                height: 40px;
-                justify-content: center;
-                margin-left: 30px;
-                cursor: pointer;
-
-                i{
-                    margin-top: 4px;
-                }
-
-                span{
-                    margin-left: 10px;
-                    font-size: var(--paragraph-2);
-                    color: var(--text-color);
-                }
-
+            span{
+                margin-left: 15px;
+                font-size: var(--paragraph-2);
+                color: var(--text-color);
+                font-weight: 500;
             }
+
         }
 
-        .show-hotel-container{
+        .show-place-container{
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -88,54 +62,45 @@
             border-radius: 10px;
             margin-left: 30px;
             margin-top: 10px;
-            margin-bottom: 20px;
 
-            .hotel-name{
+            .place-name{
                 display: flex;
                 align-items: center;
-                margin-top: 10px;
-                margin-left: 15px;
+                margin-left: -22px;
                 position: relative;
 
+                .icon-tag{
+                    position: relative;
+                    display: inline-block;
+
+                    i{
+
+                    }
+
+                    span{
+                        position: absolute;
+                        top: 8px; 
+                        right: 13.5px;
+                        font-size: var(--paragraph-1);
+                        background-color: var(--orange);
+                        color: white;
+                    }
+                }
 
                 span{
                     font-size: var(--sidebar);
                     color: var(--text-color);
-                    font-weight: 650;
+                    font-weight: 700;
                     margin-left: 5px;
                 }
 
                 .delete{
                     position: absolute;
-                    top: -5px; 
+                    top: 5px; 
                     right: -35px;
                     cursor: pointer;
                 }
 
-            }
-
-            .address-hotel{
-                margin-bottom: 15px;
-                margin-left: 15px;
-
-                span{
-                    font-size: 13px;
-                    color: var(--text-color-light);
-                    font-weight: 350;
-                    margin-left: 5px;  
-                }
-            }
-
-            .date-hotel{
-                margin-bottom: 10px;
-                margin-left: 15px;
-
-                span{
-                    font-size: var(--paragraph-1);
-                    color: var(--text-color);
-                    font-weight: 450;
-                    margin-left: 5px;  
-                }
             }
 
             .add-notes{
@@ -201,16 +166,41 @@
             }
         }
 
+        .add-place-container{
+            display: flex;
+            align-items: center;
+            margin-left: 30px;
+            margin-top: 15px;
+            padding: 5px;
+            background-color: #f1f4f7;
+            border-radius: 10px;
+
+            i{
+                margin-left: 10px;
+            }
+
+            input{
+                width: 100%;
+                height: 40px;
+                padding: 10px;
+                border-radius: 5px;
+                font-size: var(--paragraph-1);
+                outline: none;
+                background-color: #f1f4f7;
+                color: var(--text-color);
+            }
+        }
+
         .bottom-container{
             display: flex;
             align-items: center;
             justify-content: space-between;
             width: 100%;
             //border: 1px solid red;
-            margin-top: 20px;
+            margin-top: 10px;
             padding: 0 0 40px 40px;
 
-            .article{
+            .place{
                 width: 170px;
                 height: 250px;
                 border: 1px solid red;
