@@ -10,6 +10,7 @@ $background-icon: #31352E;
     position: -webkit-sticky;
     position: sticky;
     z-index: 1000;
+    box-shadow: var(--box-shadow-1);
     top: 0;
     background-color: var(--white);
     .logo{
@@ -36,7 +37,7 @@ $background-icon: #31352E;
     .nav-search{
         display: flex;
         align-items: center;
-        margin-right: 40%;
+        margin-right: 42.5%;
         input{
             padding: 6.9px 10px;
             font-size: var(--paragraph-2);

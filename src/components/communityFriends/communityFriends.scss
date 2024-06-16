@@ -1,5 +1,96 @@
 $background-icon: #31352E;
 
 .communityFriends{
-   
+    padding: 29px 22px;
+    h1{
+        font-size:var(--topic);
+        font-weight: 500;
+        letter-spacing: 0.06rem;
+    }
+    .nav-search{
+        display: flex;
+        align-items: center;
+        margin-top: 21px;
+        input{
+            padding: 6px 10px;
+            font-size: var(--paragraph-1);
+            border-radius: 5px;
+            background-color: var(--input);
+            width:100%;
+            letter-spacing: 0.02rem
+        };
+        input:focus {
+            outline: none; 
+        }
+        i{
+            font-size:var(--header);
+            margin-left: -28px;
+        }
+    }
+
+    .bottom{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 25px;
+        height: 510px;
+        overflow: scroll;
+        .friend{
+            width: 100%;
+            display: flex;
+            align-items:  center;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            transition: background-color 0.3s ease; 
+            padding-left: 2px;
+            padding-top: 2px;
+            padding-bottom: 2px;
+            img{
+                width: 45px;
+                height: 45px;
+                border-radius: 100%;
+                margin-right: 18px;
+            }
+    
+            p{
+                font-size: var(--paragraph-1);
+                letter-spacing: 0.03rem;
+                width: 200px;
+            }
+
+            .circle{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: var(--orange);
+                border-radius: 1000%;
+                width: 19px;
+                height: 19px;
+                color: var(--white);
+                font-size: var(--paragraph-3);
+            }
+        }
+
+        .friend:hover{
+            background-color: var( --green);
+            cursor: pointer;
+            .circle{
+                background-color: var(--orange);
+            }
+        }
+    }
+
+    .view-more{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: var(--paragraph-1);
+        cursor: pointer;
+        i{
+            font-size: var(--paragraph-2);
+            margin-right: 10px;
+        }
+    }
 }
+
