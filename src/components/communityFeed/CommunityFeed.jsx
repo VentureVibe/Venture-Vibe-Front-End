@@ -22,8 +22,6 @@ const CommunityFeed = () => {
   )
 }
 
-const Post=()=>{
 
-}
 
 export default CommunityFeed

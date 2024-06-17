@@ -1,49 +1,47 @@
 import "./communityFriends.scss"
-import man from "../../assets/profilepics/Profile1.jpg";
+
+import { useState } from "react";
+import CommunityFriendList from "../communityFriendList/CommunityFriendList"
+import CommunityFriendChat from "../communityFriendChat/CommunityFriendChat";
 
 
 const CommunityFriends = () => {
+  const [selectedFriend, setSelectedFriend] = useState(null);
+  const [selectedFriendImg, setSelectedFriendImg] = useState(null);
+
+  const handleClickFriend = (friendName,imageSrc) => {
+    setSelectedFriend(friendName);
+    setSelectedFriendImg(imageSrc)
+  };
+
+  const handleClickFriends = () => {
+    setSelectedFriend(null);
+    setSelectedFriendImg(null);
+  };
+
   return (
     <div className='communityFriends'>
         <div className="top">
-           <h1>Friends</h1>
+           <h1 onClick={handleClickFriends}>Friends (5)</h1>
            <div className='nav-search'>
            <input type="text" placeholder='Search'/>
            <i class="fa-solid fa-magnifying-glass"></i>
         </div>
         </div>
         <div className="bottom">
-            <Friend/>
-            <Friend/>
-            <Friend/>
-            <Friend/>
-            <Friend/>
-            <Friend/>
+        {selectedFriend ? (
+          <CommunityFriendChat friendName={selectedFriend} imageSrc={selectedFriendImg} />
+        ) : (
+          <CommunityFriendList handleClickFriend={handleClickFriend}/>
 
+        )}
+      
         </div>
-        <div className="view-more">
-            <i class="fa-solid fa-angles-down"></i>
-           More
-        </div>
+     
     </div>
   )
 }
 
-const Friend=({name,messages,imageSrc})=>{
-  return(
-    <div className="friend">
-          <img src={man} alt="" />
-          <p>{name}</p>
-          <div className="circle">{messages}</div> 
-  </div>
-  )
-  
-}
 
-Friend.defaultProps = {
-  name: "Nimasha Sathsarani",
-  messages:6,
-  imageSrc: man 
-};
 
 export default CommunityFriends

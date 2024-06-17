@@ -3,6 +3,7 @@ import "./Community.scss"
 import NavbarCommunity from '../../components/navbarCommunity/NavbarCommunity';
 import CommunityFriends from '../../components/communityFriends/CommunityFriends';
 import CommunityFeed from '../../components/communityFeed/CommunityFeed';
+import { Link, Outlet } from 'react-router-dom';
 
 
 const Community = () => {
@@ -33,7 +34,7 @@ const Community = () => {
                     <h4>Post Now</h4>
                   </div>
                 </div>
-               <CommunityFeed/>
+                <Outlet></Outlet>
                <CommunityFriends/>
 
            </div>
