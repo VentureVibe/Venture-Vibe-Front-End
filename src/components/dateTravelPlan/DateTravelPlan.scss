@@ -1,0 +1,41 @@
+.DateTravelPlan{
+    .container{
+
+        .day-container{
+            display: flex;
+            flex-direction: column;
+
+            .day{
+                display: flex;
+                //justify-content: space-between;
+                align-items: center;
+                margin-top: 10px;
+                margin-bottom: 20px;
+
+                .down-arrow{
+                    cursor: pointer;
+                }
+    
+                .calender{
+                    margin-top: 3px;
+                }
+    
+                span{
+                    font-size: 25px;
+                    font-weight: 600;
+                    margin-right: 20px;
+                    margin-left: 30px;
+                    color: var(--text-color);
+                }
+            }
+
+            hr{
+                width: 100%;
+                margin-top: 20px;
+                margin-bottom: 20px;
+                border: 1px solid #f1f4f7;
+            }
+        }
+        
+    }
+}

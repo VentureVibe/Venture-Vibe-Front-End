@@ -12,17 +12,9 @@ import PlacesToVisitTravelPlan from '../../components/placesToVisitTravelPlan/Pl
 import RestaurantsTravelPlan from '../../components/restaurantsTravelPlan/RestaurantsTravelPlan';
 import EventsTravelPlan from '../../components/eventsTravelPlan/EventsTravelPlan';
 import TransportTravelPlan from '../../components/transportTravelPlan/TransportTravelPlan';
+import ItineraryTravelPlan from '../../components/itineraryTravelPlan/ItineraryTravelPlan';
 
 const TravelPlan = () => {
-  const [sidebarTop, setSidebarTop] = useState(50); // Initial top position of the sidebar
-
-  const handleMouseMove = (event) => {
-    const sidebar = event.currentTarget;
-    const rect = sidebar.getBoundingClientRect();
-    const offsetY = event.clientY - rect.top;
-
-    setSidebarTop(event.clientY - offsetY);
-  };
 
   return (
     <div className='trvelplan'>
@@ -31,11 +23,7 @@ const TravelPlan = () => {
           <NavbarTravelplan />
           <hr />
           <div className='plan-container'>
-            <div
-              className="plan-sidebar"
-              style={{ top: `${sidebarTop}px` }}
-              onMouseMove={handleMouseMove}
-            >
+            <div className="plan-sidebar">
               <SidebarTravelPlan />
             </div>
             <div className='plan-list-container'>
@@ -55,6 +43,8 @@ const TravelPlan = () => {
               <EventsTravelPlan />
               <hr />
               <TransportTravelPlan />
+              <hr />
+              <ItineraryTravelPlan />
             </div>
           </div>
         </div>

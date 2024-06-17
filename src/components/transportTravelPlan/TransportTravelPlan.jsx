@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './TransportTravelPlan.scss';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -7,17 +7,27 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 const TransportTravelPlan = () => {
+    const [isBottomContainerVisible, setIsBottomContainerVisible] = useState(false);
+    const [isplaceVisible, setIsPlaceVisible] = useState(false);
+
+    const toggleBottomContainer = () => {
+        setIsBottomContainerVisible(prevState => !prevState);
+    };
+
+    const togglePlace = () => {
+        setIsPlaceVisible(prevState => !prevState);
+    };
   return (
     <div className='transportTravelPlan'>
         <div className='container'>
-            <div className='transport-heading-container'>
+            <div className='transport-heading-container' onClick={toggleBottomContainer}>
                 <i><KeyboardArrowDownIcon sx={{ color: '#747474' }}/></i>
                 <h2>Transport Services</h2>
             </div>
-            <div className='show-transport-container'>
+            {isBottomContainerVisible && (<div className='show-transport-container'>
                 <div className="transport-name">
                     <div className="icon-tag">
-                        <i><LocationOnIcon sx={{ color: '#15BAD3', fontSize: 35 }}/></i>
+                        <i><LocationOnIcon sx={{ color: '#1BBC9B', fontSize: 35 }}/></i>
                         <span>1</span>   
                     </div>
                     <span>Amas Transport</span>
@@ -36,20 +46,20 @@ const TransportTravelPlan = () => {
                         <span>Add cost</span>
                     </div>
                 </div>
-            </div>
+            </div>)}
             {/* <div className='add-place-container'>
                 <i><LocationOnIcon sx={{ color: '#414143', fontSize: 25 }}/></i>
                 <input type='text' placeholder='Add a restaurant'></input>
             </div> */}
-            <div className='recommended-transport-heading-container'>
+           {isBottomContainerVisible && ( <div className='recommended-transport-heading-container' onClick={togglePlace}>
                 <i><KeyboardArrowDownIcon sx={{ color: '#747474' }}/></i>
                 <span>Add Transport Services</span>
-            </div>
-            <div className='bottom-container'>
+            </div>)}
+            {isBottomContainerVisible && isplaceVisible && (<div className='bottom-container'>
                 <div className='place'></div>
                 <div className='place'></div>
                 <div className='place'></div>
-            </div>
+            </div>)}
 
         </div>
     </div>

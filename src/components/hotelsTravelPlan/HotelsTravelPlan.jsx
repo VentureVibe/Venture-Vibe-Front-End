@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './HotelsTravelPlan.scss';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import AddIcon from '@mui/icons-material/Add';
@@ -9,14 +9,20 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 const HotelsTravelPlan = () => {
+    const [isBottomContainerVisible, setIsBottomContainerVisible] = useState(false);
+
+    const toggleBottomContainer = () => {
+        setIsBottomContainerVisible(prevState => !prevState);
+    };
+
   return (
     <div className='hotelsTravelPlan'>
         <div className='container'>
-            <div className='hotels-tag'>
+            <div className='hotels-tag' onClick={toggleBottomContainer}>
                 <i><KeyboardArrowDownIcon sx={{ color: '#747474' }}/></i>
                 <h2>Hotels and lodging</h2>
             </div>
-            <div className='show-hotel-container'>
+           {isBottomContainerVisible && ( <div className='show-hotel-container'>
                 <div className="hotel-name">
                     <span>Radisson Blu Resort, Galle</span>
                     <i className='delete'><DeleteIcon sx={{ color: '#747474', fontSize: 20 }}/></i>
@@ -40,8 +46,8 @@ const HotelsTravelPlan = () => {
                         <span>Add cost</span>
                     </div>
                 </div>
-            </div>
-            <div className='add-find-hotels'>
+            </div>)}
+            {isBottomContainerVisible && (<div className='add-find-hotels'>
                 <div className='add-lodging'>
                     <i><AddIcon sx={{ color: '#747474', fontSize: 20 }}/></i>
                     <span>Add lodging</span>
@@ -50,12 +56,12 @@ const HotelsTravelPlan = () => {
                     <i><HotelIcon sx={{ color: '#747474', fontSize: 20 }}/></i>
                     <span>Find hotels</span>
                 </div>
-            </div>
-            <div className='bottom-container'>
+            </div>)}
+            {isBottomContainerVisible && (<div className='bottom-container'>
                 <div className='article'></div>
                 <div className='article'></div>
                 <div className='article'></div>
-            </div>
+            </div>)}
         </div>
     </div>
   )

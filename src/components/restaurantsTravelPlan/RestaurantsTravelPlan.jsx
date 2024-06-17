@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './RestaurantsTravelPlan.scss';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -7,15 +7,26 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 const RestaurantsTravelPlan = () => {
+    const [isBottomContainerVisible, setIsBottomContainerVisible] = useState(false);
+    const [isplaceVisible, setIsPlaceVisible] = useState(false);
+
+    const toggleBottomContainer = () => {
+        setIsBottomContainerVisible(prevState => !prevState);
+    };
+
+    const togglePlace = () => {
+        setIsPlaceVisible(prevState => !prevState);
+    };
+
   return (
     <div className='restaurantsTravelPlan'>
         <div className='container'>
-            <div className='places-heading-container'>
+            <div className='restaurants-heading-container' onClick={toggleBottomContainer}>
                 <i><KeyboardArrowDownIcon sx={{ color: '#747474' }}/></i>
                 <h2>Restaurants</h2>
             </div>
-            <div className='show-place-container'>
-                <div className="place-name">
+            {isBottomContainerVisible && (<div className='show-restaurant-container'>
+                <div className="restaurant-name">
                     <div className="icon-tag">
                         <i><LocationOnIcon sx={{ color: '#F68712', fontSize: 35 }}/></i>
                         <span>1</span>   
@@ -26,7 +37,7 @@ const RestaurantsTravelPlan = () => {
                 <div className="add-notes">
                     <input type="text" placeholder='Add notes, links, etc. here'/>
                 </div>
-                <div className="bottom-show-place">
+                <div className="bottom-show-restaurant">
                     <div className="add-attachment">
                         <i><AttachFileIcon sx={{ color: '#414143', fontSize: 18 }}/></i>
                         <span>Attach</span>
@@ -36,20 +47,20 @@ const RestaurantsTravelPlan = () => {
                         <span>Add cost</span>
                     </div>
                 </div>
-            </div>
-            <div className='add-place-container'>
+            </div>)}
+            {isBottomContainerVisible && (<div className='add-restaurant-container'>
                 <i><LocationOnIcon sx={{ color: '#414143', fontSize: 25 }}/></i>
                 <input type='text' placeholder='Add a restaurant'></input>
-            </div>
-            <div className='recommended-places-heading-container'>
+            </div>)}
+            {isBottomContainerVisible && (<div className='recommended-restaurants-heading-container' onClick={togglePlace}>
                 <i><KeyboardArrowDownIcon sx={{ color: '#747474' }}/></i>
                 <span>Recommended Restaurants</span>
-            </div>
-            <div className='bottom-container'>
-                <div className='place'></div>
-                <div className='place'></div>
-                <div className='place'></div>
-            </div>
+            </div>)}
+            {isBottomContainerVisible && isplaceVisible && (<div className='bottom-container'>
+                <div className='restaurant'></div>
+                <div className='restaurant'></div>
+                <div className='restaurant'></div>
+            </div>)}
 
         </div>
     </div>
