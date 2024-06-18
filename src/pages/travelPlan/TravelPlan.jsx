@@ -13,6 +13,7 @@ import RestaurantsTravelPlan from '../../components/restaurantsTravelPlan/Restau
 import EventsTravelPlan from '../../components/eventsTravelPlan/EventsTravelPlan';
 import TransportTravelPlan from '../../components/transportTravelPlan/TransportTravelPlan';
 import ItineraryTravelPlan from '../../components/itineraryTravelPlan/ItineraryTravelPlan';
+import BudgetTravelPlan from '../../components/budgetTravelPlan/BudgetTravelPlan';
 
 const TravelPlan = () => {
 
@@ -45,6 +46,8 @@ const TravelPlan = () => {
               <TransportTravelPlan />
               <hr />
               <ItineraryTravelPlan />
+              <hr />
+              <BudgetTravelPlan />
             </div>
           </div>
         </div>
