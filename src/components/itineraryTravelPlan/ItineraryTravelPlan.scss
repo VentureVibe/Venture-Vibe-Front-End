@@ -1,0 +1,52 @@
+.itineraryTravelPlan{
+    .container{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        //border: 1px solid red;
+        //margin-top: 20px;
+        padding: 50px 90px 30px 35px;
+        background-color: white;
+
+        .heading{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-left: 40px;
+
+            span{
+                font-size: 29px;
+                font-weight: 600;
+                color: var(--text-color);
+            }
+
+            .date-tag{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 150px;
+                height: 40px;
+                padding: 10px;
+                margin-left: 150px;
+                //border: 1px solid red;
+                background-color: #f1f4f7;
+                border-radius: 10px;
+
+                span{
+                    font-size: var(--paragraph-2);
+                    font-weight: 500;
+                    margin-left: 10px;
+                    color: var(--text-color);
+                }
+
+                i{
+                    
+                }
+            }
+        }
+
+        .itinerary-body{
+
+        }
+    }
+}

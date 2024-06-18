@@ -1,18 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './NotesTravelPlan.scss';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 const NotesTravelPlan = () => {
+  const [isBottomContainerVisible, setIsBottomContainerVisible] = useState(false);
+
+  const toggleBottomContainer = () => {
+    setIsBottomContainerVisible(prevState => !prevState);
+  };
+
   return (
     <div className='notesTravelPlan'>
         <div className='container'>
-            <div className='top-container'>
+            <div className='top-container' onClick={toggleBottomContainer}>
                 <i><KeyboardArrowDownIcon sx={{ color: '#747474' }}/></i>
                 <h2>Notes</h2>
             </div>
-            <div className='bottom-container'>
+            {isBottomContainerVisible && (<div className='bottom-container'>
                 <textarea name="" id="" placeholder='Write or paste anything here. how to get around, tips and tricks'></textarea>
-            </div>
+            </div>)}
         </div>
     </div>
 
