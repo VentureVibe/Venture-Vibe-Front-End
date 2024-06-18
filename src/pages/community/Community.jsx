@@ -13,10 +13,13 @@ const Community = () => {
            <NavbarCommunity/>
            <div className="bottom">
                <div className="bottom-one">
+
+                  <Link to="/community">
                   <div className="cont">
-                      <i class="fa-solid fa-bars"></i>
+                       <i class="fa-solid fa-square-rss"></i>
                       <p>Feed</p>
-                  </div>    
+                  </div>   
+                  </Link> 
                   <div className="cont">
                        <i class="fa-solid fa-image"></i>                
                         <p>Images</p>

@@ -49,17 +49,17 @@
       display: flex;
       align-items: center;
       justify-content: space-around;
-      margin-left: 14%;
-      width: 140px;
+   
+      width: 120px;
       // background-color: #f89d0a;
       // background-color: var(--input);
-      background-color: var(--orange);
-      padding: 8px;
+      background-color: var(--input);
+      padding: 5px;
       border-radius: 10px;
       box-shadow: var(--box-shadow-1);
       cursor: pointer;
       h4{
-        font-size: var(--heading);
+        font-size: var(--paragraph-1);
         font-weight: 500;
         opacity: 0.8;
       }
