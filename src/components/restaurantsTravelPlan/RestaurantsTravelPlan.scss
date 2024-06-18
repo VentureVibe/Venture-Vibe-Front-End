@@ -6,15 +6,16 @@
         width: 100%;
         //border: 1px solid red;
         //margin-top: 30px;
-        padding: 0 90px 0 35px;
+        padding: 0 90px 30px 35px;
         background-color: white;
 
-        .places-heading-container{
+        .restaurants-heading-container{
             display: flex;
             align-items: center;
             width: 250px;
             height: 50px;
             margin-top: 30px;
+            cursor: pointer;
 
             i{
 
@@ -28,13 +29,14 @@
 
         }
 
-        .recommended-places-heading-container{
+        .recommended-restaurants-heading-container{
             display: flex;
             align-items: center;
             width: 250px;
             height: 50px;
             margin-top: 20px;
             margin-left: 30px;
+            cursor: pointer;
 
             i{
 
@@ -49,7 +51,7 @@
 
         }
 
-        .show-place-container{
+        .show-restaurant-container{
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -63,7 +65,7 @@
             margin-left: 30px;
             margin-top: 10px;
 
-            .place-name{
+            .restaurant-name{
                 display: flex;
                 align-items: center;
                 margin-left: -22px;
@@ -118,7 +120,7 @@
                 }
             }
 
-            .bottom-show-place{
+            .bottom-show-restaurant{
                 display: flex;
                 align-items: center;
                 margin-top: -5px;
@@ -166,7 +168,7 @@
             }
         }
 
-        .add-place-container{
+        .add-restaurant-container{
             display: flex;
             align-items: center;
             margin-left: 30px;
@@ -198,9 +200,9 @@
             width: 100%;
             //border: 1px solid red;
             margin-top: 10px;
-            padding: 0 0 40px 40px;
+            padding: 0 0 10px 40px;
 
-            .place{
+            .restaurant{
                 width: 170px;
                 height: 250px;
                 border: 1px solid red;
