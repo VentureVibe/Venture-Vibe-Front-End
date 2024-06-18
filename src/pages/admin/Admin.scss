@@ -1,28 +1,34 @@
-/* Admin.scss */
+.parent{
+  display: grid;
+  grid-template-columns: repeat(12,1fr);
+}
 
-.root {
-    display: flex;
-  }
-  
-  .drawer {
-    width: 240px;
-    flex-shrink: 0;
-  }
-  
-  .drawerPaper {
-    width: 240px;
-  }
-  
-  .content {
-    flex-grow: 1;
-    padding: 20px; /* Adjust as needed */
-  }
-  
-  .toolbar {
-    min-height: 64px; /* Adjust as needed */
-  }
-  
-  .typography {
-    margin-left: 20px; /* Adjust as needed */
-  }
+.segment{
+  display: grid;
+  place-items: center;
+  text-align: center;
+  grid-template-rows: 100px;
+}
+
+.twelve{
+  background-color: lightseagreen;
+  grid-column: 1/ span 12;
+}
+
+.eight{
+  background-color: bisque;
+  grid-column: 5/ span 8;
+}
+
+.four{
+  grid-column: 1/span 4;
+  background-color: lightblue;
+}
+
+.seven{
+  grid-column: 3/span 7;
+  background-color: lightcoral;
+}
+
+
   

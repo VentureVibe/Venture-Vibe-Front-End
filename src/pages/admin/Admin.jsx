@@ -1,45 +1,18 @@
 import React from "react";
-import { useState } from "react";
-
-const drawerWidth = 240;
+import "./Admin.scss";
 
 const Admin = () => {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
-      <Drawer
-        className={classes.drawer}
-        variant="permanent"
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-        anchor="left"
-      >
-        <Toolbar />
-        <Typography variant="h6" noWrap>
-          Admin Dashboard
-        </Typography>
-        <List>
-          <ListItem button>
-            <ListItemText primary="Dashboard" />
-          </ListItem>
-          <ListItem button>
-            <ListItemText primary="Users" />
-          </ListItem>
-          <ListItem button>
-            <ListItemText primary="Products" />
-          </ListItem>
-          <ListItem button>
-            <ListItemText primary="Settings" />
-          </ListItem>
-        </List>
-      </Drawer>
-      <main className={classes.content}>
-        <Toolbar />
-        <Typography paragraph>Main Content Area</Typography>
-      </main>
-    </div>
+    <>
+      <div className="parent">
+        <div className="segment twelve">Span 12</div>
+        <div className="segment eight">Span 8</div>
+        <div className="segment four">Span 4</div>
+        <div className="segment six">Span 6</div>
+        <div className="segment seven">Span 7</div>
+        <div className="segment twelve">Span 12</div>
+      </div>
+    </>
   );
 };
 
