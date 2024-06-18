@@ -5,37 +5,85 @@
     .container{
         display: flex;
         width: 100%;
-        border: 1px solid red;
+        //border: 1px solid red;
         
         .planning{
-            width: 60%;
-            height: 400px;
-            border: 1px solid red;
+            width: 61%;
+            //height: 100vh;
+            //border: 1px solid red;
 
+            hr{
+                width: 100%;
+                height: 1px;
+                background-color: #f1f4f7;
+            }
 
             .plan-container{
-                display: flex;
                 width: 100%;
-                border: 1px solid red;
+                display: grid;
+                grid-template-columns: 20% 80%;
 
-                .plan-sidebar{
-                    width: 20%;
-                    height: 350px;
-                    border: 1px solid red;
+                .plan-sidebar {
+                    height: 100vh;
+                    z-index: 500;
+                    cursor: pointer;
+                    overflow:scroll;
+                    position: -webkit-sticky;
+                    position: sticky;
+                    top: 60px;
+                    //border: 1px solid black; 
+                  }
+
+                .plan-sidebar::-webkit-scrollbar {
+                    display: none;
                 }
 
-                .plan-list{
-                    width: 80%;
-                    height: 350px;
-                    border: 1px solid red;
+                .plan-sidebar {
+                    -ms-overflow-style: none;  /* IE and Edge */
+                    scrollbar-width: none;  /* Firefox */
                 }
+
+                .plan-list-container{
+                    display: flex;
+                    flex-direction: column;
+                    background-color: #f1f4f7;
+                    //z-index: 500;
+
+                    .plan-list{
+                        width: 100%;
+                        height: 350px;
+                        position: relative;
+    
+                        img{
+                            width: 100%;
+                            height: 230px;
+                            object-fit: cover;
+                        }
+                    }
+
+                    hr{
+                        width: 100%;
+                        height: 2px;
+                        background-color: #f1f4f7;
+                    }
+                }
+               
             }
         }
 
         .map{
-            width: 40%;
-            height: 200px;
-            border: 1px solid red;
+            width: 39%;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 926px;
+            //border: 1px solid red;
+
+            img{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
         }
 
         

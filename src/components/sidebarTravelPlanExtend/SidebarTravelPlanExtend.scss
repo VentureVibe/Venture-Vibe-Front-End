@@ -1,0 +1,24 @@
+.sidebarTravelPlanOverview{
+    .container{
+        display: flex;
+        flex-direction: column;
+
+        .sidebar-item-overview{
+            display: flex;
+            align-items: center;
+            padding-left: 20px;
+            background-color: white;
+            color: var(--text-color-light);
+            border-radius: 10px;
+            height: 40px;
+            cursor: pointer;
+
+            span{
+                font-size: var(--paragraph-1);
+                font-weight: 400;
+            }
+        }
+
+        
+    }
+}

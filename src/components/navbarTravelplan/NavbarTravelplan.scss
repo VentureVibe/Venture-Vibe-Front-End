@@ -1,44 +1,49 @@
-$background-icon: #122620;
+$background-icon: #31352E;
 
-.navbar{
+.navbar {
     width: 100%;
     height: 60px;
-    border: 1px solid red;
     padding: 10px 0px 10px 0px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: -webkit-sticky; /* For Safari */
+    position: sticky;
+    top: 0;
+    z-index: 2000; /* Ensure it stays on top */
+    background-color: white;
 
-    .logo{
+    .logo {
         width: 150px;
         height: 40px;
         margin-left: 80px;
         display: flex;
         align-items: center;
         justify-content: space-between;
+        cursor: pointer;
 
-        img{
+        img {
             width: 22px;
             height: 35px;
         }
 
-        .logo-name{
-            font-size: 20px;
+        .logo-name {
+            font-size: var(--topic);
             font-weight: 600;
             color: var(--orange);
         }
     }
 
-    .nav-right{
-        width: 250px;
-        height: 30px;
+    .nav-right {
+        width: 190px;
+        height: 25px;
         margin-right: 80px;
         display: flex;
         align-items: center;
         justify-content: space-between;
 
-        .share{
-            width: 120px;
+        .share {
+            width: 90px;
             height: 30px;
             display: flex;
             align-items: center;
@@ -46,10 +51,16 @@ $background-icon: #122620;
             background-color: $background-icon;
             color: white;
             border-radius: 20px;
+            cursor: pointer;
+
+            h3 {
+                font-size: var(--paragraph-1);
+                margin-left: 8px;
+            }
         }
 
-        .print{
-            width: 120px;
+        .print {
+            width: 90px;
             height: 30px;
             display: flex;
             align-items: center;
@@ -57,6 +68,12 @@ $background-icon: #122620;
             background-color: $background-icon;
             color: white;
             border-radius: 20px;
+            cursor: pointer;
+
+            h3 {
+                font-size: var(--paragraph-1);
+                margin-left: 8px;
+            }
         }
     }
 }
