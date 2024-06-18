@@ -7,8 +7,9 @@
         border-radius: 10px;
         transition: background-color 0.3s ease; 
         padding-left: 2px;
-        padding-top: 2px;
-        padding-bottom: 2px;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        padding-right: 4px;
         img{
             width: 45px;
             height: 45px;
@@ -36,7 +37,7 @@
 }
 
     .friend:hover{
-        background-color: var( --green);
+        background-color: var(--input);
         cursor: pointer;
         .circle{
             background-color: var(--orange);
