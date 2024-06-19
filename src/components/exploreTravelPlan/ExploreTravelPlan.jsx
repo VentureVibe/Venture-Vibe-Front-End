@@ -4,14 +4,14 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import SearchIcon from '@mui/icons-material/Search';
 
 const ExploreTravelPlan = () => {
-  const [isBottomContainerVisible, setIsBottomContainerVisible] = useState(false);
+  const [isBottomContainerVisible, setIsBottomContainerVisible] = useState(true);
 
   const toggleBottomContainer = () => {
     setIsBottomContainerVisible(prevState => !prevState);
   };
 
   return (
-    <div className='exploreTravelPlan'>
+    <div className='exploreTravelPlan' id='explore'>
       <div className='container'>
         <div className='top-container'>
           <div className='explore-tag' onClick={toggleBottomContainer}>

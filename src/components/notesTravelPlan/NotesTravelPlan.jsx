@@ -3,14 +3,14 @@ import './NotesTravelPlan.scss';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 const NotesTravelPlan = () => {
-  const [isBottomContainerVisible, setIsBottomContainerVisible] = useState(false);
+  const [isBottomContainerVisible, setIsBottomContainerVisible] = useState(true);
 
   const toggleBottomContainer = () => {
     setIsBottomContainerVisible(prevState => !prevState);
   };
 
   return (
-    <div className='notesTravelPlan'>
+    <div className='notesTravelPlan' id='notes'>
         <div className='container'>
             <div className='top-container' onClick={toggleBottomContainer}>
                 <i><KeyboardArrowDownIcon sx={{ color: '#747474' }}/></i>
