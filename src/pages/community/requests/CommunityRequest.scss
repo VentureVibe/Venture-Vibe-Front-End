@@ -1,4 +1,4 @@
-.CommunityFriends{
+.CommunityRequest{
     background-color: var(--input);
     display: grid;
     grid-template-rows: 10% 90%;
@@ -11,10 +11,12 @@
         padding: 18px;
         padding-top: 30px;
         padding-left:25px;
+
+
         h1{
             font-size:var(--topic);
             font-weight: 500;
-          
+            letter-spacing: 0.01rem;
         }
 
         .right{
@@ -26,8 +28,7 @@
             letter-spacing: 0.03rem;
         }
     }
-
-    .bottom{
+ .bottom{
        width: 100%;
        height: 100%;
        display: flex;
@@ -69,7 +70,12 @@
                 letter-spacing: 0.02rem;
                 cursor: pointer;
             }
+
+            .dlt{
+                margin-left: 10px;
+                background-color: var(--orange);
+               
+            }
        }
     }
-   
 }
