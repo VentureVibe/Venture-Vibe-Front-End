@@ -1,0 +1,53 @@
+.CommunityFeedLeft{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding-top: 15%;
+    padding-left: 15%;
+    .cont{
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      margin-bottom: 22px;
+      cursor: pointer;
+      i{
+        font-size: 20px;
+        margin-right: 11px;
+        width: 25px;
+        opacity: 0.55;
+      }
+
+      p{
+        font-size: var(--paragraph-1);
+        font-weight: 400;
+        width: 180px;
+        letter-spacing: 0.02rem;
+      }
+    }
+
+    .publish{
+      margin-top: 85% ;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+   
+      width: 120px;
+      // background-color: #f89d0a;
+      // background-color: var(--input);
+      background-color: var(--input);
+      padding: 5px;
+      border-radius: 10px;
+      box-shadow: var(--box-shadow-1);
+      cursor: pointer;
+      h4{
+        font-size: var(--paragraph-1);
+        font-weight: 500;
+        opacity: 0.8;
+      }
+
+      i{
+        font-size: var(--topic);
+        opacity: 0.8;
+      }
+    }
+}
