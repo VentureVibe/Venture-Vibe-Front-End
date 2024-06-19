@@ -2,6 +2,7 @@ import React from 'react'
 import './ItineraryTravelPlan.scss';
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
 import DateTravelPlan from '../dateTravelPlan/DateTravelPlan';
+import PlaceTravelPlan from '../placeTravelPlan/PlaceTravelPlan';
 
 const ItineraryTravelPlan = () => {
   return (
@@ -15,7 +16,7 @@ const ItineraryTravelPlan = () => {
                 </div>
             </div>
             <div className="itinerary-body">
-                <DateTravelPlan />
+                <DateTravelPlan place={<PlaceTravelPlan number='1' name='Induruwa Sea Turtle Conservation Center' color='#1BBC9B' />} />
             </div>
         </div>
     </div>

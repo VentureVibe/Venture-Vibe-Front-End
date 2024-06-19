@@ -1,0 +1,172 @@
+.budgetTravelPlan{
+    .container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        //border: 1px solid red;
+        //margin-top: -30px;
+        padding: 30px 90px 30px 35px;
+        background-color: white;
+
+        .top-container{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .budget-tag{
+                display: flex;
+                align-items: center;
+                width: 150px;
+                height: 50px;
+                margin-left: 35px;
+
+                span{
+                    font-size: 29px;
+                    font-weight: 600;
+                    color: var(--text-color);
+                }
+            }
+
+            .browseall-btn{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 10px;
+                width: 160px;
+                height: 40px;
+                border-radius: 20px;
+                background-color: var(--orange);
+                color: white;
+                cursor: pointer;
+
+                i{
+                    margin-top: 5px;
+                    margin-right: 10px;
+                }
+
+                h2{
+                    font-size: var(--paragraph-1);
+                    font-weight: 550;
+                }
+            }
+        }
+
+        .bottom-container{
+            display: flex;
+            flex-direction: column;
+            //align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin-top: 20px;
+            padding: 0 0 10px 40px;
+
+            .top-budget-container{
+                //border: 1px solid red;
+                padding: 20px 20px 10px 20px;
+                background-color: #f1f4f7;
+                border-radius: 15px 15px 0 0;
+
+                span{
+                    font-size: 29px;
+                    font-weight: 400;
+                    color: var(--text-color);
+                }
+            }
+
+            .set-budget{
+                //border: 1px solid red;
+                padding: 10px 20px 20px 20px;
+                background-color: #f1f4f7;
+                border-radius: 0 0 15px 15px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                .add-friend{
+                    margin-top: 5px;
+                    cursor: pointer;
+                }
+
+                .set-budget-btn{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 10px;
+                    width: 140px;
+                    height: 40px;
+                    border-radius: 20px;
+                    background-color: #e3e6e9;
+                    cursor: pointer;
+
+                    i{
+
+                    }
+
+                    span{
+                        font-size: var(--paragraph-2);
+                        font-weight: 500;
+                        color: var(--text-color);
+                        margin-left: 10px;
+                    }
+                }
+            }
+        }
+
+        .expenses-container{
+            margin-top: 20px;
+            
+            .heading-expenses{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                .expense-tag{
+                    display: flex;
+                    align-items: center;
+                    width: 150px;
+                    height: 50px;
+                    cursor: pointer;
+
+                    i{
+                        
+                    }
+
+                    h2{
+                        margin-left: 15px;
+                        font-size: var(--topic);
+                        color: var(--text-color);
+                    }
+                }
+
+                .sort-btn{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 10px;
+                    width: 140px;
+                    height: 40px;
+                    border-radius: 20px;
+                    cursor: pointer;
+    
+                    i{
+                        margin-top: 5px;
+                        margin-left: 10px;
+                    }
+    
+                    h2{
+                        font-size: var(--paragraph-1);
+                        font-weight: 500;
+                        color: var(--text-color);
+                    }
+                }
+            }
+
+            .list-expense{
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 20px;
+            }
+        }
+    }
+}
