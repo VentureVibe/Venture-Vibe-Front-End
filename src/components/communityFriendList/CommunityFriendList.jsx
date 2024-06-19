@@ -11,6 +11,8 @@ const CommunityFriendList = ({handleClickFriend}) => {
          {limitedFriends.map(friend => (
           <CommunityFriend
             key={friend.id}
+
+            friendId={friend.id}
             handleClickFriend={handleClickFriend}
             name={friend.name}
             messages={friend.messages}
