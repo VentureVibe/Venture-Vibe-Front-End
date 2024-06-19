@@ -19,6 +19,18 @@ import Image7 from './assets/Places/dunhida.jpg'
 import Image8 from './assets/Places/Nuwaraeliya.jpg'
 import Image9 from './assets/Places/Colombo.jpg'
 
+import Hotel1 from './assets/hotel1.jpg';
+import Hotel2 from './assets/hotel2.jpg';
+import Hotel3 from './assets/hotel3.jpg';
+
+import Place1 from './assets/place1.jpg';
+import Place2 from './assets/place2.jpg';
+import Place3 from './assets/place3.jpg';
+
+import Res1 from './assets/res1.jpg';
+import Res2 from './assets/res2.jpg';
+import Res3 from './assets/res3.jpg';
+
 export const days = [
     "Sunday, June 9th",
     "Monday, June 10th",
@@ -27,6 +39,73 @@ export const days = [
     "Thursday, June 13th",
     "Friday, June 14th",
     "Saturday, June 15th"
+]
+
+export const hotels = [
+    {
+        id: 1,
+        name: "The Fortress Resort and Spa",
+        price: 150,
+        imageSrc: Hotel1,
+        rating: 4.5
+    },
+    {
+        id: 2,
+        name: "The Fort Printers",
+        price: 250,
+        imageSrc: Hotel2,
+        rating: 4.8
+    },
+    {
+        id: 3,
+        name: "Jetwing Lighthouse",
+        price: 170,
+        imageSrc: Hotel3,
+        rating: 5
+    }
+]
+
+
+export const places = [
+    {
+        id: 1,
+        name: "Unawatuna Beach",
+        rating: 4.5,
+        imageSrc: Place1
+    },
+    {
+        id: 2,
+        name: "Galle Dutch Fort",
+        rating: 5.0,
+        imageSrc: Place2
+    },
+    {
+        id: 3,
+        name: "Jungle Beach",
+        rating: 4.7,
+        imageSrc: Place3
+    }
+]
+
+export const restaurants = [
+    {
+        id: 1,
+        name: "Luuma Beach",
+        rating: 4.5,
+        imageSrc: Res2
+    },
+    {
+        id: 2,
+        name: "Ocean Bistro by Starbeans",
+        rating: 4.8,
+        imageSrc: Res3
+    },
+    {
+        id: 3,
+        name: "Sea Waves Restaurant",
+        rating: 4.0,
+        imageSrc: Res1
+    }
 ]
 
 export const friends = [
