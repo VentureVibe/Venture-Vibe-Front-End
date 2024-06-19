@@ -15,6 +15,11 @@ import Community from './pages/community/Community';
 import ServiceProviderUser from './pages/serviceProvider/ServiceProviderUser';
 import Navbar from './components/navbar/Navbar';
 import { RouterProvider, createBrowserRouter, Outlet } from 'react-router-dom';
+import Feeds from "./pages/community/Feeds/Feeds";
+import Popular from "./pages/community/popular/Popular";
+import All from "./pages/community/all/All";
+import CommunityFeed from "./components/communityFeed/CommunityFeed";
+import FriendProfile from "./pages/community/profile/FriendProfile";
 
 const Layout = () => {
   return (
@@ -57,6 +62,31 @@ function App() {
     {
       path: "/community",
       element: <Community />,
+      children:[
+        {
+          path:"",
+          element:<CommunityFeed/>,
+          children: [
+            {
+              path:"",
+              element:<Feeds/>
+            },{
+              path:"popular",
+              element:<Popular/>
+            },{
+            path:"all",
+            element:<All/>
+          }
+          ],
+       
+        }
+      ,{
+        path: "profile/:id",
+        element :<FriendProfile/>
+      }
+      
+      ]
+     
     },
     {
       path: "serviceprovideruser",
