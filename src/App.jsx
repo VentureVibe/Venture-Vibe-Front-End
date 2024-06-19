@@ -19,6 +19,7 @@ import FriendProfile from "./pages/community/profile/FriendProfile";
 import ProfileAll from './pages/community/profile/profileAll/ProfileAll'
 import ProfilePopular from './pages/community/profile/profilePopular/ProfilePopular'
 import CommunityFriends from "./pages/community/friends/CommunityFriends";
+import CommunityRequest from "./pages/community/requests/CommunityRequest";
 
 const Layout = () => {
   return (
@@ -98,6 +99,11 @@ function App() {
         {
           path:"friends",
           element:<CommunityFriends/>
+        }
+        ,
+        {
+          path:"requests",
+          element:<CommunityRequest/>
         }
       
       ]

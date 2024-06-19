@@ -7,7 +7,7 @@ const CommunityFeedLeft = () => {
     <div className='CommunityFeedLeft'>
                  <Cont Icon="fa-solid fa-square-rss" name="Feed" link="/community" path={["/community", "/community/popular", "/community/all"]} />
                  <Cont Icon="fa-solid fa-user-group" name="Friends" link="/community/friends" path={["/community/friends"]}/>
-                 <Cont Icon="fa-solid fa-square-caret-down" name="Requests" link="/community" path={["/"]} />
+                 <Cont Icon="fa-solid fa-square-caret-down" name="Requests" link="/community/requests" path={["/community/requests"]} />
                  <Cont Icon="fa-solid fa-square-check" name="My Plannings" link="/community" path={["/"]} />
                  <Cont Icon="fa-solid fa-hotel" name="Accomodations" link="/community" path={["/"]} />
                  <Cont Icon="fa-solid fa-person-hiking" name="Event & Activities" link="/community" path={["/"]} />
