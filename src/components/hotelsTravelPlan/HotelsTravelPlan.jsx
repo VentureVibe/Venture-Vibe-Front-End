@@ -9,14 +9,14 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 const HotelsTravelPlan = () => {
-    const [isBottomContainerVisible, setIsBottomContainerVisible] = useState(false);
+    const [isBottomContainerVisible, setIsBottomContainerVisible] = useState(true);
 
     const toggleBottomContainer = () => {
         setIsBottomContainerVisible(prevState => !prevState);
     };
 
   return (
-    <div className='hotelsTravelPlan'>
+    <div className='hotelsTravelPlan' id='hotels-and-logging'>
         <div className='container'>
             <div className='hotels-tag' onClick={toggleBottomContainer}>
                 <i><KeyboardArrowDownIcon sx={{ color: '#747474' }}/></i>

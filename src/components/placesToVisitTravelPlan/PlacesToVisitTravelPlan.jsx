@@ -8,8 +8,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import PlaceTravelPlan from '../placeTravelPlan/PlaceTravelPlan';
 
 const PlacesToVisitTravelPlan = () => {
-    const [isBottomContainerVisible, setIsBottomContainerVisible] = useState(false);
-    const [isplaceVisible, setIsPlaceVisible] = useState(false);
+    const [isBottomContainerVisible, setIsBottomContainerVisible] = useState(true);
+    const [isplaceVisible, setIsPlaceVisible] = useState(true);
 
     const toggleBottomContainer = () => {
         setIsBottomContainerVisible(prevState => !prevState);
@@ -20,7 +20,7 @@ const PlacesToVisitTravelPlan = () => {
     };
 
   return (
-    <div className='placesToVisitTravelPlan'>
+    <div className='placesToVisitTravelPlan' id='places-to-visit'>
         <div className='container'>
             <div className='places-heading-container' onClick={toggleBottomContainer}>
                 <i><KeyboardArrowDownIcon sx={{ color: '#747474' }}/></i>
