@@ -4,8 +4,8 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import PlaceTravelPlan from '../placeTravelPlan/PlaceTravelPlan';
 
 const TransportTravelPlan = () => {
-    const [isBottomContainerVisible, setIsBottomContainerVisible] = useState(false);
-    const [isplaceVisible, setIsPlaceVisible] = useState(false);
+    const [isBottomContainerVisible, setIsBottomContainerVisible] = useState(true);
+    const [isplaceVisible, setIsPlaceVisible] = useState(true);
 
     const toggleBottomContainer = () => {
         setIsBottomContainerVisible(prevState => !prevState);
@@ -15,7 +15,7 @@ const TransportTravelPlan = () => {
         setIsPlaceVisible(prevState => !prevState);
     };
   return (
-    <div className='transportTravelPlan'>
+    <div className='transportTravelPlan' id='transportation'>
         <div className='container'>
             <div className='transport-heading-container' onClick={toggleBottomContainer}>
                 <i><KeyboardArrowDownIcon sx={{ color: '#747474' }}/></i>

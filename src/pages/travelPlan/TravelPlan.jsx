@@ -34,19 +34,19 @@ const TravelPlan = () => {
               </div>
               <ExploreTravelPlan />
               <NotesTravelPlan />
-              <hr />
+              <hr className='travelplan-hr'/>
               <HotelsTravelPlan />
-              <hr />
+              <hr className='travelplan-hr'/>
               <PlacesToVisitTravelPlan />
-              <hr />
+              <hr className='travelplan-hr'/>
               <RestaurantsTravelPlan />
-              <hr />
+              <hr className='travelplan-hr'/>
               <EventsTravelPlan />
-              <hr />
+              <hr className='travelplan-hr'/>
               <TransportTravelPlan />
-              <hr />
+              <hr className='travelplan-hr-line'/>
               <ItineraryTravelPlan />
-              <hr />
+              <hr className='travelplan-hr-line'/>
               <BudgetTravelPlan />
             </div>
           </div>

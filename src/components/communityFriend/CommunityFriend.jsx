@@ -1,6 +1,7 @@
 import React from 'react'
 import './CommunityFriend.scss'
 
+
 const CommunityFriend = ({name,messages,imageSrc,handleClickFriend,friendId}) => {
   return (
          <div className="friend" onClick={()=>handleClickFriend(name,imageSrc,friendId)}>

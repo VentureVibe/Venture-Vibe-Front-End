@@ -5,8 +5,8 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PlaceTravelPlan from '../placeTravelPlan/PlaceTravelPlan';
 
 const RestaurantsTravelPlan = () => {
-    const [isBottomContainerVisible, setIsBottomContainerVisible] = useState(false);
-    const [isplaceVisible, setIsPlaceVisible] = useState(false);
+    const [isBottomContainerVisible, setIsBottomContainerVisible] = useState(true);
+    const [isplaceVisible, setIsPlaceVisible] = useState(true);
 
     const toggleBottomContainer = () => {
         setIsBottomContainerVisible(prevState => !prevState);
@@ -17,7 +17,7 @@ const RestaurantsTravelPlan = () => {
     };
 
   return (
-    <div className='restaurantsTravelPlan'>
+    <div className='restaurantsTravelPlan' id='restaurants'>
         <div className='container'>
             <div className='restaurants-heading-container' onClick={toggleBottomContainer}>
                 <i><KeyboardArrowDownIcon sx={{ color: '#747474' }}/></i>

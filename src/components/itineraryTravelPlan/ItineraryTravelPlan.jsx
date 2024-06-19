@@ -6,7 +6,7 @@ import PlaceTravelPlan from '../placeTravelPlan/PlaceTravelPlan';
 
 const ItineraryTravelPlan = () => {
   return (
-    <div className='itineraryTravelPlan'>
+    <div className='itineraryTravelPlan' id='sun-1/6'>
         <div className='container'>
             <div className="heading">
                 <span>Itinerary</span>
