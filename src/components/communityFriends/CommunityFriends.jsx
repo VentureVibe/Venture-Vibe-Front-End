@@ -6,17 +6,22 @@ import CommunityFriendChat from "../communityFriendChat/CommunityFriendChat";
 
 
 const CommunityFriends = () => {
+  
   const [selectedFriend, setSelectedFriend] = useState(null);
   const [selectedFriendImg, setSelectedFriendImg] = useState(null);
+  const [selectedFriendId, setselectedFriendId] = useState(null);
 
-  const handleClickFriend = (friendName,imageSrc) => {
+  const handleClickFriend = (friendName,imageSrc,selectedFriendId) => {
+    console.log(selectedFriendId);
     setSelectedFriend(friendName);
-    setSelectedFriendImg(imageSrc)
+    setSelectedFriendImg(imageSrc);
+    setselectedFriendId(selectedFriendId);
   };
 
   const handleClickFriends = () => {
     setSelectedFriend(null);
     setSelectedFriendImg(null);
+    setselectedFriendId(null);
   };
 
   return (
@@ -30,7 +35,7 @@ const CommunityFriends = () => {
         </div>
         <div className="bottom">
         {selectedFriend ? (
-          <CommunityFriendChat friendName={selectedFriend} imageSrc={selectedFriendImg} />
+          <CommunityFriendChat friendName={selectedFriend} imageSrc={selectedFriendImg} friendId={selectedFriendId} />
         ) : (
           <CommunityFriendList handleClickFriend={handleClickFriend}/>
 

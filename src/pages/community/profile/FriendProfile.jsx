@@ -1,20 +1,27 @@
-import React from 'react'
+import React  from 'react'
 import './FriendProfile.scss'
-import cover from '../../../assets/galle.jpg'
-import profileImage from '../../../assets/man.jpg'
+import CommunityProfileTop from '../../../components/communityProfileTop/CommunityProfileTop'
+import { Link, Outlet } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
-const FriendProfile = ({friendName="Kaveesha Weerakoon",isFriend=true}) => {
+
+const FriendProfile = () => {
+  let { id } = useParams();
   return (
     <div className='FriendProfile'>
-        <div className="top">
-                    <img src={cover} alt="Cover" className="cover" />
-                    <div className="profile-section">
-                        <img src={profileImage} alt="Profile" className="profile-image" />
-                        <div className="friend-info">
-                             <h2>{friendName}</h2>
-                             {isFriend && <div className="friend-status">Friends</div>}
-                        </div>
-                    </div>
+        <CommunityProfileTop/>
+   
+        <div className="bottom">
+             <div className="top">
+                 <h1>Recent Post</h1>
+                 <div className="right">
+                      <Link to={`/community/profile/${id}`}><p>All</p></Link>
+                     <Link to={`/community/profile/popular/${id}`}><p>Popular</p></Link>
+            </div>
+             </div>
+             <div className="bottom">
+             <Outlet />
+             </div>
         </div>
     </div>
   )

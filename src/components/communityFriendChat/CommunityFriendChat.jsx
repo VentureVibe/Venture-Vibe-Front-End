@@ -1,14 +1,17 @@
 import React from 'react'
 import './communityFriendChat.scss'
 import profile from '../../assets/man.jpg'
+import { Link } from 'react-router-dom'
 
-const CommunityFriendChat = ({ friendName,imageSrc }) => {
+const CommunityFriendChat = ({ friendName,imageSrc,friendId }) => {
   return (
     <div className="CommunityFriendChat">
-        <div className="detail">
-            <img src={imageSrc} alt="" />
-             <h2>{friendName}</h2>
-        </div>
+       <Link to={`/community/profile/${friendId}`}>
+            <div className="detail">
+                  <img src={imageSrc} alt="" />
+                  <h2>{friendName}</h2>
+            </div>
+        </Link>
         <div className="chat">
             <div className="component-1">
                   <img src={imageSrc} alt="" />

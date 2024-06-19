@@ -6,7 +6,7 @@
     margin: 0;
     font-family: "Roboto", sans-serif;
     box-sizing: border-box;
-    text-decoration: none;
+    text-decoration: none !important;
     color: inherit;
 }
 
@@ -16,6 +16,7 @@
     --orange: #F68712;
     --green: #1BBC9B;
     --blue: #15BAD3;
+    --blue-2: #0075C3;
     --white: white;
     --input: #f1f4f7;
 
