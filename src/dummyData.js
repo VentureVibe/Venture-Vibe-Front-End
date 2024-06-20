@@ -31,6 +31,10 @@ import Res1 from './assets/res1.jpg';
 import Res2 from './assets/res2.jpg';
 import Res3 from './assets/res3.jpg';
 
+import Event1 from './assets/event1.jpg';
+import Event2 from './assets/event2.jpg';
+import Event3 from './assets/event3.jpg';
+
 export const days = [
     "Sunday, June 9th",
     "Monday, June 10th",
@@ -62,6 +66,27 @@ export const hotels = [
         price: 170,
         imageSrc: Hotel3,
         rating: 5
+    }
+]
+
+export const events = [
+    {
+        id: 1,
+        name: "Whales Watching Tour Transfer - Galle",
+        rating: 4.5,
+        imageSrc: Event1
+    },
+    {
+        id: 2,
+        name: "River Safari, Sea Turtle & Stilt Fishermen",
+        rating: 5.0,
+        imageSrc: Event2
+    },
+    {
+        id: 3,
+        name: "Safari Trip to Yala & Udawalawe",
+        rating: 4.7,
+        imageSrc: Event3
     }
 ]
 
