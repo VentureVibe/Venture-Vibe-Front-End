@@ -4,13 +4,13 @@ import "./Admin.scss";
 const Admin = () => {
   return (
     <>
-      <div className="parent">
-        <div className="segment twelve">Span 12</div>
-        <div className="segment eight">Span 8</div>
-        <div className="segment four">Span 4</div>
-        <div className="segment six">Span 6</div>
-        <div className="segment seven">Span 7</div>
-        <div className="segment twelve">Span 12</div>
+      <div class="sidebar">
+        <h2>Admin Dashboard</h2>
+        <a href="#dashboard">Dashboard</a>
+        <a href="#users">Users</a>
+        <a href="#settings">Settings</a>
+        <a href="#reports">Reports</a>
+        <a href="#logout">Logout</a>
       </div>
     </>
   );
