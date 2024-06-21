@@ -3,6 +3,9 @@ import './RestaurantsTravelPlan.scss';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PlaceTravelPlan from '../placeTravelPlan/PlaceTravelPlan';
+import BookmarkOutlinedIcon from '@mui/icons-material/BookmarkOutlined';
+import StarRateIcon from '@mui/icons-material/StarRate';
+import { restaurants } from '../../dummyData';
 
 const RestaurantsTravelPlan = () => {
     const [isBottomContainerVisible, setIsBottomContainerVisible] = useState(true);
@@ -15,6 +18,8 @@ const RestaurantsTravelPlan = () => {
     const togglePlace = () => {
         setIsPlaceVisible(prevState => !prevState);
     };
+
+    const bestRestaurants =  restaurants.slice(0, 3);
 
   return (
     <div className='restaurantsTravelPlan' id='restaurants'>
@@ -35,9 +40,26 @@ const RestaurantsTravelPlan = () => {
                 <span>Recommended Restaurants</span>
             </div>)}
             {isBottomContainerVisible && isplaceVisible && (<div className='bottom-container'>
-                <div className='restaurant'></div>
-                <div className='restaurant'></div>
-                <div className='restaurant'></div>
+            {
+              bestRestaurants.map(post => (
+                <div className='article' key={post.id}>
+                  <img className='post-cover' src={post.imageSrc} alt='' />
+                  <div className='info'>
+                    <span className='hotel-name'>{post.name}</span>
+                    <div className='rating'>
+                        <i><StarRateIcon sx={{ color: '#414143', fontSize: 15 }}/></i>
+                        <i><StarRateIcon sx={{ color: '#414143', fontSize: 15 }}/></i>
+                        <i><StarRateIcon sx={{ color: '#414143', fontSize: 15 }}/></i>
+                        <i><StarRateIcon sx={{ color: '#414143', fontSize: 15 }}/></i>
+                    </div>
+                    <div className="add-booking-btn">
+                        <i><BookmarkOutlinedIcon sx={{ fontSize: 20 }}/></i>
+                        <span>Add to Trip</span>
+                    </div>
+                  </div>
+                </div>
+              ))
+            }
             </div>)}
 
         </div>
