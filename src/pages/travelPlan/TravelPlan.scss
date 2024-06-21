@@ -27,20 +27,11 @@
                     height: 100vh;
                     z-index: 500;
                     cursor: pointer;
-                    overflow:scroll;
+                    overflow: scroll;
                     position: -webkit-sticky;
                     position: sticky;
                     top: 60px;
                     border-right: 2px solid #f1f4f7; 
-                  }
-
-                .plan-sidebar::-webkit-scrollbar {
-                    display: none;
-                }
-
-                .plan-sidebar {
-                    -ms-overflow-style: none;  /* IE and Edge */
-                    scrollbar-width: none;  /* Firefox */
                 }
 
                 .plan-list-container{
@@ -83,6 +74,7 @@
             position: fixed;
             top: 0;
             left: 926px;
+            z-index: 3000;
             //border: 1px solid red;
 
             img{
