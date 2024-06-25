@@ -3,17 +3,55 @@ div {
             border: 1px solid var(--green);
     }
     .page {
-        height: 100px;
+        height: auto;
         border: 1px solid var(--orange);
         display: flex;
-        .left {
-            flex: 7;
-            height: 100px;
-            border: 1px solid var(--green);
-        }
         .right {
-            flex: 3;
-            height: 100px;
+            width: 85%;
+            height: fit-content;
+            border: 1px solid var(--green);
+
+            .hotels {
+                margin: 10px;
+                border: 1px solid green;
+                padding: 0 10px;
+                 
+                h1 {
+                    margin-bottom: 5px;
+                    padding: 5px;
+                }
+
+                /* Customize Swiper pagination */
+                .mySwiper {
+                    padding-bottom: 40px;
+                    .swiper-pagination {
+                        //bottom: -20px; /* Example: Change the position */
+                        text-align: center;
+  
+                        .swiper-pagination-bullet {
+                            background-color: #000; /* Example: Change bullet color */
+                            opacity: 0.5;
+                            width: 12px;
+                            height: 12px;
+  
+                            &.swiper-pagination-bullet-active {
+                                background-color: #fff; /* Example: Change active bullet color */
+                                opacity: 1;
+                            }
+                        }
+  
+                        .swiper-pagination-bullet-active {
+                            background-color: #fff; /* Example: Active bullet color */
+                            border: 2px solid #000; /* Example: Active bullet border */
+                        }
+                    }
+                }
+  
+            }
+        }
+        .left {
+            width: 15%;
+            height: fit-content;
             border: 1px solid var(--green);
         }
     }
