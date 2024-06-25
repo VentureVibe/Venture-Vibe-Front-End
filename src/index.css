@@ -6,19 +6,28 @@
     margin: 0;
     font-family: "Roboto", sans-serif;
     box-sizing: border-box;
-    text-decoration: none;
+    text-decoration: none !important;
     color: inherit;
+    -ms-overflow-style: none; 
+    scrollbar-width: none;  
+
+    ::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 :root {
+
+    /*colors*/
     --text-color: #414143;
     --text-color-light: #747474;
     --orange: #F68712;
     --green: #1BBC9B;
-    --blue: #15BAD3;
+    --blue: #0075C3;
+    --blue-2: #15BAD3;
     --white: white;
     --input: #f1f4f7;
-
+    --popup-background: rgba(0, 0, 0, 0.05);
 
     /*fonts*/
     --header: 18px;

@@ -7,8 +7,9 @@
         border-radius: 10px;
         transition: background-color 0.3s ease; 
         padding-left: 2px;
-        padding-top: 2px;
-        padding-bottom: 2px;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        padding-right: 5px;
         img{
             width: 45px;
             height: 45px;
@@ -17,26 +18,27 @@
         }
 
         p{
-            font-size: var(--paragraph-1);
+            font-size: var(--paragraph-2);
             letter-spacing: 0.03rem;
-            width: 200px;
+            width: 200px; 
         }
 
         .circle{
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: var(--orange);
+            background-color: var(--blue-2);
             border-radius: 1000%;
-            width: 19px;
-            height: 19px;
+            width:20px;
+            height:20px;
+
             color: var(--white);
             font-size: var(--paragraph-3);
         }
 }
 
     .friend:hover{
-        background-color: var( --green);
+        background-color: var(--input);
         cursor: pointer;
         .circle{
             background-color: var(--orange);

@@ -1,18 +1,20 @@
-import React from 'react'
-import "./SidebarTravelPlanExtend.scss"
+import React from 'react';
+import "./SidebarTravelPlanExtend.scss";
 
-const SidebarTravelPlanExtend = ({items}) => {
+const SidebarTravelPlanExtend = ({ items }) => {
   return (
     <div className='sidebarTravelPlanOverview'>
-        <div className='container'>
-            {items.map((item, index) => (
-                <div className='sidebar-item-overview'>
-                    <span>{item}</span>
-                </div>
-            ))}
-        </div>
+      <div className='container'>
+        {items.map((item, index) => (
+          <div key={index} className='sidebar-item-overview'>
+            <a href={`#${item.replace(/\s+/g, '-').toLowerCase()}`}>
+              <span>{item}</span>
+            </a>
+          </div>
+        ))}
+      </div>
     </div>
-  )
+  );
 }
 
-export default SidebarTravelPlanExtend
+export default SidebarTravelPlanExtend;

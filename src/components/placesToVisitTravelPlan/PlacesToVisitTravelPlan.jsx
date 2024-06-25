@@ -2,14 +2,14 @@ import React, { useState } from 'react'
 import "./PlacesToVisitTravelPlan.scss"
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import AttachFileIcon from '@mui/icons-material/AttachFile';
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-import DeleteIcon from '@mui/icons-material/Delete';
+import { places } from '../../dummyData';
 import PlaceTravelPlan from '../placeTravelPlan/PlaceTravelPlan';
+import BookmarkOutlinedIcon from '@mui/icons-material/BookmarkOutlined';
+import StarRateIcon from '@mui/icons-material/StarRate';
 
 const PlacesToVisitTravelPlan = () => {
-    const [isBottomContainerVisible, setIsBottomContainerVisible] = useState(false);
-    const [isplaceVisible, setIsPlaceVisible] = useState(false);
+    const [isBottomContainerVisible, setIsBottomContainerVisible] = useState(true);
+    const [isplaceVisible, setIsPlaceVisible] = useState(true);
 
     const toggleBottomContainer = () => {
         setIsBottomContainerVisible(prevState => !prevState);
@@ -19,8 +19,10 @@ const PlacesToVisitTravelPlan = () => {
         setIsPlaceVisible(prevState => !prevState);
     };
 
+    const bestHotels =  places.slice(0, 3);
+
   return (
-    <div className='placesToVisitTravelPlan'>
+    <div className='placesToVisitTravelPlan' id='places-to-visit'>
         <div className='container'>
             <div className='places-heading-container' onClick={toggleBottomContainer}>
                 <i><KeyboardArrowDownIcon sx={{ color: '#747474' }}/></i>
@@ -38,9 +40,26 @@ const PlacesToVisitTravelPlan = () => {
                 <span>Recommended Places</span>
             </div>)}
             {isBottomContainerVisible && isplaceVisible && (<div className='bottom-container'>
-                <div className='place'></div>
-                <div className='place'></div>
-                <div className='place'></div>
+            {
+              bestHotels.map(post => (
+                <div className='article' key={post.id}>
+                  <img className='post-cover' src={post.imageSrc} alt='' />
+                  <div className='info'>
+                    <span className='hotel-name'>{post.name}</span>
+                    <div className='rating'>
+                        <i><StarRateIcon sx={{ color: '#414143', fontSize: 15 }}/></i>
+                        <i><StarRateIcon sx={{ color: '#414143', fontSize: 15 }}/></i>
+                        <i><StarRateIcon sx={{ color: '#414143', fontSize: 15 }}/></i>
+                        <i><StarRateIcon sx={{ color: '#414143', fontSize: 15 }}/></i>
+                    </div>
+                    <div className="add-booking-btn">
+                        <i><BookmarkOutlinedIcon sx={{ fontSize: 20 }}/></i>
+                        <span>Add to Trip</span>
+                    </div>
+                  </div>
+                </div>
+              ))
+            }
             </div>)}
 
         </div>

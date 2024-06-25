@@ -1,10 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-
-
 import './App.css'
-
-
 import React from 'react';
 import Register from './pages/register/Register';
 import Login from './pages/login/Login';
@@ -20,6 +16,10 @@ import Popular from "./pages/community/popular/Popular";
 import All from "./pages/community/all/All";
 import CommunityFeed from "./components/communityFeed/CommunityFeed";
 import FriendProfile from "./pages/community/profile/FriendProfile";
+import ProfileAll from './pages/community/profile/profileAll/ProfileAll'
+import ProfilePopular from './pages/community/profile/profilePopular/ProfilePopular'
+import CommunityFriends from "./pages/community/friends/CommunityFriends";
+import CommunityRequest from "./pages/community/requests/CommunityRequest";
 
 const Layout = () => {
   return (
@@ -70,20 +70,41 @@ function App() {
             {
               path:"",
               element:<Feeds/>
-            },{
+            }
+            ,{
               path:"popular",
               element:<Popular/>
-            },{
+            }
+            ,{
             path:"all",
             element:<All/>
           }
           ],
        
         }
-      ,{
-        path: "profile/:id",
-        element :<FriendProfile/>
-      }
+      ,
+        {
+          path: "profile",
+          element :<FriendProfile/>,
+          children: [
+            {
+             path:":id",
+             element:<ProfileAll/>
+            },{
+              path:"popular/:id",
+              element:<ProfilePopular/>
+            }
+         ] 
+        },
+        {
+          path:"friends",
+          element:<CommunityFriends/>
+        }
+        ,
+        {
+          path:"requests",
+          element:<CommunityRequest/>
+        }
       
       ]
      

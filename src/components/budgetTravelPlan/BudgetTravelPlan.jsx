@@ -8,14 +8,14 @@ import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import ExpenseTravelPlan from '../expenseTravelPlan/ExpenseTravelPlan';
 
 const BudgetTravelPlan = () => {
-  const [isBottomContainerVisible, setIsBottomContainerVisible] = useState(false);
+  const [isBottomContainerVisible, setIsBottomContainerVisible] = useState(true);
 
   const toggleBottomContainer = () => {
     setIsBottomContainerVisible(prevState => !prevState);
   };
 
   return (
-    <div className='budgetTravelPlan'>
+    <div className='budgetTravelPlan' id='view'>
       <div className="container">
         <div className='top-container'>
             <div className='budget-tag'>
