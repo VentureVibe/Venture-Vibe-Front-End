@@ -6,6 +6,9 @@ import AttachFileIcon from '@mui/icons-material/AttachFile';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import DeleteIcon from '@mui/icons-material/Delete';
 import PlaceTravelPlan from '../placeTravelPlan/PlaceTravelPlan';
+import BookmarkOutlinedIcon from '@mui/icons-material/BookmarkOutlined';
+import StarRateIcon from '@mui/icons-material/StarRate';
+import { events } from '../../dummyData';
 
 const EventsTravelPlan = () => {
     const [isBottomContainerVisible, setIsBottomContainerVisible] = useState(true);
@@ -18,6 +21,8 @@ const EventsTravelPlan = () => {
     const togglePlace = () => {
         setIsPlaceVisible(prevState => !prevState);
     };
+
+    const bestEvents =  events.slice(0, 3);
 
   return (
     <div className='eventsTravelPlan' id='activities'>
@@ -38,9 +43,26 @@ const EventsTravelPlan = () => {
                 <span>Add Events and Activities</span>
             </div>)}
             {isBottomContainerVisible && isplaceVisible && (<div className='bottom-container'>
-                <div className='place'></div>
-                <div className='place'></div>
-                <div className='place'></div>
+            {
+              bestEvents.map(post => (
+                <div className='article' key={post.id}>
+                  <img className='post-cover' src={post.imageSrc} alt='' />
+                  <div className='info'>
+                    <span className='hotel-name'>{post.name}</span>
+                    <div className='rating'>
+                        <i><StarRateIcon sx={{ color: '#414143', fontSize: 15 }}/></i>
+                        <i><StarRateIcon sx={{ color: '#414143', fontSize: 15 }}/></i>
+                        <i><StarRateIcon sx={{ color: '#414143', fontSize: 15 }}/></i>
+                        <i><StarRateIcon sx={{ color: '#414143', fontSize: 15 }}/></i>
+                    </div>
+                    <div className="add-booking-btn">
+                        <i><BookmarkOutlinedIcon sx={{ fontSize: 20 }}/></i>
+                        <span>Add to Trip</span>
+                    </div>
+                  </div>
+                </div>
+              ))
+            }
             </div>)}
 
         </div>
