@@ -9,7 +9,7 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #111;
+  background-color: #0075c3;
   padding-top: 20px;
 }
 
@@ -20,16 +20,17 @@ body {
 }
 
 .sidebar a {
-  padding: 10px 15px;
+  padding: 20px   ;
   text-decoration: none;
   font-size: 18px;
   color: white;
   display: block;
   transition: 0.3s;
+  margin-left: 10px;
 }
 
 .sidebar a:hover {
-  background-color: #575757;
+  background-color: #f66712;
 }
 
 .main-content {
