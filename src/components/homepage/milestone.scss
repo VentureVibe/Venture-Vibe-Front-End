@@ -1,0 +1,42 @@
+.milestone {
+    //border: 1px solid red;
+    height: 35vh;
+    padding: 10px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #ffffff;
+    .profile {
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        gap: 20px;
+        padding: 10px 10px;
+        background-color: #CACACA;
+        width: 16vw;
+        border-radius: 40px;
+        border-top-left-radius: 0;
+        img {
+            width: 4vw;
+            height: 4vw;
+            border-radius: 50%;
+        }
+        .name-role {
+            display: flex;
+            flex-direction: column;
+            p {
+                text-align: left;
+                //border: 1px solid red;
+                margin: 0;
+            }
+        }
+    }
+    .para {
+        text-align: left;
+        padding: 1.5vh 1vw;
+        background-color: rgb(220, 220, 220);
+        border-radius: 10px;
+        border-top-right-radius: 0;
+        //border-bottom-left-radius: 40px;
+    }
+}

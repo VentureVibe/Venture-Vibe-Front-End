@@ -1,0 +1,51 @@
+.destination-div {
+    text-align: center;
+    padding: 60px 0;
+     
+    h1 {
+        margin-bottom: 5px;
+        padding: 5px;
+    }
+
+    .swiper-div {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        padding: 0;
+
+        .btn {
+            width: 4vw;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            align-items: center;
+            padding: 0;
+
+            button {
+                height: 7vh;
+                width: 1.2vw;
+                background-color: rgb(255, 255, 255);
+                border: 1px solid rgb(191, 191, 191);
+                border-top-left-radius: 0.6vw;
+                border-top-right-radius: 0.6vw;
+                border-bottom-left-radius: 0.6vw;
+                border-bottom-right-radius: 0.6vw;
+
+                i {
+                    height: 1vw;
+                    width: 1vw;
+                    color: rgb(37, 37, 37);
+                }  
+                  
+            }
+        }
+
+        .mySwiper {
+            width: 60vw;
+            padding: 20px;
+            margin: 0;
+            
+        }
+    }
+
+}
