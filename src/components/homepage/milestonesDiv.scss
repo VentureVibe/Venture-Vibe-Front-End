@@ -1,0 +1,42 @@
+.hotels {
+    padding: 60px 0;
+    text-align: center;
+     
+    h1 {
+        margin-bottom: 15px;
+        padding: 5px;
+    }
+
+    .swiper-div {
+        display: flex;
+        justify-content: space-around;
+        padding: 0;
+
+        .mySwiper {
+            padding-bottom: 40px;
+            width: 70vw;
+            margin: 0;
+
+            .swiper-pagination {
+                text-align: center;
+
+                .swiper-pagination-bullet {
+                    background-color: #000; 
+                    opacity: 0.5;
+                    width: 12px;
+                    height: 12px;
+
+                    &.swiper-pagination-bullet-active {
+                        background-color: #fff; 
+                        opacity: 1;
+                    }
+                }
+
+                .swiper-pagination-bullet-active {
+                    background-color: #fff;
+                    border: 2px solid #000; 
+                }
+            }  
+        }
+    }
+}

@@ -16,8 +16,8 @@ const NavbarCommunity = () => {
            <i class="fa-solid fa-magnifying-glass"></i>
         </div>
         <div className="profile-bar">
-          <i class="fa-regular fa-comment-dots"></i>
            <i class="fa-regular fa-bell"></i>
+           <h4>Kaveesha</h4>
           <img src={man} alt="" />
         </div>
     </div>
