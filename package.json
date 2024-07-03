@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+
     "@angular/router": "^18.0.3",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
@@ -18,7 +19,9 @@
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@mui/icons-material": "^5.15.20",
     "@mui/material": "^5.15.20",
+
     "@react-google-maps/api": "^2.19.3",
+
     "react": "^18.2.0",
     "react-dom": "^18.3.1",
     "react-portal": "^4.2.2",
