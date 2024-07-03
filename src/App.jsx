@@ -24,6 +24,7 @@ import CommunitySearch from "./pages/community/search/CommunitySearch";
 import CommunitySearchPost from "./pages/community/search/post/CommunitySearchPost";
 import CommunityFriend from "./components/communityFriend/CommunityFriend";
 import CommunitySearchUser from "./pages/community/search/users/CommunitySearchUser";
+import CreateTravelPlan from "./pages/createTravelPlan/CreateTravelPlan";
 
 const Layout = () => {
   return (
@@ -56,10 +57,14 @@ function App() {
           path: "/",
           element: <Home />,
         },
+        {
+          path: "/travelplan",
+          element: <CreateTravelPlan />,
+        },
       ],
     },
     {
-      path: "/travelplan",
+      path: "/travelplan/12",
       element: <TravelPlan />,
     },
 
