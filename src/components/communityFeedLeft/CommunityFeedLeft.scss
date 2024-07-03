@@ -11,38 +11,31 @@
       margin-bottom: 22px;
       cursor: pointer;
       i{
-        font-size: 21px;
-        margin-right: 12px;
+        font-size: 20px;
+        margin-right: 11px;
         width: 25px;
-        opacity: 0.9;
+        opacity: 0.55;
       }
 
       p{
-        font-size: var(--paragraph-2);
+        font-size: var(--paragraph-1);
         font-weight: 400;
         width: 180px;
-        letter-spacing: 0.01rem;
+        letter-spacing: 0.02rem;
       }
     }
 
-    .bold {
-      color: var(--orange);
-      P{
-        font-weight: 550;
-      }
-
-    
-    }
-    
     .publish{
-      margin-top: 100% ;
+      margin-top: 85% ;
       display: flex;
       align-items: center;
       justify-content: space-around;
+   
       width: 120px;
+      // background-color: #f89d0a;
+      // background-color: var(--input);
       background-color: var(--input);
       padding: 5px;
-      margin-left: 15%;
       border-radius: 10px;
       box-shadow: var(--box-shadow-1);
       cursor: pointer;
