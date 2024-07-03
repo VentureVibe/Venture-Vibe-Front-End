@@ -37,7 +37,7 @@ $background-icon: #31352E;
     .nav-search{
         display: flex;
         align-items: center;
-        margin-right: 41.5%;
+        margin-right: 42.5%;
         input{
             padding: 6.9px 10px;
             font-size: var(--paragraph-2);
@@ -58,26 +58,18 @@ $background-icon: #31352E;
 
     .profile-bar{
         margin-right: 22px;
-        width: 190px;
+        width: 160px;
         display: flex;
         align-items: center;
         justify-content: space-around;
         i{
-            font-size: var(--Topic);
-            cursor: pointer;
+            font-size: var(--header);cursor: pointer;
         }
 
         img{
             border-radius: 50%;
             width:45px;
             height: 45px;
-            cursor: pointer;
-        }
-
-        h4{
-            font-weight: 500;
-            letter-spacing: 0.01rem;
-            cursor: pointer;
         }
     }
 }

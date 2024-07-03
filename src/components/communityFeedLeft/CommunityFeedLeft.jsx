@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link,useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import './CommunityFeedLeft.scss'
 
 const CommunityFeedLeft = () => {
@@ -22,22 +22,15 @@ const CommunityFeedLeft = () => {
   )
 }
 
-
-const Cont = ({ Icon, name, link, path }) => {
-  const location = useLocation();
-
-  const isBold = () => {
-    return path.includes(location.pathname) ? 'bold' : '';
-  };
-
-  return (
-    <Link to={link}>
-      <div className={`cont ${isBold()}`}>
-        <i className={Icon}></i>
-        <p>{name}</p>
-      </div>
-    </Link>
-  );
-};
+const cont =({Icon,name,link})=>{
+    return(
+        <Link to={link}>
+             <div className="cont">
+                 <i class={Icon}></i>
+                 <p>{name}</p>
+            </div> 
+        </Link> 
+    );
+}
 
 export default CommunityFeedLeft
