@@ -70,7 +70,7 @@ function App() {
       ],
     },
     {
-      path: "/travelplan/12",
+      path: "/travelplan/:from/:to/:location/:lat/:lng",
       element: <TravelPlan />,
     },
     {
