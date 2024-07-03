@@ -14,7 +14,6 @@ import EventsTravelPlan from '../../components/eventsTravelPlan/EventsTravelPlan
 import TransportTravelPlan from '../../components/transportTravelPlan/TransportTravelPlan';
 import ItineraryTravelPlan from '../../components/itineraryTravelPlan/ItineraryTravelPlan';
 import BudgetTravelPlan from '../../components/budgetTravelPlan/BudgetTravelPlan';
-import { GoogleMap, LoadScript } from '@react-google-maps/api';
 
 const TravelPlan = () => {
 
@@ -43,8 +42,8 @@ const TravelPlan = () => {
               <RestaurantsTravelPlan />
               <hr className='travelplan-hr'/>
               <EventsTravelPlan />
-              <hr className='travelplan-hr'/>
-              <TransportTravelPlan />
+              {/* <hr className='travelplan-hr'/>
+              <TransportTravelPlan /> */}
               <hr className='travelplan-hr-line'/>
               <ItineraryTravelPlan />
               <hr className='travelplan-hr-line'/>
@@ -53,37 +52,11 @@ const TravelPlan = () => {
           </div>
         </div>
         <div className='map'>
-            <MapTravelPlan />
+          <img src={map} alt="Map" />
         </div>
       </div>
     </div>
   );
 }
-
-
-const containerStyle = {
-  width: '100%',
-  height:"100%"
-};
-
-const center = {
-  lat: 6.0329,
-  lng: 80.2168
-};
-
-const MapTravelPlan = () => {
-  return (
-    <LoadScript googleMapsApiKey="AIzaSyCHC8CdWrCw593DZUii78rtRV-whzvwKwE">
-      <GoogleMap
-        mapContainerStyle={containerStyle} 
-        center={center}
-        zoom={13}
-      >
-        { /* Child components, such as markers, info windows, etc. */ }
-      </GoogleMap>
-    </LoadScript>
-  );
-};
-
 
 export default TravelPlan;

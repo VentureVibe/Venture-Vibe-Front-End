@@ -27,7 +27,7 @@ const CommunityFriends = () => {
   return (
     <div className='communityFriends'>
         <div className="top">
-           <h1 onClick={handleClickFriends}>Chat</h1>
+           <h1 onClick={handleClickFriends}>Friends (5)</h1>
            <div className='nav-search'>
            <input type="text" placeholder='Search'/>
            <i class="fa-solid fa-magnifying-glass"></i>

@@ -1,20 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './CommunityPost.scss'; 
 import man from "../../assets/profilepics/Profile4.jpg";
 import ella from "../../assets/ella.jpg";
-import PopUpMain from '../popupmain/PopUpMain';
-import CommunityPostPop from '../communityPostPop/CommunityPostPop';
 
-const CommunityPost = ({ name, likes, comments, description, imageSrc, profile }) => {
-  const [showPopup, setShowPopup] = useState(false); // Start with popup hidden
-  const [data, setData] = useState({ name, likes, comments, description, imageSrc, profile });
-
-  const toggleModal = () => {
-    setShowPopup(!showPopup); // Toggle the state of showPopup
-  };
-
+const CommunityPost = ({ name, likes, comments, description, imageSrc,profile }) => {
   return (
-    <div className='CommunityPost' onClick={toggleModal}>
+    <div className='CommunityPost'>
       <img src={imageSrc} alt="" />
       <div className="detail">
         <img src={profile} alt="" />
@@ -31,9 +22,6 @@ const CommunityPost = ({ name, likes, comments, description, imageSrc, profile }
       <div className="description">
         <p>{description}</p>
       </div>
-      {showPopup && (
-        <PopUpMain Component={<CommunityPostPop onClose={toggleModal} data1={data} />} />
-      )}
     </div>
   );
 };
@@ -43,7 +31,7 @@ CommunityPost.defaultProps = {
   name: "Kaveesha Weerakoon",
   likes: 123,
   comments: 42,
-  profile: man,
+  profile:man,
   description: "I just returned from an amazing trip to Ella! The scenic views and charming atmosphere made it an unforgettable experience. 🌄✨ #Ella #TravelDiaries",
   imageSrc: ella 
 };
