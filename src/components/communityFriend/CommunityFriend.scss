@@ -1,0 +1,46 @@
+.friend{
+    
+        width: 100%;
+        display: flex;
+        align-items:  center;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        transition: background-color 0.3s ease; 
+        padding-left: 2px;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        padding-right: 5px;
+        img{
+            width: 45px;
+            height: 45px;
+            border-radius: 100%;
+            margin-right: 18px;
+        }
+
+        p{
+            font-size: var(--paragraph-2);
+            letter-spacing: 0.03rem;
+            width: 200px; 
+        }
+
+        .circle{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--blue-2);
+            border-radius: 1000%;
+            width:20px;
+            height:20px;
+
+            color: var(--white);
+            font-size: var(--paragraph-3);
+        }
+}
+
+    .friend:hover{
+        background-color: var(--input);
+        cursor: pointer;
+        .circle{
+            background-color: var(--orange);
+        }
+    }

@@ -1,0 +1,19 @@
+.community{
+    display: flex;
+    justify-content: center;  
+    flex-direction: column;
+    overflow: hidden;
+    .container{
+        display: flex;
+        width: 100%;
+        flex-direction: column;    
+        height: 100vh;
+    }
+
+   .bottom{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 18% 60% 22%;
+  }
+}

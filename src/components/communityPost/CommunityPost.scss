@@ -1,0 +1,88 @@
+.CommunityPost{
+    height:345px;
+    width: 98.5%;
+    background-color: var(--white);
+    margin: 4px;
+    border-radius: 5px;
+    box-shadow: var(--box-shadow-2);
+    display: flex;
+    padding: 7px;
+    flex-direction: column;
+    cursor: pointer;
+    transition: transform 0.5s ease, background-color 0.4s ease;
+    animation: TopBottom 0.5s ease-out ;
+
+    img{
+        width: 100%;
+        height: 215px;
+        border-radius: 5px;
+    }
+
+    .detail{
+      
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        margin-top: 9px;
+        h2{
+            font-size: var(--heading);
+            font-weight: 400;
+            width: 240px;
+        }
+        img{
+            border-radius: 50%;
+            height: 43px;
+            width: 43px;
+            margin-right: 15px;
+            margin-left: 5px;
+        }
+
+        .like{
+            display: flex;
+            width: 60px;       
+            margin-right: 10px;
+        } 
+        
+        .comment{
+            display: flex;
+            justify-content: space-around;
+            width: 40px;
+        }
+
+        i{
+            opacity: 0.55;
+            font-size: var(--heading); 
+            margin-right: 5px;     
+          }
+
+        p{
+           font-size: var(--paragraph-2);
+        }
+        
+
+    }
+    .description{
+        padding: 1px 5px;
+
+        p{
+            font-size:var(--paragraph-1);
+            letter-spacing: 0.02rem;
+        }
+    }
+
+    @keyframes TopBottom {
+        from {
+          transform: translatey(-4%);
+        }
+      
+        to {
+          transform: translateX(0);
+        }
+      }
+}
+
+.CommunityPost:hover{
+  scale:1.005;
+  background-color:var(--input);
+
+}

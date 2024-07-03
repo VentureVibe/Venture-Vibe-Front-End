@@ -1,0 +1,46 @@
+.story-div {
+    display: flex;
+    padding: 60px 0;
+
+    .left-story-div {
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+
+        .column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            img {
+                width: 14vw;
+                height: 14vw;
+                object-fit: cover;
+                border-radius: 20px;
+            }
+        }
+
+    }
+    .right-story-div {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .head {
+            font-size: 5.8vh;
+            font-weight: 500;
+        }
+        .para {
+            font-size: 2.6vh;
+        }
+        button {
+            width: 9vw;
+            padding: 10px;
+            background-color: #6DBBFB;
+            border-radius: 5px;
+        }
+
+    }
+}

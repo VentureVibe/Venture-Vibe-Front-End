@@ -1,0 +1,51 @@
+.expenseTravelPlan{
+    .container{
+        display: grid;
+        width: 100%;
+        grid-template-columns: 10% 70% 20%;
+        align-items: center;
+        justify-content: center;
+        //border: 1px solid red;
+        
+        .icon-container{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f1f4f7;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            //border: 1px solid red;
+        }
+
+        .description-container{
+            //border: 1px solid red;
+            margin-left: 10px;
+            .place-name{
+                span{
+                    font-size: var(--paragraph-2);
+                    font-weight: 600;
+                    color: var(--text-color);
+                }
+            }
+
+            .date{
+                span{
+                    font-size: var(--paragraph-1);
+                    font-weight: 500;
+                    color: var(--text-color);
+                }
+            }
+        }
+
+        .budget-container{
+            //border: 1px solid red;
+            margin-left: 100px;
+            span{
+                font-size: var(--header);
+                font-weight: 600;
+                color: var(--text-color);
+            }
+        }
+    }
+}

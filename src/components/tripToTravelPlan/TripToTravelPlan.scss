@@ -1,0 +1,71 @@
+.tripToTravelPlan{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute; 
+        top: 140px; 
+        left: 85px;
+        width: 75%;
+
+    .container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 20px;
+        top: -125px;
+        background-color: white;
+        border-radius: 10px;
+
+        h1{
+            color: var(--text-color);
+        }
+
+        .bottom-container{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .date{
+                display: flex;
+                justify-content: center;
+                margin-top: 40px;
+                cursor: pointer;
+                 
+                span{
+                    margin-left: 10px;
+                    color: var(--text-color-light);
+                    font-weight: 550;
+                }
+
+                i{
+                    
+                }
+            }
+
+            .people-container{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: 30px;
+
+                .profile-pic {
+                    margin-right: 13px;
+                    display: flex;
+                    cursor: pointer;
+
+                    img {
+                        width: 35px !important;
+                        height: 35px !important;
+                        border-radius: 50%;
+                    }
+                }
+
+                i{
+                    cursor: pointer;
+                }
+
+                
+            }
+        }
+    }
+}

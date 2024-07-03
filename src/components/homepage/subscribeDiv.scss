@@ -1,0 +1,35 @@
+.div-4 {
+    padding: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  
+    .input-btn {
+      position: relative;
+      border: 2px solid #D8D8D7;
+      border-radius: 6px;
+      padding: 5px 20px;
+      margin-top: 2vh;
+      input {
+        height: 6vh;
+        width: 22vw;
+      }
+      input:focus {
+        border: none;
+        outline: none;
+      }
+      button {
+        height: 6vh;
+        position: absolute;
+        width: 9vw;
+        background-color: #69B7F9;
+        border-radius: 6px;
+        color: white;
+        padding: 10px;
+        left: 15vw;
+      }
+  
+    }
+}

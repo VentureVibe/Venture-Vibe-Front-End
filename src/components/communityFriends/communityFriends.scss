@@ -1,0 +1,54 @@
+
+.communityFriends{
+    padding: 29px 22px; 
+    height: 100%;
+    h1{
+        font-size:var(--topic);
+        font-weight: 500;
+   
+        cursor: pointer;
+    }
+    .nav-search{
+        display: flex;
+        align-items: center;
+        margin-top: 21px;
+        input{
+            padding: 6px 10px;
+            font-size: var(--paragraph-1);
+            border-radius: 5px;
+            background-color: var(--input);
+            width:100%;
+            letter-spacing: 0.02rem
+        };
+        input:focus {
+            outline: none; 
+        }
+        i{
+            font-size:var(--header);
+            margin-left: -28px;
+        }
+    }
+
+    .bottom{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+       height: 100%;
+        overflow: scroll;
+      
+    }
+
+    .view-more{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: var(--paragraph-1);
+        cursor: pointer;
+        i{
+            font-size: var(--paragraph-2);
+            margin-right: 10px;
+        }
+    }
+}
+

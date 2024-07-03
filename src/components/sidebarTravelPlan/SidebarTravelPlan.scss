@@ -1,0 +1,59 @@
+$background-icon: #31352E;
+
+.sidebar{
+    .container{
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        
+
+        .sidebar-item-tab{
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 10px;
+
+            .sidebar-item-select{
+                display: flex;
+                align-items: center;
+                padding: 10px;
+                background-color: $background-icon;
+                color: white;
+                border-radius: 10px;
+                height: 50px;
+                cursor: pointer;
+    
+                i{
+                    margin-right: 5px;
+                }
+    
+                span{
+                    font-size: var(--sidebar);
+                    font-weight: 600;
+                }
+            }
+        }
+
+        .sidebar-item{
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: white;
+            color: var(--text-color);
+            border-radius: 10px;
+            height: 50px;
+
+            i{
+                margin-right: 5px;
+            }
+
+            span{
+                font-size: var(--sidebar);
+                font-weight: 600;
+            }
+        }
+
+        
+    }
+
+}
