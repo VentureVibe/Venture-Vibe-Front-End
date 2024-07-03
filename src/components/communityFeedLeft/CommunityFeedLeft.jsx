@@ -11,7 +11,7 @@ const CommunityFeedLeft = () => {
                  <Cont Icon="fa-solid fa-square-check" name="My Plannings" link="/community" path={["/"]} />
                  <Cont Icon="fa-solid fa-hotel" name="Accomodations" link="/community" path={["/"]} />
                  <Cont Icon="fa-solid fa-person-hiking" name="Event & Activities" link="/community" path={["/"]} />
-                 <Cont Icon="fa-solid fa-car-side" name="Transpotation" link="/community" path={["/"]} />
+                 <Cont Icon="fa-solid fa-car-side" name="Travel Guide" link="/community" path={["/"]} />
                  <Cont Icon="fa-solid fa-person-snowboarding" name="Plan Now" link="/travelplan" path={["/"]} />
                  <i class=""></i>
                   <div className="publish">

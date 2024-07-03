@@ -5,7 +5,9 @@ import logo from "../../assets/profilepics/logo3.png";
 const Admin = () => {
   return (
     <div className="admin">
-      <div className="sidebar">
+
+      <div class="sidebar">
+
         <h2>Admin Dashboard</h2>
         <ul>
           <li>
