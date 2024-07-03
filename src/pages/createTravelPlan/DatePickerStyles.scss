@@ -1,0 +1,76 @@
+// DatePickerStyles.scss
+
+.react-datepicker {
+    //font-family: Arial, Helvetica, sans-serif;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  
+    &__header {
+      background-color: white;
+      border-bottom: none;
+      border-radius: 8px 8px 0 0;
+      padding: 10px;
+    }
+  
+    &__current-month {
+      font-size: 1.2em;
+      color: var(--text-color);
+    }
+  
+    &__day-name, &__day {
+      width: 2.5em;
+      line-height: 2.5em;
+      margin: 0.166em;
+      color: #555;
+    }
+  
+    &__day-name {
+      font-weight: 700;
+    }
+  
+    &__day:hover {
+      background-color: var(--orange);
+      color: #fff;
+    }
+  
+    &__day--selected {
+      //background-color: var(--orange);
+      color: #fff;
+      //border-radius: 50%;
+    }
+  
+    &__day--today {
+      font-weight: bold;
+      //color: var(--orange);
+    }
+  
+    &__navigation {
+      top: 10px;
+      line-height: 1.5em;
+      background: none;
+      border: none;
+      cursor: pointer;
+  
+      &--previous {
+        //border-right: 0.75em solid white;
+      }
+  
+      &--next {
+        //border-left: 0.75em solid var(--orange);
+      }
+    }
+  }
+  
+  .date-input {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid var(--text-color);
+    //border-radius: 8px;
+    //box-shadow: var(--box-shadow-1);
+    outline: none;
+    cursor: pointer;
+    font-size: var(--paragraph-1);
+    color: var(--text-color);
+  }
+  
