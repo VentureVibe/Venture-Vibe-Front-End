@@ -42,8 +42,8 @@ const TravelPlan = () => {
               <RestaurantsTravelPlan />
               <hr className='travelplan-hr'/>
               <EventsTravelPlan />
-              <hr className='travelplan-hr'/>
-              <TransportTravelPlan />
+              {/* <hr className='travelplan-hr'/>
+              <TransportTravelPlan /> */}
               <hr className='travelplan-hr-line'/>
               <ItineraryTravelPlan />
               <hr className='travelplan-hr-line'/>
