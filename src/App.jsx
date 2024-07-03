@@ -18,7 +18,6 @@ import CommunityFeed from "./components/communityFeed/CommunityFeed";
 import FriendProfile from "./pages/community/profile/FriendProfile";
 import ProfileAll from './pages/community/profile/profileAll/ProfileAll'
 import ProfilePopular from './pages/community/profile/profilePopular/ProfilePopular'
-import CreateTravelPlan from "./pages/createTravelPlan/CreateTravelPlan";
 import CommunityFriends from "./pages/community/friends/CommunityFriends";
 import CommunityRequest from "./pages/community/requests/CommunityRequest";
 import CommunitySearch from "./pages/community/search/CommunitySearch";
@@ -57,16 +56,13 @@ function App() {
           path: "/",
           element: <Home />,
         },
-        {
-          path: "/travelplan",
-          element: <CreateTravelPlan />,
-        },
       ],
     },
     {
-      path: "/travelplan/12",
+      path: "/travelplan",
       element: <TravelPlan />,
     },
+
     {
       path: "/community",
       element: <Community />,
@@ -78,29 +74,18 @@ function App() {
             {
               path:"",
               element:<Feeds/>
-            },{
+            }
+            ,{
               path:"popular",
               element:<Popular/>
-            },{
+            }
+            ,{
             path:"all",
             element:<All/>
           }
           ],
        
         }
-      ,{
-        path: "profile",
-        element :<FriendProfile/>,
-        children: [
-          {
-            path:":id",
-            element:<ProfileAll/>
-          },{
-            path:"popular/:id",
-            element:<ProfilePopular/>
-          }
-        ]
-      }
       ,
         {
           path: "profile",
