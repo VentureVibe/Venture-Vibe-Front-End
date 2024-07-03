@@ -10,7 +10,7 @@ const NavbarCommunity = () => {
 
   const handleSearch = () => {
     if (searchTerm.trim() !== '') {
-      navigate(`/community/search/${encodeURIComponent(searchTerm)}`);
+      navigate(`/community/search/post/${encodeURIComponent(searchTerm)}`);
     }
   };
 

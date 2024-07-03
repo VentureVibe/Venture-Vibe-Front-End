@@ -22,6 +22,8 @@ import CommunityFriends from "./pages/community/friends/CommunityFriends";
 import CommunityRequest from "./pages/community/requests/CommunityRequest";
 import CommunitySearch from "./pages/community/search/CommunitySearch";
 import CommunitySearchPost from "./pages/community/search/post/CommunitySearchPost";
+import CommunityFriend from "./components/communityFriend/CommunityFriend";
+import CommunitySearchUser from "./pages/community/search/users/CommunitySearchUser";
 
 const Layout = () => {
   return (
@@ -109,12 +111,16 @@ function App() {
         }
         ,
         {
-          path:"search/:query",
-          element:<CommunitySearch/>,
+          path: "search",
+          element: <CommunitySearch />,
           children: [
             {
-              path:"",
-              element:<CommunitySearchPost/>
+              path: "post/:query",
+              element: <CommunitySearchPost />,
+            },
+            {
+              path: "user/:query", // Assuming you might want a user search route
+              element: <CommunitySearchUser  />, // Placeholder for user search component
             }
           ]
         }
