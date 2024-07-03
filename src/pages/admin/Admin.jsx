@@ -3,7 +3,7 @@ import "./Admin.scss";
 
 const Admin = () => {
   return (
-    <>
+    <div className="admin">
       <div class="sidebar">
         <h2>Admin Dashboard</h2>
         <ul>
@@ -59,7 +59,7 @@ const Admin = () => {
           <p>Adjust application settings.</p>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
