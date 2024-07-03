@@ -1,43 +1,64 @@
 import React from "react";
-
-const drawerWidth = 240;
+import "./Admin.scss";
 
 const Admin = () => {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
-      <Drawer
-        className={classes.drawer}
-        variant="permanent"
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-        anchor="left"
-      >
-        <Toolbar />
-        <Typography variant="h6" noWrap>
-          Admin Dashboard
-        </Typography>
-        <List>
-          <ListItem button>
-            <ListItemText primary="Dashboard" />
-          </ListItem>
-          <ListItem button>
-            <ListItemText primary="Users" />
-          </ListItem>
-          <ListItem button>
-            <ListItemText primary="Products" />
-          </ListItem>
-          <ListItem button>
-            <ListItemText primary="Settings" />
-          </ListItem>
-        </List>
-      </Drawer>
-      <main className={classes.content}>
-        <Toolbar />
-        <Typography paragraph>Main Content Area</Typography>
-      </main>
+    <div className="admin">
+      <div class="sidebar">
+        <h2>Admin Dashboard</h2>
+        <ul>
+          <li>
+            <a href="#dashboard">Dashboard</a>
+          </li>
+          <li>
+            <a href="#users">Users</a>
+          </li>
+          <li>
+            <a href="#trips">Trips</a>
+          </li>
+          <li>
+            <a href="#bookings">Bookings</a>
+          </li>
+          <li>
+            <a href="#analytics">Analytics</a>
+          </li>
+          <li>
+            <a href="#settings">Settings</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="content">
+        <div id="dashboard">
+          <h2>Dashboard</h2>
+          <p>Welcome to the admin dashboard!</p>
+        </div>
+
+        <div id="users">
+          <h2>Users</h2>
+          <p>Manage user accounts here.</p>
+        </div>
+
+        <div id="trips">
+          <h2>Trips</h2>
+          <p>Manage trips and destinations.</p>
+        </div>
+
+        <div id="bookings">
+          <h2>Bookings</h2>
+          <p>View and manage bookings.</p>
+        </div>
+
+        <div id="analytics">
+          <h2>Analytics</h2>
+          <p>Track application analytics.</p>
+        </div>
+
+        <div id="settings">
+          <h2>Settings</h2>
+          <p>Adjust application settings.</p>
+        </div>
+      </div>
     </div>
   );
 };
