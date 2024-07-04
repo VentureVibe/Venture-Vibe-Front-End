@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "./TravelPlan.scss";
 import NavbarTravelplan from '../../components/navbarTravelplan/NavbarTravelplan';
 import SidebarTravelPlan from '../../components/sidebarTravelPlan/SidebarTravelPlan';
@@ -15,8 +15,42 @@ import TransportTravelPlan from '../../components/transportTravelPlan/TransportT
 import ItineraryTravelPlan from '../../components/itineraryTravelPlan/ItineraryTravelPlan';
 import BudgetTravelPlan from '../../components/budgetTravelPlan/BudgetTravelPlan';
 import { GoogleMap, LoadScript } from '@react-google-maps/api';
+import { useParams } from 'react-router-dom';
+import MapTravelPlan from '../../components/mapTravelPlan/MapTravelPlan';
+
 
 const TravelPlan = () => {
+
+  const { location, lat, lng,to,from } = useParams();
+  const [placeImage, setPlaceImage] = useState('');
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  useEffect(() => {
+    const fetchPlaceDetails = () => {
+      const service = new window.google.maps.places.PlacesService(document.createElement('div'));
+      const request = {
+        location: new window.google.maps.LatLng(parseFloat(lat), parseFloat(lng)),
+        radius: 50,
+        query: location,
+        fields: ['photos'],
+      };
+
+      service.textSearch(request, (results, status) => {
+        if (status === window.google.maps.places.PlacesServiceStatus.OK && results && results.length > 0) {
+          const place = results[0];
+          if (place.photos && place.photos.length > 0) {
+            const photoUrl = place.photos[0].getUrl({ maxWidth: 800 });
+            setPlaceImage(photoUrl);
+          }
+        }
+      });
+    };
+
+    if (window.google && window.google.maps && window.google.maps.places) {
+      fetchPlaceDetails();
+    }
+  }, [location, lat, lng]);
+
 
   return (
     <div className='trvelplan'>
@@ -30,8 +64,8 @@ const TravelPlan = () => {
             </div>
             <div className='plan-list-container'>
               <div className='plan-list'>
-                <img src={galle} alt="Galle" />
-                <TripToTravelPlan />
+                 <img src={placeImage} alt="Location Image" />
+                 <TripToTravelPlan location={location} from={from} to={to}  />         
               </div>
               <ExploreTravelPlan />
               <NotesTravelPlan />
@@ -43,8 +77,7 @@ const TravelPlan = () => {
               <RestaurantsTravelPlan />
               <hr className='travelplan-hr'/>
               <EventsTravelPlan />
-              <hr className='travelplan-hr'/>
-              <TransportTravelPlan />
+              
               <hr className='travelplan-hr-line'/>
               <ItineraryTravelPlan />
               <hr className='travelplan-hr-line'/>
@@ -53,37 +86,17 @@ const TravelPlan = () => {
           </div>
         </div>
         <div className='map'>
-            <MapTravelPlan />
+              <MapTravelPlan lat={parseFloat(lat)} lng={parseFloat(lng)} />
         </div>
       </div>
     </div>
   );
+
+
+
+
 }
 
-
-const containerStyle = {
-  width: '100%',
-  height:"100%"
-};
-
-const center = {
-  lat: 6.0329,
-  lng: 80.2168
-};
-
-const MapTravelPlan = () => {
-  return (
-    <LoadScript googleMapsApiKey="AIzaSyCHC8CdWrCw593DZUii78rtRV-whzvwKwE">
-      <GoogleMap
-        mapContainerStyle={containerStyle} 
-        center={center}
-        zoom={13}
-      >
-        { /* Child components, such as markers, info windows, etc. */ }
-      </GoogleMap>
-    </LoadScript>
-  );
-};
 
 
 export default TravelPlan;
