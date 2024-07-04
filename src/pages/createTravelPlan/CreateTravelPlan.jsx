@@ -24,6 +24,30 @@ const CreateTravelPlan = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        dateInputRef.current &&
+        !dateInputRef.current.contains(event.target) &&
+        datePickerRef.current &&
+        !datePickerRef.current.contains(event.target)
+      ) {
+        setShowDatePicker(false);
+      }
+
+      if(
+        inviteFriendRef.current &&
+        !inviteFriendRef.current.contains(event.target)
+      ) {
+        setShowInviteTripmates(false);
+        setShowInviteTripmatesIcon(true);
+      }
+      
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+   
+
     if (window.google) {
       const autocompleteService = new window.google.maps.places.AutocompleteService();
       const placesAutocomplete = new window.google.maps.places.Autocomplete(whereToInputRef.current, {
@@ -46,6 +70,10 @@ const CreateTravelPlan = () => {
         fetchPlacePhotos(place);
       });
     }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
   }, []);
 
   const fetchPlacePhotos = (place) => {

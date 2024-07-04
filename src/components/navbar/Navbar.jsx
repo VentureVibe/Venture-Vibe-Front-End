@@ -17,7 +17,7 @@ const Navbar = () => {
       </ul>
       <ul className="button">
         <li className="login"><button><NavLink to="/">Login</NavLink></button></li>
-        <li className="signup"><button><NavLink to="/">SignUp</NavLink></button></li>
+        <li className="signup"><button><NavLink to="/">Sign Up</NavLink></button></li>
       </ul>
     </div>
   )
