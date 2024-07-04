@@ -1,28 +1,31 @@
-.login{
+.register{
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    height: 100%;
+    animation: TopBottom 0.6s ease-out ;
 
     .container{
         display: flex;
         flex-direction: column;
         align-items: center;
-        //justify-content: center;
-        width: 27%;
-        height: 80vh;
+        border-radius: 15px;
+        background-color: var(--white);;
+        height: 75vh;
         //border: 1px solid black;
         box-shadow: var(--box-shadow-2);
-
+        width: 29%;
         .close-btn{
-            width: 20px;
-            height: 20px;
+            width: 25px;
+            height: 25px;
             background-color: var(--input);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-left: 385px;
-            margin-top: 5px;
+            margin-left: 90%;
+            margin-top: 8px;
             cursor: pointer;
 
             i{
@@ -40,8 +43,8 @@
             //border: 1px solid black;
             //justify-content: center;
 
-            span{
-                font-size: 22px;
+            p{
+                font-size: 24px;
                 font-weight: 700;
                 text-align: center;
                 color: var(--text-color);
@@ -139,24 +142,13 @@
             }
         }
 
-        .forgot-password{
-            margin-top: 5px;
-            cursor: pointer;
-
-            span{
-                font-size: var(--paragraph-3);
-                font-weight: 500;
-                color: var(--text-color-light); 
-            }
-        }
-
         .sign-up-btn{
             margin-top: 20px;
             cursor: pointer;
 
             span{
                 font-size: var(--sidebar);
-                font-weight: 700;
+                font-weight: 600;
                 color: var(--text-color); 
             }
         }
@@ -170,6 +162,16 @@
                 font-weight: 400;
                 color: var(--text-color-light); 
             }
+        }
+    }
+
+    @keyframes TopBottom {
+        from {
+          transform: translatey(-4%);
+        }
+      
+        to {
+          transform: translateX(0);
         }
     }
 }

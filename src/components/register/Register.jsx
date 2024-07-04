@@ -1,21 +1,22 @@
-import React from 'react'
-import "./Login.scss";
+import React from 'react';
+import "./Register.scss";
 import googleLogo from "../../assets/google-logo.png";
 import CloseIcon from '@mui/icons-material/Close';
 
-const Login = () => {
+const Register = ({onClose}) => {
   return (
-    <div className='login'>
+    <div className='register'>
       <div className="container">
-        <div className="close-btn">
-          <i><CloseIcon sx={{ color: '#747474', fontSize: 15 }}/></i>
+      <div className="close-btn" onClick={onClose}>
+          <i><CloseIcon sx={{ color: '#747474', fontSize: 16 }}/></i>
         </div>
         <div className="heading">
-          <span>Login to Venture Vibe</span>
+          <p>Sign up to take your trip planning
+          to next level</p>
         </div>
         <div className="sign-up-google">
           <img src={googleLogo} alt="" />
-          <span>Log in with Google</span>
+          <span>Sign up with Google</span>
         </div>
         <div className="or">
           <hr />
@@ -28,18 +29,15 @@ const Login = () => {
         <div className="password">
           <input type="password" placeholder="Password" />
         </div>
-        <div className="forgot-password">
-          <span>Forgot password</span>
-        </div>
         <div className="sign-up-btn">
-          <span>Log In</span>
+          <span>Sign up with email</span>
         </div>
         <div className="log-in">
-          <span>Don't have an account yet? <b> Sign up</b></span>
+          <span>Already have an account? <b> Log in</b></span>
         </div>
       </div>
     </div>
   )
 }
 
-export default Login
+export default Register

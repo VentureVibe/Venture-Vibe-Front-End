@@ -20,7 +20,7 @@
         }
         h2 {
             font-size: var(--topic);
-            color: #F68712;
+            color: var(--orange);
             margin-top: 1vh;
         }
     }
@@ -28,11 +28,12 @@
         display: flex;
         list-style: none;
         font-size: 2.5vh;
+        color: var(--text-color);
         font-weight: 450;
         cursor: pointer;
 
         .login {
-            color: #F68712;
+            color: var(--orange);
             button {
                 background-color: #ffffff;
             }
@@ -42,16 +43,15 @@
             }
         }
         .signup {
-            color: #1BBC9B;
-            color: #0075C3;
             color: white;
 
             button {
-                background-color: #F68712;
+                background-color: var(--orange);
             }
         }
         .login, .signup {
             button {
+                width: 6vw;
                 border-radius: 2.6vh;
                 font-size: 2.5vh;
                 font-weight: 450;
@@ -61,7 +61,7 @@
         }
     }
     .list li:hover {
-        color: #F68712;
+        color: /*var(--orange)*/var(--orange);
     }
     .list {
         gap: 2vw;

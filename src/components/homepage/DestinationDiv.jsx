@@ -31,7 +31,7 @@ const DestinationDiv = () => {
             <h1>Popular Destinations</h1>
             <div className='swiper-div'>
               <Swiper
-              slidesPerView={3}
+              slidesPerView={4}
               spaceBetween={20}
               loop={true}
               /*pagination={{

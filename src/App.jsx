@@ -2,8 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import './App.css'
 import React from 'react';
-import Register from './pages/register/Register';
-import Login from './pages/login/Login';
+
 import Home from './pages/home/Home';
 import TravelPlan from './pages/travelPlan/TravelPlan';
 import Admin from "./pages/admin/Admin";
@@ -43,14 +42,7 @@ function App() {
       path: "/",
       element: <Layout />, // Use the Layout component for the root path
       children: [
-        {
-          path: "/register",
-          element: <Register />,
-        },
-        {
-          path: "/login",
-          element: <Login />,
-        },
+      
         {
           path: "/admin",
           element: <Admin />,
