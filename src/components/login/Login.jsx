@@ -8,7 +8,7 @@ const Login = ({ onClose }) => {
     <div className='login'>
       <div className="container">
         <div className="close-btn" onClick={onClose}>
-          <i><CloseIcon sx={{ color: '#747474', fontSize: 15 }} /></i>
+          <i><CloseIcon sx={{ color: '#747474', fontSize: 16 }} /></i>
         </div>
         <div className="heading">
           <span>Login to Venture Vibe</span>
