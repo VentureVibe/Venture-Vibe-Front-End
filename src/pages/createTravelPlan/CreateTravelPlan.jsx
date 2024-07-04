@@ -204,9 +204,9 @@ const CreateTravelPlan = () => {
           <input type="text" placeholder="Enter an email address" />
         </div>)}
         <div className="btn-container" onClick={handleStartPlanning}>
-          <button >
+          <span >
             Start Planning
-          </button>
+          </span>
         </div>
       </div>
     </div>

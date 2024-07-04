@@ -3,14 +3,17 @@ import "./NavbarTravelplan.scss"
 import logo from "../../assets/3.png"
 import PrintOutlinedIcon from '@mui/icons-material/PrintOutlined';
 import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
+import { Link } from 'react-router-dom';
 
 const NavbarTravelplan = () => {
   return (
     <div className='navbar'>
+        <Link to='/'>
         <div className='logo'>
           <img src={logo} alt='logo'/>
           <h2 className='logo-name'>Venture Vibe</h2>
         </div>
+        </Link>
         <div className='nav-right'>
             <div className='share'>
               <i><ShareOutlinedIcon sx={{ fontSize: 18 }}/></i>
