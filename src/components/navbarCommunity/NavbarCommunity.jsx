@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './NavbarCommunity.scss';
 import logo from '../../assets/3.png';
 import man from '../../assets/man.jpg';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const NavbarCommunity = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -16,10 +16,12 @@ const NavbarCommunity = () => {
 
   return (
     <div className='navbar'>
+      <Link to='/'>
       <div className='logo'>
         <img src={logo} alt='logo'/>
         <h2 className='logo-name'>Venture Vibe</h2>
       </div>
+      </Link>
       <div className='nav-search'>
         <input
           type="text"
