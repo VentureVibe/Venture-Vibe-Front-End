@@ -1,0 +1,42 @@
+.sidebar{
+    display: flex;
+    width: 250px;
+    background-color: #176ee6;
+    height: 100vh;
+    padding:10px;
+    box-sizing: border-box;
+    box-shadow: 5px 10px 8px #888888;
+}
+.sidebar h1{
+    padding: 20px;
+    color: #000;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+ul{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    margin-left: 20px;
+
+    li{
+        margin-bottom: 15px;
+
+        a{
+            color: #000;
+            text-decoration: none;
+            display: block;
+            padding: 15px;
+            border-radius: 4px;
+            margin-left: 10px;
+            font-weight: 400;
+            font-size: 18px;
+            
+            &:hover{
+                background-color: #fc8200;
+            }
+        }
+    }
+
+}
