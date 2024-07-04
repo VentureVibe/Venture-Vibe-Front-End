@@ -1,15 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./SidebarTravelPlan.scss";
 import SidebarTravelPlanExtend from '../sidebarTravelPlanExtend/SidebarTravelPlanExtend';
 import KeyboardArrowRightOutlinedIcon from '@mui/icons-material/KeyboardArrowRightOutlined';
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
 
-const SidebarTravelPlan = () => {
+const SidebarTravelPlan = ({from, to}) => {
   const overview = ["Explore", "Notes", "Hotels and Logging", "Places to visit", "Restaurants", "Activities"];
-  const itinerary = ["Sun 1/6", "Mon 2/6", "Tue 3/6", "Wed 4/6", "Thu 5/6", "Fri 6/6", "Sat 7/6"];
   const budget = ["view"];
+  
+  const [itinerary, setItinerary] = useState([]);
 
-  // Initialize all sections to true
+  useEffect(() => {
+    const generateItinerary = (fromDate, toDate) => {
+      const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+      const startDate = new Date(fromDate);
+      const endDate = new Date(toDate);
+      const tempItinerary = [];
+
+      let currentDate = startDate;
+      while (currentDate <= endDate) {
+        const dayOfWeek = daysOfWeek[currentDate.getDay()];
+        const formattedDate = `${dayOfWeek} ${currentDate.getDate()}/${currentDate.getMonth() + 1}`;
+        tempItinerary.push(formattedDate);
+        currentDate.setDate(currentDate.getDate() + 1);
+      }
+
+      return tempItinerary;
+    };
+
+    setItinerary(generateItinerary(from, to));
+  }, [from, to]);
+
   const [openSections, setOpenSections] = useState({
     overview: true,
     itinerary: true,
