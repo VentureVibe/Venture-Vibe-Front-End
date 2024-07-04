@@ -3,11 +3,11 @@ import "./Register.scss";
 import googleLogo from "../../assets/google-logo.png";
 import CloseIcon from '@mui/icons-material/Close';
 
-const Register = () => {
+const Register = ({onClose}) => {
   return (
     <div className='register'>
       <div className="container">
-        <div className="close-btn">
+      <div className="close-btn" onClick={onClose}>
           <i><CloseIcon sx={{ color: '#747474', fontSize: 15 }}/></i>
         </div>
         <div className="heading">
