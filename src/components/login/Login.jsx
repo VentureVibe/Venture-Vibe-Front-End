@@ -1,20 +1,20 @@
-import React from 'react'
+import React from 'react';
 import "./Login.scss";
 import googleLogo from "../../assets/google-logo.png";
 import CloseIcon from '@mui/icons-material/Close';
 
-const Login = () => {
+const Login = ({ onClose }) => {
   return (
     <div className='login'>
       <div className="container">
-        <div className="close-btn">
-          <i><CloseIcon sx={{ color: '#747474', fontSize: 15 }}/></i>
+        <div className="close-btn" onClick={onClose}>
+          <i><CloseIcon sx={{ color: '#747474', fontSize: 15 }} /></i>
         </div>
         <div className="heading">
           <span>Login to Venture Vibe</span>
         </div>
         <div className="sign-up-google">
-          <img src={googleLogo} alt="" />
+          <img src={googleLogo} alt="Google Logo" />
           <span>Log in with Google</span>
         </div>
         <div className="or">
@@ -39,7 +39,7 @@ const Login = () => {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Login
+export default Login;
