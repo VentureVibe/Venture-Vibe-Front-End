@@ -1,5 +1,4 @@
 import React from 'react'
-import Nav from '../../components/homepage/Nav'
 import DestinationDiv from '../../components/homepage/DestinationDiv';
 import StoryDiv from '../../components/homepage/StoryDiv';
 import MilestonesDiv from '../../components/homepage/MilestonesDiv';

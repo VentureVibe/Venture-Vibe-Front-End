@@ -34,7 +34,7 @@ const [hotels, setHotels] = useState([]);
   ]
 
   return (
-    <div className='hotels'>
+    <div className='milestonediv'>
             <h1>Our Milestones</h1>
             <div className='swiper-div'>
               <Swiper
