@@ -4,7 +4,10 @@ import './Navbar.scss';
 const Navbar = () => {
   return (
     <div className='navbar'>
+      <div className="logo">
       <img src="/src/assets/3.png" />
+      <h2>Venture Vibe</h2>
+      </div>
       <ul className="list">
         <li>Community</li>
         <li>Hotels</li>
