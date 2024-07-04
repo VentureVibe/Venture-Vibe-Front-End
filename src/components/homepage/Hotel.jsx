@@ -18,7 +18,7 @@ const Hotel = ( { image, title, name, price } ) => {
         </div>
         <div className='rating'>
         <i className="fas fa-star"></i>
-        <p className="hotel-price">{price}</p>
+        <p className="hotel-price">4.5/5</p>
         </div>
       </div>
       
