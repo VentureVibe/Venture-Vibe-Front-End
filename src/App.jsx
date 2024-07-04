@@ -20,6 +20,13 @@ import ProfileAll from './pages/community/profile/profileAll/ProfileAll'
 import ProfilePopular from './pages/community/profile/profilePopular/ProfilePopular'
 import CommunityFriends from "./pages/community/friends/CommunityFriends";
 import CommunityRequest from "./pages/community/requests/CommunityRequest";
+import CommunitySearch from "./pages/community/search/CommunitySearch";
+import CommunitySearchPost from "./pages/community/search/post/CommunitySearchPost";
+import CommunityFriend from "./components/communityFriend/CommunityFriend";
+import CommunitySearchUser from "./pages/community/search/users/CommunitySearchUser";
+import CreateTravelPlan from "./pages/createTravelPlan/CreateTravelPlan";
+import InviteTravelMates from "./pages/inviteTravelMates/InviteTravelMates";
+import Map from "./pages/map/Map";
 
 const Layout = () => {
   return (
@@ -52,11 +59,23 @@ function App() {
           path: "/",
           element: <Home />,
         },
+        {
+          path: "/travelplan",
+          element: <CreateTravelPlan />,
+        },
+        {
+          path: "/travelplan/invite",
+          element: <InviteTravelMates />,
+        },
       ],
     },
     {
-      path: "/travelplan",
+      path: "/travelplan/12",
       element: <TravelPlan />,
+    },
+    {
+      path: "/map",
+      element: <Map />,
     },
 
     {
@@ -105,7 +124,21 @@ function App() {
           path:"requests",
           element:<CommunityRequest/>
         }
-      
+        ,
+        {
+          path: "search",
+          element: <CommunitySearch />,
+          children: [
+            {
+              path: "post/:query",
+              element: <CommunitySearchPost />,
+            },
+            {
+              path: "user/:query", // Assuming you might want a user search route
+              element: <CommunitySearchUser  />, // Placeholder for user search component
+            }
+          ]
+        }
       ]
      
     },
