@@ -1,11 +1,11 @@
 .sidebar{
     display: flex;
     width: 250px;
-    background-color: #176ee6;
+    background-color: var(--blue);
     height: 100vh;
     padding:10px;
     box-sizing: border-box;
-    box-shadow: 5px 10px 8px #888888;
+    box-shadow: var(--box-shadow-2);
 }
 .sidebar h1{
     padding: 20px;
@@ -15,6 +15,7 @@
 }
 
 ul{
+    width: 100%;
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -26,10 +27,10 @@ ul{
         a{
             color: #000;
             text-decoration: none;
-            display: block;
+            display: flex;
+            width: 100%;
             padding: 15px;
             border-radius: 4px;
-            margin-left: 10px;
             font-weight: 400;
             font-size: 18px;
             
