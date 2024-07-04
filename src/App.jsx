@@ -30,7 +30,7 @@ import Map from "./pages/map/Map";
 
 const Layout = () => {
   return (
-    <div>
+    <div style={{ height: '100vh' }}>
       <Navbar />
       <Outlet />
     </div>
@@ -68,9 +68,10 @@ function App() {
           element: <InviteTravelMates />,
         },
       ],
-    },
+    },  
+
     {
-      path: "/travelplan/12",
+      path: "/travelplan/:to/:from/:location/:lat/:lng",
       element: <TravelPlan />,
     },
     {
