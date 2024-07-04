@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "./TravelPlan.scss";
 import NavbarTravelplan from '../../components/navbarTravelplan/NavbarTravelplan';
 import SidebarTravelPlan from '../../components/sidebarTravelPlan/SidebarTravelPlan';
@@ -18,10 +18,43 @@ import { GoogleMap, LoadScript } from '@react-google-maps/api';
 import { useParams } from 'react-router-dom';
 import MapTravelPlan from '../../components/mapTravelPlan/MapTravelPlan';
 
-const TravelPlan = () => {
- 
 
+<<<<<<< HEAD
   const { from, to, location, lat, lng } = useParams();
+=======
+const TravelPlan = () => {
+
+  const { location, lat, lng,to,from } = useParams();
+  const [placeImage, setPlaceImage] = useState('');
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  useEffect(() => {
+    const fetchPlaceDetails = () => {
+      const service = new window.google.maps.places.PlacesService(document.createElement('div'));
+      const request = {
+        location: new window.google.maps.LatLng(parseFloat(lat), parseFloat(lng)),
+        radius: 50,
+        query: location,
+        fields: ['photos'],
+      };
+
+      service.textSearch(request, (results, status) => {
+        if (status === window.google.maps.places.PlacesServiceStatus.OK && results && results.length > 0) {
+          const place = results[0];
+          if (place.photos && place.photos.length > 0) {
+            const photoUrl = place.photos[0].getUrl({ maxWidth: 800 });
+            setPlaceImage(photoUrl);
+          }
+        }
+      });
+    };
+
+    if (window.google && window.google.maps && window.google.maps.places) {
+      fetchPlaceDetails();
+    }
+  }, [location, lat, lng]);
+
+>>>>>>> 6e8b9240bba104aca3d0ccf99b57191b504dbb58
 
   return (
     <div className='trvelplan'>
@@ -35,8 +68,13 @@ const TravelPlan = () => {
             </div>
             <div className='plan-list-container'>
               <div className='plan-list'>
+<<<<<<< HEAD
                 <img src={galle} alt="Galle" />
                 <TripToTravelPlan location={location} from={from} to={to}/>
+=======
+                 <img src={placeImage} alt="Location Image" />
+                 <TripToTravelPlan location={location} from={from} to={to}  />         
+>>>>>>> 6e8b9240bba104aca3d0ccf99b57191b504dbb58
               </div>
               <ExploreTravelPlan />
               <NotesTravelPlan />

@@ -1,0 +1,164 @@
+.register{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        //justify-content: center;
+        width: 27%;
+        height: 80vh;
+        //border: 1px solid black;
+        box-shadow: var(--box-shadow-2);
+
+        .close-btn{
+            width: 20px;
+            height: 20px;
+            background-color: var(--input);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 385px;
+            margin-top: 5px;
+            cursor: pointer;
+
+            i{
+                margin-top: 3px;
+            }
+        }
+
+        .heading{
+            margin-top: 30px;
+            width: 70%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            //height: 50px;
+            //border: 1px solid black;
+            //justify-content: center;
+
+            p{
+                font-size: 22px;
+                font-weight: 700;
+                text-align: center;
+                color: var(--text-color);
+            }
+        }
+
+        .sign-up-google{
+            display: flex;
+            align-items: center;
+            width: 75%;
+            height: 50px;
+            padding: 5px;
+            border: 1px solid var(--text-color-light);
+            margin-top: 50px;
+            border-radius: 10px;
+            box-shadow: var(--box-shadow-1);
+            cursor: pointer;
+
+            img{
+                width: 23px;
+                height: 23px;
+                object-fit: cover;
+                margin-left: 20px;
+            }
+
+            span{
+                margin-left: 40px;
+                font-size: var(--paragraph-2);
+                font-weight: 500;
+                color: var(--text-color-light);
+            }
+        }
+
+        .or{
+            display: flex;
+            align-items: center;
+            margin-top: 35px;
+            width: 75%;
+
+            span{
+                margin-left: 20px;
+                margin-right: 20px;
+                font-size: var(--paragraph-2);
+                font-weight: 500;
+                color: var(--text-color-light);
+            }
+
+            hr{
+                background-color: rgb(214, 212, 212);
+                width: 42%;
+                height: 1px;
+            }
+        }
+
+        .email{
+            display: flex;
+            align-items: center;
+            width: 75%;
+            height: 50px;
+            padding: 5px 10px;
+            border: 1px solid var(--text-color-light);
+            margin-top: 35px;
+            border-radius: 10px;
+            box-shadow: var(--box-shadow-1);
+
+            input{
+                width: 100%;
+                height: 100%;
+                outline: none;
+                font-size: var(--paragraph-2);
+                font-weight: 400;
+                color: var(--text-color-light);
+            }
+
+        }
+
+        .password{
+            display: flex;
+            align-items: center;
+            width: 75%;
+            height: 50px;
+            padding: 5px 10px;
+            border: 1px solid var(--text-color-light);
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: var(--box-shadow-1);
+
+            input{
+                width: 100%;
+                height: 100%;
+                outline: none;
+                font-size: var(--paragraph-2);
+                font-weight: 400;
+                color: var(--text-color-light);
+            }
+        }
+
+        .sign-up-btn{
+            margin-top: 20px;
+            cursor: pointer;
+
+            span{
+                font-size: var(--sidebar);
+                font-weight: 600;
+                color: var(--text-color); 
+            }
+        }
+
+        .log-in{
+            margin-top: 40px;
+            cursor: pointer;
+
+            span{
+                font-size: var(--paragraph-2);
+                font-weight: 400;
+                color: var(--text-color-light); 
+            }
+        }
+    }
+}
