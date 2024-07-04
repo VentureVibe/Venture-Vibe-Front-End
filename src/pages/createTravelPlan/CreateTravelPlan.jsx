@@ -6,8 +6,6 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import "./DatePickerStyles.scss";
 import { Link } from 'react-router-dom';
-//import Map from '../Map';
-
 
 const CreateTravelPlan = () => {
   const [startDate, setStartDate] = useState(null);
@@ -19,6 +17,9 @@ const CreateTravelPlan = () => {
   const datePickerRef = useRef(null);
   const inviteFriendRef = useRef(null);
   const whereToInputRef = useRef(null);
+  const [location, setLocation] = useState('');
+  const [lat, setLat] = useState('');
+  const [lng, setLng] = useState('');
 
   const handleDateChange = (dates) => {
     const [start, end] = dates;
@@ -68,12 +69,38 @@ const CreateTravelPlan = () => {
       autocomplete.addListener('place_changed', () => {
         const place = autocomplete.getPlace();
         if (place.geometry) {
-          // Handle the selected place (e.g., store the place or its coordinates in state)
-          console.log('Selected place:', place);
+          // Handle the selected place
+          setLocation(place.formatted_address);
+          setLat(place.geometry.location.lat());
+          setLng(place.geometry.location.lng());
         }
       });
     }
   }, []);
+
+  const formatDate = (date) => {
+    if (!date) return '';
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+
+  const handleStartPlanning = () => {
+    const formattedStartDate = formatDate(startDate);
+    const formattedEndDate = formatDate(endDate);
+
+    // Construct the URL with query parameters
+    const queryParams = new URLSearchParams();
+    if (formattedStartDate) queryParams.append('startDate', formattedStartDate);
+    if (formattedEndDate) queryParams.append('endDate', formattedEndDate);
+    if (location) queryParams.append('location', location);
+    if (lat) queryParams.append('lat', lat);
+    if (lng) queryParams.append('lng', lng);
+
+    // Navigate to the next page with parameters
+    window.location.href = `/travelplan/invite?${queryParams.toString()}`;
+  };
 
   return (
     <div className='createTravelPlan'>
@@ -95,7 +122,7 @@ const CreateTravelPlan = () => {
                 <CalendarMonthOutlinedIcon sx={{ color: '#747474', fontSize: 17 }} />
                 <input
                   type="text"
-                  value={startDate ? startDate.toLocaleDateString() : ''}
+                  value={startDate ? formatDate(startDate) : ''}
                   placeholder="Start date"
                   readOnly
                   className="date-input"
@@ -105,7 +132,7 @@ const CreateTravelPlan = () => {
                 <CalendarMonthOutlinedIcon sx={{ color: '#747474', fontSize: 17 }} />
                 <input
                   type="text"
-                  value={endDate ? endDate.toLocaleDateString() : ''}
+                  value={endDate ? formatDate(endDate) : ''}
                   placeholder="End date"
                   readOnly
                   className="date-input"
@@ -139,9 +166,9 @@ const CreateTravelPlan = () => {
           <input type="text" placeholder="Enter an email address" />
         </div>)}
         <div className="btn-container">
-          <Link to="/travelplan/invite">
-            <span>Start Planning</span>
-          </Link>
+          <button onClick={handleStartPlanning}>
+            Start Planning
+          </button>
         </div>
       </div>
     </div>
