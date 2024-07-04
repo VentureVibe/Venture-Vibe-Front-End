@@ -21,11 +21,9 @@ const TripToTravelPlan = ({ location, from, to }) => {
   return (
     <div className='tripToTravelPlan'>
       <div className='container'>
-<<<<<<< HEAD
+
         <h1>Trip to {locationFirstWord}</h1>
-=======
-        <h1>Trip to {location}</h1>
->>>>>>> 6e8b9240bba104aca3d0ccf99b57191b504dbb58
+
         <div className='bottom-container'>
           <div className='date'>
             <i><CalendarMonthOutlinedIcon sx={{ color: '#747474', fontSize: 20 }} /></i>

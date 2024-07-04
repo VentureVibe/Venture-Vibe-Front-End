@@ -19,9 +19,9 @@ import { useParams } from 'react-router-dom';
 import MapTravelPlan from '../../components/mapTravelPlan/MapTravelPlan';
 
 
-<<<<<<< HEAD
-  const { from, to, location, lat, lng } = useParams();
-=======
+
+
+
 const TravelPlan = () => {
 
   const { location, lat, lng,to,from } = useParams();
@@ -54,7 +54,6 @@ const TravelPlan = () => {
     }
   }, [location, lat, lng]);
 
->>>>>>> 6e8b9240bba104aca3d0ccf99b57191b504dbb58
 
   return (
     <div className='trvelplan'>
@@ -68,13 +67,9 @@ const TravelPlan = () => {
             </div>
             <div className='plan-list-container'>
               <div className='plan-list'>
-<<<<<<< HEAD
-                <img src={galle} alt="Galle" />
-                <TripToTravelPlan location={location} from={from} to={to}/>
-=======
+
                  <img src={placeImage} alt="Location Image" />
                  <TripToTravelPlan location={location} from={from} to={to}  />         
->>>>>>> 6e8b9240bba104aca3d0ccf99b57191b504dbb58
               </div>
               <ExploreTravelPlan />
               <NotesTravelPlan />
