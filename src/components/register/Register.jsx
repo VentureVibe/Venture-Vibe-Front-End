@@ -8,7 +8,7 @@ const Register = ({onClose}) => {
     <div className='register'>
       <div className="container">
       <div className="close-btn" onClick={onClose}>
-          <i><CloseIcon sx={{ color: '#747474', fontSize: 15 }}/></i>
+          <i><CloseIcon sx={{ color: '#747474', fontSize: 16 }}/></i>
         </div>
         <div className="heading">
           <p>Sign up to take your trip planning
