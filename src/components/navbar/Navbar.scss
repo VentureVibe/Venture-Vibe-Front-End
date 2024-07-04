@@ -1,0 +1,72 @@
+.navbar {
+    margin: 0;
+    padding: 1vh 4vh;
+    height: 10vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .logo {
+        margin: 0;
+        height: 100%;
+        width: auto;
+        display: flex;
+        justify-content: start;
+        gap: 0.5vw;
+
+        img {
+            height: 100%;
+            width: 20%;
+        }
+        h2 {
+            font-size: var(--topic);
+            color: #F68712;
+            margin-top: 1vh;
+        }
+    }
+    ul {
+        display: flex;
+        list-style: none;
+        font-size: 2.5vh;
+        font-weight: 450;
+        cursor: pointer;
+
+        .login {
+            color: #F68712;
+            button {
+                background-color: #ffffff;
+            }
+            :hover {
+                color: #ffffff;
+                background-color: #1BBC9B;
+            }
+        }
+        .signup {
+            color: #1BBC9B;
+            color: #0075C3;
+            color: white;
+
+            button {
+                background-color: #F68712;
+            }
+        }
+        .login, .signup {
+            button {
+                border-radius: 2.6vh;
+                font-size: 2.5vh;
+                font-weight: 450;
+                padding: 0.8vh 0.7vw;
+                cursor: pointer;
+            }
+        }
+    }
+    .list li:hover {
+        color: #F68712;
+    }
+    .list {
+        gap: 2vw;
+    }
+    .button {
+        gap: 1vw;
+    }
+}
