@@ -15,13 +15,8 @@ import TransportTravelPlan from '../../components/transportTravelPlan/TransportT
 import ItineraryTravelPlan from '../../components/itineraryTravelPlan/ItineraryTravelPlan';
 import BudgetTravelPlan from '../../components/budgetTravelPlan/BudgetTravelPlan';
 import { GoogleMap, LoadScript } from '@react-google-maps/api';
-import { useParams } from 'react-router-dom';
-import MapTravelPlan from '../../components/mapTravelPlan/MapTravelPlan';
 
 const TravelPlan = () => {
- 
-
-  const { from, to, location, lati, lng } = useParams();
 
   return (
     <div className='trvelplan'>
@@ -58,7 +53,7 @@ const TravelPlan = () => {
           </div>
         </div>
         <div className='map'>
-             <MapTravelPlan lat={lati} lng={lng} />
+            <MapTravelPlan />
         </div>
       </div>
     </div>
@@ -66,6 +61,29 @@ const TravelPlan = () => {
 }
 
 
+const containerStyle = {
+  width: '100%',
+  height:"100%"
+};
+
+const center = {
+  lat: 6.0329,
+  lng: 80.2168
+};
+
+const MapTravelPlan = () => {
+  return (
+    <LoadScript googleMapsApiKey="AIzaSyCHC8CdWrCw593DZUii78rtRV-whzvwKwE">
+      <GoogleMap
+        mapContainerStyle={containerStyle} 
+        center={center}
+        zoom={13}
+      >
+        { /* Child components, such as markers, info windows, etc. */ }
+      </GoogleMap>
+    </LoadScript>
+  );
+};
 
 
 export default TravelPlan;
