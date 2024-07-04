@@ -24,10 +24,13 @@ import CommunitySearch from "./pages/community/search/CommunitySearch";
 import CommunitySearchPost from "./pages/community/search/post/CommunitySearchPost";
 import CommunityFriend from "./components/communityFriend/CommunityFriend";
 import CommunitySearchUser from "./pages/community/search/users/CommunitySearchUser";
+import CreateTravelPlan from "./pages/createTravelPlan/CreateTravelPlan";
+import InviteTravelMates from "./pages/inviteTravelMates/InviteTravelMates";
+import Map from "./pages/map/Map";
 
 const Layout = () => {
   return (
-    <div>
+    <div style={{ height: '100vh' }}>
       <Navbar />
       <Outlet />
     </div>
@@ -56,11 +59,24 @@ function App() {
           path: "/",
           element: <Home />,
         },
+        {
+          path: "/travelplan",
+          element: <CreateTravelPlan />,
+        },
+        {
+          path: "/travelplan/invite",
+          element: <InviteTravelMates />,
+        },
       ],
+    },  
+
+    {
+      path: "/travelplan/:to/:from/:location/:lat/:lng",
+      element: <TravelPlan />,
     },
     {
-      path: "/travelplan",
-      element: <TravelPlan />,
+      path: "/map",
+      element: <Map />,
     },
 
     {

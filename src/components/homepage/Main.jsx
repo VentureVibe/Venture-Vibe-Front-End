@@ -15,7 +15,7 @@ const Main = () => {
         <div className='data-div-1'>
           <div className='each-data'><h1>50+</h1><p>Destinations</p></div>
           <div className='each-data'><h1>200+</h1><p>Tourists</p></div>
-          <div className='each-data'><h1>100+</h1><p>Hotels</p></div>
+          <div className='each-data'><h1>60+</h1><p>Hotels</p></div>
         </div>
       </div>
       <div className='right-div-1'>
@@ -33,11 +33,25 @@ const Main = () => {
             <p>Island Indonesio</p>
             <div className='rating'>
             <i className="fa fa-star" aria-hidden="true"></i>
-            <p>50</p>
+            <p>4.5/5</p>
             </div>
             <div className='favorite'>
             <i className="fa fa-heart" aria-hidden="true"></i>
-            <p>LR</p>
+            <p>1.2k</p>
+            </div>
+          </div>
+        </div>
+        <div className='image-container'>
+          <img src='/src/assets/homepage/imagehome3.jpg' />
+          <div className='image-des'>
+            <p>Island Indonesio</p>
+            <div className='rating'>
+            <i className="fa fa-star" aria-hidden="true"></i>
+            <p>4.5/5</p>
+            </div>
+            <div className='favorite'>
+            <i className="fa fa-heart" aria-hidden="true"></i>
+            <p>1.2k</p>
             </div>
           </div>
         </div>

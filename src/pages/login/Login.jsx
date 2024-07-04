@@ -1,38 +1,45 @@
-import React, { useState } from 'react';
+import React from 'react'
+import "./Login.scss";
+import googleLogo from "../../assets/google-logo.png";
+import CloseIcon from '@mui/icons-material/Close';
 
 const Login = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-
-    const handleEmailChange = (e) => {
-        setEmail(e.target.value);
-    };
-
-    const handlePasswordChange = (e) => {
-        setPassword(e.target.value);
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // Add your login logic here
-    };
-
-    return (
-        <div className='login'>
-            <h2>Login</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Email:</label>
-                    <input type="email" value={email} onChange={handleEmailChange} />
-                </div>
-                <div>
-                    <label>Password:</label>
-                    <input type="password" value={password} onChange={handlePasswordChange} />
-                </div>
-                <button type="submit">Login</button>
-            </form>
+  return (
+    <div className='login'>
+      <div className="container">
+        <div className="close-btn">
+          <i><CloseIcon sx={{ color: '#747474', fontSize: 15 }}/></i>
         </div>
-    );
-};
+        <div className="heading">
+          <span>Login to Venture Vibe</span>
+        </div>
+        <div className="sign-up-google">
+          <img src={googleLogo} alt="" />
+          <span>Log in with Google</span>
+        </div>
+        <div className="or">
+          <hr />
+          <span>or</span>
+          <hr />
+        </div>
+        <div className="email">
+          <input type="text" placeholder="Email" />
+        </div>
+        <div className="password">
+          <input type="password" placeholder="Password" />
+        </div>
+        <div className="forgot-password">
+          <span>Forgot password</span>
+        </div>
+        <div className="sign-up-btn">
+          <span>Log In</span>
+        </div>
+        <div className="log-in">
+          <span>Don't have an account yet? <b> Sign up</b></span>
+        </div>
+      </div>
+    </div>
+  )
+}
 
-export default Login;
+export default Login

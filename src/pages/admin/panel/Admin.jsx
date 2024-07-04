@@ -2,13 +2,7 @@ import React from "react";
 import "./Admin.scss";
 
 const Admin = () => {
-  return (
-    <>
-      <div>
-        <h1>Admin Dashboard</h1>
-      </div>
-    </>
-  );
+  return <div className="admin"></div>;
 };
 
 export default Admin;
