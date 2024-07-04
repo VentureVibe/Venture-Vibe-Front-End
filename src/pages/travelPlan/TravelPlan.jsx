@@ -21,7 +21,7 @@ import MapTravelPlan from '../../components/mapTravelPlan/MapTravelPlan';
 const TravelPlan = () => {
  
 
-  const { from, to, location, lati, lng } = useParams();
+  const { from, to, location, lat, lng } = useParams();
 
   return (
     <div className='trvelplan'>
@@ -36,7 +36,7 @@ const TravelPlan = () => {
             <div className='plan-list-container'>
               <div className='plan-list'>
                 <img src={galle} alt="Galle" />
-                <TripToTravelPlan />
+                <TripToTravelPlan location={location} from={from} to={to}/>
               </div>
               <ExploreTravelPlan />
               <NotesTravelPlan />
@@ -48,8 +48,7 @@ const TravelPlan = () => {
               <RestaurantsTravelPlan />
               <hr className='travelplan-hr'/>
               <EventsTravelPlan />
-              <hr className='travelplan-hr'/>
-              <TransportTravelPlan />
+              
               <hr className='travelplan-hr-line'/>
               <ItineraryTravelPlan />
               <hr className='travelplan-hr-line'/>
@@ -58,13 +57,16 @@ const TravelPlan = () => {
           </div>
         </div>
         <div className='map'>
-             <MapTravelPlan lat={lati} lng={lng} />
+              <MapTravelPlan lat={parseFloat(lat)} lng={parseFloat(lng)} />
         </div>
       </div>
     </div>
   );
-}
 
+
+
+
+}
 
 
 

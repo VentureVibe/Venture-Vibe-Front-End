@@ -5,7 +5,7 @@ import KeyboardArrowRightOutlinedIcon from '@mui/icons-material/KeyboardArrowRig
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
 
 const SidebarTravelPlan = () => {
-  const overview = ["Explore", "Notes", "Hotels and Logging", "Places to visit", "Restaurants", "Activities", "Transportation"];
+  const overview = ["Explore", "Notes", "Hotels and Logging", "Places to visit", "Restaurants", "Activities"];
   const itinerary = ["Sun 1/6", "Mon 2/6", "Tue 3/6", "Wed 4/6", "Thu 5/6", "Fri 6/6", "Sat 7/6"];
   const budget = ["view"];
 
