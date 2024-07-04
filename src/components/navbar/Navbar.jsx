@@ -32,12 +32,14 @@ const Navbar = () => {
         <li><NavLink to="/">Travel Guides</NavLink></li>
       </ul>
       <ul className="button">
+
         <li className="login">
           <button onClick={toggleSignInPopUp}>Login</button>
         </li>
         <li className="signup">
           <button onClick={toggleSignUpPopUp}>Sign Up</button>
         </li>
+
       </ul>
 
       {showSignUp && (
