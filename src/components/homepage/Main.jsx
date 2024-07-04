@@ -15,7 +15,7 @@ const Main = () => {
         <div className='data-div-1'>
           <div className='each-data'><h1>50+</h1><p>Destinations</p></div>
           <div className='each-data'><h1>200+</h1><p>Tourists</p></div>
-          <div className='each-data'><h1>100+</h1><p>Hotels</p></div>
+          <div className='each-data'><h1>60+</h1><p>Hotels</p></div>
         </div>
       </div>
       <div className='right-div-1'>
