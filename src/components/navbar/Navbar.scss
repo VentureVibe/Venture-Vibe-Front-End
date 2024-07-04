@@ -15,8 +15,8 @@
         gap: 0.5vw;
 
         img {
-            height: 100%;
-            width: 20%;
+            width: 22px !important;
+            height: 35px !important;
         }
         h2 {
             font-size: var(--topic);
@@ -51,6 +51,7 @@
         }
         .login, .signup {
             button {
+                width: 6vw;
                 border-radius: 2.6vh;
                 font-size: 2.5vh;
                 font-weight: 450;
