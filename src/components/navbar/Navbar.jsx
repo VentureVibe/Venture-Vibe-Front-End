@@ -15,9 +15,21 @@ const Navbar = () => {
   };
 
   const toggleSignInPopUp = () => {
-  
     setShowSignIn(!showSignIn);
   };
+
+  const shiftStates=()=>{
+  
+    if(showSignIn){
+      setShowSignIn(!showSignIn);
+      setShowSignUp(!showSignUp);
+    }
+    else{
+      setShowSignUp(!showSignUp);
+      setShowSignIn(!showSignIn);
+    }
+   
+  }
 
   return (
     <div className='navbar'>
@@ -34,20 +46,20 @@ const Navbar = () => {
       <ul className="button">
 
         <li className="login">
-          <button onClick={toggleSignInPopUp}>Login</button>
+          <button onClick={toggleSignInPopUp} >Login</button>
         </li>
         <li className="signup">
-          <button onClick={toggleSignUpPopUp}>Sign Up</button>
+          <button onClick={toggleSignUpPopUp} >Sign Up</button>
         </li>
 
       </ul>
 
       {showSignUp && (
-        <PopUpMain Component={<Register onClose={toggleSignUpPopUp} />} />
+        <PopUpMain Component={<Register onClose={toggleSignUpPopUp} onClickShift={shiftStates} />} />
       )}
 
       {showSignIn && (
-        <PopUpMain Component={<Login onClose={toggleSignInPopUp} />} />
+        <PopUpMain Component={<Login onClose={toggleSignInPopUp} onClickShift={shiftStates}/>} />
       )}
     </div>
   );
