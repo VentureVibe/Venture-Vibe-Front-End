@@ -33,11 +33,25 @@ const Main = () => {
             <p>Island Indonesio</p>
             <div className='rating'>
             <i className="fa fa-star" aria-hidden="true"></i>
-            <p>50</p>
+            <p>4.5/5</p>
             </div>
             <div className='favorite'>
             <i className="fa fa-heart" aria-hidden="true"></i>
-            <p>LR</p>
+            <p>1.2k</p>
+            </div>
+          </div>
+        </div>
+        <div className='image-container'>
+          <img src='/src/assets/homepage/imagehome3.jpg' />
+          <div className='image-des'>
+            <p>Island Indonesio</p>
+            <div className='rating'>
+            <i className="fa fa-star" aria-hidden="true"></i>
+            <p>4.5/5</p>
+            </div>
+            <div className='favorite'>
+            <i className="fa fa-heart" aria-hidden="true"></i>
+            <p>1.2k</p>
             </div>
           </div>
         </div>
