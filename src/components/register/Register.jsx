@@ -3,7 +3,7 @@ import "./Register.scss";
 import googleLogo from "../../assets/google-logo.png";
 import CloseIcon from '@mui/icons-material/Close';
 
-const Register = ({onClose}) => {
+const Register = ({onClose,onClickShift}) => {
   return (
     <div className='register'>
       <div className="container">
@@ -33,7 +33,7 @@ const Register = ({onClose}) => {
           <span>Sign up with email</span>
         </div>
         <div className="log-in">
-          <span>Already have an account? <b> Log in</b></span>
+          <span >Already have an account? <b onClick={onClickShift}> Log in</b></span>
         </div>
       </div>
     </div>
