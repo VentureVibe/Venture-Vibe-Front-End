@@ -1,14 +1,19 @@
 import React from "react";
 import "./Admin.scss";
+import logo from "../../assets/profilepics/logo3.png";
 
 const Admin = () => {
   return (
     <div className="admin">
+
       <div class="sidebar">
+
         <h2>Admin Dashboard</h2>
         <ul>
           <li>
-            <a href="#dashboard">Dashboard</a>
+            <a href="#dashboard">
+              <img src={logo} alt="Venture Vibe Logo" /> Venture Vibe
+            </a>
           </li>
           <li>
             <a href="#users">Users</a>
@@ -28,7 +33,7 @@ const Admin = () => {
         </ul>
       </div>
 
-      <div class="content">
+      <div className="content">
         <div id="dashboard">
           <h2>Dashboard</h2>
           <p>Welcome to the admin dashboard!</p>
