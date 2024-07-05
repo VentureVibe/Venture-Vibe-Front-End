@@ -1,11 +1,17 @@
 .sidebar{
     display: flex;
-    width: 250px;
+    width: 270px;
     background-color: var(--blue);
     height: 100vh;
     padding:10px;
     box-sizing: border-box;
     box-shadow: var(--box-shadow-2);
+
+    .tophead{
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
 }
 .sidebar h1{
     padding: 20px;
@@ -14,6 +20,8 @@
     margin-bottom: 20px;
 }
 
+
+
 ul{
     width: 100%;
     list-style-type: none;
@@ -21,23 +29,53 @@ ul{
     margin: 0;
     margin-left: 20px;
 
+    
     li{
         margin-bottom: 15px;
 
+        
         a{
             color: #000;
             text-decoration: none;
-            display: flex;
+            display: block;
             width: 100%;
             padding: 15px;
             border-radius: 4px;
             font-weight: 400;
             font-size: 18px;
+            overflow: hidden;
+
+            .icon{
+                margin-right: 10px;
+            }
             
             &:hover{
                 background-color: #fc8200;
+                overflow: hidden;
             }
         }
     }
 
+    
+
+}
+.logout{
+    // position: relative;
+    display: block;
+    padding: 10px;
+    margin-left: 140px;
+    margin-top: auto;
+    position: relative;
+    background-color: #d6934c;
+
+    .icon{
+        margin: 10px;
+        padding: 20px;
+    }
+
+
+    &:hover{
+       background-color: var(--orange);
+       cursor: pointer;
+    }
 }
