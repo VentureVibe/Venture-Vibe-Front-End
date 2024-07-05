@@ -4,7 +4,7 @@ import "./Sidebar.scss";
 
 const Sidebar = () => {
   return (
-    <div className="sidebar">
+    <div className="sidebar-admin">
       <div className="tophead">
         <img src="" alt="" />
         <h1>Dashboard</h1>
