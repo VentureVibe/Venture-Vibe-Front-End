@@ -6,8 +6,6 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import "./DatePickerStyles.scss";
 import { Link } from 'react-router-dom';
-//import Map from '../Map';
-
 
 const CreateTravelPlan = () => {
   const [startDate, setStartDate] = useState(null);
@@ -19,6 +17,86 @@ const CreateTravelPlan = () => {
   const datePickerRef = useRef(null);
   const inviteFriendRef = useRef(null);
   const whereToInputRef = useRef(null);
+  const [location, setLocation] = useState('');
+  const [lat, setLat] = useState('');
+  const [lng, setLng] = useState('');
+  const [placeImage, setPlaceImage] = useState('');
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        dateInputRef.current &&
+        !dateInputRef.current.contains(event.target) &&
+        datePickerRef.current &&
+        !datePickerRef.current.contains(event.target)
+      ) {
+        setShowDatePicker(false);
+      }
+
+      if(
+        inviteFriendRef.current &&
+        !inviteFriendRef.current.contains(event.target)
+      ) {
+        setShowInviteTripmates(false);
+        setShowInviteTripmatesIcon(true);
+      }
+      
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+   
+
+    if (window.google) {
+      const autocompleteService = new window.google.maps.places.AutocompleteService();
+      const placesAutocomplete = new window.google.maps.places.Autocomplete(whereToInputRef.current, {
+        types: ['(cities)'],
+        componentRestrictions: { country: 'lk' }, // Restrict to Sri Lanka
+      });
+
+      placesAutocomplete.addListener('place_changed', () => {
+        const place = placesAutocomplete.getPlace();
+        if (!place.geometry) {
+          console.log("Place not found");
+          return;
+        }
+
+        setLocation(place.formatted_address);
+        setLat(place.geometry.location.lat());
+        setLng(place.geometry.location.lng());
+
+        // Fetch place details including photos
+        fetchPlacePhotos(place);
+      });
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  const fetchPlacePhotos = (place) => {
+    const service = new window.google.maps.places.PlacesService(document.createElement('div'));
+    const request = {
+      location: place.geometry.location,
+      radius: 10000, // Adjust the radius as needed
+      keyword: 'tourist attractions', // Use a keyword related to tourist spots
+      maxResults: 1, // Limit to one result for simplicity
+      fields: ['photos'],
+    };
+
+    service.nearbySearch(request, (results, status) => {
+      if (status === window.google.maps.places.PlacesServiceStatus.OK && results && results.length > 0) {
+        const place = results[0];
+
+        if (place.photos && place.photos.length > 0) {
+          const photoUrl = place.photos[0].getUrl({ maxWidth: 800 });
+          setPlaceImage(photoUrl);
+        }
+      }
+    });
+  };
 
   const handleDateChange = (dates) => {
     const [start, end] = dates;
@@ -35,45 +113,32 @@ const CreateTravelPlan = () => {
     setShowInviteTripmatesIcon(false);
   };
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (
-        dateInputRef.current &&
-        !dateInputRef.current.contains(event.target) &&
-        datePickerRef.current &&
-        !datePickerRef.current.contains(event.target)
-      ) {
-        setShowDatePicker(false);
-      }
+  const formatDate = (date) => {
+    if (!date) return '';
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
 
-      if (
-        inviteFriendRef.current &&
-        !inviteFriendRef.current.contains(event.target)
-      ) {
-        setShowInviteTripmates(false);
-        setShowInviteTripmatesIcon(true);
-      }
-    };
+  const handleStartPlanning = () => {
+    const formattedStartDate = formatDate(startDate);
+    const formattedEndDate = formatDate(endDate);
 
-    document.addEventListener('mousedown', handleClickOutside);
+    // Construct the URL with query parameters
+    const queryParams = new URLSearchParams();
+    if (formattedStartDate) queryParams.append('startDate', formattedStartDate);
+    if (formattedEndDate) queryParams.append('endDate', formattedEndDate);
+    if (location) queryParams.append('location', location);
+    if (lat) queryParams.append('lat', lat);
+    if (lng) queryParams.append('lng', lng);
 
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
+    // Pass the photo URL as a query parameter
+    if (placeImage) queryParams.append('photoUrl', placeImage);
 
-  useEffect(() => {
-    if (window.google) {
-      const autocomplete = new window.google.maps.places.Autocomplete(whereToInputRef.current);
-      autocomplete.addListener('place_changed', () => {
-        const place = autocomplete.getPlace();
-        if (place.geometry) {
-          // Handle the selected place (e.g., store the place or its coordinates in state)
-          console.log('Selected place:', place);
-        }
-      });
-    }
-  }, []);
+    // Navigate to the next page with parameters
+    window.location.href = `/travelplan/invite?${queryParams.toString()}`;
+  };
 
   return (
     <div className='createTravelPlan'>
@@ -95,7 +160,7 @@ const CreateTravelPlan = () => {
                 <CalendarMonthOutlinedIcon sx={{ color: '#747474', fontSize: 17 }} />
                 <input
                   type="text"
-                  value={startDate ? startDate.toLocaleDateString() : ''}
+                  value={startDate ? formatDate(startDate) : ''}
                   placeholder="Start date"
                   readOnly
                   className="date-input"
@@ -105,7 +170,7 @@ const CreateTravelPlan = () => {
                 <CalendarMonthOutlinedIcon sx={{ color: '#747474', fontSize: 17 }} />
                 <input
                   type="text"
-                  value={endDate ? endDate.toLocaleDateString() : ''}
+                  value={endDate ? formatDate(endDate) : ''}
                   placeholder="End date"
                   readOnly
                   className="date-input"
@@ -138,10 +203,10 @@ const CreateTravelPlan = () => {
           <span>Invite tripmates</span>
           <input type="text" placeholder="Enter an email address" />
         </div>)}
-        <div className="btn-container">
-          <Link to="/travelplan/invite">
-            <span>Start Planning</span>
-          </Link>
+        <div className="btn-container" onClick={handleStartPlanning}>
+          <span >
+            Start Planning
+          </span>
         </div>
       </div>
     </div>

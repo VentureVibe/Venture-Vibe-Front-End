@@ -1,0 +1,72 @@
+.navbar {
+    margin: 0;
+    padding: 1vh 4vh;
+    height: 10vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .logo {
+        margin: 0;
+        height: 100%;
+        width: auto;
+        display: flex;
+        justify-content: start;
+        gap: 0.5vw;
+
+        img {
+            width: 22px !important;
+            height: 35px !important;
+        }
+        h2 {
+            font-size: var(--topic);
+            color: var(--orange);
+            margin-top: 1vh;
+        }
+    }
+    ul {
+        display: flex;
+        list-style: none;
+        font-size: 2.5vh;
+        color: var(--text-color);
+        font-weight: 450;
+        cursor: pointer;
+
+        .login {
+            color: var(--orange);
+            button {
+                background-color: #ffffff;
+            }
+            :hover {
+                color: #ffffff;
+                background-color: #1BBC9B;
+            }
+        }
+        .signup {
+            color: white;
+
+            button {
+                background-color: var(--orange);
+            }
+        }
+        .login, .signup {
+            button {
+                width: 6vw;
+                border-radius: 2.6vh;
+                font-size: 2.5vh;
+                font-weight: 450;
+                padding: 0.8vh 0.7vw;
+                cursor: pointer;
+            }
+        }
+    }
+    .list li:hover {
+        color: /*var(--orange)*/var(--orange);
+    }
+    .list {
+        gap: 2vw;
+    }
+    .button {
+        gap: 1vw;
+    }
+}

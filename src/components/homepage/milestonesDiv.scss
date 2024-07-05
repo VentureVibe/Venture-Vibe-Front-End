@@ -1,10 +1,10 @@
-.hotels {
-    padding: 60px 0;
+.milestonediv {
+    padding: 3vw 0 1vw 0;
     text-align: center;
      
     h1 {
-        margin-bottom: 15px;
-        padding: 5px;
+        margin-bottom: 1vw;
+        padding: 0.4vw;
     }
 
     .swiper-div {
@@ -13,7 +13,7 @@
         padding: 0;
 
         .mySwiper {
-            padding-bottom: 40px;
+            padding-bottom: 1vw;
             width: 70vw;
             margin: 0;
 
@@ -23,8 +23,8 @@
                 .swiper-pagination-bullet {
                     background-color: #000; 
                     opacity: 0.5;
-                    width: 12px;
-                    height: 12px;
+                    width: 0.8vw;
+                    height: 0.8vw;
 
                     &.swiper-pagination-bullet-active {
                         background-color: #fff; 
