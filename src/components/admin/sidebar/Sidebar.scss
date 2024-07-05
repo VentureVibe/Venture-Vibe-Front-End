@@ -1,8 +1,8 @@
-.sidebar{
+.sidebar-admin{
     display: flex;
     width: 270px;
     background-color: var(--blue);
-    height: 100vh;
+    height: 90vh;
     padding:10px;
     box-sizing: border-box;
     box-shadow: var(--box-shadow-2);
@@ -22,7 +22,7 @@
 
 
 
-ul{
+.side-menu{
     width: 100%;
     list-style-type: none;
     padding: 0;
