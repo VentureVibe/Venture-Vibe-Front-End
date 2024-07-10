@@ -63,7 +63,7 @@ const TravelPlan = () => {
           <hr />
           <div className='plan-container'>
             <div className="plan-sidebar">
-              <SidebarTravelPlan />
+              <SidebarTravelPlan from={from} to={to} />
             </div>
             <div className='plan-list-container'>
               <div className='plan-list'>
@@ -83,7 +83,7 @@ const TravelPlan = () => {
               <EventsTravelPlan />
               
               <hr className='travelplan-hr-line'/>
-              <ItineraryTravelPlan />
+              <ItineraryTravelPlan to={to} from={from}  />
               <hr className='travelplan-hr-line'/>
               <BudgetTravelPlan />
             </div>

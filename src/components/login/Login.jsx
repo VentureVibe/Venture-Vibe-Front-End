@@ -3,7 +3,7 @@ import "./Login.scss";
 import googleLogo from "../../assets/google-logo.png";
 import CloseIcon from '@mui/icons-material/Close';
 
-const Login = ({ onClose }) => {
+const Login = ({ onClose ,onClickShift}) => {
   return (
     <div className='login'>
       <div className="container">
@@ -35,7 +35,7 @@ const Login = ({ onClose }) => {
           <span>Log In</span>
         </div>
         <div className="log-in">
-          <span>Don't have an account yet? <b> Sign up</b></span>
+          <span>Don't have an account yet? <b onClick={onClickShift}> Sign up</b></span>
         </div>
       </div>
     </div>
