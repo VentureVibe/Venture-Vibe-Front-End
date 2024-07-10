@@ -26,6 +26,9 @@ import CommunitySearchUser from "./pages/community/search/users/CommunitySearchU
 import CreateTravelPlan from "./pages/createTravelPlan/CreateTravelPlan";
 import InviteTravelMates from "./pages/inviteTravelMates/InviteTravelMates";
 import Map from "./pages/map/Map";
+import InviteTripmate from "./components/inviteTripmate/InviteTripmate";
+import ManageTripmates from "./components/manageTripmates/ManageTripmates";
+import SetBudget from "./components/setBudget/SetBudget";
 
 const Layout = () => {
   return (
@@ -54,6 +57,10 @@ function App() {
         {
           path: "/travelplan",
           element: <CreateTravelPlan />,
+        },
+        {
+          path: "/test",
+          element: <SetBudget />,
         },
         {
           path: "/travelplan/invite",

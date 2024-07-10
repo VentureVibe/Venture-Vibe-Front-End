@@ -45,6 +45,19 @@ export const days = [
     "Saturday, June 15th"
 ]
 
+export const tripmates = [
+    {
+        id: 1,
+        profilePic : profile1,
+        email : "nimal@gmail.com"
+    },
+    {
+        id: 2,
+        profilePic : profile2,
+        email : "kasun@gmail.com"
+    },
+]
+
 export const hotels = [
     {
         id: 1,
