@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "./TripToTravelPlan.scss";
 import man from "../../assets/man.jpg";
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
+import InviteTripmate from './../inviteTripmate/InviteTripmate';
+import PopUpMain from '../popupmain/PopUpMain';
 
 const TripToTravelPlan = ({ location, from, to }) => {
   // Extract the first word before the comma in the location
@@ -17,6 +19,12 @@ const TripToTravelPlan = ({ location, from, to }) => {
 
   const formattedFrom = formatDate(from);
   const formattedTo = formatDate(to);
+
+  const [showInviteTrip, setShowInviteTrip] = useState(false);
+
+  const toggleInviteTripmatePopUp = () => {
+    setShowInviteTrip(!showInviteTrip);
+  };
 
   return (
     <div className='tripToTravelPlan'>
@@ -33,9 +41,12 @@ const TripToTravelPlan = ({ location, from, to }) => {
             <div className='profile-pic'>
               <img src={man} alt="" />
             </div>
-            <i><GroupAddIcon sx={{ color: '#747474', fontSize: 27 }} /></i>
+            <i onClick={toggleInviteTripmatePopUp}><GroupAddIcon sx={{ color: '#747474', fontSize: 27 }} /></i>
           </div>
         </div>
+        {showInviteTrip && (
+          <PopUpMain Component={<InviteTripmate onClose={toggleInviteTripmatePopUp} />} />
+        )}
       </div>
     </div>
   );
