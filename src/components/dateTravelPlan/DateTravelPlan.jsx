@@ -43,7 +43,8 @@ const getDaysOfWeekWithDates = (from, to) => {
 
   while (currentDate <= endDate) {
     const dayOfWeek = currentDate.toLocaleDateString('en-US', { weekday: 'long' });
-    const formattedDate = `${dayOfWeek} ${currentDate.getDate()}/${currentDate.getMonth() + 1}`;
+    const month = currentDate.toLocaleDateString('en-US', { month: 'long' });
+    const formattedDate = `${dayOfWeek}, ${month} ${currentDate.getDate()}`;
     daysOfWeekWithDates.push(formattedDate);
     currentDate.setDate(currentDate.getDate() + 1);
   }
