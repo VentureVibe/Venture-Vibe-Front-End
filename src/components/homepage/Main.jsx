@@ -9,8 +9,8 @@ const Main = () => {
         <p className='head'>The Adventures<br /><span className='head-1'></span></p>
         <p>This is a main paragraph in our travel planning website. You can take many services from our web and it's also Free.</p>
         <div className='btn-with-input'>
-          <input type='text' placeholder='Where you want to go ?' />
-          <button>Search</button>
+          {/* <input type='text' placeholder='Where you want to go ?' /> */}
+          <button>Plan Your Trip Now</button>
         </div>
         <div className='data-div-1'>
           <div className='each-data'><h1>50+</h1><p>Destinations</p></div>
