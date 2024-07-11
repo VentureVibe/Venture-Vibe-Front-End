@@ -82,6 +82,27 @@ export const hotels = [
     }
 ]
 
+export const eventListings = [
+    {
+        id: 1,
+        title: "Whales Watching Tour Transfer - Galle",
+        price : 200,
+        imageSrc: Event1
+    },
+    {
+        id: 2,
+        title: "River Safari, Sea Turtle & Stilt Fishermen",
+        price : 300,
+        imageSrc: Event2
+    },
+    {
+        id: 3,
+        title: "Safari Trip to Yala & Udawalawe",
+        price : 150,
+        imageSrc: Event3
+    }
+]
+
 export const events = [
     {
         id: 1,
