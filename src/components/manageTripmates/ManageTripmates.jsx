@@ -5,7 +5,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { tripmates } from '../../dummyData';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
-const ManageTripmates = () => {
+const ManageTripmates = ({ onClose}) => {
   return (
     <div className='manageTripmates'>
         <div className="container">
@@ -13,7 +13,7 @@ const ManageTripmates = () => {
                 <div className="back-i">
                     <i><WestIcon sx={{ color: '#747474', fontSize: 16 }}/></i>
                 </div>
-                <div className="closing-i">
+                <div className="closing-i" onClick={onClose}>
                     <i><CloseIcon sx={{ color: '#747474', fontSize: 16 }} /></i>
                 </div>
             </div>

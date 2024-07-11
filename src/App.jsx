@@ -29,6 +29,7 @@ import Map from "./pages/map/Map";
 import InviteTripmate from "./components/inviteTripmate/InviteTripmate";
 import ManageTripmates from "./components/manageTripmates/ManageTripmates";
 import SetBudget from "./components/setBudget/SetBudget";
+import MyListings from "./pages/myListings/MyListings";
 
 const Layout = () => {
   return (
@@ -59,8 +60,8 @@ function App() {
           element: <CreateTravelPlan />,
         },
         {
-          path: "/test",
-          element: <SetBudget />,
+          path: "/mylistings",
+          element: <MyListings />,
         },
         {
           path: "/travelplan/invite",

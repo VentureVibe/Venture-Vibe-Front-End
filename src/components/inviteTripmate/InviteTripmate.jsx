@@ -5,11 +5,18 @@ import LinkIcon from '@mui/icons-material/Link';
 import MailOutlineOutlinedIcon from '@mui/icons-material/MailOutlineOutlined';
 import EmailIcon from '@mui/icons-material/Email';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import ManageTripmates from './../manageTripmates/ManageTripmates';
+import PopUpMain from '../popupmain/PopUpMain';
 
-const InviteTripmate = () => {
+const InviteTripmate = ({ onClose }) => {
   const [email, setEmail] = useState('')
   const [sendEmail, setSendEmail] = useState(false)
   const sendEmailRef = useRef(null)
+  const [showManageTripmate, setShowManageTripmate] = useState(false);
+
+  const toggleManageTripmatePopUp = () => {
+    setShowManageTripmate(!showManageTripmate);
+  };
 
   const handleInputChange = (event) => {
     setEmail(event.target.value)
@@ -32,7 +39,7 @@ const InviteTripmate = () => {
   return (
     <div className='inviteTripmate'>
         <div className="container">
-            <div className="closing-i">
+            <div className="closing-i" onClick={onClose}>
                 <i><CloseIcon sx={{ color: '#747474', fontSize: 16 }} /></i>
             </div>
             <div className="hearder">
@@ -64,10 +71,13 @@ const InviteTripmate = () => {
               </div>
             )}
             <hr className='hr-tag'/>
-            <div className="manage-tripmates">
+            <div className="manage-tripmates" onClick={toggleManageTripmatePopUp}>
                 <i><ManageAccountsIcon sx={{ color: '#747474', fontSize: 18 }}/></i>
                 <span>Manage Tripmates</span>
             </div>
+            {showManageTripmate && (
+              <PopUpMain Component={<ManageTripmates onClose={toggleManageTripmatePopUp} />} />
+            )}
         </div>
     </div>
   )
