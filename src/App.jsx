@@ -27,6 +27,7 @@ import CreateTravelPlan from "./pages/createTravelPlan/CreateTravelPlan";
 import InviteTravelMates from "./pages/inviteTravelMates/InviteTravelMates";
 import Map from "./pages/map/Map";
 import EventRegistration from "./pages/registration/events/EventRegistration";
+import GuideRegistration from "./pages/registration/guide/GuideRegistration";
 
 const Layout = () => {
   return (
@@ -64,6 +65,10 @@ function App() {
           path: "/eventregister",
           element: <EventRegistration />,
         },
+        {
+          path: "/guideregister",
+          element: <GuideRegistration />,
+        }
       ],
     },  
 

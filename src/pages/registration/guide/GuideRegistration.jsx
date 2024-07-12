@@ -1,26 +1,22 @@
 import React, { useState } from 'react';
-import './EventRegistration.scss';
-import  RegistrationCont from '../../../components/registrationCont/RegistrationCont'
-import  RegistrationPersonalInfo from '../../../components/registrationPersonalInfo/RegistrationPersonalInfo'
-import  Payments from '../../../components/payments/Payments'
+import './GuideRegistration.scss';
+import RegistrationCont from '../../../components/registrationCont/RegistrationCont';
+import RegistrationPersonalInfo from '../../../components/registrationPersonalInfo/RegistrationPersonalInfo';
+import Payments from '../../../components/payments/Payments';
 import CheckOut from '../../../components/checkout/Checkout';
 
-const EventRegistration = () => {
-
+const GuideRegistration = () => {
     const [steps, setSteps] = useState([
-        { step_no:"Step 1",topic: "Personal Infomation", icon: "fa-regular fa-user", active: true,left_cont:"Enter Your Personal Information",right_cont:"Enter your Personal information to proceed to the payments" },
-        { step_no:"Step 2",topic: "Check out", icon: "fa-solid fa-cart-shopping", active: false,left_cont:"This is the details of your payment",right_cont:"Proceed to payments to do the paymenet" },
-        { step_no:"Step3",topic: "Payment", icon: "fa-regular fa-credit-card", active: false,left_cont:"Enter Your Payment Details",right_cont:"Enter your payement details to procees to the payment" }    
+        { step_no: "Step 1", topic: "Personal Information", icon: "fa-regular fa-user", active: true, left_cont: "Enter Your Personal Information", right_cont: "Enter your Personal information to proceed to the payments" },
+        { step_no: "Step 2", topic: "Work Experience", icon: "fa-solid fa-briefcase", active: false, left_cont: "Enter Your Work Experience", right_cont: "Provide your work experience details" },
+        { step_no: "Step 3", topic: "Check out", icon: "fa-solid fa-cart-shopping", active: false, left_cont: "This is the details of your payment", right_cont: "Proceed to payments to do the payment" },
+        { step_no: "Step 4", topic: "Payment", icon: "fa-regular fa-credit-card", active: false, left_cont: "Enter Your Payment Details", right_cont: "Enter your payment details to proceed to the payment" }
     ]);
 
     const handleStepClick = (index) => {
         const newSteps = [...steps];
         newSteps.forEach((step, i) => {
-            if (i === index) {
-                step.active = true;
-            } else {
-                step.active = false;
-            }
+            step.active = i === index;
         });
         setSteps(newSteps);
     };
@@ -28,7 +24,7 @@ const EventRegistration = () => {
     const activeStep = steps.find(step => step.active);
 
     return (
-        <div className='EventRegistration'>
+        <div className='GuideRegistration'>
             <div className="left">
                 <div className="top">
                     <h2>{activeStep.step_no}</h2>
@@ -49,14 +45,12 @@ const EventRegistration = () => {
             <div className="right">
                 <div className="top">
                     <h3>{activeStep.topic}</h3>
-                    <p>{activeStep.right_cont}
-                        
-                    </p>
-                    <p></p>
+                    <p>{activeStep.right_cont}</p>
                 </div>
                 <div className="bottom">
                     {activeStep.topic === 'Payment' ? <Payments /> :
                      activeStep.topic === 'Check out' ? <CheckOut /> :
+                     activeStep.topic === 'Work Experience' ? <div>Work Experience Form</div> :
                      <RegistrationPersonalInfo />}
                 </div>
             </div>
@@ -64,5 +58,4 @@ const EventRegistration = () => {
     );
 };
 
-
-export default EventRegistration;
+export default GuideRegistration;
