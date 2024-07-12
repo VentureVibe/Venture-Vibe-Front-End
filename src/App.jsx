@@ -34,6 +34,7 @@ import MyListings from "./pages/myListings/MyListings";
 
 import EventRegistration from "./pages/registration/events/EventRegistration";
 import GuideRegistration from "./pages/registration/guide/GuideRegistration";
+import GuideProfile from "./pages/profile/GuideProfile";
 
 
 const Layout = () => {
@@ -79,6 +80,10 @@ function App() {
         {
           path: "/guideregister",
           element: <GuideRegistration />,
+        },
+        {
+          path: "/guideprofile",
+          element: <GuideProfile/>,
         }
       ],
     },  
@@ -160,7 +165,7 @@ function App() {
       path: "serviceprovideruser",
       element: <ServiceProviderUser />,
     }
-
+   
   ]);
 
   return <RouterProvider router={router} />;
