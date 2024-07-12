@@ -45,6 +45,19 @@ export const days = [
     "Saturday, June 15th"
 ]
 
+export const tripmates = [
+    {
+        id: 1,
+        profilePic : profile1,
+        email : "nimal@gmail.com"
+    },
+    {
+        id: 2,
+        profilePic : profile2,
+        email : "kasun@gmail.com"
+    },
+]
+
 export const hotels = [
     {
         id: 1,
@@ -66,6 +79,27 @@ export const hotels = [
         price: 170,
         imageSrc: Hotel3,
         rating: 5
+    }
+]
+
+export const eventListings = [
+    {
+        id: 1,
+        title: "Whales Watching Tour Transfer - Galle",
+        price : 200,
+        imageSrc: Event1
+    },
+    {
+        id: 2,
+        title: "River Safari, Sea Turtle & Stilt Fishermen",
+        price : 300,
+        imageSrc: Event2
+    },
+    {
+        id: 3,
+        title: "Safari Trip to Yala & Udawalawe",
+        price : 150,
+        imageSrc: Event3
     }
 ]
 

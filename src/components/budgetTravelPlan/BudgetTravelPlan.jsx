@@ -6,12 +6,25 @@ import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import ExpenseTravelPlan from '../expenseTravelPlan/ExpenseTravelPlan';
+import InviteTripmate from '../inviteTripmate/InviteTripmate';
+import PopUpMain from '../popupmain/PopUpMain';
+import SetBudget from './../setBudget/SetBudget';
 
 const BudgetTravelPlan = () => {
   const [isBottomContainerVisible, setIsBottomContainerVisible] = useState(true);
+  const [showInviteTrip, setShowInviteTrip] = useState(false);
+  const [showSetBudget, setShowSetBudget] = useState(false);
 
   const toggleBottomContainer = () => {
     setIsBottomContainerVisible(prevState => !prevState);
+  };
+
+  const toogleSetBudgetPopUp =() => {
+    setShowSetBudget(!showSetBudget);
+  }
+
+  const toggleInviteTripmatePopUp = () => {
+    setShowInviteTrip(!showInviteTrip);
   };
 
   return (
@@ -31,11 +44,13 @@ const BudgetTravelPlan = () => {
                   <span>$700.00</span>
               </div>
                 <div className="set-budget">
-                  <div className="set-budget-btn">
+                  <div className="set-budget-btn" onClick={toogleSetBudgetPopUp}>
                     <i><EditIcon sx={{ color: '#414143', fontSize: 18 }}/></i>
                     <span>Set Budget</span>
                   </div>
-                  <i className='add-friend'><GroupAddIcon sx={{ color: '#414143', fontSize: 30 }}/></i>
+                  <div className="add-friend" onClick={toggleInviteTripmatePopUp}>
+                    <i><GroupAddIcon sx={{ color: '#414143', fontSize: 30 }}/></i>
+                  </div>
                 </div>
           </div>
           <div className="expenses-container">
@@ -57,6 +72,12 @@ const BudgetTravelPlan = () => {
               </div>
             )}
           </div>
+          {showInviteTrip && (
+              <PopUpMain Component={<InviteTripmate onClose={toggleInviteTripmatePopUp} />} />
+          )}
+          {showSetBudget && (
+              <PopUpMain Component={<SetBudget onClose={toogleSetBudgetPopUp} />} />
+          )}
       </div>
     </div>
   )
