@@ -26,6 +26,7 @@ import CommunitySearchUser from "./pages/community/search/users/CommunitySearchU
 import CreateTravelPlan from "./pages/createTravelPlan/CreateTravelPlan";
 import InviteTravelMates from "./pages/inviteTravelMates/InviteTravelMates";
 import Map from "./pages/map/Map";
+import { AlertProvider } from "./components/errAlert/AlertContext";
 
 const Layout = () => {
   return (
@@ -142,7 +143,8 @@ function App() {
 
   ]);
 
-  return <RouterProvider router={router} />;
+  return (<AlertProvider><RouterProvider router={router} /></AlertProvider>);
+  
 }
 
 export default App;

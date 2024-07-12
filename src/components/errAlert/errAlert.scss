@@ -1,0 +1,46 @@
+// .err {
+//     position: fixed;
+//     top: 5%;
+//     left: 50%;
+//     transform: translate(-50%, -50%);
+//     z-index: 9999;
+//     padding: 15px;
+//     border-radius: 5px;
+//     //margin: 20px;
+//     font-size: 16px;
+//     text-align: center;
+//     //background-color: rgb(0, 0, 0);
+//   }
+
+.err {
+    position: fixed;
+    top: -100px; /* Offscreen initially */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+    animation: slideIn 1s forwards, slideOut 1s forwards 3.5s; /* Animation duration and delay */
+  }
+  
+  @keyframes slideIn {
+    from {
+      top: -100px; /* Offscreen */
+    }
+    to {
+      top: 5%; /* Position after animation */
+    }
+  }
+  
+  @keyframes slideOut {
+    from {
+      top: 5%; /* Position after animation */
+    }
+    to {
+      top: -100px; /* Offscreen */
+    }
+  }
+  
+  

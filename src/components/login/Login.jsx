@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import "./Login.scss";
 import googleLogo from "../../assets/google-logo.png";
 import CloseIcon from '@mui/icons-material/Close';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import Alert from '@mui/material/Alert';
 import { poolData } from '../../cognitoConfig';
 import { CognitoUserPool, CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js';
+//import ErrAlert from '../errAlert/errAlert';
+import { useAlert } from '../errAlert/AlertContext';
 
 // const Login = ({ onClose ,onClickShift}) => {
 //   return (
@@ -56,6 +60,10 @@ const Login = ({ onClose ,onClickShift}) => {
   const [confirmNewPassword, setConfirmNewPassword] = useState('');
   const [verificationCode, setVerificationCode] = useState('');
 
+  const [loginSuccess, setLoginSuccess] = useState(false);
+  const navigate = useNavigate();
+  const showAlert = useAlert(); 
+
   const handleLogin = () => {
     const authenticationDetails = new AuthenticationDetails({
       Username: email,
@@ -72,9 +80,15 @@ const Login = ({ onClose ,onClickShift}) => {
     cognitoUser.authenticateUser(authenticationDetails, {
       onSuccess: function (result) {
         console.log('Login successful:', result);
+        setLoginSuccess(true);
+        onClose();
+        showAlert('Login successful', 'success', 4000);
+        //<ErrAlert message={"hai"} duration={20000} />;
+        //navigate('/');
         // Handle successful login (e.g., store tokens, redirect, etc.)
       },
       onFailure: (err) => {
+        setLoginSuccess(false);
         if (err.code === 'UserNotConfirmedException') {
           setView('codeDiv');
           cognitoUser.resendConfirmationCode((err, result) => {
@@ -293,6 +307,9 @@ const Login = ({ onClose ,onClickShift}) => {
           </div>
         </div>
         )}
+        {/* {loginSuccess && (
+        <ErrAlert message={"hai"} duration={2000} />
+      )} */}
       </div>
     </div>
   );
