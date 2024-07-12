@@ -1,0 +1,63 @@
+.RegistrationCont{
+    .cont{
+        display: flex;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 12%;
+        padding-left: 50px;
+        cursor: pointer;
+        h3{
+            font-size: var(--paragraph-2);
+            font-weight: 500;
+            margin-right: 5%;
+            width: 150px;
+            text-align: right;
+        }
+
+        .circle{
+            width: 50px;
+            height: 50px;
+            border-radius: 100%;
+            background-color: var(--orange);
+            color: var( --white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right:124px;
+            i{
+            font-size: 21px;
+            }
+        }
+
+        .circle2{
+            width: 50px;
+            height: 50px;
+            border-radius: 100%;
+            background-color: var(--input);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right:124px;
+            i{
+            font-size: var(--header);
+            }
+        }
+
+        .dot{
+            width: 16px;
+            height: 16px;
+            border-radius: 100%;
+            background-color: var(--orange);
+            border: 1px solid var(--text-color);
+        }
+
+        .dot1{
+            width: 16px;
+            height: 16px;
+            border-radius: 100%;
+            background-color: var(--input);
+            border: 2px solid var(--text-color);
+           
+        }
+    }
+}
