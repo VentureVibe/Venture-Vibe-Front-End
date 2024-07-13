@@ -4,44 +4,7 @@ import googleLogo from "../../assets/google-logo.png";
 import CloseIcon from '@mui/icons-material/Close';
 import { CognitoUser, CognitoUserPool, AuthenticationDetails } from 'amazon-cognito-identity-js';
 import { poolData } from '../../cognitoConfig';
-
-// const Register = ({onClose,onClickShift}) => {
-//   return (
-//     <div className='register'>
-//       <div className="container">
-//       <div className="close-btn" onClick={onClose}>
-//           <i><CloseIcon sx={{ color: '#747474', fontSize: 16 }}/></i>
-//         </div>
-//         <div className="heading">
-//           <p>Sign up to take your trip planning
-//           to next level</p>
-//         </div>
-//         <div className="sign-up-google">
-//           <img src={googleLogo} alt="" />
-//           <span>Sign up with Google</span>
-//         </div>
-//         <div className="or">
-//           <hr />
-//           <span>or</span>
-//           <hr />
-//         </div>
-//         <div className="email">
-//           <input type="text" placeholder="Email" />
-//         </div>
-//         <div className="password">
-//           <input type="password" placeholder="Password" />
-//         </div>
-//         <div className="sign-up-btn">
-//           <span>Sign up with email</span>
-//         </div>
-//         <div className="log-in">
-//           <span >Already have an account? <b onClick={onClickShift}> Log in</b></span>
-//         </div>
-//       </div>
-//     </div>
-//   )
-// }
-
+import { useAlert } from '../errAlert/AlertContext';
 
 const Register = ({onClose,onClickShift}) => {
   const [showCodeDiv, setShowCodeDiv] = useState(false);
@@ -49,37 +12,17 @@ const Register = ({onClose,onClickShift}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const showAlert = useAlert();
   const userPool = new CognitoUserPool(poolData);
-  //const [cognitoUser, setCognitoUser] = useState(null); 
-  //let cognitoUser = null;
-
-  // useEffect(() => {
-  //   // Cleanup function to delete unconfirmed user on component unmount or refresh
-  //   return () => {
-  //     if (cognitoUser) {
-  //       alert(cognitoUser);
-  //       cognitoUser.deleteUser((err, result) => {
-  //         if (err) {
-  //           console.error('Error deleting unconfirmed user:', err);
-  //         } else {
-  //           console.log('Deleted unconfirmed user successfully:', result);
-  //         }
-  //       });
-  //     } else {
-  //       alert(cognitoUser);
-  //     }
-  //   };
-  // }, [cognitoUser]); 
 
   const handleSignUpWithEmail = () => {
     userPool.signUp(email, password, [], null, (err, result) => {
       if (err) {
-        alert(err.message || JSON.stringify(err));
+        //alert(err.message || JSON.stringify(err));
+        showAlert(err.message, 'error'/*, 40000*/);
         return;
       } else {
-        //cognitoUser = result.user;
-        //console.log(cognitoUser);
-        //setCognitoUser(result.user);
+        showAlert('Verify Your Account', 'info'/*, 40000*/);
         setShowCodeDiv(true);
       }
     });
@@ -94,12 +37,11 @@ const Register = ({onClose,onClickShift}) => {
     //console.log(cognitoUser);
     cognitoUser.confirmRegistration(verificationCode, true, (err, result) => {
       if (err) {
-        alert(err.message || JSON.stringify(err));
+        //alert(err.message || JSON.stringify(err));
+        showAlert(err.message, 'error'/*, 40000*/);
         return;
       }
-      //alert('Signup confirmed! Redirecting to login.');
-      //cognitoUser = null;
-      //setCognitoUser(null);
+      showAlert('SignUp Completed', 'success'/*, 40000*/);
       onClickShift(); // Redirect to login
     });
   };
@@ -114,10 +56,12 @@ const Register = ({onClose,onClickShift}) => {
       const cognitoUser = new CognitoUser(userData);
       cognitoUser.resendConfirmationCode((err, result) => {
         if (err) {
-          alert(err.message || JSON.stringify(err));
+          //alert(err.message || JSON.stringify(err));
+          showAlert(err.message, 'error'/*, 40000*/);
           return;
         }
-        alert('Verification code resent successfully');
+        //alert('Verification code resent successfully');
+        showAlert('Verification code resent', 'info'/*, 40000*/);
       });
   };
 
@@ -142,7 +86,6 @@ const Register = ({onClose,onClickShift}) => {
               <hr />
             </div>
             <div className="email">
-              {/* <input type="text" placeholder="Email" /> */}
               <input
                 type="text"
                 placeholder="Email"
@@ -151,7 +94,6 @@ const Register = ({onClose,onClickShift}) => {
               />
             </div>
             <div className="password">
-              {/* <input type="password" placeholder="Password" /> */}
               <input
                 type="password"
                 placeholder="Password"
@@ -172,7 +114,6 @@ const Register = ({onClose,onClickShift}) => {
               <p>Enter verification code</p>
             </div>
             <div className="verification-code">
-              {/* <input type="text" placeholder="Verification Code" /> */}
               <input
                 type="text"
                 placeholder="Verification Code"

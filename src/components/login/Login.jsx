@@ -4,50 +4,9 @@ import "./Login.scss";
 import googleLogo from "../../assets/google-logo.png";
 import CloseIcon from '@mui/icons-material/Close';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import Alert from '@mui/material/Alert';
 import { poolData } from '../../cognitoConfig';
 import { CognitoUserPool, CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js';
-//import ErrAlert from '../errAlert/errAlert';
 import { useAlert } from '../errAlert/AlertContext';
-
-// const Login = ({ onClose ,onClickShift}) => {
-//   return (
-//     <div className='login'>
-//       <div className="container">
-//         <div className="close-btn" onClick={onClose}>
-//           <i><CloseIcon sx={{ color: '#747474', fontSize: 16 }} /></i>
-//         </div>
-//         <div className="heading">
-//           <span>Login to Venture Vibe</span>
-//         </div>
-//         <div className="sign-up-google">
-//           <img src={googleLogo} alt="Google Logo" />
-//           <span>Log in with Google</span>
-//         </div>
-//         <div className="or">
-//           <hr />
-//           <span>or</span>
-//           <hr />
-//         </div>
-//         <div className="email">
-//           <input type="text" placeholder="Email" />
-//         </div>
-//         <div className="password">
-//           <input type="password" placeholder="Password" />
-//         </div>
-//         <div className="forgot-password">
-//           <span>Forgot password</span>
-//         </div>
-//         <div className="sign-up-btn">
-//           <span>Log In</span>
-//         </div>
-//         <div className="log-in">
-//           <span>Don't have an account yet? <b onClick={onClickShift}> Sign up</b></span>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
 
 const Login = ({ onClose ,onClickShift}) => {
   const userPool = new CognitoUserPool(poolData);
@@ -60,8 +19,7 @@ const Login = ({ onClose ,onClickShift}) => {
   const [confirmNewPassword, setConfirmNewPassword] = useState('');
   const [verificationCode, setVerificationCode] = useState('');
 
-  const [loginSuccess, setLoginSuccess] = useState(false);
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
   const showAlert = useAlert(); 
 
   const handleLogin = () => {
@@ -79,29 +37,26 @@ const Login = ({ onClose ,onClickShift}) => {
 
     cognitoUser.authenticateUser(authenticationDetails, {
       onSuccess: function (result) {
-        console.log('Login successful:', result);
-        setLoginSuccess(true);
+        //console.log('Login successful:', result);
         onClose();
-        showAlert('Login successful', 'success', 4000);
-        //<ErrAlert message={"hai"} duration={20000} />;
-        //navigate('/');
-        // Handle successful login (e.g., store tokens, redirect, etc.)
+        showAlert('Login successful', 'success'/*, 40000*/);
       },
       onFailure: (err) => {
-        setLoginSuccess(false);
         if (err.code === 'UserNotConfirmedException') {
+          showAlert('User Not Confirmed', 'warning'/*, 40000*/);
           setView('codeDiv');
           cognitoUser.resendConfirmationCode((err, result) => {
             if (err) {
-              alert(err.message || JSON.stringify(err));
+              //alert(err.message || JSON.stringify(err));
+              showAlert(err.message, 'error'/*, 40000*/);
               return;
             }
-            alert('Verification code resent successfully');
+            //alert('Verification code resent successfully');
           });
-          //localStorage.setItem('unconfirmedEmail', email);
         }
         else {
-          console.error('Login failed:', err);
+          //console.error('Login failed:', err);
+          showAlert(err.message, 'error'/*, 40000*/);
         }
       },
     });
@@ -121,18 +76,21 @@ const Login = ({ onClose ,onClickShift}) => {
 
     cognitoUser.forgotPassword({
       onSuccess: function (data) {
-        console.log('Code sent successfully:', data);
+        //console.log('Code sent successfully:', data);
+        showAlert('Code Sent', 'info'/*, 40000*/);
         setView('enterCode');
       },
       onFailure: function (err) {
-        console.error('Error in sending code:', err);
+        //console.error('Error in sending code:', err);
+        showAlert('Error in sending code', 'error'/*, 40000*/);
       }
     });
   };
 
   const handleChangePassword = () => {
     if (newPassword !== confirmNewPassword) {
-      alert('Passwords do not match');
+      //alert('Passwords do not match');
+      showAlert('Passwords do not match', 'error'/*, 40000*/);
       return;
     }
 
@@ -145,11 +103,13 @@ const Login = ({ onClose ,onClickShift}) => {
 
     cognitoUser.confirmPassword(code, newPassword, {
       onSuccess: function () {
-        console.log('Password changed successfully');
+        //console.log('Password changed successfully');
+        showAlert('Password changed', 'success'/*, 40000*/);
         setView('login');
       },
       onFailure: function (err) {
-        console.error('Error in changing password:', err);
+        //console.error('Error in changing password:', err);
+        showAlert('Error in changing password', 'error'/*, 40000*/);
       }
     });
   };
@@ -165,13 +125,13 @@ const Login = ({ onClose ,onClickShift}) => {
     //console.log(cognitoUser);
     cognitoUser.confirmRegistration(verificationCode, true, (err, result) => {
       if (err) {
-        alert(err.message || JSON.stringify(err));
+        //alert(err.message || JSON.stringify(err));
+        showAlert(err.message, 'error'/*, 40000*/);
         return;
       }
-      //alert('Signup confirmed! Redirecting to login.');
-      //cognitoUser = null;
-      //setCognitoUser(null);
-      onClickShift(); // Redirect to login
+      showAlert('Account Verified', 'success'/*, 40000*/);
+      //set token
+      onClose(); // Redirect to login
     });
   };
     
@@ -185,10 +145,12 @@ const Login = ({ onClose ,onClickShift}) => {
       const cognitoUser = new CognitoUser(userData);
       cognitoUser.resendConfirmationCode((err, result) => {
         if (err) {
-          alert(err.message || JSON.stringify(err));
+          //alert(err.message || JSON.stringify(err));
+          showAlert(err.message, 'error'/*, 40000*/);
           return;
         }
-        alert('Verification code resent successfully');
+        //alert('Verification code resent successfully');
+        showAlert('Verification code resent', 'info'/*, 40000*/);
       });
   };
 
@@ -241,9 +203,6 @@ const Login = ({ onClose ,onClickShift}) => {
               <i><CloseIcon sx={{ color: '#747474', fontSize: 16 }} /></i>
             </div>
             </div>
-            {/* <div className="back-btn" onClick={() => setView('login')}>
-              <i><ArrowBackIcon sx={{ color: '#747474', fontSize: 16 }} /></i>
-            </div> */}
             <div className="heading">
               <span>Enter email to change password</span>
             </div>
@@ -265,9 +224,6 @@ const Login = ({ onClose ,onClickShift}) => {
               <i><CloseIcon sx={{ color: '#747474', fontSize: 16 }} /></i>
             </div>
             </div>
-            {/* <div className="back-btn" onClick={() => setView('login')}>
-              <i><ArrowBackIcon sx={{ color: '#747474', fontSize: 16 }} /></i>
-            </div> */}
             <div className="heading">
               <span>Enter verification code</span>
             </div>
@@ -291,7 +247,6 @@ const Login = ({ onClose ,onClickShift}) => {
             <p>Enter verification code</p>
           </div>
           <div className="verification-code">
-            {/* <input type="text" placeholder="Verification Code" /> */}
             <input
               type="text"
               placeholder="Verification Code"
@@ -307,9 +262,6 @@ const Login = ({ onClose ,onClickShift}) => {
           </div>
         </div>
         )}
-        {/* {loginSuccess && (
-        <ErrAlert message={"hai"} duration={2000} />
-      )} */}
       </div>
     </div>
   );
