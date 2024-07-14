@@ -4,7 +4,7 @@
     left: 50%;
     transform: translateX(-50%);
     z-index: 9999;
-    animation: fadeIn 2s forwards, fadeOut 2s forwards 6s;
+    animation: fadeIn 1ms forwards, fadeOut 2s forwards 6s;
   }
   
   @keyframes slideIn {

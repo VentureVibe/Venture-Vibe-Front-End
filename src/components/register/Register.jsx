@@ -5,6 +5,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { CognitoUser, CognitoUserPool, AuthenticationDetails } from 'amazon-cognito-identity-js';
 import { poolData } from '../../cognitoConfig';
 import { useAlert } from '../errAlert/AlertContext';
+import { signInWithRedirect } from 'aws-amplify/auth';
 
 const Register = ({onClose,onClickShift}) => {
   const [showCodeDiv, setShowCodeDiv] = useState(false);
@@ -45,7 +46,6 @@ const Register = ({onClose,onClickShift}) => {
       onClickShift(); // Redirect to login
     });
   };
-    
 
   const handleResendCode = () => {
       const userData = {
@@ -65,6 +65,33 @@ const Register = ({onClose,onClickShift}) => {
       });
   };
 
+  const handleGoogleSignIn = () => {
+    // Ensure this URL is correct for your AWS Cognito setup
+    const url = 'https://venture.auth.eu-north-1.amazoncognito.com/oauth2/authorize';
+    const params = new URLSearchParams({
+      identity_provider: 'Google',
+      redirect_uri: 'http://localhost:5173',
+      response_type: 'TOKEN',
+      client_id: '7gejr9ke18o65cbhbe2au76ff7',
+      scope: 'email openid phone profile',
+    });
+  
+    window.location.href = `${url}?${params.toString()}`;
+  };
+  const handleLogout = () => {
+    // localStorage.removeItem('accessToken');
+    // localStorage.removeItem('idToken');
+    // localStorage.removeItem('refreshToken');
+  
+    const url = 'https://venture.auth.eu-north-1.amazoncognito.com/logout';
+    const params = new URLSearchParams({
+      client_id: '7gejr9ke18o65cbhbe2au76ff7',
+      logout_uri: 'http://localhost:5173', // Redirect URI after logout
+    });
+  
+    window.location.href = `${url}?${params.toString()}`;
+  };
+
   return (
     <div className='register'>
       <div className="container">
@@ -76,10 +103,11 @@ const Register = ({onClose,onClickShift}) => {
             <div className="heading">
               <p>Sign up to take your trip planning to the next level</p>
             </div>
-            <div className="sign-up-google">
+            <div className="sign-up-google" onClick={handleGoogleSignIn}>
               <img src={googleLogo} alt="Google Logo" />
               <span>Sign up with Google</span>
             </div>
+            {/* <button onClick={handleLogout}>logout</button> */}
             <div className="or">
               <hr />
               <span>or</span>
