@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../../assets/Logo3.png";
+import logo from "../../../assets/Logo2.png";
 import "./Sidebar.scss";
 
 const Sidebar = () => {
@@ -7,7 +7,7 @@ const Sidebar = () => {
     <div className="sidebar-admin">
       <div className="tophead">
         <img src="" alt="" />
-        <h1>Dashboard</h1>
+        {/* <h1 className="dashboard">Dashboard</h1> */}
         <ul className="side-menu">
           <li>
             <a href="#" className="brand">
@@ -24,16 +24,20 @@ const Sidebar = () => {
             <a href="dashboard">Travel Plan</a>
           </li>
           <li>
-            <a href="dashboard">Item</a>
+            <a href="dashboard">Service Providers</a>
           </li>
           <li>
-            <a href="dashboard">Item</a>
+            <a href="dashboard">Settings</a>
           </li>
         </ul>
 
         <button className="logout">
-          Logout<i class="fa-solid fa-right-from-bracket"></i>
+          Logout <i class="fa-solid fa-right-from-bracket"></i>
         </button>
+
+        {/* <div className="home">
+          <img src={logo} alt="logo-icon" />
+        </div> */}
       </div>
     </div>
   );

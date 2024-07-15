@@ -1,9 +1,9 @@
 .sidebar-admin{
     display: flex;
     width: 270px;
-    background-color: var(--blue);
+    background-color: var(--white);
     height: 90vh;
-    padding:10px;
+    padding:20px;
     box-sizing: border-box;
     box-shadow: var(--box-shadow-2);
 
@@ -11,6 +11,7 @@
         display: flex;
         flex-direction: column;
         height: 100%;
+        
     }.sidebar h1{
         padding: 20px;
         color: #000;
@@ -67,10 +68,14 @@
     margin-top: auto;
     position: relative;
     background-color: #d6934c;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
 
     .icon{
         margin: 10px;
         padding: 20px;
+        margin-left: 20px;
     }
 
 
@@ -78,4 +83,17 @@
        background-color: var(--orange);
        cursor: pointer;
     }
+
+    .bottom{
+        display: flex;
+    }
+}
+
+.home img{
+    display: flex;
+    flex-direction: row;
+    max-width: 100%;
+    vertical-align: bottom;
+    position: relative;
+    border-radius: 50%;
 }

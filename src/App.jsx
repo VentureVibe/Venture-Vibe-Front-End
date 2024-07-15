@@ -1,22 +1,22 @@
 import { useState } from "react";
 import "./App.css";
-import './App.css'
-import React from 'react';
+import "./App.css";
+import React from "react";
 
-import Home from './pages/home/Home';
-import TravelPlan from './pages/travelPlan/TravelPlan';
+import Home from "./pages/home/Home";
+import TravelPlan from "./pages/travelPlan/TravelPlan";
 import Admin from "./pages/admin/Admin";
-import Community from './pages/community/Community';
-import ServiceProviderUser from './pages/serviceProvider/ServiceProviderUser';
-import Navbar from './components/navbar/Navbar';
-import { RouterProvider, createBrowserRouter, Outlet } from 'react-router-dom';
+import Community from "./pages/community/Community";
+import ServiceProviderUser from "./pages/serviceProvider/ServiceProviderUser";
+import Navbar from "./components/navbar/Navbar";
+import { RouterProvider, createBrowserRouter, Outlet } from "react-router-dom";
 import Feeds from "./pages/community/Feeds/Feeds";
 import Popular from "./pages/community/popular/Popular";
 import All from "./pages/community/all/All";
 import CommunityFeed from "./components/communityFeed/CommunityFeed";
 import FriendProfile from "./pages/community/profile/FriendProfile";
-import ProfileAll from './pages/community/profile/profileAll/ProfileAll'
-import ProfilePopular from './pages/community/profile/profilePopular/ProfilePopular'
+import ProfileAll from "./pages/community/profile/profileAll/ProfileAll";
+import ProfilePopular from "./pages/community/profile/profilePopular/ProfilePopular";
 import CommunityFriends from "./pages/community/friends/CommunityFriends";
 import CommunityRequest from "./pages/community/requests/CommunityRequest";
 import CommunitySearch from "./pages/community/search/CommunitySearch";
@@ -29,7 +29,7 @@ import Map from "./pages/map/Map";
 
 const Layout = () => {
   return (
-    <div style={{ height: '100vh' }}>
+    <div style={{ height: "100vh" }}>
       <Navbar />
       <Outlet />
     </div>
@@ -42,7 +42,6 @@ function App() {
       path: "/",
       element: <Layout />, // Use the Layout component for the root path
       children: [
-      
         {
           path: "/admin",
           element: <Admin />,
@@ -60,7 +59,7 @@ function App() {
           element: <InviteTravelMates />,
         },
       ],
-    },  
+    },
 
     {
       path: "/travelplan/:to/:from/:location/:lat/:lng",
@@ -74,50 +73,47 @@ function App() {
     {
       path: "/community",
       element: <Community />,
-      children:[
+      children: [
         {
-          path:"",
-          element:<CommunityFeed/>,
+          path: "",
+          element: <CommunityFeed />,
           children: [
             {
-              path:"",
-              element:<Feeds/>
-            }
-            ,{
-              path:"popular",
-              element:<Popular/>
-            }
-            ,{
-            path:"all",
-            element:<All/>
-          }
+              path: "",
+              element: <Feeds />,
+            },
+            {
+              path: "popular",
+              element: <Popular />,
+            },
+            {
+              path: "all",
+              element: <All />,
+            },
           ],
-       
-        }
-      ,
-        {
-          path: "profile",
-          element :<FriendProfile/>,
-          children: [
-            {
-             path:":id",
-             element:<ProfileAll/>
-            },{
-              path:"popular/:id",
-              element:<ProfilePopular/>
-            }
-         ] 
         },
         {
-          path:"friends",
-          element:<CommunityFriends/>
-        }
-        ,
+          path: "profile",
+          element: <FriendProfile />,
+          children: [
+            {
+              path: ":id",
+              element: <ProfileAll />,
+            },
+            {
+              path: "popular/:id",
+              element: <ProfilePopular />,
+            },
+          ],
+        },
         {
-          path:"requests",
-          element:<CommunityRequest/>
-        }
-        ,
+          path: "friends",
+          element: <CommunityFriends />,
+        },
+        {
+          path: "requests",
+          element: <CommunityRequest />,
+        },
         {
           path: "search",
           element: <CommunitySearch />,
@@ -128,18 +124,16 @@ function App() {
             },
             {
               path: "user/:query", // Assuming you might want a user search route
-              element: <CommunitySearchUser  />, // Placeholder for user search component
-            }
-          ]
-        }
-      ]
-     
+              element: <CommunitySearchUser />, // Placeholder for user search component
+            },
+          ],
+        },
+      ],
     },
     {
       path: "serviceprovideruser",
       element: <ServiceProviderUser />,
-    }
-
+    },
   ]);
 
   return <RouterProvider router={router} />;
