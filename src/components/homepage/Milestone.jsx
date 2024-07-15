@@ -9,7 +9,7 @@ const Milestone = ( { name, role, des } ) => {
         <img src='/src/assets/homepage/imageman.jpeg' />
         <div className='name-role'>
             <p>{name}</p>
-            <p>{role}</p>
+            <p className='post'>{role}</p>
         </div>
       </div>
       <div className='para'>

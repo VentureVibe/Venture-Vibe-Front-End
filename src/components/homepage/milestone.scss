@@ -13,6 +13,7 @@
         gap: 1vw;
         padding: 0.6vw;
         background-color: #CACACA;
+        background-color: #ccebff;
         width: 16vw;
         border-radius: 4vw;
         border-top-left-radius: 0;
@@ -29,12 +30,16 @@
                 //border: 1px solid red;
                 margin: 0;
             }
+            .post {
+                font-weight: 500;
+            }
         }
     }
     .para {
         text-align: left;
         padding: 1.5vh 1vw;
         background-color: rgb(220, 220, 220);
+        background-color: #ffefe1;
         border-radius: 1vw;
         border-top-right-radius: 0;
         //border-bottom-left-radius: 40px;
