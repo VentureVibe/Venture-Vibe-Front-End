@@ -124,6 +124,17 @@ export const events = [
     }
 ]
 
+export const event = {
+    id: 1,
+    img : Event1,
+    title: "Whales Watching Tour Transfer - Galle",
+    des : "Experience the thrill of whale watching in Galle with this exciting tour. Witness these magnificent creatures in their natural habitat as you embark on a thrilling adventure in the deep blue sea.",
+    price : 200,
+    contactNumber : "071 234 5678",
+    email : "kasun@gmail.com",
+    sellerName : "Kasun Perera"
+}
+
 
 export const places = [
     {
