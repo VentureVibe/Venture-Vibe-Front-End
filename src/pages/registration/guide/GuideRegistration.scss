@@ -1,0 +1,52 @@
+.GuideRegistration{
+    border-top: 1px solid var( --text-color);;
+    width: 100%;
+    height:90%;
+    display: grid;
+    grid-template-columns: 25% 75%;
+
+    .left{
+        border-right: 2px solid var(--text-color);
+        display: grid;
+        grid-template-rows: 23% 77%;
+        .top{
+            padding: 50px;
+
+            h2{
+                font-size: var(--topic);
+            }
+
+            p{
+                font-size: var( --paragraph-2);
+                margin-top: 5px;
+            }
+        }
+
+        .bottom{
+            display: flex;
+            flex-direction: column;
+            padding-top: 15%;
+            width: 100%;
+        }
+    }
+
+    .right{
+        width: 100%;
+        display: grid;
+        grid-template-rows: 20% 80%;
+        height:100%;
+
+        .top{
+            padding:50px;
+            padding-left: 120px;
+            h3{
+                font-size: var(--topic);
+            }
+
+            p{
+                font-size: var(--paragraph-2);
+                margin-top: 30px;
+            }
+        }
+    }
+}

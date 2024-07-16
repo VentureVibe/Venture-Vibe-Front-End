@@ -1,0 +1,154 @@
+.payment{
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+  
+    display: flex;
+   
+    .payemnt-left{
+        width: 540px;
+        
+
+        .card-number{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            
+            .top{
+                display: flex;
+                width: 100%;
+                flex-direction: column;
+                height: 115px !important;
+               
+                h4{
+                    margin: 0px;
+                    font-size: var(--heading);
+                    font-weight: 450;
+                }
+
+                p{
+                    margin: 0px;
+                    margin-top: 5px;
+                    font-size: var( --paragraph-2);
+                }
+            }
+
+            .bottom{
+                padding-left: 120px;
+          
+                display: flex;
+                width: 100%;
+                align-items: center;
+                .bottom-left{
+                    display: flex;
+                    width: 90px;
+                    justify-content: space-between;
+                    img{
+                        width: 31px;
+                        height: 31px;
+                        
+                    }
+                }
+                input{
+                    background-color: var(--input);
+                    height: 32px;
+                    border-radius: 5px;
+                    width: 100%;
+                    margin-left: 15px;
+                    text-align: center;
+                    vertical-align: middle;
+                    letter-spacing: 0.3rem;
+                    font-size: var( --paragraph-2);
+                }
+
+                i{
+                    margin-left: 15px;
+                    font-size: var(--topic);
+                }
+            }
+        }
+
+        .cvc{
+           margin-top: 35px;
+           padding-left: 120px;
+           display: flex;
+           justify-content: space-between;
+           
+           .cvc-left{
+              h4{
+                margin: 0px;
+                font-size: var(--heading);
+                font-weight: 450;
+              }
+
+               p{
+                    margin: 0px;
+                    margin-top: 5px;
+                    font-size: var( --paragraph-2);
+                }
+            }
+
+            .cvc-right{
+                background-color: var(--input);
+                width: 120px;
+                height:41px;
+                border-radius: 5px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                letter-spacing: 0.05rem;
+                font-size: var( --heading);
+            }
+        }
+
+        .exp-date{
+            margin-top: 35px;
+            padding-left: 120px;
+            display: flex;
+            justify-content: space-between;
+            
+            .exp-date-left{
+               h4{
+                 margin: 0px;
+                 font-size: var(--heading);
+                 font-weight: 450;
+               }
+ 
+                p{
+                     margin: 0px;
+                     margin-top: 5px;
+                     font-size: var( --paragraph-2);
+                 }
+             }
+ 
+             .exp-date-right{
+                 background-color: var(--input);
+                 width: 120px;
+                 height:41px;
+                 border-radius: 5px;
+                 display: flex;
+                 align-items: center;
+                 justify-content: center;
+                 letter-spacing: 0.05rem;
+                 font-size: var( --heading);
+             }
+        }
+
+        .button{
+            padding-left: 120px;
+            margin-top: 75px;
+             
+             button{
+                width: 100%;
+                height: 35px;
+                background-color: var(--orange);
+                color: var(--white);
+                border-radius: 5px;
+                font-size: var(--heading);
+         }
+         }
+         
+    }
+
+    
+}
