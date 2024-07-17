@@ -1,5 +1,6 @@
 import React from 'react'
 import './main.scss'
+import { Link } from 'react-router-dom'
 
 const Main = () => {
   return (
@@ -10,7 +11,7 @@ const Main = () => {
         <p>This is a main paragraph in our travel planning website. You can take many services from our web and it's also Free.</p>
         <div className='btn-with-input'>
           {/* <input type='text' placeholder='Where you want to go ?' /> */}
-          <button>Plan Your Trip Now</button>
+          <Link to={"/travelplan"}><button>Plan Your Trip Now</button></Link>
         </div>
         <div className='data-div-1'>
           <div className='each-data'><h1>50+</h1><p>Destinations</p></div>
