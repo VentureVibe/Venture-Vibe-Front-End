@@ -25,15 +25,15 @@ import CommunitySearchUser from "./pages/community/search/users/CommunitySearchU
 import CreateTravelPlan from "./pages/createTravelPlan/CreateTravelPlan";
 import InviteTravelMates from "./pages/inviteTravelMates/InviteTravelMates";
 import Map from "./pages/map/Map";
-
-import InviteTripmate from "./components/inviteTripmate/InviteTripmate";
-import ManageTripmates from "./components/manageTripmates/ManageTripmates";
-import SetBudget from "./components/setBudget/SetBudget";
 import MyListings from "./pages/myListings/MyListings";
 
 import EventRegistration from "./pages/registration/events/EventRegistration";
 import GuideRegistration from "./pages/registration/guide/GuideRegistration";
 import GuideProfile from "./pages/profile/GuideProfile";
+import ShowEvent from "./pages/showEvent/ShowEvent";
+import ShowAllEvents from "./pages/showAllEvents/ShowAllEvents";
+import ShowAllTravelGuides from "./pages/showAllTravelGuides/ShowAllTravelGuides";
+
 
 
 const Layout = () => {
@@ -67,6 +67,18 @@ function App() {
         {
           path: "/mylistings",
           element: <MyListings />,
+        },
+        {
+          path: "/travelguides",
+          element: <ShowAllTravelGuides />,
+        },
+        {
+          path: "/events",
+          element: <ShowAllEvents />,
+        },
+        {
+          path: "/event/:id",
+          element: <ShowEvent />,
         },
         {
           path: "/travelplan/invite",
