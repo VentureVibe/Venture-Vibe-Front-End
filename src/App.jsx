@@ -2,7 +2,6 @@ import { useState } from "react";
 import "./App.css";
 import './App.css'
 import React from 'react';
-
 import Home from './pages/home/Home';
 import TravelPlan from './pages/travelPlan/TravelPlan';
 import Admin from "./pages/admin/Admin";
