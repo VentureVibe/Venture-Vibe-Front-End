@@ -6,7 +6,7 @@ import StarRateIcon from '@mui/icons-material/StarRate';
 const GuideCard = ({ img, name, price, id, location, contactNumber, rating}) => {
   return (
     <div className='guide'>
-      <Link to={`/guides/${id}`}>
+      <Link to={`/guideprofile`}>
         <div className="body-container">
             <img src={img} alt={name} />
             <span className='title'>{name}</span>

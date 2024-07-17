@@ -14,12 +14,13 @@ const ShowEvent = () => {
         </div>
         <div className="infoContainer">
           <h1>{event.title}</h1>
-          <span>{event.des}</span>
+          <span className='location'>Location : {event.location}</span>
+          <span className='des'>{event.des}</span>
           <span className="price"><b>${event.price}</b></span>
           <hr />
-          <span>{event.sellerName}</span>
-          <span>{event.contactNumber}</span>
-          <span>{event.email}</span>
+          <span className='detail'>{event.sellerName}</span>
+          <span className='detail'>{event.contactNumber}</span>
+          <span className='detail'>{event.email}</span>
         </div>
       </div>
     </div>

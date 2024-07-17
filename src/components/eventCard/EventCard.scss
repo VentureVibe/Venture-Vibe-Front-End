@@ -1,6 +1,6 @@
 .event{
     width: 220px;
-    height: 280px;
+    height: 300px;
     background-color: var(--input);
     //border: 0.2px solid var(--text-color-light);
     border-radius: 10px;
@@ -23,6 +23,14 @@
             border: none;
             font-size: var(--sidebar);
             font-weight: 600;
+            color: var(--text-color);
+            margin-top: 10px;
+        }
+
+        .location{
+            border: none;
+            font-size: var(--sidebar);
+            font-weight: 450;
             color: var(--text-color);
             margin-top: 10px;
         }
