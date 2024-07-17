@@ -2,7 +2,6 @@ import { useState } from "react";
 import "./App.css";
 import './App.css'
 import React from 'react';
-
 import Home from './pages/home/Home';
 import TravelPlan from './pages/travelPlan/TravelPlan';
 import Admin from "./pages/admin/Admin";
@@ -30,9 +29,11 @@ import MyListings from "./pages/myListings/MyListings";
 
 import EventRegistration from "./pages/registration/events/EventRegistration";
 import GuideRegistration from "./pages/registration/guide/GuideRegistration";
+import GuideProfile from "./pages/profile/GuideProfile";
 import ShowEvent from "./pages/showEvent/ShowEvent";
 import ShowAllEvents from "./pages/showAllEvents/ShowAllEvents";
 import ShowAllTravelGuides from "./pages/showAllTravelGuides/ShowAllTravelGuides";
+
 
 
 const Layout = () => {
@@ -90,6 +91,10 @@ function App() {
         {
           path: "/guideregister",
           element: <GuideRegistration />,
+        },
+        {
+          path: "/guideprofile",
+          element: <GuideProfile/>,
         }
       ],
     },  
@@ -171,7 +176,7 @@ function App() {
       path: "serviceprovideruser",
       element: <ServiceProviderUser />,
     }
-
+   
   ]);
 
   return <RouterProvider router={router} />;
