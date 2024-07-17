@@ -1,5 +1,6 @@
-.myListings{
+.showAllEvents{
     margin-top: 20px;
+
     .container{
         padding: 30px 100px;
 
@@ -14,20 +15,27 @@
                 color: var(--text-color);
             }
 
-            .new-listing{
-                background-color: var(--blue);
-                width: 130px;
+            .search{
+                //background-color: var(--blue);
+                width: 230px;
                 height: 35px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                border-radius: 10px;
-                cursor: pointer;
+                border-radius: 5px;
+                border: 1px solid var(--text-color);
+                box-shadow: var(--box-shadow-2);
+                //cursor: pointer;
 
-                span{
+                i{
+                    margin-right: 10px;
+                }
+
+                input{
                     font-size: var(--paragraph-2);
                     font-weight: 500;
-                    color: white;
+                    color: var(--text-color);
+                    outline: none;
                 }
             }
         }

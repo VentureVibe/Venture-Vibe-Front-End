@@ -31,6 +31,8 @@ import MyListings from "./pages/myListings/MyListings";
 import EventRegistration from "./pages/registration/events/EventRegistration";
 import GuideRegistration from "./pages/registration/guide/GuideRegistration";
 import ShowEvent from "./pages/showEvent/ShowEvent";
+import ShowAllEvents from "./pages/showAllEvents/ShowAllEvents";
+import ShowAllTravelGuides from "./pages/showAllTravelGuides/ShowAllTravelGuides";
 
 
 const Layout = () => {
@@ -64,6 +66,14 @@ function App() {
         {
           path: "/mylistings",
           element: <MyListings />,
+        },
+        {
+          path: "/travelguides",
+          element: <ShowAllTravelGuides />,
+        },
+        {
+          path: "/events",
+          element: <ShowAllEvents />,
         },
         {
           path: "/event/:id",
