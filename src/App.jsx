@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./App.css";
 import './App.css'
 import React from 'react';
@@ -20,21 +19,17 @@ import CommunityFriends from "./pages/community/friends/CommunityFriends";
 import CommunityRequest from "./pages/community/requests/CommunityRequest";
 import CommunitySearch from "./pages/community/search/CommunitySearch";
 import CommunitySearchPost from "./pages/community/search/post/CommunitySearchPost";
-import CommunityFriend from "./components/communityFriend/CommunityFriend";
 import CommunitySearchUser from "./pages/community/search/users/CommunitySearchUser";
 import CreateTravelPlan from "./pages/createTravelPlan/CreateTravelPlan";
 import InviteTravelMates from "./pages/inviteTravelMates/InviteTravelMates";
 import Map from "./pages/map/Map";
 import MyListings from "./pages/myListings/MyListings";
-
 import EventRegistration from "./pages/registration/events/EventRegistration";
 import GuideRegistration from "./pages/registration/guide/GuideRegistration";
 import GuideProfile from "./pages/profile/GuideProfile";
 import ShowEvent from "./pages/showEvent/ShowEvent";
 import ShowAllEvents from "./pages/showAllEvents/ShowAllEvents";
 import ShowAllTravelGuides from "./pages/showAllTravelGuides/ShowAllTravelGuides";
-
-
 
 const Layout = () => {
   return (

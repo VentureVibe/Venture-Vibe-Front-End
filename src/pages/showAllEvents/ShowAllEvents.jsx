@@ -18,7 +18,7 @@ const ShowAllEvents = () => {
             </div>
             <div className="listings">
                 {eventListings.map((event, index) => (
-                    <EventCard key={index} img={event.imageSrc} title={event.title} price={event.price} id={event.id}/>
+                    <EventCard key={index} img={event.imageSrc} title={event.title} price={event.price} location={event.location} id={event.id}/>
                 ))}
             </div>
         </div>

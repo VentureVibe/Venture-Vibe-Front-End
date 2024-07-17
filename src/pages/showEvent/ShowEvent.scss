@@ -40,12 +40,35 @@
         h1 {
           margin-bottom: 20px;
           margin-top: 10px;
+          color: var(--text-color);
         }
   
         .price {
-          font-size: 20px;
+          font-size: var(--header);
           font-weight: 400;
           margin-top: 20px;
+          color: var(--text-color);
+        }
+
+        .location {
+          font-size: var(--header);
+          font-weight: 500;
+          margin-bottom: 20px;
+          color: var(--text-color);
+        }
+
+        .des{
+          font-size: var(--sidebar);
+          font-weight: 400;
+          //margin-bottom: 20px;
+          color: var(--text-color);
+        }
+
+        .detail{
+          font-size: var(--paragraph-2);
+          font-weight: 450;
+          margin-bottom: 5px;
+          color: var(--text-color);
         }
   
         hr {
@@ -54,6 +77,11 @@
           width: 95%;
           margin-bottom: 20px;
           margin-top: 20px;
+        }
+
+        span{
+          color: var(--text-color); 
+          font-size: var(--sidebar);
         }
       }
     }
