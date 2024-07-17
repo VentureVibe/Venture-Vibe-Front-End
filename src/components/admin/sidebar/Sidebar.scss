@@ -2,10 +2,13 @@
     display: flex;
     width: 270px;
     background-color: var(--white);
-    height: 90vh;
+    height: 100%;
     padding:20px;
     box-sizing: border-box;
     box-shadow: var(--box-shadow-2);
+    position: absolute;
+    top: 0;
+    left: 0;
 
     .tophead{
         display: flex;
