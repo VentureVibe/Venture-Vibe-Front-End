@@ -56,8 +56,8 @@ const Navbar = () => {
       <ul className="list">
         <li><NavLink to="/community">Community</NavLink></li>
         <li><NavLink to="/">Hotels</NavLink></li>
-        <li><NavLink to="/">Events</NavLink></li>
-        <li><NavLink to="/">Travel Guides</NavLink></li>
+        <li><NavLink to="/events">Events</NavLink></li>
+        <li><NavLink to="/travelguides">Travel Guides</NavLink></li>
       </ul>
       <ul className="button">
         {isLoggedIn ? (

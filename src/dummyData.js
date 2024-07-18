@@ -45,6 +45,19 @@ export const days = [
     "Saturday, June 15th"
 ]
 
+export const tripmates = [
+    {
+        id: 1,
+        profilePic : profile1,
+        email : "nimal@gmail.com"
+    },
+    {
+        id: 2,
+        profilePic : profile2,
+        email : "kasun@gmail.com"
+    },
+]
+
 export const hotels = [
     {
         id: 1,
@@ -69,6 +82,42 @@ export const hotels = [
     }
 ]
 
+export const eventListings = [
+    {
+        id: 1,
+        imageSrc : Event1,
+        title: "Whales Watching Tour Transfer - Galle",
+        location : "Galle",
+        des : "Experience the thrill of whale watching in Galle with this exciting tour. Witness these magnificent creatures in their natural habitat as you embark on a thrilling adventure in the deep blue sea.",
+        price : 200,
+        contactNumber : "071 234 5678",
+        email : "kasun@gmail.com",
+        sellerName : "Kasun Perera"
+    },
+    {
+        id: 2,
+        imageSrc : Event2,
+        title: "River Safari, Sea Turtle & Stilt Fishermen",
+        location : "Down South",
+        des : "Experience the thrill of whale watching in Galle with this exciting tour. Witness these magnificent creatures in their natural habitat as you embark on a thrilling adventure in the deep blue sea.",
+        price : 300,
+        contactNumber : "071 234 5678",
+        email : "nipun@gmail.com",
+        sellerName : "Nipun Perera"
+    },
+    {
+        id: 3,
+        imageSrc : Event3,
+        title: "Safari Trip to Yala & Udawalawe",
+        location : "Yala",
+        des : "Experience the thrill of whale watching in Galle with this exciting tour. Witness these magnificent creatures in their natural habitat as you embark on a thrilling adventure in the deep blue sea.",
+        price : 150,
+        contactNumber : "071 234 5678",
+        email : "saman@gmail.com",
+        sellerName : "Saman Perera"   
+    }
+]
+
 export const events = [
     {
         id: 1,
@@ -89,6 +138,18 @@ export const events = [
         imageSrc: Event3
     }
 ]
+
+export const event = {
+    id: 1,
+    img : Event1,
+    title: "Whales Watching Tour Transfer - Galle",
+    location : "Galle",
+    des : "Experience the thrill of whale watching in Galle with this exciting tour. Witness these magnificent creatures in their natural habitat as you embark on a thrilling adventure in the deep blue sea.",
+    price : 200,
+    contactNumber : "071 234 5678",
+    email : "kasun@gmail.com",
+    sellerName : "Kasun Perera"
+}
 
 
 export const places = [
@@ -282,6 +343,36 @@ export const posts = [
         userId: 5,
     },
 ];
+
+export const guides = [
+    {
+        id: 1,
+        name: "Amali Perera",
+        rating: 4,
+        imageSrc: profile1,
+        price: 200,
+        location: "Sinharaja Rain Forest",
+        contactNumber: "071 234 5678",
+    },
+    {
+        id: 2,
+        name: "Nihal Wijesinha",
+        rating: 2,
+        imageSrc: profile2,
+        price: 150,
+        location: "Ella, Nuwareliya",
+        contactNumber: "076 231 2278",
+    },
+    {
+        id: 3,
+        name: "Kamal Perera",
+        rating: 5,
+        imageSrc: profile4,
+        price: 300,
+        location: "Yala National Park",
+        contactNumber: "076 231 2278",
+    }
+]
 
 export const getUserById = (userId) => {
     return friends.find(friend => friend.id === userId);
