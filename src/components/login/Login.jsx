@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import "./Login.scss";
 import googleLogo from "../../assets/google-logo.png";
 import CloseIcon from '@mui/icons-material/Close';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { poolData } from '../../cognitoConfig';
-import { CognitoUserPool, CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js';
 import { useAlert } from '../errAlert/AlertContext';
+import {
+  loginUser,
+  sendForgotPasswordCode,
+  changePassword,
+  confirmRegistration,
+  resendConfirmationCode,
+  handleGoogleSignIn
+} from '../../services/user/LoginSignup';
 
-const Login = ({ onClose ,onClickShift}) => {
-  const userPool = new CognitoUserPool(poolData);
-
+const Login = ({ onClose, onClickShift }) => {
   const [view, setView] = useState('login');
   const [email, setEmail] = useState('');
   const [code, setCode] = useState('');
@@ -19,47 +22,34 @@ const Login = ({ onClose ,onClickShift}) => {
   const [confirmNewPassword, setConfirmNewPassword] = useState('');
   const [verificationCode, setVerificationCode] = useState('');
 
-  //const navigate = useNavigate();
-  const showAlert = useAlert(); 
+  const showAlert = useAlert();
 
   const handleLogin = () => {
-    const authenticationDetails = new AuthenticationDetails({
-      Username: email,
-      Password: password,
-    });
-
-    const userData = {
-      Username: email,
-      Pool: userPool,
-    };
-
-    const cognitoUser = new CognitoUser(userData);
-
-    cognitoUser.authenticateUser(authenticationDetails, {
-      onSuccess: function (result) {
-        //console.log('Login successful:', result);
+    loginUser(email, password,
+      (result) => {
+        console.log(result);
+        localStorage.setItem('accessToken', result.accessToken.jwtToken);
+        localStorage.setItem('idToken', result.idToken.jwtToken);
+        localStorage.setItem('refreshToken', result.refreshToken.token);
+        localStorage.setItem('successok', true);
         onClose();
-        showAlert('Login successful', 'success'/*, 40000*/);
+        //showAlert('Login successful', 'success');
+        window.location.reload();
       },
-      onFailure: (err) => {
+      (err) => {
         if (err.code === 'UserNotConfirmedException') {
-          showAlert('User Not Confirmed', 'warning'/*, 40000*/);
+          showAlert('User Not Confirmed', 'warning');
           setView('codeDiv');
-          cognitoUser.resendConfirmationCode((err, result) => {
-            if (err) {
-              //alert(err.message || JSON.stringify(err));
-              showAlert(err.message, 'error'/*, 40000*/);
-              return;
-            }
-            //alert('Verification code resent successfully');
-          });
+          resendConfirmationCode(email,
+            () => showAlert('Verification code resent successfully', 'info'),
+            (err) => showAlert(err.message, 'error')
+          );
+        } else {
+          console.error('Login failed:', err);
+          showAlert(err.message, 'error');
         }
-        else {
-          //console.error('Login failed:', err);
-          showAlert(err.message, 'error'/*, 40000*/);
-        }
-      },
-    });
+      }
+    );
   };
 
   const handleForgotPassword = () => {
@@ -67,98 +57,49 @@ const Login = ({ onClose ,onClickShift}) => {
   };
 
   const handleSendCode = () => {
-    const userData = {
-      Username: email,
-      Pool: userPool
-    };
-
-    const cognitoUser = new CognitoUser(userData);
-
-    cognitoUser.forgotPassword({
-      onSuccess: function (data) {
-        //console.log('Code sent successfully:', data);
-        showAlert('Code Sent', 'info'/*, 40000*/);
+    sendForgotPasswordCode(email,
+      () => {
+        showAlert('Code Sent', 'info');
         setView('enterCode');
       },
-      onFailure: function (err) {
-        //console.error('Error in sending code:', err);
-        showAlert('Error in sending code', 'error'/*, 40000*/);
-      }
-    });
+      (err) => showAlert('Error in sending code', 'error')
+    );
   };
 
   const handleChangePassword = () => {
     if (newPassword !== confirmNewPassword) {
-      //alert('Passwords do not match');
-      showAlert('Passwords do not match', 'error'/*, 40000*/);
+      showAlert('Passwords do not match', 'error');
       return;
     }
-
-    const userData = {
-      Username: email,
-      Pool: userPool
-    };
-
-    const cognitoUser = new CognitoUser(userData);
-
-    cognitoUser.confirmPassword(code, newPassword, {
-      onSuccess: function () {
-        //console.log('Password changed successfully');
-        showAlert('Password changed', 'success'/*, 40000*/);
+    changePassword(email, code, newPassword,
+      () => {
+        showAlert('Password changed', 'success');
         setView('login');
       },
-      onFailure: function (err) {
-        //console.error('Error in changing password:', err);
-        showAlert('Error in changing password', 'error'/*, 40000*/);
-      }
-    });
+      (err) => showAlert('Error in changing password', 'error')
+    );
   };
-
 
   const handleConfirm = () => {
-    const userData = {
-      Username: email,
-      Pool: userPool,
-    };
-
-    const cognitoUser = new CognitoUser(userData);
-    //console.log(cognitoUser);
-    cognitoUser.confirmRegistration(verificationCode, true, (err, result) => {
-      if (err) {
-        //alert(err.message || JSON.stringify(err));
-        showAlert(err.message, 'error'/*, 40000*/);
-        return;
-      }
-      showAlert('Account Verified', 'success'/*, 40000*/);
-      //set token
-      onClose(); // Redirect to login
-    });
+    confirmRegistration(email, verificationCode,
+      () => {
+        showAlert('Account Verified', 'success');
+        onClose();
+      },
+      (err) => showAlert(err.message, 'error')
+    );
   };
-    
 
   const handleResendCode = () => {
-      const userData = {
-        Username: email,
-        Pool: userPool,
-      };
-  
-      const cognitoUser = new CognitoUser(userData);
-      cognitoUser.resendConfirmationCode((err, result) => {
-        if (err) {
-          //alert(err.message || JSON.stringify(err));
-          showAlert(err.message, 'error'/*, 40000*/);
-          return;
-        }
-        //alert('Verification code resent successfully');
-        showAlert('Verification code resent', 'info'/*, 40000*/);
-      });
+    resendConfirmationCode(email,
+      () => showAlert('Verification code resent', 'info'),
+      (err) => showAlert(err.message, 'error')
+    );
   };
-
 
   return (
     <div className='login'>
       <div className="container">
-        
         {view === 'login' && (
           <div className='login-div'>
             <div className="close-btn" onClick={onClose}>
@@ -167,7 +108,7 @@ const Login = ({ onClose ,onClickShift}) => {
             <div className="heading">
               <span>Login to Venture Vibe</span>
             </div>
-            <div className="sign-up-google">
+            <div className="sign-up-google" onClick={handleGoogleSignIn}>
               <img src={googleLogo} alt="Google Logo" />
               <span>Log in with Google</span>
             </div>
@@ -196,12 +137,12 @@ const Login = ({ onClose ,onClickShift}) => {
         {view === 'enterEmail' && (
           <div className='email-div'>
             <div className='btns'>
-            <div className="back-btn" onClick={() => setView('login')}>
-              <i><ArrowBackIcon sx={{ color: '#747474', fontSize: 16 }} /></i>
-            </div>
-            <div className="close-btn" onClick={onClose}>
-              <i><CloseIcon sx={{ color: '#747474', fontSize: 16 }} /></i>
-            </div>
+              <div className="back-btn" onClick={() => setView('login')}>
+                <i><ArrowBackIcon sx={{ color: '#747474', fontSize: 16 }} /></i>
+              </div>
+              <div className="close-btn" onClick={onClose}>
+                <i><CloseIcon sx={{ color: '#747474', fontSize: 16 }} /></i>
+              </div>
             </div>
             <div className="heading">
               <span>Enter email to change password</span>
@@ -217,12 +158,12 @@ const Login = ({ onClose ,onClickShift}) => {
         {view === 'enterCode' && (
           <div className='code-div'>
             <div className='btns'>
-            <div className="back-btn" onClick={() => setView('login')}>
-              <i><ArrowBackIcon sx={{ color: '#747474', fontSize: 16 }} /></i>
-            </div>
-            <div className="close-btn" onClick={onClose}>
-              <i><CloseIcon sx={{ color: '#747474', fontSize: 16 }} /></i>
-            </div>
+              <div className="back-btn" onClick={() => setView('login')}>
+                <i><ArrowBackIcon sx={{ color: '#747474', fontSize: 16 }} /></i>
+              </div>
+              <div className="close-btn" onClick={onClose}>
+                <i><CloseIcon sx={{ color: '#747474', fontSize: 16 }} /></i>
+              </div>
             </div>
             <div className="heading">
               <span>Enter verification code</span>
@@ -243,24 +184,24 @@ const Login = ({ onClose ,onClickShift}) => {
         )}
         {view === 'codeDiv' && (
           <div className='code-div'>
-          <div className="heading">
-            <p>Enter verification code</p>
+            <div className="heading">
+              <p>Enter verification code</p>
+            </div>
+            <div className="verification-code">
+              <input
+                type="text"
+                placeholder="Verification Code"
+                value={verificationCode}
+                onChange={(e) => setVerificationCode(e.target.value)}
+              />
+            </div>
+            <div className="confirm-btn" onClick={handleConfirm}>
+              <span>Confirm</span>
+            </div>
+            <div className="resend-code">
+              <p>Don't receive code? <b onClick={handleResendCode}>Send again</b></p>
+            </div>
           </div>
-          <div className="verification-code">
-            <input
-              type="text"
-              placeholder="Verification Code"
-              value={verificationCode}
-              onChange={(e) => setVerificationCode(e.target.value)}
-            />
-          </div>
-          <div className="confirm-btn" onClick={handleConfirm}>
-            <span>Confirm</span>
-          </div>
-          <div className="resend-code">
-            <p>Don't receive code? <b onClick={handleResendCode}>Send again</b></p>
-          </div>
-        </div>
         )}
       </div>
     </div>

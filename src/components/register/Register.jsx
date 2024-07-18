@@ -1,165 +1,107 @@
-import React, { useState, useEffect } from 'react';
-import "./Register.scss";
-import googleLogo from "../../assets/google-logo.png";
+import React, { useState } from 'react';
+import './Register.scss';
+import googleLogo from '../../assets/google-logo.png';
 import CloseIcon from '@mui/icons-material/Close';
-import { CognitoUser, CognitoUserPool, AuthenticationDetails } from 'amazon-cognito-identity-js';
-import { poolData } from '../../cognitoConfig';
+import { signUpWithEmail, 
+  confirmRegistration, 
+  resendConfirmationCode, 
+  handleGoogleSignIn, 
+  handleLogout } from '../../services/user/LoginSignup';
 import { useAlert } from '../errAlert/AlertContext';
-import { signInWithRedirect } from 'aws-amplify/auth';
 
-const Register = ({onClose,onClickShift}) => {
+const Register = ({ onClose, onClickShift }) => {
   const [showCodeDiv, setShowCodeDiv] = useState(false);
   const [verificationCode, setVerificationCode] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const showAlert = useAlert();
-  const userPool = new CognitoUserPool(poolData);
 
   const handleSignUpWithEmail = () => {
-    userPool.signUp(email, password, [], null, (err, result) => {
-      if (err) {
-        //alert(err.message || JSON.stringify(err));
-        showAlert(err.message, 'error'/*, 40000*/);
-        return;
-      } else {
-        showAlert('Verify Your Account', 'info'/*, 40000*/);
+    signUpWithEmail(email, password,
+      (message) => {
+        showAlert(message, 'info');
         setShowCodeDiv(true);
-      }
-    });
+      },
+      (error) => showAlert(error, 'error')
+    );
   };
-  const handleConfirm = () => {
-    const userData = {
-      Username: email,
-      Pool: userPool,
-    };
 
-    const cognitoUser = new CognitoUser(userData);
-    //console.log(cognitoUser);
-    cognitoUser.confirmRegistration(verificationCode, true, (err, result) => {
-      if (err) {
-        //alert(err.message || JSON.stringify(err));
-        showAlert(err.message, 'error'/*, 40000*/);
-        return;
-      }
-      showAlert('SignUp Completed', 'success'/*, 40000*/);
-      onClickShift(); // Redirect to login
-    });
+  const handleConfirm = () => {
+    confirmRegistration(email, verificationCode,
+      (message) => {
+        showAlert(message, 'success');
+        onClickShift();
+      },
+      (error) => showAlert(error, 'error')
+    );
   };
 
   const handleResendCode = () => {
-      const userData = {
-        Username: email,
-        Pool: userPool,
-      };
-  
-      const cognitoUser = new CognitoUser(userData);
-      cognitoUser.resendConfirmationCode((err, result) => {
-        if (err) {
-          //alert(err.message || JSON.stringify(err));
-          showAlert(err.message, 'error'/*, 40000*/);
-          return;
-        }
-        //alert('Verification code resent successfully');
-        showAlert('Verification code resent', 'info'/*, 40000*/);
-      });
-  };
-
-  const handleGoogleSignIn = () => {
-    // Ensure this URL is correct for your AWS Cognito setup
-    const url = 'https://venture.auth.eu-north-1.amazoncognito.com/oauth2/authorize';
-    const params = new URLSearchParams({
-      identity_provider: 'Google',
-      redirect_uri: 'http://localhost:5173',
-      response_type: 'TOKEN',
-      client_id: '7gejr9ke18o65cbhbe2au76ff7',
-      scope: 'email openid phone profile',
-    });
-  
-    window.location.href = `${url}?${params.toString()}`;
-  };
-  const handleLogout = () => {
-    // localStorage.removeItem('accessToken');
-    // localStorage.removeItem('idToken');
-    // localStorage.removeItem('refreshToken');
-  
-    const url = 'https://venture.auth.eu-north-1.amazoncognito.com/logout';
-    const params = new URLSearchParams({
-      client_id: '7gejr9ke18o65cbhbe2au76ff7',
-      logout_uri: 'http://localhost:5173', // Redirect URI after logout
-    });
-  
-    window.location.href = `${url}?${params.toString()}`;
+    resendConfirmationCode(email,
+      (message) => showAlert(message, 'info'),
+      (error) => showAlert(error, 'error')
+    );
   };
 
   return (
     <div className='register'>
-      <div className="container">
-        <div className="close-btn" onClick={onClose}>
-          <i><CloseIcon sx={{ color: '#747474', fontSize: 16 }}/></i>
+      <div className='container'>
+        <div className='close-btn' onClick={onClose}>
+          <i>
+            <CloseIcon sx={{ color: '#747474', fontSize: 16 }} />
+          </i>
         </div>
         {!showCodeDiv ? (
           <div className='field-div'>
-            <div className="heading">
+            <div className='heading'>
               <p>Sign up to take your trip planning to the next level</p>
             </div>
-            <div className="sign-up-google" onClick={handleGoogleSignIn}>
-              <img src={googleLogo} alt="Google Logo" />
+            <div className='sign-up-google' onClick={handleGoogleSignIn}>
+              <img src={googleLogo} alt='Google Logo' />
               <span>Sign up with Google</span>
             </div>
-            {/* <button onClick={handleLogout}>logout</button> */}
-            <div className="or">
+            <div className='or'>
               <hr />
               <span>or</span>
               <hr />
             </div>
-            <div className="email">
-              <input
-                type="text"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
+            <div className='email'>
+              <input type='text' placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)} />
             </div>
-            <div className="password">
-              <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
+            <div className='password'>
+              <input type='password' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} />
             </div>
-            <div className="sign-up-btn" onClick={handleSignUpWithEmail}>
+            <div className='sign-up-btn' onClick={handleSignUpWithEmail}>
               <span>Sign up with email</span>
             </div>
-            <div className="log-in">
-              <span>Already have an account? <b onClick={onClickShift}>Log in</b></span>
+            <div className='log-in'>
+              <span>
+                Already have an account? <b onClick={onClickShift}>Log in</b>
+              </span>
             </div>
           </div>
         ) : (
           <div className='code-div'>
-            <div className="heading">
+            <div className='heading'>
               <p>Enter verification code</p>
             </div>
-            <div className="verification-code">
-              <input
-                type="text"
-                placeholder="Verification Code"
-                value={verificationCode}
-                onChange={(e) => setVerificationCode(e.target.value)}
-              />
+            <div className='verification-code'>
+              <input type='text' placeholder='Verification Code' value={verificationCode} onChange={(e) => setVerificationCode(e.target.value)} />
             </div>
-            <div className="confirm-btn" onClick={handleConfirm}>
+            <div className='confirm-btn' onClick={handleConfirm}>
               <span>Confirm</span>
             </div>
-            <div className="resend-code">
-              <p>Don't receive code? <b onClick={handleResendCode}>Send again</b></p>
+            <div className='resend-code'>
+              <p>
+                Don't receive code? <b onClick={handleResendCode}>Send again</b>
+              </p>
             </div>
           </div>
         )}
       </div>
     </div>
   );
-}
+};
 
-export default Register
+export default Register;
