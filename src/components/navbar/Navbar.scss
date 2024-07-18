@@ -68,5 +68,22 @@
     }
     .button {
         gap: 1vw;
+        li {
+            button {
+                img {
+                    width: 5vh;
+                    height: 6vh;
+                }
+            }
+            position: relative;
+            .dropdown-menu {
+                position: absolute;
+                left: -20px;
+                border: 1px solid red;
+                ul {
+                    display: block;
+                }
+            }
+        }
     }
 }
