@@ -30,6 +30,8 @@ import GuideProfile from "./pages/profile/GuideProfile";
 import ShowEvent from "./pages/showEvent/ShowEvent";
 import ShowAllEvents from "./pages/showAllEvents/ShowAllEvents";
 import ShowAllTravelGuides from "./pages/showAllTravelGuides/ShowAllTravelGuides";
+import { AlertProvider } from "./components/errAlert/AlertContext";
+
 
 const Layout = () => {
   return (
@@ -174,7 +176,8 @@ function App() {
    
   ]);
 
-  return <RouterProvider router={router} />;
+  return (<AlertProvider><RouterProvider router={router} /></AlertProvider>);
+  
 }
 
 export default App;
