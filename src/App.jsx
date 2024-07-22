@@ -1,10 +1,10 @@
-import { useState } from "react";
 import "./App.css";
-import "./App.css";
-import React from "react";
 
-import Home from "./pages/home/Home";
-import TravelPlan from "./pages/travelPlan/TravelPlan";
+import './App.css'
+import React from 'react';
+import Home from './pages/home/Home';
+import TravelPlan from './pages/travelPlan/TravelPlan';
+
 import Admin from "./pages/admin/Admin";
 import Community from "./pages/community/Community";
 import ServiceProviderUser from "./pages/serviceProvider/ServiceProviderUser";
@@ -21,19 +21,18 @@ import CommunityFriends from "./pages/community/friends/CommunityFriends";
 import CommunityRequest from "./pages/community/requests/CommunityRequest";
 import CommunitySearch from "./pages/community/search/CommunitySearch";
 import CommunitySearchPost from "./pages/community/search/post/CommunitySearchPost";
-import CommunityFriend from "./components/communityFriend/CommunityFriend";
 import CommunitySearchUser from "./pages/community/search/users/CommunitySearchUser";
 import CreateTravelPlan from "./pages/createTravelPlan/CreateTravelPlan";
 import InviteTravelMates from "./pages/inviteTravelMates/InviteTravelMates";
 import Map from "./pages/map/Map";
-
-import InviteTripmate from "./components/inviteTripmate/InviteTripmate";
-import ManageTripmates from "./components/manageTripmates/ManageTripmates";
-import SetBudget from "./components/setBudget/SetBudget";
 import MyListings from "./pages/myListings/MyListings";
-
 import EventRegistration from "./pages/registration/events/EventRegistration";
 import GuideRegistration from "./pages/registration/guide/GuideRegistration";
+import GuideProfile from "./pages/profile/GuideProfile";
+import ShowEvent from "./pages/showEvent/ShowEvent";
+import ShowAllEvents from "./pages/showAllEvents/ShowAllEvents";
+import ShowAllTravelGuides from "./pages/showAllTravelGuides/ShowAllTravelGuides";
+import { AlertProvider } from "./components/errAlert/AlertContext";
 
 const Layout = () => {
   return (
@@ -63,6 +62,18 @@ function App() {
           element: <MyListings />,
         },
         {
+          path: "/travelguides",
+          element: <ShowAllTravelGuides />,
+        },
+        {
+          path: "/events",
+          element: <ShowAllEvents />,
+        },
+        {
+          path: "/event/:id",
+          element: <ShowEvent />,
+        },
+        {
           path: "/travelplan/invite",
           element: <InviteTravelMates />,
         },
@@ -74,6 +85,12 @@ function App() {
           path: "/guideregister",
           element: <GuideRegistration />,
         },
+
+        {
+          path: "/guideprofile",
+          element: <GuideProfile/>,
+        }
+
       ],
     },
     {
@@ -153,10 +170,15 @@ function App() {
     {
       path: "serviceprovideruser",
       element: <ServiceProviderUser />,
+
+    }
+   
     },
+
   ]);
 
-  return <RouterProvider router={router} />;
+  return (<AlertProvider><RouterProvider router={router} /></AlertProvider>);
+  
 }
 
 export default App;
