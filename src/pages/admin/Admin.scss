@@ -3,3 +3,23 @@
   justify-content: center;
 }
 
+.headerBar{
+  z-index: 999;
+}
+
+.sidebr-content{
+  z-index: 1;
+}
+
+.wrapper{
+  display: flex;
+  gap: 50px;
+
+  .usertable-admin{
+    margin-right: 20px;
+    width: 80%;
+  }
+  .sidebr-content{
+    width: 20%;
+  }
+}

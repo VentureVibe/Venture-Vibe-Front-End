@@ -35,7 +35,6 @@ import MyListings from "./pages/myListings/MyListings";
 import EventRegistration from "./pages/registration/events/EventRegistration";
 import GuideRegistration from "./pages/registration/guide/GuideRegistration";
 
-
 const Layout = () => {
   return (
     <div style={{ height: "100vh" }}>
@@ -51,10 +50,6 @@ function App() {
       path: "/",
       element: <Layout />, // Use the Layout component for the root path
       children: [
-        {
-          path: "/admin",
-          element: <Admin />,
-        },
         {
           path: "/",
           element: <Home />,
@@ -78,8 +73,12 @@ function App() {
         {
           path: "/guideregister",
           element: <GuideRegistration />,
-        }
+        },
       ],
+    },
+    {
+      path: "/admin",
+      element: <Admin />,
     },
 
     {

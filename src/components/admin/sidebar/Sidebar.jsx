@@ -10,21 +10,25 @@ const Sidebar = () => {
         {/* <h1 className="dashboard">Dashboard</h1> */}
         <ul className="side-menu">
           <li>
-            <a href="#" className="brand">
-              Dashboard
-            </a>
-          </li>
-          <li className="divider">
-            <a href="dashboard">Users</a>
+            <a href="dashboard">Dashboard Overview</a>
           </li>
           <li>
-            <a href="dashboard">Blog</a>
+            <a href="dashboard">User Management</a>
           </li>
           <li>
-            <a href="dashboard">Travel Plan</a>
+            <a href="dashboard">Service Provider Listings</a>
           </li>
           <li>
-            <a href="dashboard">Service Providers</a>
+            <a href="dashboard">Content Oversight</a>
+          </li>
+          <li>
+            <a href="dashboard">Financial Insights</a>
+          </li>
+          <li>
+            <a href="dashboard">Reports</a>
+          </li>
+          <li>
+            <a href="dashboard">Recommendations</a>
           </li>
           <li>
             <a href="dashboard">Settings</a>
