@@ -1,9 +1,9 @@
 import "./App.css";
 
-import './App.css'
-import React from 'react';
-import Home from './pages/home/Home';
-import TravelPlan from './pages/travelPlan/TravelPlan';
+import "./App.css";
+import React from "react";
+import Home from "./pages/home/Home";
+import TravelPlan from "./pages/travelPlan/TravelPlan";
 
 import Admin from "./pages/admin/Admin";
 import Community from "./pages/community/Community";
@@ -33,6 +33,8 @@ import ShowEvent from "./pages/showEvent/ShowEvent";
 import ShowAllEvents from "./pages/showAllEvents/ShowAllEvents";
 import ShowAllTravelGuides from "./pages/showAllTravelGuides/ShowAllTravelGuides";
 import { AlertProvider } from "./components/errAlert/AlertContext";
+import DashboardOverview from "./pages/admin/Overview/DashboardOverview";
+import UserTable from "./components/admin/users/UserTable";
 
 const Layout = () => {
   return (
@@ -88,9 +90,8 @@ function App() {
 
         {
           path: "/guideprofile",
-          element: <GuideProfile/>,
-        }
-
+          element: <GuideProfile />,
+        },
       ],
     },
     {
@@ -170,15 +171,14 @@ function App() {
     {
       path: "serviceprovideruser",
       element: <ServiceProviderUser />,
-
-    }
-   
     },
-
   ]);
 
-  return (<AlertProvider><RouterProvider router={router} /></AlertProvider>);
-  
+  return (
+    <AlertProvider>
+      <RouterProvider router={router} />
+    </AlertProvider>
+  );
 }
 
 export default App;
