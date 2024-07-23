@@ -5,7 +5,7 @@ import MilestonesDiv from '../../components/homepage/MilestonesDiv';
 import SubscribeDiv from '../../components/homepage/SubscribeDiv';
 import Main from '../../components/homepage/Main';
 import './Home.scss'
-import { useAlert } from '../../components/errAlert/AlertContext';
+import { useAlert } from '../../context/errAlert/AlertContext';
 import { exchangeCodeForTokens } from '../../services/user/LoginSignup';
 
 const Home = () => {
