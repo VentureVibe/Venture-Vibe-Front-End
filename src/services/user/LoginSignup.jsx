@@ -1,6 +1,7 @@
 import { CognitoUserPool, CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js';
 import { poolData } from '../../cognitoConfig';
 import axios from 'axios';
+import { jwtDecode } from 'jwt-decode';
 
 const userPool = new CognitoUserPool(poolData);
 
@@ -22,6 +23,37 @@ export const signUpWithEmail = (email, password, onSuccess, onFailure) => {
     }
     onSuccess('Verify Your Account');
   });
+};
+
+export const addUserWithEmail = (email, onSuccess, onFailure) => {
+  axios.post('http://localhost:8080/api/v1/user', { email })
+    .then(response => {
+      onSuccess('User added successfully');
+    })
+    .catch(error => {
+      const errorMessage = error.response?.data?.message || error.message;
+      onFailure(errorMessage);
+    });
+};
+
+export const handleUserRegistration = (email, password, onSuccess, onFailure) => {
+  signUpWithEmail(email, password, 
+    (message) => {
+      // If sign up is successful, add the user to the application database
+      addUserWithEmail(email, 
+        (dbMessage) => {
+          onSuccess(`${message}. ${dbMessage}`);
+        },
+        (dbError) => {
+          onFailure(`Sign-up successful, but error adding user: ${dbError}`);
+        }
+      );
+    },
+    (error) => {
+      // Handle sign-up error
+      onFailure(error);
+    }
+  );
 };
 
 export const confirmRegistration = (email, verificationCode, onSuccess, onFailure) => {
@@ -96,14 +128,14 @@ export const handleLogout = () => {
   window.location.href = `${url}?${params.toString()}`;
 };
 
-
 export const exchangeCodeForTokens = async (code) => {
-    const params = new URLSearchParams();
-    params.append('grant_type', 'authorization_code');
-    params.append('client_id', '1ffq0p2st2vs1l9a4p2ga20gd5');
-    params.append('redirect_uri', 'http://localhost:5173');
-    params.append('code', code);
+  const params = new URLSearchParams();
+  params.append('grant_type', 'authorization_code');
+  params.append('client_id', '1ffq0p2st2vs1l9a4p2ga20gd5');
+  params.append('redirect_uri', 'http://localhost:5173');
+  params.append('code', code);
 
+  try {
     // Make POST request using Axios
     const response = await axios.post(
       'https://venturevibe24.auth.eu-north-1.amazoncognito.com/oauth2/token',
@@ -117,12 +149,33 @@ export const exchangeCodeForTokens = async (code) => {
 
     // Extract tokens from response data
     const { access_token, id_token, refresh_token } = response.data;
+
     // Store tokens in localStorage or sessionStorage
     localStorage.setItem('accessToken', access_token);
     localStorage.setItem('idToken', id_token);
     localStorage.setItem('refreshToken', refresh_token);
-    localStorage.setItem('successok', true);
-    // Redirect and clear URL parameters
-    window.history.replaceState({}, document.title, "/");
-    window.location.reload();
-  };
+
+    // Decode the ID token to extract user email
+    const decodedToken = jwtDecode(id_token);
+    const email = decodedToken.email;
+
+    // Add user email to the database
+    await addUserWithEmail(email, 
+      (successMessage) => {
+        //console.log(successMessage);
+        localStorage.setItem('successok', true);
+        // Redirect and clear URL parameters
+        window.history.replaceState({}, document.title, "/");
+        window.location.reload();
+      },
+      (errorMessage) => {
+        console.error('Error adding user:', errorMessage);
+        // Handle failure scenario
+      }
+    );
+
+  } catch (error) {
+    console.error('Error exchanging code for tokens:', error);
+    // Handle errors during token exchange
+  }
+};
