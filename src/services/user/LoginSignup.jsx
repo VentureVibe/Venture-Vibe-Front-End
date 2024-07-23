@@ -21,12 +21,17 @@ export const signUpWithEmail = (email, password, onSuccess, onFailure) => {
       onFailure(err.message);
       return;
     }
-    onSuccess('Verify Your Account');
+    const userSub = result.userSub;
+    //console.log(userSub);
+    onSuccess('Verify Your Account', userSub);
   });
 };
 
-export const addUserWithEmail = (email, onSuccess, onFailure) => {
-  axios.post('http://localhost:8080/api/v1/user', { email })
+export const addUserWithEmail = (email, userSub, onSuccess, onFailure) => {
+  axios.post('http://localhost:8080/api/v1/user', { 
+    userId: userSub,
+    email: email 
+  })
     .then(response => {
       onSuccess('User added successfully');
     })
@@ -38,9 +43,9 @@ export const addUserWithEmail = (email, onSuccess, onFailure) => {
 
 export const handleUserRegistration = (email, password, onSuccess, onFailure) => {
   signUpWithEmail(email, password, 
-    (message) => {
+    (message, userSub) => {
       // If sign up is successful, add the user to the application database
-      addUserWithEmail(email, 
+      addUserWithEmail(email, userSub,
         (dbMessage) => {
           onSuccess(`${message}. ${dbMessage}`);
         },
@@ -55,6 +60,7 @@ export const handleUserRegistration = (email, password, onSuccess, onFailure) =>
     }
   );
 };
+
 
 export const confirmRegistration = (email, verificationCode, onSuccess, onFailure) => {
   const cognitoUser = getCognitoUser(email);
@@ -158,9 +164,10 @@ export const exchangeCodeForTokens = async (code) => {
     // Decode the ID token to extract user email
     const decodedToken = jwtDecode(id_token);
     const email = decodedToken.email;
+    const userSub = decodedToken.sub;
 
     // Add user email to the database
-    await addUserWithEmail(email, 
+    await addUserWithEmail(email, userSub,
       (successMessage) => {
         //console.log(successMessage);
         localStorage.setItem('successok', true);

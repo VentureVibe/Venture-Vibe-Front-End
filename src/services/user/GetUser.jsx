@@ -1,20 +1,3 @@
-// import axios from "axios";
-// import { jwtDecode } from "jwt-decode";
-
-// export const GetUser = async () => {
-//     const token = localStorage.getItem("idToken");
-//     const decodedToken = jwtDecode(token);
-//     const email = decodedToken.email;
-//     axios.post(`http://localhost:8080/api/v1/user`, {
-//         params: {email}
-//     })
-//     .then(response => {
-
-//     })
-//     .catch(error => {
-//     });
-// } 
-
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode'; // Ensure you use the correct import
 
