@@ -6,7 +6,8 @@ import { signUpWithEmail,
   confirmRegistration, 
   resendConfirmationCode, 
   handleGoogleSignIn, 
-  handleLogout } from '../../services/user/LoginSignup';
+  handleLogout,
+  handleUserRegistration } from '../../services/user/LoginSignup';
 import { useAlert } from '../../context/errAlert/AlertContext';
 
 const Register = ({ onClose, onClickShift }) => {
@@ -18,12 +19,14 @@ const Register = ({ onClose, onClickShift }) => {
   const showAlert = useAlert();
 
   const handleSignUpWithEmail = () => {
-    signUpWithEmail(email, password,
-      (message) => {
-        showAlert(message, 'info');
+    handleUserRegistration(
+      email,
+      password,
+      successMessage => {
+        showAlert(successMessage, 'success');
         setShowCodeDiv(true);
       },
-      (error) => showAlert(error, 'error')
+      errorMessage => showAlert(`Error: ${errorMessage}`, 'error')
     );
   };
 
