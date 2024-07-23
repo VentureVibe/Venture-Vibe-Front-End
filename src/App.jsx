@@ -179,8 +179,6 @@ function App() {
       path: "/not-authorized",
       element: <NotAuthorized />
     }
-   
-    },
 
   ]);
 
