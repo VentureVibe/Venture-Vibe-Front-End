@@ -32,7 +32,10 @@ import GuideProfile from "./pages/profile/GuideProfile";
 import ShowEvent from "./pages/showEvent/ShowEvent";
 import ShowAllEvents from "./pages/showAllEvents/ShowAllEvents";
 import ShowAllTravelGuides from "./pages/showAllTravelGuides/ShowAllTravelGuides";
-import { AlertProvider } from "./components/errAlert/AlertContext";
+import { AlertProvider } from "./context/errAlert/AlertContext";
+import NotAuthorized from "./components/notAuthorized/NotAuthorized";
+import withRole from "./components/hoc/withRole";
+import { AuthProvider } from "./context/authContext";
 
 const Layout = () => {
   return (
@@ -44,6 +47,7 @@ const Layout = () => {
 };
 
 function App() {
+  const GuidePro = withRole(GuideProfile, ['travelGuide']);
   const router = createBrowserRouter([
     {
       path: "/",
@@ -88,9 +92,8 @@ function App() {
 
         {
           path: "/guideprofile",
-          element: <GuideProfile/>,
-        }
-
+          element: <GuidePro />,
+        },
       ],
     },
     {
@@ -171,13 +174,17 @@ function App() {
       path: "serviceprovideruser",
       element: <ServiceProviderUser />,
 
+    },
+    {
+      path: "/not-authorized",
+      element: <NotAuthorized />
     }
    
     },
 
   ]);
 
-  return (<AlertProvider><RouterProvider router={router} /></AlertProvider>);
+  return (<AlertProvider><AuthProvider><RouterProvider router={router} /></AuthProvider></AlertProvider>);
   
 }
 

@@ -5,7 +5,7 @@ import Login from '../login/Login';
 import Register from '../register/Register';
 import PopUpMain from '../popupmain/PopUpMain';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import { useAlert } from '../errAlert/AlertContext';
+import { useAlert } from '../../context/errAlert/AlertContext';
 import { handleLogout } from '../../services/user/LoginSignup';
 
 const Navbar = () => {

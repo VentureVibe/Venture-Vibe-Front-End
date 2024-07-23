@@ -7,7 +7,7 @@ import { signUpWithEmail,
   resendConfirmationCode, 
   handleGoogleSignIn, 
   handleLogout } from '../../services/user/LoginSignup';
-import { useAlert } from '../errAlert/AlertContext';
+import { useAlert } from '../../context/errAlert/AlertContext';
 
 const Register = ({ onClose, onClickShift }) => {
   const [showCodeDiv, setShowCodeDiv] = useState(false);
