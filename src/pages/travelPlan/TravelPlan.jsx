@@ -20,13 +20,12 @@ import MapTravelPlan from '../../components/mapTravelPlan/MapTravelPlan';
 
 
 
-
-
 const TravelPlan = () => {
 
   const { location, lat, lng,to,from } = useParams();
   const [placeImage, setPlaceImage] = useState('');
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [clickedPlace,setClickedPlace]=useState(null);
+  const [addedPlaces, setAddedPlaces] = useState([]);
 
   useEffect(() => {
     const fetchPlaceDetails = () => {
@@ -43,12 +42,13 @@ const TravelPlan = () => {
           const place = results[0];
           if (place.photos && place.photos.length > 0) {
             const photoUrl = place.photos[0].getUrl({ maxWidth: 800 });
+            console.log(photoUrl);
             setPlaceImage(photoUrl);
           }
         }
       });
     };
-
+  
     if (window.google && window.google.maps && window.google.maps.places) {
       fetchPlaceDetails();
     }
@@ -69,18 +69,18 @@ const TravelPlan = () => {
               <div className='plan-list'>
 
                  <img src={placeImage} alt="Location Image" />
-                 <TripToTravelPlan location={location} from={from} to={to}  />         
+              <TripToTravelPlan location={location} from={from} to={to} />
               </div>
               <ExploreTravelPlan />
               <NotesTravelPlan />
               <hr className='travelplan-hr'/>
+              <PlacesToVisitTravelPlan lat={lat} long={lng} setClickedPlace={setClickedPlace} addedPlaces={addedPlaces} setAddedPlaces={setAddedPlaces}/>
+
+              <hr className='travelplan-hr'/>
               <HotelsTravelPlan />
               <hr className='travelplan-hr'/>
-              <PlacesToVisitTravelPlan />
-              <hr className='travelplan-hr'/>
               <RestaurantsTravelPlan />
-              <hr className='travelplan-hr'/>
-              <EventsTravelPlan />
+           
               
               <hr className='travelplan-hr-line'/>
               <ItineraryTravelPlan to={to} from={from}  />
@@ -90,7 +90,7 @@ const TravelPlan = () => {
           </div>
         </div>
         <div className='map'>
-              <MapTravelPlan lat={parseFloat(lat)} lng={parseFloat(lng)} />
+              <MapTravelPlan lat={parseFloat(lat)} lng={parseFloat(lng)} place={"as"} clickedPlace={clickedPlace} setAddedPlaces={setAddedPlaces} addedPlaces={addedPlaces} />
         </div>
       </div>
     </div>
