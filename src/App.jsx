@@ -47,9 +47,12 @@ const Layout = () => {
 };
 
 
-
 function App() {
+  
   const GuidePro = withRole(GuideProfile, ['travelGuide']);
+  const TravelPlann = withRole(TravelPlan, ['travelGuide','User']);
+  // const InviteTravelMatess = withRole(InviteTravelMates, ['travelGuide','User']);
+
   const router = createBrowserRouter([
     {
       path: "/",
@@ -105,7 +108,7 @@ function App() {
 
     {
       path: "/travelplan/:to/:from/:location/:lat/:lng",
-      element: <TravelPlan />,
+      element: <TravelPlann />,
     },
     {
       path: "/map",
