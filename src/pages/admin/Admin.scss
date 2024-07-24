@@ -1,7 +1,9 @@
 .main-content{
+  margin-left: 20px;
   display: flex;
-  flex-direction: column;
+  // flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 .headerBar{
@@ -17,7 +19,7 @@
   gap: 50px;
 
   .usertable-admin{
-    margin-right: 20px;
+    // margin-right: 20px;
     width: 80%;
   }
   .sidebr-content{

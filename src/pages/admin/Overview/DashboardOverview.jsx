@@ -31,6 +31,9 @@ const DashboardOverview = () => {
           <li>Provider ABC updated their profile.</li>
           <li>User Jane Smith left a review.</li>
           <li>New user registration: Alice Johnson.</li>
+          <li>New user registration: Alice Johnson.</li>
+          <li>New user registration: Alice Johnson.</li>
+          <li>New user registration: Alice Johnson.</li>
         </ul>
       </div>
     </div>

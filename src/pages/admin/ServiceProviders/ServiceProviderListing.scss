@@ -1,0 +1,50 @@
+.service-provider-listing {
+    padding: 20px;
+  
+    h1 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+  
+    .provider-table {
+      width: 100%;
+      overflow-x: auto;
+  
+      table {
+        width: 100%;
+        border-collapse: collapse;
+  
+        th, td {
+          padding: 10px;
+          border: 1px solid #ddd;
+          text-align: left;
+        }
+  
+        th {
+          background-color: #f4f4f4;
+        }
+  
+        tbody tr:nth-child(even) {
+          background-color: #f9f9f9;
+        }
+  
+        .edit-button, .delete-button {
+          background-color: #4CAF50; /* Green */
+          color: white;
+          border: none;
+          padding: 5px 10px;
+          cursor: pointer;
+          margin-right: 5px;
+  
+          &:hover {
+            opacity: 0.8;
+          }
+        }
+  
+        .delete-button {
+          background-color: #f44336; /* Red */
+        }
+      }
+    }
+  }
+  

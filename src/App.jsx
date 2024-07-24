@@ -35,6 +35,7 @@ import ShowAllTravelGuides from "./pages/showAllTravelGuides/ShowAllTravelGuides
 import { AlertProvider } from "./components/errAlert/AlertContext";
 import DashboardOverview from "./pages/admin/Overview/DashboardOverview";
 import UserTable from "./components/admin/users/UserTable";
+import ServiceProviderListing from "./pages/admin/ServiceProviders/ServiceProviderListing";
 
 const Layout = () => {
   return (
@@ -95,8 +96,22 @@ function App() {
       ],
     },
     {
-      path: "/admin",
+      path: "/admin/*",
       element: <Admin />,
+      // children: [
+      //   {
+      //     path: "",
+      //     element: <DashboardOverview />,
+      //   },
+      //   {
+      //     path: "/admin/users",
+      //     element: <UserTable />,
+      //   },
+      //   {
+      //     path: "admin/service-providers",
+      //     element: <ServiceProviderListing />,
+      //   },
+      // ],
     },
 
     {

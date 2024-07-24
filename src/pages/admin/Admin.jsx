@@ -6,6 +6,13 @@ import "./Admin.scss";
 import UserTable from "../../components/admin/users/UserTable";
 import HeaderBar from "../../components/admin/head/HeaderBar";
 import DashboardOverview from "./Overview/DashboardOverview";
+import UserManagement from "./UserManagement/UserManagement";
+import ServiceProviderListing from "./ServiceProviders/ServiceProviderListing";
+import ContentOversight from "./Blog/ContentOversight";
+import FinancialInsights from "./Financial/FinancialInsights";
+import Reports from "./Reports/Reports";
+import Recommendations from "./Recommendation/Recommendations";
+import Settings from "./Settings/Settings";
 // import Navbar from "../components/navbar/Navbar";
 
 const Admin = () => {
@@ -22,7 +29,16 @@ const Admin = () => {
         <div className="main-content">
           <Routes>
             <Route path="/" element={<DashboardOverview />} />
-            <Route path="/users" element={<UserTable />} />
+            <Route path="/users" element={<UserManagement />} />
+            <Route
+              path="/service-providers"
+              element={<ServiceProviderListing />}
+            />
+            <Route path="/content" element={<ContentOversight />} />
+            <Route path="/financials" element={<FinancialInsights />} />
+            <Route path="/reports" element={<Reports />} />
+            <Route path="/recommendations" element={<Recommendations />} />
+            <Route path="/settings" element={<Settings />} />
             {/* <Route path="/users" element={<UserTable />} />
         <Route path="/users" element={<UserTable />} />
         <Route path="/users" element={<UserTable />} />
