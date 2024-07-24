@@ -169,43 +169,94 @@
         }
 
         .add-restaurant-container{
-            display: flex;
-            align-items: center;
+            position: relative; 
             margin-left: 30px;
             margin-top: 15px;
-            padding: 5px;
-            background-color: #f1f4f7;
-            border-radius: 10px;
+          
 
-            i{
-                margin-left: 10px;
-            }
-
-            input{
-                width: 100%;
-                height: 40px;
-                padding: 10px;
-                border-radius: 5px;
-                font-size: var(--paragraph-1);
-                outline: none;
+           .top{
+                display: flex;
+                align-items: center;
+                padding: 5px;
+                border-radius: 10px;
                 background-color: #f1f4f7;
-                color: var(--text-color);
+                i{
+                    margin-left: 10px;
+                 }
+
+                input{
+                    width: 100%;
+                    height: 40px;
+                    padding: 10px;
+                    border-radius: 5px;
+                    font-size: var(--paragraph-1);
+                    outline: none;
+                    background-color: #f1f4f7;
+                    color: var(--text-color);
+                }
+           }
+
+           .bottom{ 
+            width: 100%;
+            margin-top: 4px;
+            display: flex;
+            flex-direction: column;   
+            border-radius: 10px; 
+            position: absolute;
+            background-color: var(--white);
+            border: 1px solid var(--input);
+           
+            .suggestions-list{
+                z-index: 100;
+                top: 100%;
+                list-style-type: none;
+                cursor: pointer;
+                font-size: var(--paragraph-1);
+                .cont{
+                    border-radius: 10px; 
+                    padding: 13px;
+                    i{
+                        margin-right: 10px;
+                    }
+                    width: 100%;
+                   
+                    display: flex;
+                    align-items: center;
+                    font-size: var(--paragraph-1);
+                }
+                .cont:hover{
+                    background-color: var(--input);
+                }
             }
+
+          
+           }
         }
 
         .bottom-container{
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            width: 100%;
-            //border: 1px solid red;
+            width: 102.5%;
             margin-top: 10px;
-            padding: 0 0 10px 40px;
+            padding: 0 0 10px 21.5px;
 
+            .button{
+                i{
+                    font-size: 15px;
+                    color: #747474;
+                    cursor: pointer;
+                }
+            }
+            .middle{
+                display: flex;
+                justify-content: space-between;
+                overflow-x: hidden;
+                width: 100%;
+                margin: 0 5px 0px 5px;
+            }
             .article{
-                width: 185px;
+                width: 188px;
                 height: 280px;
-                //border: 1px solid red;
                 display: flex;
                 flex-direction: column;
                 background-color: #f1f4f7;
@@ -215,37 +266,45 @@
 
                 .post-cover{
                     width: 100%;
-                    height: 150px;
+                    height:100%;
                     object-fit: cover;
-                    //border-radius: 10px 10px 0 0;
                 }
 
                 .info{
                     display: flex;
                     flex-direction: column;
                     width: 100%;
-                    height: 115px;
+                    height:100%;
                     padding-top: 10px;
 
                     .hotel-name{
                         width: 100%;
-                        height: 40px;
+                        height:50px;
                         font-size: var(--sidebar);
                         color: var(--text-color);
-                        margin-bottom: 5px;
                         font-weight: 600;
-                        //border: 1px solid red;
+                        overflow: scroll;
                     }
 
                     .rating{
                         display: flex;
-                        //justify-content: center;
+                        font-size: var(--paragraph-1);
                         align-items: center;
                         width: 100%;
                         height: 15px;
-                        //margin-top: 5px;
-                        margin-bottom: 5px;
-                        //border: 1px solid red;
+                        margin-bottom: 8px;
+                        color: var(--orange);
+                        font-weight: 500;
+                        i{
+                            font-size: var(--paragraph-1);
+                            margin-right: 5px
+                        }
+
+                        img{
+                            margin-left: 5px;
+                            width: 15px;
+                            height: 15px;
+                        }
                     }
 
                     .add-booking-btn{
@@ -253,18 +312,22 @@
                         align-items: center;
                         justify-content: center;
                         width: 165px;
-                        height: 30px;
+                        height: 35px;
                         border-radius: 15px;
                         background-color: var(--blue);
                         color: white;
                         cursor: pointer;
                         margin-top: 5px;
+                      
+                        i{
+                            font-size: var(--paragraph-2);
+                        }     
 
                         span{
                             font-size: var(--paragraph-2);
                             font-weight: 450;
                             color: white;
-                            margin-left: 10px;
+                            margin-left: 7px;
                         }
                     }
 

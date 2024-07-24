@@ -3,6 +3,9 @@ import './main.scss'
 import { Link } from 'react-router-dom'
 
 const Main = () => {
+
+  const jwtToken = localStorage.getItem('idToken');
+
   return (
     <div className='home'>
     <div className='div-1'>
@@ -10,8 +13,22 @@ const Main = () => {
         <p className='head'>The Adventures<br /><span className='head-1'></span></p>
         <p>This is a main paragraph in our travel planning website. You can take many services from our web and it's also Free.</p>
         <div className='btn-with-input'>
-          {/* <input type='text' placeholder='Where you want to go ?' /> */}
-          <Link to={"/travelplan"}><button>Plan Your Trip Now</button></Link>
+           {jwtToken ? (
+                      <div className="logged">
+                        <Link to={"/travelplan"}>
+                             <button>Plan Now</button>
+                        </Link>
+                        <Link to={"/travelplan"}>
+                             <button>My Plannings</button>
+                        </Link>
+                      </div>
+                    ) : (
+                      <div className="notlogged">
+                          <Link to={"/travelplan"}>
+                             <button>Plan Your Trip Now</button>
+                          </Link>
+                      </div>
+           )}
         </div>
         <div className='data-div-1'>
           <div className='each-data'><h1>50+</h1><p>Destinations</p></div>
