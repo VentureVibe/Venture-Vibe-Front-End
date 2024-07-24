@@ -1,23 +1,27 @@
 .sidebar-admin{
     display: flex;
     width: 270px;
-    background-color: var(--blue);
-    height: 90vh;
-    padding:10px;
+    background-color: var(--white);
+    height: 100%;
+    padding:20px;
     box-sizing: border-box;
     box-shadow: var(--box-shadow-2);
+    position: relative;
+    top: 0;
+    left: 0;
 
     .tophead{
         display: flex;
         flex-direction: column;
         height: 100%;
-    }
+        
+    }.sidebar h1{
+        padding: 20px;
+        color: #000;
+        text-align: center;
+        margin-bottom: 20px;
 }
-.sidebar h1{
-    padding: 20px;
-    color: #000;
-    text-align: center;
-    margin-bottom: 20px;
+
 }
 
 
@@ -28,6 +32,7 @@
     padding: 0;
     margin: 0;
     margin-left: 20px;
+    margin-top: 70px;
 
     
     li{
@@ -60,17 +65,21 @@
 
 }
 .logout{
-    // position: relative;
+    //  position: relative; 
     display: block;
     padding: 10px;
     margin-left: 140px;
     margin-top: auto;
     position: relative;
     background-color: #d6934c;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
 
     .icon{
         margin: 10px;
         padding: 20px;
+        margin-left: 20px;
     }
 
 
@@ -78,4 +87,17 @@
        background-color: var(--orange);
        cursor: pointer;
     }
+
+    .bottom{
+        display: flex;
+    }
+}
+
+.home img{
+    display: flex;
+    flex-direction: row;
+    max-width: 100%;
+    vertical-align: bottom;
+    position: relative;
+    border-radius: 50%;
 }

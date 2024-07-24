@@ -25,6 +25,7 @@
     "amazon-cognito-identity-js": "^6.3.12",
     "aws-amplify": "^6.4.0",
     "axios": "^1.7.2",
+    "jwt-decode": "^4.0.0",
     "node-polyfill-webpack-plugin": "^4.0.0",
     "react": "^18.2.0",
     "react-beautiful-dnd": "^13.1.1",
@@ -35,7 +36,7 @@
     "react-google-autocomplete": "^2.7.3",
     "react-google-places-autocomplete": "^4.0.1",
     "react-portal": "^4.2.2",
-    "react-router-dom": "^6.23.1",
+    "react-router-dom": "^6.24.1",
     "sass": "^1.77.5",
     "swiper": "^11.1.4"
   },

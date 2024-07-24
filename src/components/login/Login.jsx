@@ -3,7 +3,7 @@ import "./Login.scss";
 import googleLogo from "../../assets/google-logo.png";
 import CloseIcon from '@mui/icons-material/Close';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { useAlert } from '../errAlert/AlertContext';
+import { useAlert } from '../../context/errAlert/AlertContext';
 import {
   loginUser,
   sendForgotPasswordCode,

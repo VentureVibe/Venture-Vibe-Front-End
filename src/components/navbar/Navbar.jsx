@@ -5,8 +5,9 @@ import Login from '../login/Login';
 import Register from '../register/Register';
 import PopUpMain from '../popupmain/PopUpMain';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import { useAlert } from '../errAlert/AlertContext';
+import { useAlert } from '../../context/errAlert/AlertContext';
 import { handleLogout } from '../../services/user/LoginSignup';
+import Profile from '../profile/Profile';
 
 const Navbar = () => {
   const [showSignUp, setShowSignUp] = useState(false);
@@ -20,6 +21,7 @@ const Navbar = () => {
     if(localStorage.getItem('successok')) {
       showAlert('Login successful', 'success'/*, 40000*/); 
       localStorage.removeItem('successok');
+      //console.log(jwtToken);
     }
   }, []);
 
@@ -63,8 +65,9 @@ const Navbar = () => {
         {isLoggedIn ? (
           <li className="profile-dropdown">
             <button onClick={toggleDropdown} className="profile-button">
-        <img src="/src/assets/3.png" alt="Profile" className="profile-pic" />
-        <ArrowDropDownIcon />
+        {/* <img src="/src/assets/3.png" alt="Profile" className="profile-pic" />
+        <ArrowDropDownIcon /> */}
+        <Profile />
       </button>
       {dropdownVisible && (
         <div className="dropdown-menu">
