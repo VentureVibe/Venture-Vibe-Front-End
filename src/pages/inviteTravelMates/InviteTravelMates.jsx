@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import "./InviteTravelMates.scss";
-import { Link, useLocation, useHistory } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import PopUpMain from '../../components/popupmain/PopUpMain';
 import Register from '../../components/register/Register';
 import Login from '../../components/login/Login';
@@ -10,7 +10,7 @@ const InviteTravelMates = () => {
   const [showSignIn, setShowSignIn] = useState(false);
 
   const { search } = useLocation();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const queryParams = new URLSearchParams(search);
   const to = queryParams.get('endDate');
@@ -46,7 +46,8 @@ const InviteTravelMates = () => {
 
   useEffect(() => {
     if (!to || !from || !location || !lat || !lng) {
-      history.push('/travelplan');
+    
+      navigate('/travelplan');
     }
   }, [to, from, location, lat, lng, history]);
 
@@ -58,11 +59,12 @@ const InviteTravelMates = () => {
           <span>Invite tripmates</span>
           <input type="text" placeholder="Enter an email address" />
         </div>
+        <Link to={`/travelplan/${to}/${from}/${location}/${lat}/${lng}`}>
         <div className="btn-container">
-          <Link to={`/travelplan/${to}/${from}/${location}/${lat}/${lng}`}>
             <span>Start Planning</span>
-          </Link>
+        
         </div>
+        </Link>
       </div>
       {showSignUp && (
         <PopUpMain Component={<Register onClose={toggleSignUpPopUp} onClickShift={shiftStates} />} />
