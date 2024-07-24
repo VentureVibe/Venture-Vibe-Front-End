@@ -121,18 +121,10 @@ $currentPercentage: 0;
           }
   
           .btn-with-input {
-              // display: flex;
               margin: 3vh 0;
-  
-              // input {
-              //     border: 1px solid #414143;
-              //     border-radius: 0.5vw;
-              //     padding: 0.5vw;
-              //     margin-right: 1vw;
-              //     font-size: 1.2vw;
-              // }
-  
-              button {
+
+              .logged{
+                button {
                   padding: 0.6vw 1vw;
                   font-size: 1.2vw;
                   border-radius: 0.5vw;
@@ -140,13 +132,37 @@ $currentPercentage: 0;
                   font-weight: 500;
                   background-color: #0075C3;
                   color: white;
+                  
                   cursor: pointer;
+                 }
+ 
+                 button:hover {
+                   background-color: #ffffff;
+                   color: #0075C3;
+                   border: 2px solid #0075C3;
+                 }
               }
-              button:hover {
-                background-color: #ffffff;
+  
+             .notlogged{
+
+                button {
+                 padding: 0.6vw 1vw;
+                 font-size: 1.2vw;
+                 border-radius: 0.5vw;
+                 border: 2px solid white;
+                 font-weight: 500;
+                 background-color: #0075C3;
+                 color: white;
+                 cursor: pointer;
+                }
+
+                button:hover {
+                  background-color: #ffffff;
                   color: #0075C3;
                   border: 2px solid #0075C3;
-              }
+                }
+             }
+             
           }
   
           .data-div-1 {
