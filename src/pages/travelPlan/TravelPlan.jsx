@@ -26,6 +26,7 @@ const TravelPlan = () => {
   const [placeImage, setPlaceImage] = useState('');
   const [clickedPlace,setClickedPlace]=useState(null);
   const [addedPlaces, setAddedPlaces] = useState([]);
+  const [addedRestaurants, setAddedRestaurants] = useState([]);
 
   useEffect(() => {
     const fetchPlaceDetails = () => {
@@ -69,7 +70,7 @@ const TravelPlan = () => {
               <div className='plan-list'>
 
                  <img src={placeImage} alt="Location Image" />
-              <TripToTravelPlan location={location} from={from} to={to} />
+              <TripToTravelPlan location={location} from={from} to={to}  />
               </div>
               <ExploreTravelPlan />
               <NotesTravelPlan />
@@ -79,7 +80,7 @@ const TravelPlan = () => {
               <hr className='travelplan-hr'/>
               <HotelsTravelPlan />
               <hr className='travelplan-hr'/>
-              <RestaurantsTravelPlan />
+              <RestaurantsTravelPlan lat={lat} long={lng} addedRestaurants={addedRestaurants} setAddedRestaurants={setAddedRestaurants} setClickedPlace={setClickedPlace}/>
            
               
               <hr className='travelplan-hr-line'/>
@@ -90,7 +91,7 @@ const TravelPlan = () => {
           </div>
         </div>
         <div className='map'>
-              <MapTravelPlan lat={parseFloat(lat)} lng={parseFloat(lng)} place={"as"} clickedPlace={clickedPlace} setAddedPlaces={setAddedPlaces} addedPlaces={addedPlaces} />
+              <MapTravelPlan lat={parseFloat(lat)} lng={parseFloat(lng)} place={"as"} clickedPlace={clickedPlace} setAddedPlaces={setAddedPlaces} addedPlaces={addedPlaces} addedRestaurants={addedRestaurants} />
         </div>
       </div>
     </div>

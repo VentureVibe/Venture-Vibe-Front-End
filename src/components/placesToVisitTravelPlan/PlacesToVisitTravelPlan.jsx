@@ -80,13 +80,11 @@ const PlacesToVisitTravelPlan = ({ lat, long ,setClickedPlace,addedPlaces,setAdd
             placeDetails
         ]);
     };
-    
-    
+     
     const onclickPlace = (place) => {
         setClickedPlace(place);
     };
     
-
     const handleRemoveFromTrip = (index) => {
       setAddedPlaces(prevAddedPlaces => 
           prevAddedPlaces.filter((_, i) => i !== index)
