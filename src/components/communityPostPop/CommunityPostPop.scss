@@ -69,6 +69,7 @@
             height: 55px;
             border-radius: 100%;
             margin: 0px;
+            object-fit: cover;
         } 
     }
 
@@ -82,6 +83,7 @@
             margin-top: 14px;
             border-radius: 5px;
             margin-bottom: 10px;
+            object-fit: cover;
     }
   
 
@@ -128,7 +130,7 @@
                 height: 35px;
                 margin-right: 25px;
                 border-radius: 100%;
-                
+                object-fit: cover;
             }
             .comment-details{
                 padding: 7px;
@@ -182,7 +184,7 @@
                 height: 35px;
                 margin-right: 25px;
                 border-radius: 100%;
-                
+                object-fit: cover;
             }
             .comment-details{
                 padding: 7px;

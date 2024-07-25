@@ -1,7 +1,9 @@
 import React,{useState} from 'react';
 import './CommunityPostPop.scss';
+import noAvatar from "../../assets/noavatar.jpg";
+import { format } from 'date-fns';
 
-const CommunityPostPop = ({ onClose, data1 }) => {
+const CommunityPostPop = ({ onClose, data1, user}) => {
 
   const [isPopupVisible, setIsPopupVisible] = useState(false);
 
@@ -13,14 +15,18 @@ const CommunityPostPop = ({ onClose, data1 }) => {
     e.stopPropagation(); 
   };
 
+  const formattedDate = format(new Date(data1.createdAt), 'yyyy-MM-dd');
+
+  //console.log(data1)
+
   return (
     <div className='CommunityPostPop' onClick={handleClick}>
       <div className="content">
         <div className="top">
-          <img src={data1.profile} alt="" />
+          <img src={(user.profileImg != null) ? user.profileImg : noAvatar} alt="" />
           <div className="details">
-            <h4>{data1.name}</h4>
-            <p>2023-01-23</p>
+            <h4>{user.name}</h4>
+            <p>{formattedDate}</p>
           </div>
           {!isPopupVisible ? (
             <i className="fa-solid fa-ellipsis" onClick={togglePopup}></i>

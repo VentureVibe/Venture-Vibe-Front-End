@@ -29,6 +29,8 @@ const Feeds = () => {
     return <div>{error}</div>;
   }
 
+  console.log(communityPost.createdAt);
+
   const limitedPost = communityPost.slice(0, 4);
 
   return (

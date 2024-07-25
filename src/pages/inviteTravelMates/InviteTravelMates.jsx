@@ -10,6 +10,7 @@ const InviteTravelMates = () => {
   const [showSignIn, setShowSignIn] = useState(false);
 
   const { search } = useLocation();
+
   const navigate = useNavigate();
 
   const queryParams = new URLSearchParams(search);
@@ -46,7 +47,7 @@ const InviteTravelMates = () => {
 
   useEffect(() => {
     if (!to || !from || !location || !lat || !lng) {
-    
+
       navigate('/travelplan');
     }
   }, [to, from, location, lat, lng, history]);
