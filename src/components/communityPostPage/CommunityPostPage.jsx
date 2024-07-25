@@ -12,7 +12,8 @@ const CommunityPostPage = ({posts}) => {
           description={post.content}
           likes={post.totalLikes}
           comments={post.totalComments}
-          name={post.userId}
+          userId={post.userId}
+          createdAt={post.createdAt}
         />
       ))}
     </div>
