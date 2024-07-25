@@ -48,7 +48,9 @@ const InviteTravelMates = () => {
 
   useEffect(() => {
     if (!to || !from || !location || !lat || !lng) {
-      navigate('/travelplan');
+
+      navigate("/travelplan");
+
     }
   }, [to, from, location, lat, lng, navigate]);
 
