@@ -34,7 +34,7 @@ const Profile = () => {
     <div className="profile-details">
       {/*<i className="fa-regular fa-bell"></i>*/}
       <h4>{user?.email}</h4>
-      <img src={user?.profileImageUrl} alt="Profile" />
+      <img src={user?.profileImg} alt="Profile" />
     </div>
   );
 };
