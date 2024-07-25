@@ -8,6 +8,7 @@ const CommunityPostPage = ({posts}) => {
       {posts.map((post, index) => (
         <CommunityPost
           key={index}
+          postId={post.id}
           imageSrc={post.imgUrl}
           description={post.content}
           likes={post.totalLikes}

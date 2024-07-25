@@ -31,7 +31,7 @@ const Feeds = () => {
 
   console.log(communityPost.createdAt);
 
-  const limitedPost = communityPost.slice(0, 4);
+  const limitedPost = communityPost.slice(1, 5);
 
   return (
     <CommunityPostPage posts={limitedPost} />
