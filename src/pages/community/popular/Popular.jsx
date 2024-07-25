@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import CommunityPostPage from '../../../components/communityPostPage/CommunityPostPage';
 import newRequest from '../../../services/NewRequst';
+import { GetCurrentUserC } from '../../../services/user/GetCurrentUserC';
 
 const Popular = () => {
   const [communityPost, setCommunityPost] = useState([]);
@@ -28,6 +29,8 @@ const Popular = () => {
   if (error) {
     return <div>{error}</div>;
   }
+
+  console.log(GetCurrentUserC());
 
   return (
     <div>
