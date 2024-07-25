@@ -1,5 +1,5 @@
 .CommunityPost{
-    height:345px;
+    height:365px;
     width: 98.5%;
     background-color: var(--white);
     margin: 4px;
@@ -64,10 +64,16 @@
     }
     .description{
         padding: 1px 5px;
+        height: 70px;
+        //border: 1px solid black;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        //white-space: nowrap;
 
         p{
             font-size:var(--paragraph-1);
             letter-spacing: 0.02rem;
+            margin: 0;
         }
     }
 
