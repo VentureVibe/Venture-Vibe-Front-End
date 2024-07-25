@@ -8,20 +8,36 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { useAlert } from "../../context/errAlert/AlertContext";
 import { handleLogout } from "../../services/user/LoginSignup";
 import Profile from "../profile/Profile";
+import Loading from "../loading/Loading";
+import { exchangeCodeForTokens } from "../../services/user/LoginSignup";
 
 const Navbar = () => {
   const [showSignUp, setShowSignUp] = useState(false);
   const [showSignIn, setShowSignIn] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const showAlert = useAlert(); // State to track user's login status
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const code = urlParams.get("code");
+    const state = urlParams.get("state");
+
+    if (code) {
+      setLoading(true);
+      exchangeCodeForTokens(code, state)
+        .then(() => setLoading(false))
+        .catch((error) => {
+          setLoading(false);
+          showAlert("Error exchanging code for tokens", "error");
+        });
+    }
+
     const jwtToken = localStorage.getItem("idToken");
     setIsLoggedIn(!!jwtToken);
     if (localStorage.getItem("successok")) {
-      showAlert("Login successful", "success" /*, 40000*/);
+      showAlert("Login successful", "success");
       localStorage.removeItem("successok");
-      //console.log(jwtToken);
     }
   }, []);
 
@@ -63,6 +79,7 @@ const Navbar = () => {
 
   return (
     <div className="navbar">
+      {loading && <Loading />}
       <NavLink className="logo" to="/">
         <img src="/src/assets/3.png" alt="Venture Vibe" />
         <h2>Venture Vibe</h2>
