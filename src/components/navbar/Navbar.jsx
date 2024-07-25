@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import './Navbar.scss';
-import { NavLink } from 'react-router-dom';
-import Login from '../login/Login';
-import Register from '../register/Register';
-import PopUpMain from '../popupmain/PopUpMain';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import { useAlert } from '../../context/errAlert/AlertContext';
-import { handleLogout } from '../../services/user/LoginSignup';
-import Profile from '../profile/Profile';
+import React, { useState, useEffect } from "react";
+import "./Navbar.scss";
+import { NavLink } from "react-router-dom";
+import Login from "../login/Login";
+import Register from "../register/Register";
+import PopUpMain from "../popupmain/PopUpMain";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import { useAlert } from "../../context/errAlert/AlertContext";
+import { handleLogout } from "../../services/user/LoginSignup";
+import Profile from "../profile/Profile";
 
 const Navbar = () => {
   const [showSignUp, setShowSignUp] = useState(false);
@@ -16,11 +16,11 @@ const Navbar = () => {
   const showAlert = useAlert(); // State to track user's login status
 
   useEffect(() => {
-    const jwtToken = localStorage.getItem('idToken');
+    const jwtToken = localStorage.getItem("idToken");
     setIsLoggedIn(!!jwtToken);
-    if(localStorage.getItem('successok')) {
-      showAlert('Login successful', 'success'/*, 40000*/); 
-      localStorage.removeItem('successok');
+    if (localStorage.getItem("successok")) {
+      showAlert("Login successful", "success" /*, 40000*/);
+      localStorage.removeItem("successok");
       //console.log(jwtToken);
     }
   }, []);
@@ -47,36 +47,69 @@ const Navbar = () => {
 
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible);
+    if (dropdownVisibleIcon) {
+      setDropdownVisibleIcon(!dropdownVisibleIcon);
+    }
+  };
+
+  const [dropdownVisibleIcon, setDropdownVisibleIcon] = useState(false);
+
+  const toggleDropdownI = () => {
+    setDropdownVisibleIcon(!dropdownVisibleIcon);
+    if (dropdownVisible) {
+      setDropdownVisible(!dropdownVisible);
+    }
   };
 
   return (
-    <div className='navbar'>
+    <div className="navbar">
       <NavLink className="logo" to="/">
         <img src="/src/assets/3.png" alt="Venture Vibe" />
         <h2>Venture Vibe</h2>
       </NavLink>
       <ul className="list">
-        <li><NavLink to="/community">Community</NavLink></li>
-        <li><NavLink to="/">Hotels</NavLink></li>
-        <li><NavLink to="/events">Events</NavLink></li>
-        <li><NavLink to="/travelguides">Travel Guides</NavLink></li>
+        <li>
+          <NavLink to="/community">Community</NavLink>
+        </li>
+        <li>
+          <NavLink to="/">Hotels</NavLink>
+        </li>
+        <li>
+          <NavLink to="/events">Events</NavLink>
+        </li>
+        <li>
+          <NavLink to="/travelguides">Travel Guides</NavLink>
+        </li>
       </ul>
       <ul className="button">
         {isLoggedIn ? (
           <li className="profile-dropdown">
+            <button onClick={toggleDropdownI} className="notification-button">
+              <div className="notification">
+                <i className="fa-regular fa-bell"></i>
+                <p className="notification-count">0</p>
+              </div>
+            </button>
             <button onClick={toggleDropdown} className="profile-button">
-        {/* <img src="/src/assets/3.png" alt="Profile" className="profile-pic" />
-        <ArrowDropDownIcon /> */}
-        <Profile />
-      </button>
-      {dropdownVisible && (
-        <div className="dropdown-menu">
-          <ul>
-            <li>Profile</li>
-            <li onClick={handleLogout}>Logout</li>
-          </ul>
-        </div>
-      )}
+              <Profile />
+            </button>
+            {dropdownVisible && (
+              <div className="dropdown-menu-profile">
+                <ul>
+                  <li>Profile</li>
+                  <li onClick={handleLogout}>Logout</li>
+                </ul>
+              </div>
+            )}
+            {dropdownVisibleIcon && (
+              <div className="dropdown-menu">
+                <ul>
+                  <li>Notification 1</li>
+                  <li>Notification 2</li>
+                  <li>Notification 3</li>
+                </ul>
+              </div>
+            )}
           </li>
         ) : (
           <>
@@ -91,15 +124,22 @@ const Navbar = () => {
       </ul>
 
       {showSignUp && (
-        <PopUpMain Component={<Register onClose={toggleSignUpPopUp} onClickShift={shiftStates} />} />
+        <PopUpMain
+          Component={
+            <Register onClose={toggleSignUpPopUp} onClickShift={shiftStates} />
+          }
+        />
       )}
 
       {showSignIn && (
-        <PopUpMain Component={<Login onClose={toggleSignInPopUp} onClickShift={shiftStates} />} />
+        <PopUpMain
+          Component={
+            <Login onClose={toggleSignInPopUp} onClickShift={shiftStates} />
+          }
+        />
       )}
     </div>
   );
 };
 
 export default Navbar;
-

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode'; // Ensure you use the correct import
+import { GetCurrentUserC } from './GetCurrentUserC';
 
 export const GetUser = async () => {
   try {
@@ -8,7 +9,8 @@ export const GetUser = async () => {
       throw new Error('No token found');
     }
 
-    const decodedToken = jwtDecode(token);
+    //const decodedToken = jwtDecode(token);
+    const decodedToken = GetCurrentUserC();
     const email = decodedToken.email;
 
     // Make a GET request to fetch user details by email
