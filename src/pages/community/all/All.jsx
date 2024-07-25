@@ -29,7 +29,7 @@ const All = () => {
     return <div>{error}</div>;
   }
   
-  const limitedPost =  communityPost.slice(3, 7);
+  const limitedPost =  communityPost.slice(0, 7);
 
   return (
     <div>
