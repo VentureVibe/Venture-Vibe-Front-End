@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import "./InviteTravelMates.scss";
-import { Link, useLocation, useHistory } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import PopUpMain from '../../components/popupmain/PopUpMain';
 import Register from '../../components/register/Register';
 import Login from '../../components/login/Login';
@@ -10,7 +10,8 @@ const InviteTravelMates = () => {
   const [showSignIn, setShowSignIn] = useState(false);
 
   const { search } = useLocation();
-  const history = useHistory();
+  //const history = useHistory();
+  const navigate = useNavigate();
 
   const queryParams = new URLSearchParams(search);
   const to = queryParams.get('endDate');
@@ -46,7 +47,8 @@ const InviteTravelMates = () => {
 
   useEffect(() => {
     if (!to || !from || !location || !lat || !lng) {
-      history.push('/travelplan');
+      //history.push('/travelplan');
+      navigate("/travelplan");
     }
   }, [to, from, location, lat, lng, history]);
 

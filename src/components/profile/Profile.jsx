@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import './Profile.scss';
-import { GetUser } from '../../services/user/GetUser';
+import React, { useEffect, useState } from "react";
+import "./Profile.scss";
+import { GetUser } from "../../services/user/GetUser";
 
 const Profile = () => {
   const [user, setUser] = useState(null);
@@ -31,8 +31,8 @@ const Profile = () => {
   }
 
   return (
-    <div className='profile-bar'>
-      <i className="fa-regular fa-bell"></i>
+    <div className="profile-details">
+      {/*<i className="fa-regular fa-bell"></i>*/}
       <h4>{user?.email}</h4>
       <img src={user?.profileImageUrl} alt="Profile" />
     </div>
