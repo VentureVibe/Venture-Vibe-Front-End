@@ -1,89 +1,154 @@
 .navbar {
+  margin: 0;
+  padding: 1vh 4vh;
+  height: 8.25vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .logo {
     margin: 0;
-    padding: 1vh 4vh;
-    height: 8.25vh;
+    height: 100%;
+    width: auto;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: start;
+    gap: 0.5vw;
 
-    .logo {
-        margin: 0;
-        height: 100%;
-        width: auto;
-        display: flex;
-        justify-content: start;
-        gap: 0.5vw;
-
-        img {
-            width: 22px !important;
-            height: 35px !important;
-        }
-        h2 {
-            font-size: var(--topic);
-            color: var(--orange);
-            margin-top: 1vh;
-        }
+    img {
+      width: 22px !important;
+      height: 35px !important;
     }
-    ul {
-        display: flex;
-        list-style: none;
+    h2 {
+      font-size: var(--topic);
+      color: var(--orange);
+      margin-top: 1vh;
+    }
+  }
+  ul {
+    display: flex;
+    list-style: none;
+    font-size: 2.2vh;
+    color: var(--text-color);
+    font-weight: 450;
+    cursor: pointer;
+
+    .login {
+      color: var(--orange);
+      button {
+        background-color: #ffffff;
+      }
+      :hover {
+        color: #ffffff;
+        background-color: #1bbc9b;
+      }
+    }
+    .signup {
+      color: white;
+
+      button {
+        background-color: var(--orange);
+      }
+    }
+    .login,
+    .signup {
+      button {
+        width: 6vw;
+        border-radius: 2.6vh;
         font-size: 2.2vh;
-        color: var(--text-color);
         font-weight: 450;
+        padding: 0.8vh 0.7vw;
         cursor: pointer;
+      }
+    }
+  }
+  .list li:hover {
+    color: /*var(--orange)*/ var(--orange);
+  }
+  .list {
+    gap: 2vw;
+  }
+  .button {
+    gap: 1vw;
+    .profile-dropdown {
+      button {
+        background-color: #ffffff;
+        img {
+          width: 7vh;
+          height: 7vh;
+          object-fit: cover;
+        }
+      }
+      button:hover {
+        color: #0075c3;
+        .notification {
+          p {
+            color: var(--blue);
+            background-color: #ffffff;
+            border: 2px solid var(--blue);
+          }
+        }
+      }
+      .notification-button {
+        margin-right: 2vw;
+        .notification {
+          position: relative;
+          i {
+            font-size: 1.4vw;
+          }
+          p {
+            font-size: 0.8vw;
+            position: absolute;
+            background-color: #0075c3;
+            color: #ffffff;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            top: 12px;
+            right: 8px;
+            font-weight: 700;
+          }
+        }
+      }
+      position: relative;
+      .dropdown-menu-profile,
+      .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        width: 200px;
+        z-index: 10;
+        overflow: hidden;
 
-        .login {
-            color: var(--orange);
-            button {
-                background-color: #ffffff;
-            }
-            :hover {
-                color: #ffffff;
-                background-color: #1BBC9B;
-            }
-        }
-        .signup {
-            color: white;
+        ul {
+          display: block;
+          list-style: none;
+          padding: 0;
+          margin: 0;
 
-            button {
-                background-color: var(--orange);
+          li {
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+
+            &:hover {
+              background-color: #f5f5f5;
             }
+          }
+
+          &:first-child {
+            border-bottom: 1px solid #eee;
+          }
         }
-        .login, .signup {
-            button {
-                width: 6vw;
-                border-radius: 2.6vh;
-                font-size: 2.2vh;
-                font-weight: 450;
-                padding: 0.8vh 0.7vw;
-                cursor: pointer;
-            }
-        }
+      }
+      .dropdown-menu {
+        right: 200px;
+      }
     }
-    .list li:hover {
-        color: /*var(--orange)*/var(--orange);
-    }
-    .list {
-        gap: 2vw;
-    }
-    .button {
-        gap: 1vw;
-        li {
-            button {
-                img {
-                    width: 5vh;
-                    height: 6vh;
-                }
-            }
-            position: relative;
-            .dropdown-menu {
-                position: absolute;
-                left: -20px;
-                border: 1px solid red;
-                ul {
-                    display: block;
-                }
-            }
-        }
-    }
+  }
 }

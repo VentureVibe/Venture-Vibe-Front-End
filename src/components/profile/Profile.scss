@@ -1,24 +1,17 @@
-.profile-bar{
-    margin-right: 22px;
-    //width: 190px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    i{
-        font-size: var(--Topic);
-        cursor: pointer;
-    }
+.profile-details {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 
-    img{
-        border-radius: 50%;
-        width:35px;
-        height: 35px;
-        cursor: pointer;
-    }
+  img {
+    border-radius: 50%;
+    cursor: pointer;
+  }
 
-    h4{
-        font-weight: 500;
-        letter-spacing: 0.01rem;
-        cursor: pointer;
-    }
+  h4 {
+    font-weight: 500;
+    letter-spacing: 0.01rem;
+    cursor: pointer;
+    margin-right: 1vh;
+  }
 }
