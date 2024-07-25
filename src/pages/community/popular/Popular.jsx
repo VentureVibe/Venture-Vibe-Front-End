@@ -1,15 +1,39 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import CommunityPostPage from '../../../components/communityPostPage/CommunityPostPage';
-import { posts } from '../../../dummyData';
+import newRequest from '../../../services/NewRequst';
 
 const Popular = () => {
-  const limitedPost =  posts.slice(7, 9);
+  const [communityPost, setCommunityPost] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    newRequest.get('communityPost')
+      .then(response => {
+        const sortedPosts = response.data.sort((a, b) => b.totalLikes - a.totalLikes);
+        setCommunityPost(sortedPosts);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('There was an error!', error);
+        setError('There was an error fetching the posts.');
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   return (
     <div>
-       <CommunityPostPage posts={limitedPost}/>
+      <CommunityPostPage posts={communityPost}/>
     </div>
-  )
-}
+  );
+};
 
-export default Popular
+export default Popular;
