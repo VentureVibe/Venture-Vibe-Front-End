@@ -3,13 +3,12 @@ import axios from 'axios';
 
 export const saveUser = async (userData, jwtToken) => {
   try {
+    console.log(userData);
     const response = await axios.post(
       'http://your-backend-url/invite',
       userData,
       {
-        headers: {
-          Authorization: `Bearer ${jwtToken}`,
-        },
+       
       }
     );
 
