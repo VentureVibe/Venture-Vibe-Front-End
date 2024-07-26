@@ -1,11 +1,11 @@
 import React from "react";
-// import { TailSpin } from "react-loader-spinner";
-// import "./Loading.scss";
+import { TailSpin } from "react-loader-spinner";
+import "./Loading.scss";
 
 const Loading = () => {
   return (
     <div className="spin-div">
-      {/* <TailSpin
+      <TailSpin
         visible={true}
         height="90"
         width="90"
@@ -15,7 +15,7 @@ const Loading = () => {
         wrapperStyle={{}}
         wrapperClass=""
       />
-      <p>Loading...</p> */}
+      <p>Loading...</p>
     </div>
   );
 };
