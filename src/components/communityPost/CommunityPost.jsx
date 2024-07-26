@@ -7,12 +7,12 @@ import CommunityPostPop from '../communityPostPop/CommunityPostPop';
 import noAvatar from "../../assets/noavatar.jpg";
 import newRequest from '../../services/NewRequst';
 
-const CommunityPost = ({ userId, likes, comments, description, imageSrc, createdAt }) => {
+const CommunityPost = ({ postId, userId, likes, comments, description, imageSrc, createdAt }) => {
   const [showPopup, setShowPopup] = useState(false); // Start with popup hidden
   const [user, setUser] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [data, setData] = useState({ likes, comments, description, imageSrc, createdAt });
+  const [data, setData] = useState({postId, likes, comments, description, imageSrc, createdAt });
 
   const toggleModal = () => {
     setShowPopup(!showPopup); // Toggle the state of showPopup

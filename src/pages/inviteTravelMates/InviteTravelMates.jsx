@@ -4,7 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import PopUpMain from '../../components/popupmain/PopUpMain';
 import Register from '../../components/register/Register';
 import Login from '../../components/login/Login';
-import  saveUser  from '../../services/travelplan/TravelPlan';
+import  {saveUser}  from '../../services/travelplan/TravelPlan';
 
 const InviteTravelMates = () => {
   const [showSignUp, setShowSignUp] = useState(false);

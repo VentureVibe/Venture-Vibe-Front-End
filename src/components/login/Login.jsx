@@ -61,22 +61,31 @@ const Login = ({ onClose, onClickShift }) => {
   };
 
   const handleForgotPassword = () => {
+    setLoading(true);
     setView("enterEmail");
+    setLoading(false);
   };
 
   const handleSendCode = () => {
+    setLoading(true);
     sendForgotPasswordCode(
       email,
       () => {
+        setLoading(false);
         showAlert("Code Sent", "info");
         setView("enterCode");
       },
-      (err) => showAlert("Error in sending code", "error")
+      (err) => {
+        setLoading(false);
+        showAlert("Error in sending code", "error");
+      }
     );
   };
 
   const handleChangePassword = () => {
+    setLoading(true);
     if (newPassword !== confirmNewPassword) {
+      setLoading(false);
       showAlert("Passwords do not match", "error");
       return;
     }
@@ -85,31 +94,53 @@ const Login = ({ onClose, onClickShift }) => {
       code,
       newPassword,
       () => {
+        setLoading(false);
         showAlert("Password changed", "success");
         setView("login");
       },
-      (err) => showAlert("Error in changing password", "error")
+      (err) => {
+        setLoading(false);
+        showAlert("Error in changing password", "error");
+      }
     );
   };
 
   const handleConfirm = () => {
+    setLoading(true);
     confirmRegistration(
       email,
       verificationCode,
       () => {
+        setLoading(false);
         showAlert("Account Verified", "success");
         onClose();
       },
-      (err) => showAlert(err.message, "error")
+      (err) => {
+        setLoading(false);
+        showAlert(err.message, "error");
+      }
     );
   };
 
   const handleResendCode = () => {
+    setLoading(true);
     resendConfirmationCode(
       email,
-      () => showAlert("Verification code resent", "info"),
-      (err) => showAlert(err.message, "error")
+      () => {
+        setLoading(false);
+        showAlert("Verification code resent", "info");
+      },
+      (err) => {
+        setLoading(false);
+        showAlert(err.message, "error");
+      }
     );
+  };
+
+  const googleSignIn = () => {
+    setLoading(true);
+    handleGoogleSignIn();
+    setLoading(false);
   };
 
   return (
@@ -126,7 +157,7 @@ const Login = ({ onClose, onClickShift }) => {
             <div className="heading">
               <span>Login to Venture Vibe</span>
             </div>
-            <div className="sign-up-google" onClick={handleGoogleSignIn}>
+            <div className="sign-up-google" onClick={googleSignIn}>
               <img src={googleLogo} alt="Google Logo" />
               <span>Log in with Google</span>
             </div>
