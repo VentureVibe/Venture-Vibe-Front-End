@@ -1,74 +1,98 @@
-import React, { useState } from "react";
 import "./ServiceProviderListing.scss";
+import React, { useState, useEffect } from "react";
+import event1 from "../../../assets/event1.jpg";
+import event2 from "../../../assets/event2.jpg";
+import event3 from "../../../assets/event3.jpg";
 
 const ServiceProviderListing = () => {
-  const [serviceProviders, setServiceProviders] = useState([
-    {
-      id: 1,
-      name: "TravelCo",
-      email: "contact@travelco.com",
-      service: "Travel Agency",
-    },
-    {
-      id: 2,
-      name: "GuidePro",
-      email: "info@guidepro.com",
-      service: "Tour Guide",
-    },
-    // Add more service providers as needed
-  ]);
+  const [listings, setListings] = useState([]);
 
-  const handleDelete = (providerId) => {
-    const updatedProviders = serviceProviders.filter(
-      (provider) => provider.id !== providerId
+  useEffect(() => {
+    // Fetch listings from the server (mock data used here for illustration)
+    const fetchListings = async () => {
+      const mockData = [
+        {
+          id: 1,
+          img: event1,
+
+          title: "Whales Watching Tour Transfer - Galle",
+          description: "Whales Watching Tour Transfer - Galle",
+          price: 200,
+          status: "pending",
+        },
+        {
+          id: 2,
+          img: event2,
+          title: "Whales Watching Tour Transfer - Galle",
+          description: "River Safari, Sea Turtle & Stilt Fishermen",
+          price: 300,
+          status: "pending",
+        },
+        {
+          id: 3,
+          img: event3,
+          title: "Safari Trip to Yala & Udawalawe",
+          description: "Safari Trip to Yala & Udawalawe",
+          price: 150,
+          status: "approved",
+        },
+      ];
+      setListings(mockData);
+    };
+
+    fetchListings();
+  }, []);
+
+  const handleStatusChange = (id, status) => {
+    setListings(
+      listings.map((listing) =>
+        listing.id === id ? { ...listing, status } : listing
+      )
     );
-    setServiceProviders(updatedProviders);
-  };
-
-  const handleEdit = (provider) => {
-    // Implement edit functionality if needed
-    console.log("Editing provider:", provider);
+    // Update status on the server here
   };
 
   return (
-    <div className="service-provider-listing">
-      <h1>Service Provider Listings</h1>
-      <div className="provider-table">
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Service</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {serviceProviders.map((provider) => (
-              <tr key={provider.id}>
-                <td>{provider.id}</td>
-                <td>{provider.name}</td>
-                <td>{provider.email}</td>
-                <td>{provider.service}</td>
-                <td>
-                  <button
-                    className="edit-button"
-                    onClick={() => handleEdit(provider)}
-                  >
-                    Edit
-                  </button>
-                  <button
-                    className="delete-button"
-                    onClick={() => handleDelete(provider.id)}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+    <div className="service-provider-listing-admin">
+      <h1>Event Listings</h1>
+      <div className="listing-container">
+        {listings.map((listing) => (
+          <div key={listing.id} className="listing-item">
+            <img src={listing.img} alt={listing.title} />
+            <div className="listing-details">
+              <h2>{listing.title}</h2>
+              <p>{listing.description}</p>
+              <div className="admin-actions">
+                <p>${listing.price}</p>
+                <span className={`status ${listing.status}`}>
+                  {listing.status}
+                </span>
+                {listing.status === "pending" && (
+                  <>
+                    <div className="buttonsofChoice">
+                      <button
+                        className="approve-btn"
+                        onClick={() =>
+                          handleStatusChange(listing.id, "approved")
+                        }
+                      >
+                        Approve
+                      </button>
+                      <button
+                        className="reject-btn"
+                        onClick={() =>
+                          handleStatusChange(listing.id, "rejected")
+                        }
+                      >
+                        Reject
+                      </button>
+                    </div>
+                  </>
+                )}
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );

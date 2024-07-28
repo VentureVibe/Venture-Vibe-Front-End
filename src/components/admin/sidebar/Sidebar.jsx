@@ -22,7 +22,7 @@ const Sidebar = () => {
           </li>
           <li>
             <NavLink to="/admin/service-providers" activeClassName="active">
-              Service Provider Listings
+              Event Organizer Listings
             </NavLink>
           </li>
           <li>

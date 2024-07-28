@@ -30,7 +30,6 @@ const data = [
 const FinancialInsights = () => {
   return (
     <div className="financial-insights">
-      <h1>Financial Insights</h1>
       <div className="chart-container">
         <h2>Revenue vs Expenses</h2>
         <LineChart
