@@ -1,33 +1,20 @@
 import React, { useState } from 'react'
-import './MyplanningsOwnedPlansCont.scss'
 import { Link } from 'react-router-dom';
-import PopUpMain from '../popupmain/PopUpMain';
-import DeleteConfirm from '../deleteConfirm/DeleteConfirm';
-import {deleteTravelPlanById} from '../../services/travelplan/TravelPlan'
-import Google from '../../assets/MapsCover.avif'
-const MyplanningsOwnedPlansCont = ({plan,fetchTravelPlans}) => {
+import './MyplanningsAcceptedCont.scss'
+
+const MyplanningsAcceptedCont = ({plan}) => {
 
   const[travelPlan,setTravelPlan]=useState(plan);
   const [showPopup, setShowPopup] = useState(false);
 
+  console.log(plan);
+
   const toggleModal = () => {
     setShowPopup(!showPopup); // Toggle the state of showPopup
   };
-  
-  const deleteTravelPlan = async () => {
-    try {
-      const { data } = await deleteTravelPlanById(travelPlan.id);
-      fetchTravelPlans();
-      setShowPopup(!showPopup);
-      
-    } catch (error) {
-      console.error('Error deleting travel plan:', error);
-    }
-  };
-  
 
   return (
-    <div className='MyplanningsOwnedPlansCont'>
+     <div className='MyplanningsAcceptedCont'>
         <img src={travelPlan.imgUrl ? travelPlan.imgUrl : Google} alt="" />
 
         <div className="details">
@@ -36,23 +23,28 @@ const MyplanningsOwnedPlansCont = ({plan,fetchTravelPlans}) => {
           <Link to={`/travelplan/${travelPlan.id}`}>
               <button>View</button>
           </Link>
+          <Link to={`/community/profile/${travelPlan.travelPlanOwner.id}`}>
+        
+          <div className="by">
+              <h4>By</h4>
+              <img src={travelPlan.travelPlanOwner.profileImg} alt="" />
+              <p>{travelPlan.travelPlanOwner.email}</p>
+          </div>
+          </Link>
           <div className="people">
             <img src={travelPlan.imgUrl ? travelPlan.imgUrl : Google} alt="" />
             <img src={travelPlan.imgUrl ? travelPlan.imgUrl : Google} alt="" />
             <img src={travelPlan.imgUrl ? travelPlan.imgUrl : Google} alt="" />
             <img src={travelPlan.imgUrl ? travelPlan.imgUrl : Google} alt="" />
-            <img src={travelPlan.imgUrl ? travelPlan.imgUrl : Google} alt="" />
-            <img src={travelPlan.imgUrl ? travelPlan.imgUrl : Google} alt="" />
-            <img src={travelPlan.imgUrl ? travelPlan.imgUrl : Google} alt="" />
-            <img src={travelPlan.imgUrl ? travelPlan.imgUrl : Google} alt="" />
-            <span><i class="fa-solid fa-plus"></i> Invite</span>
+        
+
           </div> 
           
         </div>
         <div className="delete">
             <span onClick={toggleModal}>
               <i class="fa-solid fa-trash"></i>
-              <p>Delete</p>
+              <p>Leave</p>
             </span>
           
         </div>
@@ -60,8 +52,7 @@ const MyplanningsOwnedPlansCont = ({plan,fetchTravelPlans}) => {
           <PopUpMain Component={<DeleteConfirm onClose={toggleModal} onConfirm={deleteTravelPlan}/>} />
       )}
     </div>
-    
   )
 }
 
-export default MyplanningsOwnedPlansCont
+export default MyplanningsAcceptedCont

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './TravelInvitations.scss'
 import TravelInvitationCont from '../../components/travelInvitationsCont/TravelInvitationsCont'
-import {getTravelPlanInvitationsByUserId} from '../../services/travelplan/TravelPlan'
+import {getTravelPlanInvitationsByUserId} from '../../services/travelInivitation/TravelInvitation'
 import { GetCurrentUserC } from '../../services/user/GetCurrentUserC';
 
 const TravelInvitations = () => {
@@ -29,9 +29,9 @@ const TravelInvitations = () => {
   return (
     <div className='TravelInvitations '>
       <div className="top">
-      {travelInvites?.content?.length === 0 && <div>No Travel Plans</div>}
+      {travelInvites?.content?.length === 0 && <div>No Travel Invitations</div>}
         {travelInvites?.content?.length > 0 && travelInvites.content.map((plan) => (
-          <TravelInvitationCont key={plan.id} plan={plan} fetchTravelInvites={fetchTravelInvites} />
+          <TravelInvitationCont key={plan.id} plan={plan} fetchTravelInvites={fetchTravelInvites} fetchTravelInvitation={fetchTravelInvites}/>
         ))}
        
       </div>

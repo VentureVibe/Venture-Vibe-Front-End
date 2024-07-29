@@ -77,6 +77,23 @@ export const getOwnedTravelPlansByUser=async(travelerId,page=0,size=2)=>{
   }
 }
 
+export const getAcceptedTravelPlansByUser=async(travelerId,page=0,size=2)=>{
+  try {
+    const response = await newRequest.get(
+      `/travelplan/accepted/${travelerId}`,
+      {
+      params: {
+        page,
+        size,
+      },
+    }
+    );
+    return response;
+  } catch (error) {
+    console.error('Error fetching travel plan:', error);
+    throw error;
+  }
+}
 
 export const deleteTravelPlanById=async(travelerPlanId)=>{
   try {
