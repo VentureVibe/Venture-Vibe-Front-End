@@ -37,6 +37,9 @@ import { AlertProvider } from "./context/errAlert/AlertContext";
 import NotAuthorized from "./components/notAuthorized/NotAuthorized";
 import withRole from "./components/hoc/withRole";
 import { AuthProvider } from "./context/authContext";
+import MyPlanings from "./pages/myplanings/MyPlanings";
+import MyPlaningsContent from "./pages/myplaningscontent/MyPlaningsContent";
+import TravelInvitations from './pages/travelInvitations/TravelInvitations'
 
 import DashboardOverview from "./pages/admin/Overview/DashboardOverview";
 import UserTable from "./components/admin/users/UserTable";
@@ -56,7 +59,7 @@ const Layout = () => {
 function App() {
   
   const GuidePro = withRole(GuideProfile, ['travelGuide']);
-  const TravelPlann = withRole(TravelPlan, ['travelGuide','User']);
+  const TravelPlann = withRole(TravelPlan, ['travelGuide','Traveler']);
   // const InviteTravelMatess = withRole(InviteTravelMates, ['travelGuide','User']);
 
   const router = createBrowserRouter([
@@ -108,6 +111,20 @@ function App() {
 
 
         },
+        {
+          path: "/myplannings",
+          element: <MyPlanings />,
+          children:[
+            {
+              path: "",
+              element: <MyPlaningsContent/>
+            },
+            {
+              path: "travelinvitations",
+              element: <TravelInvitations/>
+            }
+          ]
+        },
       ],
     },
     {
@@ -130,7 +147,7 @@ function App() {
     },
 
     {
-      path: "/travelplan/:to/:from/:location/:lat/:lng",
+      path: "/travelplan/:id",
       element: <TravelPlann />,
     },
     {

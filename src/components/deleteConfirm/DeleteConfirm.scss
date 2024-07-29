@@ -1,0 +1,39 @@
+.DeleteConfirm{
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1001;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+
+    .confirm-delete-dialog-buttons {
+        margin-top: 20px;
+      }
+      
+      .confirm-delete-dialog-confirm,
+      .confirm-delete-dialog-cancel {
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 4px;
+        margin: 0 10px;
+      }
+      
+      .confirm-delete-dialog-confirm {
+        background: #e74c3c;
+        color: #fff;
+      }
+      
+      .confirm-delete-dialog-cancel {
+        background: #95a5a6;
+        color: #fff;
+      }
+      
+      .confirm-delete-dialog-confirm:hover,
+      .confirm-delete-dialog-cancel:hover {
+        opacity: 0.8;
+      }
+}
