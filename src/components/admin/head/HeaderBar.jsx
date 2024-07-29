@@ -1,5 +1,5 @@
 // src/components/HeaderBar.jsx
-
+import NotificationsIcon from "@mui/icons-material/Notifications";
 import React from "react";
 import "./HeaderBar.scss";
 import logo from "../../../assets/Logo2.png";
@@ -35,6 +35,7 @@ const HeaderBar = () => {
       <div className="header-right">
         <input type="text" placeholder="Search..." className="search-bar" />
         <div className="notification-icon">
+          <NotificationsIcon />
           <span className="notification-count">{notificationsCount}</span>
         </div>
         <div className="profile">

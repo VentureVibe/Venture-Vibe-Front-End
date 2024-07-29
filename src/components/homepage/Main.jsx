@@ -18,7 +18,7 @@ const Main = () => {
                         <Link to={"/travelplan"}>
                              <button>Plan Now</button>
                         </Link>
-                        <Link to={"/travelplan"}>
+                        <Link to={"/myplannings"}>
                              <button>My Plannings</button>
                         </Link>
                       </div>
