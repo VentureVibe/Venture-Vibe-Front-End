@@ -1,17 +1,17 @@
 .trvelplan{
     display: flex;
     justify-content: center;  
-    
+    width: 100%;
+    height: 100vh !important;
     .container{
-        display: flex;
+        display: grid;
+        grid-template-columns: 61% 39%;
         width: 100%;
-        //border: 1px solid red;
         
         .planning{
             width: 61%;
-            //height: 100vh;
-            //border: 1px solid red;
-
+            width: 100%;
+          
             hr{
                 width: 100%;
                 height: 1px;
@@ -24,13 +24,13 @@
                 grid-template-columns: 20% 80%;
 
                 .plan-sidebar {
-                    height: 100vh;
+                    height: 95vh;
                     z-index: 500;
                     cursor: pointer;
                     overflow: scroll;
                     position: -webkit-sticky;
                     position: sticky;
-                    top: 60px;
+                    height: 91.6vh;
                     border-right: 2px solid #f1f4f7; 
                 }
 
@@ -38,13 +38,14 @@
                     display: flex;
                     flex-direction: column;
                     background-color: #f1f4f7;
-                    //z-index: 500;
+                    height: 91.6vh;
 
+                    overflow: scroll; 
                     .plan-list{
                         width: 100%;
                         height: 350px;
                         position: relative;
-    
+                        margin-bottom: 70px;
                         img{
                             width: 100%;
                             height: 230px;
@@ -69,19 +70,9 @@
         }
 
         .map{
-            width: 39%;
-            height: 100vh;
-            position: fixed;
-            top: 0;
-            left: 926px;
-            z-index: 3000;
-            //border: 1px solid red;
-
-            img{
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
+            width: 100%;
+            height: 100%;
+        
         }
 
         

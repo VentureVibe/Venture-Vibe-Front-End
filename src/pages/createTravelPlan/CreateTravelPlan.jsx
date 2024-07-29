@@ -4,7 +4,7 @@ import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined
 import AddIcon from '@mui/icons-material/Add';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import "./DatePickerStyles.scss";
+import './DatePickerStyles.scss';
 import { Link } from 'react-router-dom';
 
 const CreateTravelPlan = () => {
@@ -23,6 +23,11 @@ const CreateTravelPlan = () => {
   const [placeImage, setPlaceImage] = useState('');
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
+  // Validation states
+  const [isLocationValid, setIsLocationValid] = useState(true);
+  const [isStartDateValid, setIsStartDateValid] = useState(true);
+  const [isEndDateValid, setIsEndDateValid] = useState(true);
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -34,19 +39,13 @@ const CreateTravelPlan = () => {
         setShowDatePicker(false);
       }
 
-      if(
-        inviteFriendRef.current &&
-        !inviteFriendRef.current.contains(event.target)
-      ) {
+      if (inviteFriendRef.current && !inviteFriendRef.current.contains(event.target)) {
         setShowInviteTripmates(false);
         setShowInviteTripmatesIcon(true);
       }
-      
     };
 
     document.addEventListener('mousedown', handleClickOutside);
-
-   
 
     if (window.google) {
       const autocompleteService = new window.google.maps.places.AutocompleteService();
@@ -58,7 +57,7 @@ const CreateTravelPlan = () => {
       placesAutocomplete.addListener('place_changed', () => {
         const place = placesAutocomplete.getPlace();
         if (!place.geometry) {
-          console.log("Place not found");
+          console.log('Place not found');
           return;
         }
 
@@ -122,6 +121,19 @@ const CreateTravelPlan = () => {
   };
 
   const handleStartPlanning = () => {
+    // Validate fields
+    const isLocationValid = !!location;
+    const isStartDateValid = !!startDate;
+    const isEndDateValid = !!endDate;
+
+    setIsLocationValid(isLocationValid);
+    setIsStartDateValid(isStartDateValid);
+    setIsEndDateValid(isEndDateValid);
+
+    if (!isLocationValid || !isStartDateValid || !isEndDateValid) {
+      return;
+    }
+
     const formattedStartDate = formatDate(startDate);
     const formattedEndDate = formatDate(endDate);
 
@@ -142,21 +154,26 @@ const CreateTravelPlan = () => {
 
   return (
     <div className='createTravelPlan'>
-      <div className="container">
-        <h1>Plan a new trip</h1>
+    <div className="container">
+      <h1>Plan a new trip</h1>
+      <div className={`where-to-container ${!isLocationValid ? 'invalid' : ''}`}>
         <div className="where-to">
           <span>Where to?</span>
-          <input 
-            type="text" 
-            placeholder="Enter a city or destination" 
+          <input
+            type="text"
+            placeholder="Enter a city or destination"
             ref={whereToInputRef}
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
           />
         </div>
+      </div>
+      <div className={`dates-container ${(!isStartDateValid || !isEndDateValid) ? 'invalid' : ''}`}>
         <div className="dates">
           <span className='date-heading'>Dates (optional)</span>
           <div className="select-date">
             <div className="date-inputs" ref={dateInputRef}>
-              <div className="date-input-wrapper" onClick={handleDateInputClick}>
+              <div className={`date-input-wrapper ${!isStartDateValid ? 'invalid' : ''}`} onClick={handleDateInputClick}>
                 <CalendarMonthOutlinedIcon sx={{ color: '#747474', fontSize: 17 }} />
                 <input
                   type="text"
@@ -166,7 +183,7 @@ const CreateTravelPlan = () => {
                   className="date-input"
                 />
               </div>
-              <div className="date-input-wrapper" onClick={handleDateInputClick}>
+              <div className={`date-input-wrapper ${!isEndDateValid ? 'invalid' : ''}`} onClick={handleDateInputClick}>
                 <CalendarMonthOutlinedIcon sx={{ color: '#747474', fontSize: 17 }} />
                 <input
                   type="text"
@@ -177,7 +194,7 @@ const CreateTravelPlan = () => {
                 />
               </div>
             </div>
-
+  
             {showDatePicker && (
               <div ref={datePickerRef}>
                 <DatePicker
@@ -195,22 +212,28 @@ const CreateTravelPlan = () => {
             )}
           </div>
         </div>
-        {showInviteTripmatesIcon && (<div className="invite-trip" onClick={handleInviteTripmates}>
+      </div>
+      {showInviteTripmatesIcon && (
+        <div className="invite-trip" onClick={handleInviteTripmates}>
           <AddIcon sx={{ color: '#747474', fontSize: 18 }} />
           <span>Invite tripmates</span>
-        </div>)}
-        {showInviteTripmates && (<div className="where-to" ref={inviteFriendRef}>
-          <span>Invite tripmates</span>
-          <input type="text" placeholder="Enter an email address" />
-        </div>)}
-        <div className="btn-container" onClick={handleStartPlanning}>
-          <span >
-            Start Planning
-          </span>
         </div>
+      )}
+      {showInviteTripmates && (
+        <div className="invite-tripmates-container" ref={inviteFriendRef}>
+          <div className="where-to">
+            <span>Invite tripmates</span>
+            <input type="text" placeholder="Enter an email address" />
+          </div>
+        </div>
+      )}
+      <div className="btn-container" onClick={handleStartPlanning}>
+        <span>Start Planning</span>
       </div>
     </div>
+  </div>
+  
   );
-}
+};
 
 export default CreateTravelPlan;

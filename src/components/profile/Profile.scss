@@ -1,0 +1,17 @@
+.profile-details {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  img {
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  h4 {
+    font-weight: 500;
+    letter-spacing: 0.01rem;
+    cursor: pointer;
+    margin-right: 1vh;
+  }
+}
