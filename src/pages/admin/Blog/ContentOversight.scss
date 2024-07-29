@@ -1,0 +1,46 @@
+.content-oversight {
+  margin: 30px 10px 20px 100px;
+  padding: 20px;
+  background-color: #f5f5f5;
+  /* justify-content: center; */
+  position: relative;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+
+  h1 {
+    margin-bottom: 20px;
+    // text-align: center;
+  }
+
+  .content-oversight-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th, td {
+      padding: 10px;
+      border: 1px solid #ccc;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f4f4f4;
+    }
+
+    .action-button {
+      padding: 5px 10px;
+      margin-right: 5px;
+      border: none;
+      cursor: pointer;
+
+      &.remove {
+        background-color: #e74c3c;
+        color: white;
+      }
+
+      &.keep {
+        background-color: #2ecc71;
+        color: white;
+      }
+    }
+  }
+}
