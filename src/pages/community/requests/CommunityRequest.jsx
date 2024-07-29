@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import './CommunityRequest.scss';
 import { GetCurrentUserC } from '../../../services/user/GetCurrentUserC';
 import newRequest from '../../../services/NewRequst';
+import { Link } from 'react-router-dom';
+import PopUpMain from '../../../components/popupmain/PopUpMain';
+import SendMessage from '../../../components/sendMessage/SendMessage';
 
 const CommunityRequest = () => {
   const [followers, setFollowers] = useState([]);
@@ -70,12 +73,30 @@ const CommunityRequest = () => {
 }
 
 const Cont = ({ name, imageSrc, id, handleDelete }) => {
+  const [sendMessage, setSendMessage] = useState(false);
+
+     const toggleSendMessagePopUp = () => {
+          setSendMessage(!sendMessage);
+     };
+
   return (
-    <div className="cont">
-      <img src={imageSrc} alt="" />
-      <h2>{name}</h2>
-      <button className='dlt' onClick={(e) => handleDelete(e, id)}>Delete</button>
+    <>
+    <div className='CommunityFriendView'>
+      <Link to={`/community/profile/${id}`} key={id}>
+      <div className="profile-detail">
+        <img src={imageSrc} alt={name} />
+        <h2>{name}</h2>
+      </div>
+      </Link>
+      <div className="btn-container">
+        <button className='message' onClick={toggleSendMessagePopUp}>Message</button>
+        <button onClick={(e) => handleDelete(e, id)}>Delete</button>
+      </div>
     </div>
+    {sendMessage && (
+      <PopUpMain Component={<SendMessage onClose={toggleSendMessagePopUp} id={id}/>} />
+    )}
+    </>
   )
 }
 
