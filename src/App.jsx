@@ -152,11 +152,11 @@ function App() {
           ],
         },
         {
-          path: "friends",
+          path: "following",
           element: <CommunityFriends />,
         },
         {
-          path: "requests",
+          path: "followers",
           element: <CommunityRequest />,
         },
         {
