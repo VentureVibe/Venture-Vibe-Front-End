@@ -1,0 +1,63 @@
+.SendMessage{
+    display: flex;
+    flex-direction: column;
+    width: 23%;
+    height: 150px;
+    box-shadow: var(--box-shadow-2);
+    background-color: white;
+    align-items: center;
+    border-radius: 10px;
+    //justify-content: center;
+
+    .closing-i{
+        margin-left: 320px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        width: 23px;
+        height: 23px;
+        background-color: var(--input);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+
+        i{
+            margin-top: 3px;
+        }
+        
+    }
+
+    .top{
+        h1{
+            font-size: var(--header);
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+    }
+
+    .bottom{
+        display: flex;
+        align-items: center;
+
+        input{
+            width: 200px;
+            height: 30px;
+            border: 1px solid black;
+            border-radius: 5px;
+            padding: 10px;
+            margin-right: 10px;
+        }
+
+        button{
+            width: 70px;
+            height: 30px;
+            border-radius: 5px;
+            background-color: var(--blue);
+            color: white;
+            cursor: pointer;
+        }
+
+    }
+}

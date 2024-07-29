@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 import CommunityFriendView from '../../../components/communityFriendView/CommunityFriendView';
 import { GetCurrentUserC } from '../../../services/user/GetCurrentUserC';
 import newRequest from '../../../services/NewRequst';
-
+import SendMessage from '../../../components/sendMessage/SendMessage';
+import PopUpMain from '../../../components/popupmain/PopUpMain';
 
 const CommunityFriends = () => {
   const [following, setFollowing] = useState([]);
@@ -48,7 +49,7 @@ const CommunityFriends = () => {
       console.error('Error deleting follower:', error);
     }
   }
-  
+
   const limitedFriends = following;
   return (
     <div className='CommunityFriends'>
@@ -56,20 +57,21 @@ const CommunityFriends = () => {
         <h1>Following</h1>
       </div>
       <div className="bottom">
-        {limitedFriends.length == 0 && <div>No Followings to show</div>}
+        {responseMessage && <div className="response-message">{responseMessage}</div>}
+        {error && <div className="error-message">{error}</div>}
+        {limitedFriends.length === 0 && <div>No Followings to show</div>}
         {limitedFriends.map(friend => (
-          <Link to={`/community/profile/${friend.followedTraveler.id}`} key={friend.followedTraveler.id}>
-            <CommunityFriendView
-              name={friend.followedTraveler.name}
-              imageSrc={friend.followedTraveler.profileImg}
-              id={friend.followedTraveler.id}
-              handleDelete={handleDelete}
-            />
-          </Link>
+          <CommunityFriendView
+            key={friend.followedTraveler.id} // Ensure unique keys
+            name={friend.followedTraveler.name}
+            imageSrc={friend.followedTraveler.profileImg}
+            id={friend.followedTraveler.id}
+            handleDelete={handleDelete}
+          />
         ))}
       </div>
     </div>
-  )
+  );
 }
 
 export default CommunityFriends;
