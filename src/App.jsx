@@ -1,9 +1,9 @@
 import "./App.css";
 
-import './App.css'
-import React from 'react';
-import Home from './pages/home/Home';
-import TravelPlan from './pages/travelPlan/TravelPlan';
+import "./App.css";
+import React from "react";
+import Home from "./pages/home/Home";
+import TravelPlan from "./pages/travelPlan/TravelPlan";
 
 import Admin from "./pages/admin/Admin";
 import Community from "./pages/community/Community";
@@ -32,10 +32,16 @@ import GuideProfile from "./pages/profile/GuideProfile";
 import ShowEvent from "./pages/showEvent/ShowEvent";
 import ShowAllEvents from "./pages/showAllEvents/ShowAllEvents";
 import ShowAllTravelGuides from "./pages/showAllTravelGuides/ShowAllTravelGuides";
+
 import { AlertProvider } from "./context/errAlert/AlertContext";
 import NotAuthorized from "./components/notAuthorized/NotAuthorized";
 import withRole from "./components/hoc/withRole";
 import { AuthProvider } from "./context/authContext";
+
+import DashboardOverview from "./pages/admin/Overview/DashboardOverview";
+import UserTable from "./components/admin/users/UserTable";
+import ServiceProviderListing from "./pages/admin/ServiceProviders/ServiceProviderListing";
+
 
 const Layout = () => {
   return (
@@ -97,13 +103,30 @@ function App() {
 
         {
           path: "/guideprofile",
+
           element: <GuidePro />,
+
+
         },
       ],
     },
     {
-      path: "/admin",
+      path: "/admin/*",
       element: <Admin />,
+      // children: [
+      //   {
+      //     path: "",
+      //     element: <DashboardOverview />,
+      //   },
+      //   {
+      //     path: "/admin/users",
+      //     element: <UserTable />,
+      //   },
+      //   {
+      //     path: "admin/service-providers",
+      //     element: <ServiceProviderListing />,
+      //   },
+      // ],
     },
 
     {
@@ -179,6 +202,7 @@ function App() {
       path: "serviceprovideruser",
       element: <ServiceProviderUser />,
 
+
     },
     {
       path: "/not-authorized",
@@ -189,6 +213,7 @@ function App() {
 
   return (<AlertProvider><AuthProvider><RouterProvider router={router} /></AuthProvider></AlertProvider>);
   
+
 }
 
 export default App;
