@@ -15,8 +15,8 @@ const CommunityFeedLeft = () => {
   return (
     <div className='CommunityFeedLeft'>
                  <Cont Icon="fa-solid fa-square-rss" name="Feed" link="/community" path={["/community", "/community/popular", "/community/all"]} />
-                 <Cont Icon="fa-solid fa-user-group" name="Friends" link="/community/friends" path={["/community/friends"]}/>
-                 <Cont Icon="fa-solid fa-square-caret-down" name="Requests" link="/community/requests" path={["/community/requests"]} />
+                 <Cont Icon="fa-solid fa-user-plus" name="Following" link="/community/following" path={["/community/following"]}/>
+                 <Cont Icon="fa-solid fa-user-group" name="Followers" link="/community/followers" path={["/community/followers"]} />
                  <Cont Icon="fa-solid fa-square-check" name="My Plannings" link="/community" path={["/"]} />
                  <Cont Icon="fa-solid fa-hotel" name="Accomodations" link="/community" path={["/"]} />
                  <Cont Icon="fa-solid fa-person-hiking" name="Event & Activities" link="/community" path={["/"]} />
