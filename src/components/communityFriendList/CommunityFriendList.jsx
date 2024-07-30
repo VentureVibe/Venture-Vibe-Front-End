@@ -32,13 +32,13 @@ const CommunityFriendList = ({ handleClickFriend }) => {
     return <div>{error}</div>;
   }
 
-  const limitedFriends = conversations.slice(0, 6);
+  //const limitedFriends = conversations.slice(0, 6);
 
   return (
     <div className='CommunityFriendList'>
       <div className="top">
         {conversations.length === 0 && (<span>No chats to show</span>)}
-        {limitedFriends.map(friend => (
+        {conversations.map(friend => (
           friend.user2.id !== userId ? (
             <CommunityFriend
               key={friend.user2.id}
@@ -46,7 +46,7 @@ const CommunityFriendList = ({ handleClickFriend }) => {
               friendId={friend.user2.id}
               handleClickFriend={handleClickFriend}
               name={friend.user2.name}
-              messages={1} // Assuming this is a placeholder, update with actual data if available
+              messages={"."} // Assuming this is a placeholder, update with actual data if available
               lastMessage={friend.lastMessage}
               imageSrc={friend.user2.profileImg}
             />
@@ -57,7 +57,7 @@ const CommunityFriendList = ({ handleClickFriend }) => {
               friendId={friend.user1.id}
               handleClickFriend={handleClickFriend}
               name={friend.user1.name}
-              messages={1} // Assuming this is a placeholder, update with actual data if available
+              messages={"."} // Assuming this is a placeholder, update with actual data if available
               lastMessage={friend.lastMessage}
               imageSrc={friend.user1.profileImg}
             />
