@@ -58,7 +58,7 @@ function App() {
   const GuidePro = withRole(GuideProfile, ["TravelGuide"]);
   const TravelPlann = withRole(TravelPlan, ["TravelGuide", "Traveler"]);
   const AdminA = withRole(Admin, ["Admin"]);
-  const MyPlaningss = withRole(MyPlanings, ["EventPlanner"]);
+  const MyListingss = withRole(MyListings, ["EventPlanner"]);
 
   // const InviteTravelMatess = withRole(InviteTravelMates, ['travelGuide','User']);
 
@@ -77,7 +77,7 @@ function App() {
         },
         {
           path: "/mylistings",
-          element: <MyListings />,
+          element: <MyListingss />,
         },
         {
           path: "/travelguides",
@@ -111,7 +111,7 @@ function App() {
         },
         {
           path: "/myplannings",
-          element: <MyPlaningss />,
+          element: <MyPlanings />,
           children: [
             {
               path: "",
