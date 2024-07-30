@@ -43,7 +43,7 @@ const MyplanningsOwnedPlansCont = ({plan,fetchTravelPlans}) => {
           <div className="people">
           {travelPlan.travelers.map(traveler => (
             traveler.email,
-            traveler.id === userToken.sub ? (
+            traveler.id !== userToken.sub ? (
                   <Link to={`/community/profile/${traveler.id}`}>
                      <img key={traveler.id} src={traveler.profileImg ? traveler.profileImg : Google} alt="" />
                   </Link>
