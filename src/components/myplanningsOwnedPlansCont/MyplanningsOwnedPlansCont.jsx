@@ -13,7 +13,7 @@ const MyplanningsOwnedPlansCont = ({plan,fetchTravelPlans}) => {
   const [showPopup, setShowPopup] = useState(false);
  
   const userToken=GetCurrentUserC();
-  console.log(travelPlan);
+
   const toggleModal = () => {
     setShowPopup(!showPopup); // Toggle the state of showPopup
   };
