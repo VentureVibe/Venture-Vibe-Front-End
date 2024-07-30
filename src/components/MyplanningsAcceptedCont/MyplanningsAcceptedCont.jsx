@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import './MyplanningsAcceptedCont.scss'
+import { GetCurrentUserC } from '../../services/user/GetCurrentUserC';
 
 const MyplanningsAcceptedCont = ({plan}) => {
 
   const[travelPlan,setTravelPlan]=useState(plan);
   const [showPopup, setShowPopup] = useState(false);
-
+  const userToken=GetCurrentUserC();
   console.log(plan);
 
   const toggleModal = () => {
@@ -33,10 +34,15 @@ const MyplanningsAcceptedCont = ({plan}) => {
           </Link>
           <div className="people">
             <p>Travelers</p>
-            <img src={travelPlan.imgUrl ? travelPlan.imgUrl : Google} alt="" />
-            <img src={travelPlan.imgUrl ? travelPlan.imgUrl : Google} alt="" />
-            <img src={travelPlan.imgUrl ? travelPlan.imgUrl : Google} alt="" />
-            <img src={travelPlan.imgUrl ? travelPlan.imgUrl : Google} alt="" />
+            {travelPlan.travelers.map(traveler => (
+            traveler.email,
+            traveler.id !== userToken.sub ? (
+                  <Link to={`/community/profile/${traveler.id}`}>
+                     <img key={traveler.id} src={traveler.profileImg ? traveler.profileImg : Google} alt="" />
+                  </Link>
+            ) : null
+          ))}
+      
         
 
           </div> 

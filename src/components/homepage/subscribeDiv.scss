@@ -1,45 +1,64 @@
 .div-4 {
-    padding: 10vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background-image: url("/src//assets/ella2.jpg");
-    background-size: cover;
+  padding: 10vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-image: url("/src//assets/ella2.jpg");
+  background-size: cover;
 
-    h1 {
-      color: white;
+  h1 {
+    color: white;
+  }
+
+  .input-btn {
+    position: relative;
+    border: 2px solid #d8d8d7;
+    background-color: white;
+    border-radius: 0.5vw;
+    padding: 0.3vw 1.2vw;
+    margin-top: 2vh;
+    input {
+      height: 6vh;
+      width: 22vw;
+      font-size: 1.1vw;
     }
-  
-    .input-btn {
-      position: relative;
-      border: 2px solid #D8D8D7;
-      background-color: white;
+    input:focus {
+      border: none;
+      outline: none;
+    }
+    button {
+      height: 6vh;
+      position: absolute;
+      width: 9vw;
+      background-color: #69b7f9;
       border-radius: 0.5vw;
-      padding: 0.3vw 1.2vw;
-      margin-top: 2vh;
-      input {
-        height: 6vh;
-        width: 22vw;
-        font-size: 1.1vw;
-      }
-      input:focus {
-        border: none;
-        outline: none;
-      }
-      button {
-        height: 6vh;
-        position: absolute;
-        width: 9vw;
-        background-color: #69B7F9;
-        border-radius: 0.5vw;
-        color: white;
-        padding: 0.8vw;
-        left: 15vw;
-        cursor: pointer;
-        font-size: 1.1vw;
-      }
-  
+      color: white;
+      padding: 0.8vw;
+      left: 15vw;
+      cursor: pointer;
+      font-size: 1.1vw;
     }
+  }
+  .btns {
+    margin: 1vw;
+    display: flex;
+    gap: 1vw;
+
+    .btn-tg,
+    .btn-ep {
+      padding: 0.5vw 1vw;
+      border: none;
+      border-radius: 1vw;
+      font-size: 1vw;
+      background-color: var(--orange);
+      color: white;
+      font-weight: 500;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+  }
 }
