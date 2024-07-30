@@ -57,8 +57,8 @@ const CommunityFriends = () => {
         <h1>Following</h1>
       </div>
       <div className="bottom">
-        {responseMessage && <div className="response-message">{responseMessage}</div>}
-        {error && <div className="error-message">{error}</div>}
+        {/* {responseMessage && <div className="response-message">{responseMessage}</div>} */}
+        {/* {error && <div className="error-message">{error}</div>} */}
         {limitedFriends.length === 0 && <div>No Followings to show</div>}
         {limitedFriends.map(friend => (
           <CommunityFriendView
