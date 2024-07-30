@@ -13,22 +13,22 @@ const ReportPost = ({ onClose, id }) => {
     const handleReportSubmit = async (event) => {
         event.preventDefault();
     
-        if (!messageContent.trim()) {
+        if (!reportContent.trim()) {
           return; // Don't send empty messages
         }
     
         const reportData = {
-          content: reportContent,
-          sender: {
-            id: userId,
-          },
-          recipient: {
+          reason: reportContent,
+          post: {
             id: id,
+          },
+          userReported: {
+            id: userId,
           },
         };
     
         try {
-          const response = await newRequest.post('chat/send', reportData);
+          const response = await newRequest.post('reports', reportData);
           console.log('Success:', response.data);
           setReports(response.data);
           setReportContent(''); // Clear the input field

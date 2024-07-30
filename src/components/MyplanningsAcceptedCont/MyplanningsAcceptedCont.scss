@@ -99,8 +99,22 @@
         }
 
         img{
-            width: 30px;
+            width: 30px !important;
             height: 30px;
+     
+        }
+    }
+
+    .people{
+          font-size: var(--paragraph-1);
+
+          p{
+               margin-right: 5px; 
+          }  
+
+          img{
+            width: 30px !important;
+            height: 30px !important;
             margin-right: 5px;
         }
     }

@@ -32,6 +32,7 @@ const MyplanningsAcceptedCont = ({plan}) => {
           </div>
           </Link>
           <div className="people">
+            <p>Travelers</p>
             <img src={travelPlan.imgUrl ? travelPlan.imgUrl : Google} alt="" />
             <img src={travelPlan.imgUrl ? travelPlan.imgUrl : Google} alt="" />
             <img src={travelPlan.imgUrl ? travelPlan.imgUrl : Google} alt="" />

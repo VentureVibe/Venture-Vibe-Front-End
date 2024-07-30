@@ -56,13 +56,16 @@
                     align-items: center;
                     margin-right: 5px;
                     background-color: var(--input);
-                    padding: 2px;
+                    padding: 5px;
                     border-radius: 5px;
+                    width: 80px;
+                    height: 30px;
                     cursor: pointer;
     
                     span{
                         font-size: var(--paragraph-1);
                         color: var(--text-color);
+                        margin-left: 15px;
                     }
         
                     i{

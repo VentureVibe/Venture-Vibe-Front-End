@@ -5,10 +5,14 @@ import PopUpMain from '../popupmain/PopUpMain';
 import DeleteConfirm from '../deleteConfirm/DeleteConfirm';
 import {deleteTravelPlanById} from '../../services/travelplan/TravelPlan'
 import Google from '../../assets/MapsCover.avif'
+import { GetCurrentUserC } from '../../services/user/GetCurrentUserC';
+
 const MyplanningsOwnedPlansCont = ({plan,fetchTravelPlans}) => {
 
   const[travelPlan,setTravelPlan]=useState(plan);
   const [showPopup, setShowPopup] = useState(false);
+ 
+  const userToken=GetCurrentUserC();
 
   const toggleModal = () => {
     setShowPopup(!showPopup); // Toggle the state of showPopup
@@ -37,14 +41,15 @@ const MyplanningsOwnedPlansCont = ({plan,fetchTravelPlans}) => {
               <button>View</button>
           </Link>
           <div className="people">
-            <img src={travelPlan.imgUrl ? travelPlan.imgUrl : Google} alt="" />
-            <img src={travelPlan.imgUrl ? travelPlan.imgUrl : Google} alt="" />
-            <img src={travelPlan.imgUrl ? travelPlan.imgUrl : Google} alt="" />
-            <img src={travelPlan.imgUrl ? travelPlan.imgUrl : Google} alt="" />
-            <img src={travelPlan.imgUrl ? travelPlan.imgUrl : Google} alt="" />
-            <img src={travelPlan.imgUrl ? travelPlan.imgUrl : Google} alt="" />
-            <img src={travelPlan.imgUrl ? travelPlan.imgUrl : Google} alt="" />
-            <img src={travelPlan.imgUrl ? travelPlan.imgUrl : Google} alt="" />
+          {travelPlan.travelers.map(traveler => (
+            traveler.email,
+            traveler.id === userToken.sub ? (
+                  <Link to={`/community/profile/${traveler.id}`}>
+                     <img key={traveler.id} src={traveler.profileImg ? traveler.profileImg : Google} alt="" />
+                  </Link>
+            ) : null
+          ))}
+       
             <span><i class="fa-solid fa-plus"></i> Invite</span>
           </div> 
           
