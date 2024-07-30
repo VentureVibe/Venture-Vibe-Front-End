@@ -1,42 +1,58 @@
-.myListings{
-    margin-top: 20px;
-    .container{
-        padding: 30px 100px;
+.myListings {
+  margin-top: 20px;
+  .container {
+    padding: 30px 100px;
 
-        .heading-container{
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+    .heading-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
 
-            .heading{
-                font-size: 27px;
-                font-weight: 600;
-                color: var(--text-color);
-            }
+      .heading {
+        font-size: 27px;
+        font-weight: 600;
+        color: var(--text-color);
+      }
 
-            .new-listing{
-                background-color: var(--blue);
-                width: 130px;
-                height: 35px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border-radius: 10px;
-                cursor: pointer;
+      .new-listing {
+        background-color: var(--blue);
+        width: 130px;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        cursor: pointer;
 
-                span{
-                    font-size: var(--paragraph-2);
-                    font-weight: 500;
-                    color: white;
-                }
-            }
+        span {
+          font-size: var(--paragraph-2);
+          font-weight: 500;
+          color: white;
         }
-
-        .listings{
-            margin-top: 30px;
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 30px;
-        }
+      }
     }
+
+    .listings {
+      margin-top: 30px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 30px;
+    }
+
+    .load-more {
+      position: fixed;
+      bottom: 2vh;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1vw;
+      font-weight: 500;
+      border: none;
+      color: var(--blue);
+      background-color: white;
+
+      &:hover {
+        color: var(--orange);
+      }
+    }
+  }
 }
