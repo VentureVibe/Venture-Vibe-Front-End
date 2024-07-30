@@ -58,13 +58,15 @@ $background-icon: #31352E;
 
     .profile-bar{
         margin-right: 22px;
-        width: 190px;
+        width: 230px;
         display: flex;
         align-items: center;
         justify-content: space-around;
+
         i{
             font-size: var(--Topic);
             cursor: pointer;
+            margin-right: 5px;
         }
 
         img{
@@ -72,6 +74,7 @@ $background-icon: #31352E;
             width:45px;
             height: 45px;
             cursor: pointer;
+            object-fit: cover;
         }
 
         h4{
