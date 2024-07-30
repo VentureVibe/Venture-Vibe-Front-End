@@ -1,5 +1,5 @@
 .content-oversight {
-  margin: 30px 10px 20px 100px;
+  margin: 30px 40px 20px 0;
   padding: 20px;
   background-color: #f5f5f5;
   /* justify-content: center; */
@@ -15,6 +15,10 @@
   .content-oversight-table {
     width: 100%;
     border-collapse: collapse;
+
+    .content{
+      width: 400px;
+    }
 
     th, td {
       padding: 10px;
