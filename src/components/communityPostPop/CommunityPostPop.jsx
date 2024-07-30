@@ -4,6 +4,8 @@ import noAvatar from '../../assets/noavatar.jpg';
 import { format } from 'date-fns';
 import newRequest from '../../services/NewRequst';
 import { GetCurrentUserC } from './../../services/user/GetCurrentUserC';
+import ReportPost from '../reportPost/ReportPost';
+import PopUpMain from '../popupmain/PopUpMain';
 
 const CommunityPostPop = ({ onClose, data1, user }) => {
   const [isPopupVisible, setIsPopupVisible] = useState(false);
@@ -14,6 +16,11 @@ const CommunityPostPop = ({ onClose, data1, user }) => {
   const [responseMessage, setResponseMessage] = useState('');
   const [like, setLike] = useState(false);
   const [follow, setFollow] = useState(false);
+  const [reportPost, setReportPost] = useState(false);
+
+     const toggleReportPopUp = () => {
+        setReportPost(!reportPost);
+     };
 
   const userId = GetCurrentUserC().sub;
 
@@ -161,7 +168,7 @@ const CommunityPostPop = ({ onClose, data1, user }) => {
           ) : (
             <div className="report">
               <i className="fa-solid fa-times" onClick={togglePopup}></i>
-              <span onClick={togglePopup}>Report</span>
+              <span onClick={toggleReportPopUp}>Report</span>
             </div>
           )}
           <i className="fa-regular fa-circle-xmark" onClick={onClose}></i>
@@ -226,6 +233,9 @@ const CommunityPostPop = ({ onClose, data1, user }) => {
           ))}
         </div>
       </div>
+      {reportPost && (
+        <PopUpMain Component={<ReportPost onClose={toggleReportPopUp} id={data1.postId}/>} />
+      )}
     </div>
   );
 };
