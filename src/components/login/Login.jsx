@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Login.scss";
 import googleLogo from "../../assets/google-logo.png";
 import CloseIcon from "@mui/icons-material/Close";
@@ -13,6 +14,7 @@ import {
   handleGoogleSignIn,
 } from "../../services/user/LoginSignup";
 import Loading from "../loading/Loading";
+import { GetUser } from "../../services/user/GetUser";
 
 const Login = ({ onClose, onClickShift }) => {
   const [view, setView] = useState("login");
@@ -23,6 +25,7 @@ const Login = ({ onClose, onClickShift }) => {
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
   const [verificationCode, setVerificationCode] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const showAlert = useAlert();
 

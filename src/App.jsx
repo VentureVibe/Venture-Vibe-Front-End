@@ -39,12 +39,11 @@ import withRole from "./components/hoc/withRole";
 import { AuthProvider } from "./context/authContext";
 import MyPlanings from "./pages/myplanings/MyPlanings";
 import MyPlaningsContent from "./pages/myplaningscontent/MyPlaningsContent";
-import TravelInvitations from './pages/travelInvitations/TravelInvitations'
+import TravelInvitations from "./pages/travelInvitations/TravelInvitations";
 
 import DashboardOverview from "./pages/admin/Overview/DashboardOverview";
 import UserTable from "./components/admin/users/UserTable";
 import ServiceProviderListing from "./pages/admin/ServiceProviders/ServiceProviderListing";
-
 
 const Layout = () => {
   return (
@@ -55,11 +54,12 @@ const Layout = () => {
   );
 };
 
-
 function App() {
-  
-  const GuidePro = withRole(GuideProfile, ['travelGuide']);
-  const TravelPlann = withRole(TravelPlan, ['travelGuide','Traveler']);
+  const GuidePro = withRole(GuideProfile, ["TravelGuide"]);
+  const TravelPlann = withRole(TravelPlan, ["TravelGuide", "Traveler"]);
+  const AdminA = withRole(Admin, ["Admin"]);
+  const MyPlaningss = withRole(MyPlanings, ["EventPlanner"]);
+
   // const InviteTravelMatess = withRole(InviteTravelMates, ['travelGuide','User']);
 
   const router = createBrowserRouter([
@@ -108,28 +108,26 @@ function App() {
           path: "/guideprofile",
 
           element: <GuidePro />,
-
-
         },
         {
           path: "/myplannings",
-          element: <MyPlanings />,
-          children:[
+          element: <MyPlaningss />,
+          children: [
             {
               path: "",
-              element: <MyPlaningsContent/>
+              element: <MyPlaningsContent />,
             },
             {
               path: "travelinvitations",
-              element: <TravelInvitations/>
-            }
-          ]
+              element: <TravelInvitations />,
+            },
+          ],
         },
       ],
     },
     {
       path: "/admin/*",
-      element: <Admin />,
+      element: <AdminA />,
       // children: [
       //   {
       //     path: "",
@@ -218,19 +216,20 @@ function App() {
     {
       path: "serviceprovideruser",
       element: <ServiceProviderUser />,
-
-
     },
     {
       path: "/not-authorized",
-      element: <NotAuthorized />
-    }
-
+      element: <NotAuthorized />,
+    },
   ]);
 
-  return (<AlertProvider><AuthProvider><RouterProvider router={router} /></AuthProvider></AlertProvider>);
-  
-
+  return (
+    <AlertProvider>
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
+    </AlertProvider>
+  );
 }
 
 export default App;
