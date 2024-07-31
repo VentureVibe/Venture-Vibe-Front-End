@@ -14,6 +14,18 @@ export const getEvents = async (page = 0, size = 5) => {
   }
 };
 
+export const getEventsByUserId = async (userId, page = 0, size = 5) => {
+  try {
+    const response = await newRequest.get(`${API_URL}/user/${userId}`, {
+      params: { page, size },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(`Error fetching events for user ${userId}:`, error);
+    throw error;
+  }
+};
+
 export const getEventById = async (eventId) => {
   try {
     const response = await newRequest.get(`${API_URL}/${eventId}`);

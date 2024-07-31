@@ -1,85 +1,160 @@
+$color-text: #414143;
+$color-text-light: #747474;
+$color-orange: #f68712;
+$color-green: #1bbc9b;
+$color-blue: #0075c3;
+$color-blue-2: #0075c3;
+$color-white: white;
+$color-input: #f1f4f7;
+$color-popup-background: rgba(0, 0, 0, 0.2);
+
 .add-event-listing-form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 80vw;
-  background-color: rgb(255, 255, 255);
-  padding: 2vw;
-  border-radius: 2vw;
+  background-color: $color-white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 70vw;
+  margin: 0 auto;
 
   .head-add-event {
-    //cursor: pointer;
-    //text-align: right;
-    width: 100%;
-    margin-bottom: 2vw;
     display: flex;
-    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+
+    h2 {
+      font-family: "Roboto", sans-serif;
+      color: $color-blue;
+    }
+
     i {
-      position: absolute;
-      right: 0;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: rotate(90deg);
+      }
     }
   }
 
   .form-container {
     display: flex;
-    width: 100%;
+    flex-direction: row;
     justify-content: space-between;
+    width: 100%;
 
-    .add-event-left {
-      width: 50%;
+    .add-event-left,
+    .add-event-right {
+      display: flex;
+      flex-direction: column;
+      width: 48%;
 
       div {
-        margin-bottom: 15px;
-      }
-
-      label {
-        display: block;
-        margin-bottom: 5px;
-      }
-
-      input,
-      textarea {
-        width: 100%;
-        padding: 8px;
-        box-sizing: border-box;
-      }
-
-      button {
-        padding: 10px 20px;
-        background-color: #007bff;
-        color: white;
-        border: none;
-        cursor: pointer;
-
-        &:hover {
-          background-color: #0056b3;
-        }
-      }
-    }
-
-    .add-event-right {
-      width: 50%;
-
-      .enter-location {
-        display: flex;
-        flex-direction: column;
         margin-bottom: 15px;
 
         label {
           display: block;
+          font-family: "Roboto", sans-serif;
+          color: $color-text;
           margin-bottom: 5px;
         }
-        input {
+
+        input,
+        textarea {
           width: 100%;
-          padding: 8px;
-          box-sizing: border-box;
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          font-family: "Roboto", sans-serif;
+          background-color: $color-input;
+          transition: border-color 0.3s ease;
+
+          &:focus {
+            border-color: $color-blue;
+            outline: none;
+          }
+        }
+
+        textarea {
+          height: 5vw;
+        }
+
+        input[type="file"] {
+          padding: 0;
+        }
+
+        img {
+          display: block;
+          margin-top: 10px;
+          border-radius: 5px;
         }
       }
 
+      button {
+        padding: 10px 20px;
+        background-color: $color-green;
+        color: $color-white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-family: "Roboto", sans-serif;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: darken($color-green, 10%);
+        }
+      }
+    }
+
+    .add-event-left {
+      div#eventImage-container {
+        display: none;
+      }
+    }
+
+    .add-event-right {
+      div#eventImage-container {
+        display: block;
+      }
+
+      .image-preview-container {
+        display: flex;
+        align-items: center;
+        position: relative;
+
+        i {
+          cursor: pointer;
+          margin-left: 10px;
+          transition: color 0.3s ease;
+
+          &:hover {
+            color: $color-text-light;
+          }
+        }
+        .close-btn-image {
+          position: absolute;
+          display: flex;
+          justify-content: center;
+          border-radius: 50%;
+          border: 2px solid var(--orange);
+          background-color: white;
+          top: 0;
+          left: -20px;
+        }
+      }
+
+      .enter-location {
+        margin-bottom: 15px;
+      }
+
       .map-container {
-        width: 90%;
-        height: 50vh;
-        z-index: 1;
+        height: 300px;
+        background-color: $color-popup-background;
+        border-radius: 5px;
       }
     }
   }

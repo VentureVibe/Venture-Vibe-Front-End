@@ -56,9 +56,15 @@ const Layout = () => {
 
 function App() {
   const GuidePro = withRole(GuideProfile, ["TravelGuide"]);
-  const TravelPlann = withRole(TravelPlan, ["TravelGuide", "Traveler"]);
+  const TravelPlann = withRole(TravelPlan, ["TravelGuide", "Traveler","EventPlanner"]);
   const AdminA = withRole(Admin, ["Admin"]);
-  const MyPlaningss = withRole(MyPlanings, ["EventPlanner"]);
+  const MyListingss = withRole(MyListings, ["EventPlanner"]);
+  const Communityy = withRole(Community, [
+    "EventPlanner",
+    "TravelGuide",
+    "Traveler",
+    "Admin",
+  ]);
 
   // const InviteTravelMatess = withRole(InviteTravelMates, ['travelGuide','User']);
 
@@ -77,7 +83,7 @@ function App() {
         },
         {
           path: "/mylistings",
-          element: <MyListings />,
+          element: <MyListingss />,
         },
         {
           path: "/travelguides",
@@ -111,7 +117,7 @@ function App() {
         },
         {
           path: "/myplannings",
-          element: <MyPlaningss />,
+          element: <MyPlanings />,
           children: [
             {
               path: "",
@@ -155,7 +161,7 @@ function App() {
 
     {
       path: "/community",
-      element: <Community />,
+      element: <Communityy />,
       children: [
         {
           path: "",

@@ -89,7 +89,7 @@ const Navbar = () => {
       if (userRole === "TravelGuide") {
         navigate("/guideprofile");
       } else if (userRole === "EventPlanner") {
-        navigate("/myplannings");
+        navigate("/mylistings");
       } else if (userRole === "Admin") {
         navigate("/admin");
       }
