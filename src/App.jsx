@@ -56,7 +56,7 @@ const Layout = () => {
 
 function App() {
   const GuidePro = withRole(GuideProfile, ["TravelGuide"]);
-  const TravelPlann = withRole(TravelPlan, ["TravelGuide", "Traveler"]);
+  const TravelPlann = withRole(TravelPlan, ["TravelGuide", "Traveler","EventPlanner"]);
   const AdminA = withRole(Admin, ["Admin"]);
   const MyListingss = withRole(MyListings, ["EventPlanner"]);
   const Communityy = withRole(Community, [
