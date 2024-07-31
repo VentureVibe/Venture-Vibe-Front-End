@@ -21,13 +21,12 @@ function AddEventListing({ onClose }) {
   const [imagePreview, setImagePreview] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // Initialize Google Maps Places Autocomplete
   useEffect(() => {
     const google = window.google;
     if (!google) return;
 
     const map = new google.maps.Map(mapRef.current, {
-      center: { lat: -34.397, lng: 150.644 },
+      center: { lat: 6.927079, lng: 79.861244 },
       zoom: 8,
     });
 
@@ -64,7 +63,6 @@ function AddEventListing({ onClose }) {
 
     autocompleteRef.current = autocomplete;
 
-    // Add click event listener to the map
     map.addListener("click", (event) => {
       const clickedLocation = event.latLng;
 
@@ -95,7 +93,6 @@ function AddEventListing({ onClose }) {
     });
   }, []);
 
-  // Handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
@@ -104,27 +101,37 @@ function AddEventListing({ onClose }) {
     }));
   };
 
-  const handleImageChange = (event) => {
-    const file = event.target.files[0];
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
     if (file) {
-      const previewUrl = URL.createObjectURL(file);
-      setImagePreview(previewUrl);
-      setFormData({
-        ...formData,
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+      setFormData((prevState) => ({
+        ...prevState,
         eventImage: file,
-      });
+      }));
     }
   };
 
-  // Handle form submission
+  const handleImageRemove = () => {
+    setImagePreview(null);
+    setFormData((prevState) => ({
+      ...prevState,
+      eventImage: null,
+    }));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     try {
       const decodedToken = GetCurrentUserC();
       const id = decodedToken.sub;
 
-      // Prepare event data
       const submittedData = {
         userId: id,
         eventTitle: formData.title,
@@ -136,36 +143,37 @@ function AddEventListing({ onClose }) {
         contactPhone: formData.contactNumber,
       };
 
-      // Create FormData object
       const formDataObj = new FormData();
       formDataObj.append("event", JSON.stringify(submittedData));
       if (formData.eventImage) {
         formDataObj.append("image", formData.eventImage);
       }
-      setLoading(true);
-      // Call the API
+
       await handleCreateEvent(formDataObj);
 
-      // Reset form or redirect user after submission
       setFormData({
         title: "",
         description: "",
         price: "",
         contactNumber: "",
         email: "",
+        location: "",
       });
-      setCoordinates({ lat: null, lon: null });
+      setCoordinates({ lat: "", lng: "" });
+      setImagePreview("");
       if (onClose) onClose();
-      setLoading(false);
       window.location.reload();
     } catch (error) {
       console.error("Error creating event:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
   const handleCreateEvent = async (formDataObj) => {
     try {
       const createdEvent = await createEvent(formDataObj);
+      // Handle created event if necessary
     } catch (error) {
       console.error("Failed to create event:", error);
     }
@@ -177,7 +185,7 @@ function AddEventListing({ onClose }) {
       <div className="head-add-event">
         <h2>Add Event Listing</h2>
         <i onClick={onClose}>
-          <CloseIcon sx={{ color: "#747474", fontSize: 20 }} />
+          <CloseIcon sx={{ color: "#f68712", fontSize: 25 }} />
         </i>
       </div>
       <form onSubmit={handleSubmit} className="form-container">
@@ -189,6 +197,7 @@ function AddEventListing({ onClose }) {
               id="title"
               name="title"
               onChange={handleChange}
+              value={formData.title}
             />
           </div>
           <div>
@@ -197,6 +206,7 @@ function AddEventListing({ onClose }) {
               id="description"
               name="description"
               onChange={handleChange}
+              value={formData.description}
             />
           </div>
           <div>
@@ -206,6 +216,7 @@ function AddEventListing({ onClose }) {
               id="price"
               name="price"
               onChange={handleChange}
+              value={formData.price}
             />
           </div>
           <div>
@@ -215,6 +226,7 @@ function AddEventListing({ onClose }) {
               id="contactNumber"
               name="contactNumber"
               onChange={handleChange}
+              value={formData.contactNumber}
             />
           </div>
           <div>
@@ -224,30 +236,38 @@ function AddEventListing({ onClose }) {
               id="email"
               name="email"
               onChange={handleChange}
+              value={formData.email}
             />
           </div>
-          <div>
-            <label htmlFor="eventImage">Event Image</label>
-            <input
-              type="file"
-              id="eventImage"
-              name="eventImage"
-              accept="image/*"
-              onChange={handleImageChange}
-            />
-          </div>
-          {imagePreview && (
-            <div>
-              <img
-                src={imagePreview}
-                alt="Preview"
-                style={{ width: "100px", height: "100px", marginTop: "10px" }}
-              />
-            </div>
-          )}
           <button type="submit">Add Event</button>
         </div>
         <div className="add-event-right">
+          <div id="eventImage-container">
+            {!imagePreview && (
+              <div>
+                <label htmlFor="eventImage">Event Image</label>
+                <input
+                  type="file"
+                  id="eventImage"
+                  name="eventImage"
+                  accept="image/*"
+                  onChange={handleImageChange}
+                />
+              </div>
+            )}
+            {imagePreview && (
+              <div className="image-preview-container">
+                <img
+                  src={imagePreview}
+                  alt="Preview"
+                  style={{ width: "100px", height: "100px", marginTop: "10px" }}
+                />
+                <i className="close-btn-image" onClick={handleImageRemove}>
+                  <CloseIcon sx={{ color: "#f68712", fontSize: 20 }} />
+                </i>
+              </div>
+            )}
+          </div>
           <div className="enter-location">
             <label htmlFor="location">Location</label>
             <input
@@ -255,6 +275,7 @@ function AddEventListing({ onClose }) {
               id="location"
               name="location"
               onChange={handleChange}
+              value={formData.location}
             />
           </div>
           <div ref={mapRef} className="map-container"></div>

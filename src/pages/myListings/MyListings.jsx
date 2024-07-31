@@ -3,7 +3,11 @@ import "./MyListings.scss";
 import MyEventListing from "../../components/myEventListing/MyEventListing";
 import AddEventListing from "../../components/addEventListing/AddEventListing";
 import PopUpMain from "../../components/popupmain/PopUpMain";
-import { getEvents } from "../../services/events/eventServices";
+import {
+  getEvents,
+  getEventsByUserId,
+} from "../../services/events/eventServices";
+import { GetUser } from "../../services/user/GetUser";
 
 const MyListings = () => {
   const [showAddNew, setShowAddNew] = useState(false);
@@ -16,23 +20,45 @@ const MyListings = () => {
     setShowAddNew(!showAddNew);
   };
 
+  // const fetchEvents = async (page) => {
+  //   setLoading(true);
+  //   try {
+  //     const result = await getEvents(page);
+  //     const { content, totalPages, number } = result;
+
+  //     // Check if new content is being added to avoid duplication
+  //     if (page === 0) {
+  //       // Initial fetch, just set the events
+  //       setEvents(content);
+  //       //console.log(content);
+  //     } else {
+  //       // Subsequent fetches, append new events
+  //       setEvents((prevEvents) => [...prevEvents, ...content]);
+  //     }
+
+  //     // Determine if there are more pages to load
+  //     setHasMore(number < totalPages);
+  //   } catch (error) {
+  //     console.error("Error fetching events:", error);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
   const fetchEvents = async (page) => {
     setLoading(true);
     try {
-      const result = await getEvents(page);
+      const user = await GetUser();
+      const userId = user.id;
+      const result = await getEventsByUserId(userId, page);
       const { content, totalPages, number } = result;
 
-      // Check if new content is being added to avoid duplication
       if (page === 0) {
-        // Initial fetch, just set the events
         setEvents(content);
-        //console.log(content);
       } else {
-        // Subsequent fetches, append new events
         setEvents((prevEvents) => [...prevEvents, ...content]);
       }
 
-      // Determine if there are more pages to load
       setHasMore(number < totalPages);
     } catch (error) {
       console.error("Error fetching events:", error);
