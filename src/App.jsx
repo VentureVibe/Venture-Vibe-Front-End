@@ -59,6 +59,12 @@ function App() {
   const TravelPlann = withRole(TravelPlan, ["TravelGuide", "Traveler"]);
   const AdminA = withRole(Admin, ["Admin"]);
   const MyListingss = withRole(MyListings, ["EventPlanner"]);
+  const Communityy = withRole(Community, [
+    "EventPlanner",
+    "TravelGuide",
+    "Traveler",
+    "Admin",
+  ]);
 
   // const InviteTravelMatess = withRole(InviteTravelMates, ['travelGuide','User']);
 
@@ -155,7 +161,7 @@ function App() {
 
     {
       path: "/community",
-      element: <Community />,
+      element: <Communityy />,
       children: [
         {
           path: "",
