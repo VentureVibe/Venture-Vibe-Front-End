@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Navbar.scss";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Login from "../login/Login";
 import Register from "../register/Register";
 import PopUpMain from "../popupmain/PopUpMain";
@@ -10,6 +10,8 @@ import { handleLogout } from "../../services/user/LoginSignup";
 import Profile from "../profile/Profile";
 import Loading from "../loading/Loading";
 import { exchangeCodeForTokens } from "../../services/user/LoginSignup";
+import { useAuth } from "../../context/authContext";
+import { GetUser } from "../../services/user/GetUser";
 
 const Navbar = () => {
   const [showSignUp, setShowSignUp] = useState(false);
@@ -17,6 +19,8 @@ const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const showAlert = useAlert(); // State to track user's login status
   const [loading, setLoading] = useState(false);
+  const { token } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -77,6 +81,28 @@ const Navbar = () => {
     }
   };
 
+  const handleProfileClick = async () => {
+    try {
+      const user = await GetUser();
+      const userRole = user.role;
+      //console.log(userRole);
+      if (userRole === "TravelGuide") {
+        navigate("/guideprofile");
+      } else if (userRole === "EventPlanner") {
+        navigate("/mylistings");
+      } else if (userRole === "Admin") {
+        navigate("/admin");
+      }
+      setDropdownVisible(!dropdownVisible);
+      // } else {
+      //   navigate("/profile");
+      // }
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+      navigate("/");
+    }
+  };
+
   return (
     <div className="navbar">
       {loading && <Loading />}
@@ -104,7 +130,7 @@ const Navbar = () => {
             <button onClick={toggleDropdownI} className="notification-button">
               <div className="notification">
                 <i className="fa-regular fa-bell"></i>
-                <p className="notification-count">0</p>
+                <p className="notification-count">3</p>
               </div>
             </button>
             <button onClick={toggleDropdown} className="profile-button">
@@ -113,7 +139,7 @@ const Navbar = () => {
             {dropdownVisible && (
               <div className="dropdown-menu-profile">
                 <ul>
-                  <li>Profile</li>
+                  <li onClick={handleProfileClick}>Profile</li>
                   <li onClick={handleLogout}>Logout</li>
                 </ul>
               </div>
@@ -121,9 +147,9 @@ const Navbar = () => {
             {dropdownVisibleIcon && (
               <div className="dropdown-menu">
                 <ul>
-                  <li>Notification 1</li>
-                  <li>Notification 2</li>
-                  <li>Notification 3</li>
+                  <li>You have invites</li>
+                  <li>Kasun liked your post</li>
+                  <li>Bimsara added new post</li>
                 </ul>
               </div>
             )}
