@@ -108,6 +108,21 @@ export const deleteTravelPlanById=async(travelerPlanId)=>{
   }
 }
 
+export const leaveTravelPlan=async(travelerPlanId,travelerId)=>{
+  try {
+
+    const response = await newRequest.delete(
+      `/travelplan/${travelerPlanId}/${travelerId}`,
+     
+    );
+    return response;
+  } catch (error) {
+    console.error('Error fetching travel plan:', error);
+    throw error;
+  }
+}
+
+
 export const getTravelPlanInvitationsByUserId=async(travelerId,page=0,size=2)=>{
   try {
     const response = await newRequest.get(

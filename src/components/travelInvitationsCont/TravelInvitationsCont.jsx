@@ -67,7 +67,7 @@ const TravelInvitationsCont = ({plan,fetchTravelInvitation}) => {
           
         </div>
         {showPopup && (
-          <PopUpMain Component={<DeleteConfirm onClose={toggleModal} onConfirm={deleteTravelInvitation}/>} />
+          <PopUpMain Component={<DeleteConfirm onClose={toggleModal} onConfirm={deleteTravelInvitation} message={"Are you sure you want to delete this travel invitation?"}/>} />
       )}
     </div>
   )

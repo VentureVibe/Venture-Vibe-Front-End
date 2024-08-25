@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './BudgetTravelPlan.scss';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import EditIcon from '@mui/icons-material/Edit';
@@ -9,11 +9,18 @@ import ExpenseTravelPlan from '../expenseTravelPlan/ExpenseTravelPlan';
 import InviteTripmate from '../inviteTripmate/InviteTripmate';
 import PopUpMain from '../popupmain/PopUpMain';
 import SetBudget from './../setBudget/SetBudget';
+import { useParams } from 'react-router-dom';
+import { GetCurrentUserC } from '../../services/user/GetCurrentUserC'; // Ensure this import is correct
+import { getTravelPlanById } from '../../services/travelplan/TravelPlan';
 
 const BudgetTravelPlan = () => {
+
   const [isBottomContainerVisible, setIsBottomContainerVisible] = useState(true);
   const [showInviteTrip, setShowInviteTrip] = useState(false);
   const [showSetBudget, setShowSetBudget] = useState(false);
+  const { id } = useParams();
+  const [userId,setUserId]=useState('');
+  const [travelPlan, setTravelPlan] = useState(null);
 
   const toggleBottomContainer = () => {
     setIsBottomContainerVisible(prevState => !prevState);
@@ -26,6 +33,22 @@ const BudgetTravelPlan = () => {
   const toggleInviteTripmatePopUp = () => {
     setShowInviteTrip(!showInviteTrip);
   };
+
+  const fetchTravelPlan = async () => {
+    const jwtToken = GetCurrentUserC();
+    setUserId(jwtToken.sub);
+    try {
+      const data = await getTravelPlanById(id, jwtToken.sub);
+      console.log(data);
+      setTravelPlan(data);
+    } catch (error) {
+      console.error('Error fetching travel plan:', error);
+    }
+  };
+  
+  useEffect(() => {
+    fetchTravelPlan();
+  }, []); 
 
   return (
     <div className='budgetTravelPlan' id='view'>
@@ -48,9 +71,12 @@ const BudgetTravelPlan = () => {
                     <i><EditIcon sx={{ color: '#414143', fontSize: 18 }}/></i>
                     <span>Set Budget</span>
                   </div>
-                  <div className="add-friend" onClick={toggleInviteTripmatePopUp}>
-                    <i><GroupAddIcon sx={{ color: '#414143', fontSize: 30 }}/></i>
-                  </div>
+                  {travelPlan?.travelPlanOwner?.id === userId && (
+                    <div className="add-friend" onClick={toggleInviteTripmatePopUp}>
+                        <i><GroupAddIcon sx={{ color: '#414143', fontSize: 30 }}/></i>
+                    </div>
+                    )}
+                 
                 </div>
           </div>
           <div className="expenses-container">
@@ -73,7 +99,7 @@ const BudgetTravelPlan = () => {
             )}
           </div>
           {showInviteTrip && (
-              <PopUpMain Component={<InviteTripmate onClose={toggleInviteTripmatePopUp} />} />
+              <PopUpMain Component={<InviteTripmate onClose={toggleInviteTripmatePopUp} travelPlanId={id} />} />
           )}
           {showSetBudget && (
               <PopUpMain Component={<SetBudget onClose={toogleSetBudgetPopUp} />} />
