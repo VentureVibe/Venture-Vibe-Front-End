@@ -1,39 +1,75 @@
-.DeleteConfirm{
+.DeleteConfirm {
+  position: fixed; /* Ensures the dialog is centered on the screen */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.1); /* Slightly darker overlay for contrast */
+  z-index: 1000; /* Ensure the dialog is above other elements */
+
+  .confirm-delete-dialog-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Overlay for the background */
+    z-index: 999; /* Overlay should be below the dialog */
+  }
+
+  .confirm-delete-dialog-content {
     background: #fff;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: var(--box-shadow);
-    z-index: 1001;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     max-width: 400px;
     width: 100%;
     text-align: center;
-   
+    position: relative;
+    z-index: 1000;
+
+    h2 {
+      margin-bottom: 20px;
+      font-size: 20px;
+      font-weight: 600;
+      color: #333;
+    }
+
     .confirm-delete-dialog-buttons {
-        margin-top: 20px;
-      }
-      
-      .confirm-delete-dialog-confirm,
-      .confirm-delete-dialog-cancel {
+      margin-top: 20px;
+
+      button {
         border: none;
-        padding: 10px 20px;
+        padding: 12px 24px;
         font-size: 16px;
         cursor: pointer;
-        border-radius: 4px;
+        border-radius: 6px;
         margin: 0 10px;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+
+        &:hover {
+          transform: translateY(-2px);
+        }
       }
-      
+
       .confirm-delete-dialog-confirm {
         background: #e74c3c;
         color: #fff;
+        &:hover {
+          background: #c0392b;
+        }
       }
-      
+
       .confirm-delete-dialog-cancel {
-        background: #95a5a6;
+        background: #bdc3c7;
         color: #fff;
+        &:hover {
+          background: #95a5a6;
+        }
       }
-      
-      .confirm-delete-dialog-confirm:hover,
-      .confirm-delete-dialog-cancel:hover {
-        opacity: 0.8;
-      }
+    }
+  }
 }

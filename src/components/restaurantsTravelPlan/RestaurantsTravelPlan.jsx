@@ -156,7 +156,7 @@ const RestaurantsTravelPlan = ({lat,long,addedRestaurants,setClickedPlace,setAdd
         fetchBestRestaurants(lat, long);
     }
    
-    }, [lat, long]);
+   }, [lat, long]);
 
 
     const isPlaceAdded = (placeId) => {

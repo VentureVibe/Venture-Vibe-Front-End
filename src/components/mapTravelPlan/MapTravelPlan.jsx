@@ -3,7 +3,7 @@ import { GoogleMap, Marker, useJsApiLoader, InfoWindow } from '@react-google-map
 import './MapTravelPlan.scss';
 import Google from '../../assets/google-logo.png';
 
-const MapTravelPlan = ({ lat, lng, clickedPlace, addedPlaces, setAddedPlaces,addedRestaurants }) => {
+const MapTravelPlan = ({ lat, lng, clickedPlace, addedPlaces, setAddedPlaces,addedRestaurants,addedHotels}) => {
   const [detailsVisible, setDetailsVisible] = useState(false);
   const [selectedPlace, setSelectedPlace] = useState(null);
   const mapRef = useRef(null);
@@ -129,7 +129,7 @@ const MapTravelPlan = ({ lat, lng, clickedPlace, addedPlaces, setAddedPlaces,add
   };
 
   const restaurantMarkerIcon = (index) => {
-    console.log(index);
+ 
     const markerLabel = String(index + 1); // Index starts from 1
     const svgContent = `
       <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
@@ -143,6 +143,18 @@ const MapTravelPlan = ({ lat, lng, clickedPlace, addedPlaces, setAddedPlaces,add
   };
   
   
+  const hotelMarkerIcon = (index) => {
+    const markerLabel = String(index + 1); // Index starts from 1
+    const svgContent = `
+      <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
+        <!-- Location pin shape -->
+        <path d="M25 3C15.85 3 8.75 10.1 8.75 19c0 4.07 1.5 7.99 4.11 11.03L25 47l12.14-16.97C40.3 27.99 41.75 24.07 41.75 19 41.75 10.1 34.65 3 25 3z" fill="#0075C3" stroke="white" stroke-width="4"/>
+        <!-- Text in the center -->
+        <text x="25" y="28" font-size="18" font-weight="bold" text-anchor="middle" alignment-baseline="middle" fill="#FFFFFF">${markerLabel}</text>
+      </svg>
+    `;
+    return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svgContent)}`;
+  };
   
   
 
@@ -153,7 +165,7 @@ const MapTravelPlan = ({ lat, lng, clickedPlace, addedPlaces, setAddedPlaces,add
           className="containerStyle"
           mapContainerStyle={containerStyle}
           center={center}
-          zoom={13}
+          zoom={12}
           onLoad={(map) => {
             mapRef.current = map;
             if (lat && lng) {
@@ -203,6 +215,17 @@ const MapTravelPlan = ({ lat, lng, clickedPlace, addedPlaces, setAddedPlaces,add
               }}
               icon={restaurantMarkerIcon(index)}
               onClick={() => handleMarkerClick(restaurant, index)}
+            />
+          ))}
+           {addedHotels.map((hotel, index) => (
+            <Marker
+              key={hotel.place_id}
+              position={{
+                lat: hotel.geometry.location.lat(),
+                lng:hotel.geometry.location.lng(),
+              }}
+              icon={hotelMarkerIcon(index)}
+              onClick={() => handleMarkerClick(hotel, index)}
             />
           ))}
         </GoogleMap>

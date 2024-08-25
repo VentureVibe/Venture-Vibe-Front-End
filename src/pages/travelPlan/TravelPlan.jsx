@@ -31,6 +31,8 @@ const TravelPlan = () => {
   const [clickedPlace,setClickedPlace]=useState(null);
   const [addedPlaces, setAddedPlaces] = useState([]);
   const [addedRestaurants, setAddedRestaurants] = useState([]);
+  const [addedHotels, setAddedHotels] = useState([]);
+
   const { id } = useParams();
   const navigate=useNavigate();
 
@@ -79,7 +81,7 @@ const TravelPlan = () => {
               <PlacesToVisitTravelPlan lat={lat} long={lng} setClickedPlace={setClickedPlace} addedPlaces={addedPlaces} setAddedPlaces={setAddedPlaces}/>
 
               <hr className='travelplan-hr'/>
-              <HotelsTravelPlan />
+              <HotelsTravelPlan lat={lat} long={lng} setClickedPlace={setClickedPlace} addedHotels={addedHotels}  setAddedHotels={ setAddedHotels}/>
               <hr className='travelplan-hr'/>
               <RestaurantsTravelPlan lat={lat} long={lng} addedRestaurants={addedRestaurants} setAddedRestaurants={setAddedRestaurants} setClickedPlace={setClickedPlace}/>
            
@@ -92,7 +94,7 @@ const TravelPlan = () => {
           </div>
         </div>
         <div className='map'>
-              <MapTravelPlan lat={parseFloat(lat)} lng={parseFloat(lng)} place={"as"} clickedPlace={clickedPlace} setAddedPlaces={setAddedPlaces} addedPlaces={addedPlaces} addedRestaurants={addedRestaurants} />
+              <MapTravelPlan lat={parseFloat(lat)} lng={parseFloat(lng)} place={"as"} clickedPlace={clickedPlace} setAddedPlaces={setAddedPlaces} addedPlaces={addedPlaces} addedRestaurants={addedRestaurants}  addedHotels={addedHotels}/>
         </div>
       </div>
     </div>
