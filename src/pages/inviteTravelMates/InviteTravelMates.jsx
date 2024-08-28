@@ -106,7 +106,7 @@ const InviteTravelMates = () => {
     const filteredSelectedUsers = selectedUsers.filter(user => user.email !== jwtToken.email);
   
     const userData = {
-      
+      budget:0,
       toDate: to,
       fromDate: from,
       location,
