@@ -6,7 +6,7 @@ import AttachFileIcon from '@mui/icons-material/AttachFile';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import { places } from '../../dummyData';
 
-const PlaceTravelPlan = ({placeId,number, name, color,handleRemoveFromTrip,onClick,place}) => {
+const PlaceTravelPlan = ({placeId,number, name, color,handleRemoveFromTrip,onClick,place, id}) => {
     const [isBottomContainerVisible, setIsBottomContainerVisible] = useState(false);
 
     const toggleBottomContainer = () => {
@@ -22,7 +22,7 @@ const PlaceTravelPlan = ({placeId,number, name, color,handleRemoveFromTrip,onCli
                         <span style={{ backgroundColor: color }}>{number}</span> 
                     </div>
                     <span onClick={toggleBottomContainer}>{name}</span>
-                    <i className='delete' onClick={() => handleRemoveFromTrip(placeId)}><DeleteIcon sx={{ color: '#747474', fontSize: 20 }} /></i>                </div>
+                    <i className='delete' onClick={() => handleRemoveFromTrip( place.id)}><DeleteIcon sx={{ color: '#747474', fontSize: 20 }} /></i>                </div>
                 {isBottomContainerVisible && (<div className="add-notes">
                     <input type="text" placeholder='Add notes, links, etc. here'/>
                 </div>)}

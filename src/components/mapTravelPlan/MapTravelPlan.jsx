@@ -3,7 +3,7 @@ import { GoogleMap, Marker, useJsApiLoader, InfoWindow } from '@react-google-map
 import './MapTravelPlan.scss';
 import Google from '../../assets/google-logo.png';
 
-const MapTravelPlan = ({ lat, lng, clickedPlace, addedPlaces, setAddedPlaces,addedRestaurants,addedHotels}) => {
+const MapTravelPlan = ({ lat, lng, clickedPlace, addedPlaces, setAddedPlaces,addedRestaurants,addedHotels, updatePlacesInBackend}) => {
   const [detailsVisible, setDetailsVisible] = useState(false);
   const [selectedPlace, setSelectedPlace] = useState(null);
   const mapRef = useRef(null);
@@ -33,8 +33,8 @@ const MapTravelPlan = ({ lat, lng, clickedPlace, addedPlaces, setAddedPlaces,add
       setDetailsVisible(true);
       if (mapRef.current) {
         mapRef.current.panTo({
-          lat: clickedPlace.geometry.location.lat(),
-          lng: clickedPlace.geometry.location.lng(),
+          lat: clickedPlace.lat,
+          lng: clickedPlace.longi,
         });
       }
     }
@@ -102,11 +102,8 @@ const MapTravelPlan = ({ lat, lng, clickedPlace, addedPlaces, setAddedPlaces,add
       types: place.types,       // Include types if available
       vicinity: place.vicinity  // Include vicinity if available
     };
-
-    setAddedPlaces(prevAddedPlaces => [
-      ...prevAddedPlaces,
-      placeDetails
-    ]);
+    updatePlacesInBackend(placeDetails)
+ 
   };
 
   const handleMarkerClick = (place, index) => {
@@ -190,20 +187,20 @@ const MapTravelPlan = ({ lat, lng, clickedPlace, addedPlaces, setAddedPlaces,add
           {selectedPlace && (
             <Marker
               position={{
-                lat: selectedPlace.geometry.location.lat(),
-                lng: selectedPlace.geometry.location.lng(),
+                lat: selectedPlace.lat,
+                lng: selectedPlace.longi,
               }}
             />
           )}
           {addedPlaces.map((place, index) => (
             <Marker
-              key={place.place_id}
+              key={place.id}
               position={{
-                lat: place.geometry.location.lat(),
-                lng: place.geometry.location.lng(),
+                lat: place.lat,
+                lng: place.longi,
               }}
               icon={customMarkerIcon(index)}
-              onClick={() => handleMarkerClick(place, index)}
+              // onClick={() => handleMarkerClick(place, index)}
             />
           ))}
           {addedRestaurants.map((restaurant, index) => (

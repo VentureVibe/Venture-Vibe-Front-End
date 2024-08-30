@@ -4,14 +4,15 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PlaceTravelPlan from '../placeTravelPlan/PlaceTravelPlan';
 import Google from '../../assets/google-logo.png';
+import { updateDestination, getDestination,deleteDestination } from '../../services/travelDestination/TravelDestination';
 
 
-const PlacesToVisitTravelPlan = ({ lat, long ,setClickedPlace,addedPlaces,setAddedPlaces}) => {
+const PlacesToVisitTravelPlan = ({ lat, long ,setClickedPlace,addedPlaces,setAddedPlaces,updatePlacesInBackend,fetchTravelPlan}) => {
     const [isBottomContainerVisible, setIsBottomContainerVisible] = useState(true);
     const [isPlaceVisible, setIsPlaceVisible] = useState(true);
     const [bestPlaces, setBestPlaces] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
-    
+
     const [inputValue, setInputValue] = useState('');
     const [placeSuggestions, setPlaceSuggestions] = useState([]);
     const whereToInputRef = useRef(null);
@@ -61,8 +62,8 @@ const PlacesToVisitTravelPlan = ({ lat, long ,setClickedPlace,addedPlaces,setAdd
     };
 
     const handleAddToTrip = (place) => {
-        onclickPlace(place);
-    
+        // onclickPlace(place);
+        
         // Create a new place object with all desired attributes
         const placeDetails = {
             place_id: place.place_id,
@@ -75,20 +76,41 @@ const PlacesToVisitTravelPlan = ({ lat, long ,setClickedPlace,addedPlaces,setAdd
             vicinity: place.vicinity  // Include vicinity if available
         };
     
-        setAddedPlaces(prevAddedPlaces => [
-            ...prevAddedPlaces,
-            placeDetails
-        ]);
+        updatePlacesInBackend(placeDetails)
     };
      
-    const onclickPlace = (place) => {
-        setClickedPlace(place);
+    const onclickPlace = (recentPlace) => {
+        const lat = recentPlace.geometry?.location?.lat() || recentPlace.lat;
+        const longi = recentPlace.geometry?.location?.lng() || recentPlace.longi;
+  
+        if (isNaN(lat) || isNaN(longi)) {
+          throw new Error('Invalid latitude or longitude values');
+        }
+  
+        const photoUrl ='';
+  
+        const updatedPlace = {
+          lat: lat,
+          longi: longi,
+          description: recentPlace.name,
+          index:addedPlaces.length+1,
+          name: recentPlace.name,
+          imgUrl: photoUrl,
+          type: "Places",
+          rating:recentPlace.rating,
+      
+        };
+    
+       setClickedPlace( updatedPlace );
     };
     
-    const handleRemoveFromTrip = (index) => {
-      setAddedPlaces(prevAddedPlaces => 
-          prevAddedPlaces.filter((_, i) => i !== index)
-      );
+    const handleRemoveFromTrip =async (id) => {
+        try {
+            const place1 = await deleteDestination(id);
+            fetchTravelPlan();
+        } catch (error) {
+            console.log(error)
+        }
     };
 
     const handleInputChange = (event) => {
@@ -144,13 +166,37 @@ const PlacesToVisitTravelPlan = ({ lat, long ,setClickedPlace,addedPlaces,setAdd
         event.preventDefault(); // Necessary to allow drop
     };
 
-    const handleDrop = (index) => {
+    const handleDrop = async (index) => {
         const updatedPlaces = [...addedPlaces];
+      
         const [draggedPlace] = updatedPlaces.splice(draggedIndex, 1);
         updatedPlaces.splice(index, 0, draggedPlace);
-        setAddedPlaces(updatedPlaces);
+    
+        // Update the state with a function to guarantee the latest value
+        setAddedPlaces(() => updatedPlaces);
+     
+     // Correctly log the new array
+        for (let i = 0; i < updatedPlaces.length; i++) {
+            const place = updatedPlaces[i];
+      
+            try {
+                // Fetch the place data from the backend
+                const place1 = await getDestination(place.id);
+           
+                // Update only the specific attribute, e.g., the index
+                place1.index =i+1; // Update the index
+        
+                // Send the updated place with the new index to the backend
+                const { data } = await updateDestination(place1);
+            } catch (error) {
+                console.error('Error updating place:', error);
+            }
+        }
+        fetchTravelPlan();
         setDraggedIndex(null);
     };
+
+
 
     useEffect(() => {
         if (lat && long) {
@@ -174,30 +220,35 @@ const PlacesToVisitTravelPlan = ({ lat, long ,setClickedPlace,addedPlaces,setAdd
                     <h2>Places to Visit</h2>
                 </div>
                 {isBottomContainerVisible && (
-                    <div className='added-places-container'>
-                        {addedPlaces.map((place, index) => (
-                            <div
-                                key={place.place_id}
-                                draggable
-                                onDragStart={() => handleDragStart(index)}
-                                onDragOver={handleDragOver}
-                                onDrop={() => handleDrop(index)}
-                                className='draggable-item'
-                           
-                            >
-                                <PlaceTravelPlan
-                                    number={index + 1}
-                                    name={place.name}
-                                    placeId={index}
-                                    color='#1BBC9B'
-                                    handleRemoveFromTrip={() => handleRemoveFromTrip(index)}
-                                    place={place}
-                                    onClick={onclickPlace}
-                                />
-                            </div>
-                        ))}
-                    </div>
-                )}
+                <div className='added-places-container'>
+                        {addedPlaces
+                             .slice() // Create a copy of the array to avoid mutating the original array
+            .sort((a, b) => a.index - b.index) // Sort by place.index
+            .map((place, index) => (
+                <div
+                    key={place.place_id}
+                    draggable
+                    onDragStart={() => handleDragStart(index)}
+                    onDragOver={handleDragOver}
+                    onDrop={() => handleDrop(index,place)}
+                    className='draggable-item'
+                >
+                    <PlaceTravelPlan
+                        id={place.id}
+                        number={place.index}  // Display number starts from 1
+                        name={place.name}
+                        placeId={index}  // Assign index in ascending order
+                        color='#1BBC9B'
+                        handleRemoveFromTrip={() => handleRemoveFromTrip(place.id)} 
+                        place={place}
+                        onClick={onclickPlace}
+                     
+                    />
+                </div>
+            ))}
+    </div>
+)}
+
                 {isBottomContainerVisible && (
                     <div className='add-place-container'>
                         <div className="top">
