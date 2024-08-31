@@ -44,3 +44,20 @@ export const getTravelPlanInvitationsByUserId=async(travelerId,page=0,size=2)=>{
       throw error;
     }
 }
+
+export const sendTravelInvitation = async (travelerPlanId, travelerId) => {
+  try {
+    const response=await newRequest.post(
+      `/travelInvite/${travelerPlanId}/${travelerId}`,
+   {
+    
+   }
+      
+    
+    );
+    return response.data; // Return response data if you only need the data
+  } catch (error) {
+    console.error('Error sending travel invitation:', error);
+    throw error; // Re-throw the error to handle it in the caller
+  }
+};

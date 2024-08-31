@@ -6,12 +6,13 @@ import DeleteConfirm from '../deleteConfirm/DeleteConfirm';
 import {deleteTravelPlanById} from '../../services/travelplan/TravelPlan'
 import Google from '../../assets/MapsCover.avif'
 import { GetCurrentUserC } from '../../services/user/GetCurrentUserC';
+import InviteTripmate from '../inviteTripmate/InviteTripmate';
 
 const MyplanningsOwnedPlansCont = ({plan,fetchTravelPlans}) => {
 
   const[travelPlan,setTravelPlan]=useState(plan);
   const [showPopup, setShowPopup] = useState(false);
- 
+  const [showInviteTrip, setShowInviteTrip] = useState(false);
   const userToken=GetCurrentUserC();
 
   const toggleModal = () => {
@@ -29,6 +30,9 @@ const MyplanningsOwnedPlansCont = ({plan,fetchTravelPlans}) => {
     }
   };
   
+  const toggleInviteTripmatePopUp = () => {
+    setShowInviteTrip(!showInviteTrip);
+  };
 
   return (
     <div className='MyplanningsOwnedPlansCont'>
@@ -50,7 +54,7 @@ const MyplanningsOwnedPlansCont = ({plan,fetchTravelPlans}) => {
             ) : null
           ))}
        
-            <span><i class="fa-solid fa-plus"></i> Invite</span>
+            <span onClick={toggleInviteTripmatePopUp}><i class="fa-solid fa-plus"></i> Invite</span>
           </div> 
           
         </div>
@@ -62,8 +66,11 @@ const MyplanningsOwnedPlansCont = ({plan,fetchTravelPlans}) => {
           
         </div>
         {showPopup && (
-          <PopUpMain Component={<DeleteConfirm onClose={toggleModal} onConfirm={deleteTravelPlan}/>} />
+          <PopUpMain Component={<DeleteConfirm onClose={toggleModal} onConfirm={deleteTravelPlan} message={"Are you sure you want to delete this travel plan?"}/>} />
       )}
+        {showInviteTrip && (
+          <PopUpMain Component={<InviteTripmate onClose={toggleInviteTripmatePopUp} travelPlanId={travelPlan.id} />} />
+        )}
     </div>
     
   )
