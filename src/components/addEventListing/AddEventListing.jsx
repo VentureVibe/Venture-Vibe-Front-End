@@ -148,7 +148,7 @@ function AddEventListing({ onClose }) {
       if (formData.eventImage) {
         formDataObj.append("image", formData.eventImage);
       }
-
+      //console.log(formDataObj);
       await handleCreateEvent(formDataObj);
 
       setFormData({
