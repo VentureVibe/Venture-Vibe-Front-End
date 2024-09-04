@@ -7,6 +7,10 @@ import CheckOut from "../../../components/checkout/Checkout";
 import WorkExperienceForm from "../../../components/serviceProvider/WorkExperienceForm";
 
 const GuideRegistration = () => {
+  const [userDetails, setUserDetails] = useState(null);
+  const [selectedPlan, setSelectedPlan] = useState(null);
+  const [workExperiences, setWorkExperiences] = useState([]);
+
   const [steps, setSteps] = useState([
     {
       step_no: "Step 1",
@@ -14,7 +18,7 @@ const GuideRegistration = () => {
       icon: "fa-regular fa-user",
       active: true,
       left_cont: "Enter Your Personal Information",
-      right_cont: "Enter your Personal information to proceed to the payments",
+      right_cont: "Enter your personal information to proceed to the next step",
     },
     {
       step_no: "Step 2",
@@ -29,8 +33,8 @@ const GuideRegistration = () => {
       topic: "Check out",
       icon: "fa-solid fa-cart-shopping",
       active: false,
-      left_cont: "This is the details of your payment",
-      right_cont: "Proceed to payments to do the payment",
+      left_cont: "Review and Select a Plan",
+      right_cont: "Choose a plan and proceed to the payment",
     },
     {
       step_no: "Step 4",
@@ -38,7 +42,7 @@ const GuideRegistration = () => {
       icon: "fa-regular fa-credit-card",
       active: false,
       left_cont: "Enter Your Payment Details",
-      right_cont: "Enter your payment details to proceed to the payment",
+      right_cont: "Complete your payment to finalize registration",
     },
   ]);
 
@@ -48,6 +52,13 @@ const GuideRegistration = () => {
       step.active = i === index;
     });
     setSteps(newSteps);
+  };
+
+  const handleNext = () => {
+    const currentIndex = steps.findIndex((step) => step.active);
+    if (currentIndex < steps.length - 1) {
+      handleStepClick(currentIndex + 1);
+    }
   };
 
   const activeStep = steps.find((step) => step.active);
@@ -78,13 +89,27 @@ const GuideRegistration = () => {
         </div>
         <div className="bottom">
           {activeStep.topic === "Payment" ? (
-            <Payments />
+            <Payments
+              userDetails={userDetails}
+              selectedPlan={selectedPlan}
+              workExperiences={workExperiences}
+            />
           ) : activeStep.topic === "Check out" ? (
-            <CheckOut />
+            <CheckOut
+              selectedPlan={selectedPlan}
+              setSelectedPlan={setSelectedPlan}
+              onNext={handleNext}
+            />
           ) : activeStep.topic === "Work Experience" ? (
-            <WorkExperienceForm />
+            <WorkExperienceForm
+              setWorkExperiences={setWorkExperiences}
+              onNext={handleNext}
+            />
           ) : (
-            <RegistrationPersonalInfo />
+            <RegistrationPersonalInfo
+              setUserDetails={setUserDetails}
+              onNext={handleNext}
+            />
           )}
         </div>
       </div>

@@ -1,15 +1,17 @@
 import React, { useState } from "react";
+import DeleteIcon from "@mui/icons-material/Delete";
 import "./WorkExperienceForm.scss";
 
-const WorkExperienceForm = () => {
+const WorkExperienceForm = ({ setWorkExperiences, onNext }) => {
   const [experiences, setExperiences] = useState([
-    { id: 1, company: "", role: "", years: "" },
+    { companyName: "", role: "", yearsOfExperience: "" },
   ]);
 
-  const handleChange = (id, event) => {
-    const newExperiences = experiences.map((exp) => {
-      if (exp.id === id) {
-        return { ...exp, [event.target.name]: event.target.value };
+  const handleChange = (index, event) => {
+    const { name, value } = event.target;
+    const newExperiences = experiences.map((exp, i) => {
+      if (i === index) {
+        return { ...exp, [name]: value };
       }
       return exp;
     });
@@ -19,13 +21,19 @@ const WorkExperienceForm = () => {
   const addExperience = () => {
     setExperiences([
       ...experiences,
-      { id: experiences.length + 1, company: "", role: "", years: "" },
+      { companyName: "", role: "", yearsOfExperience: "" },
     ]);
+  };
+
+  const deleteExperience = (index) => {
+    const newExperiences = experiences.filter((_, i) => i !== index);
+    setExperiences(newExperiences);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("Submitted Experiences:", experiences);
+    setWorkExperiences(experiences);
+    onNext();
   };
 
   return (
@@ -37,29 +45,38 @@ const WorkExperienceForm = () => {
         </button>
       </div>
       <div className="experience-container">
-        {experiences.map((exp) => (
-          <div key={exp.id} className="experience">
-            <h3>Experience {exp.id}</h3>
+        {experiences.map((exp, index) => (
+          <div key={index} className="experience">
+            <div className="experience-header">
+              <h3>Experience {index + 1}</h3>
+              <button
+                type="button"
+                className="delete-button"
+                onClick={() => deleteExperience(index)}
+              >
+                <DeleteIcon />
+              </button>
+            </div>
             <input
               type="text"
-              name="company"
+              name="companyName"
               placeholder="Company Name"
-              value={exp.company}
-              onChange={(event) => handleChange(exp.id, event)}
+              value={exp.companyName}
+              onChange={(event) => handleChange(index, event)}
             />
             <input
               type="text"
               name="role"
               placeholder="Role"
               value={exp.role}
-              onChange={(event) => handleChange(exp.id, event)}
+              onChange={(event) => handleChange(index, event)}
             />
             <input
               type="number"
-              name="years"
+              name="yearsOfExperience"
               placeholder="Years of Experience"
-              value={exp.years}
-              onChange={(event) => handleChange(exp.id, event)}
+              value={exp.yearsOfExperience}
+              onChange={(event) => handleChange(index, event)}
             />
           </div>
         ))}
