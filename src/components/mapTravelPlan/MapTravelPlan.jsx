@@ -3,7 +3,7 @@ import { GoogleMap, Marker, useJsApiLoader, InfoWindow } from '@react-google-map
 import './MapTravelPlan.scss';
 import Google from '../../assets/google-logo.png';
 
-const MapTravelPlan = ({ lat, lng, clickedPlace, addedPlaces, setAddedPlaces,addedRestaurants }) => {
+const MapTravelPlan = ({ lat, lng, clickedPlace, addedPlaces, setAddedPlaces,addedRestaurants,addedHotels, updatePlacesInBackend}) => {
   const [detailsVisible, setDetailsVisible] = useState(false);
   const [selectedPlace, setSelectedPlace] = useState(null);
   const mapRef = useRef(null);
@@ -33,8 +33,8 @@ const MapTravelPlan = ({ lat, lng, clickedPlace, addedPlaces, setAddedPlaces,add
       setDetailsVisible(true);
       if (mapRef.current) {
         mapRef.current.panTo({
-          lat: clickedPlace.geometry.location.lat(),
-          lng: clickedPlace.geometry.location.lng(),
+          lat: clickedPlace.lat,
+          lng: clickedPlace.longi,
         });
       }
     }
@@ -102,11 +102,8 @@ const MapTravelPlan = ({ lat, lng, clickedPlace, addedPlaces, setAddedPlaces,add
       types: place.types,       // Include types if available
       vicinity: place.vicinity  // Include vicinity if available
     };
-
-    setAddedPlaces(prevAddedPlaces => [
-      ...prevAddedPlaces,
-      placeDetails
-    ]);
+    updatePlacesInBackend(placeDetails)
+ 
   };
 
   const handleMarkerClick = (place, index) => {
@@ -129,7 +126,7 @@ const MapTravelPlan = ({ lat, lng, clickedPlace, addedPlaces, setAddedPlaces,add
   };
 
   const restaurantMarkerIcon = (index) => {
-    console.log(index);
+ 
     const markerLabel = String(index + 1); // Index starts from 1
     const svgContent = `
       <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
@@ -143,6 +140,18 @@ const MapTravelPlan = ({ lat, lng, clickedPlace, addedPlaces, setAddedPlaces,add
   };
   
   
+  const hotelMarkerIcon = (index) => {
+    const markerLabel = String(index + 1); // Index starts from 1
+    const svgContent = `
+      <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
+        <!-- Location pin shape -->
+        <path d="M25 3C15.85 3 8.75 10.1 8.75 19c0 4.07 1.5 7.99 4.11 11.03L25 47l12.14-16.97C40.3 27.99 41.75 24.07 41.75 19 41.75 10.1 34.65 3 25 3z" fill="#0075C3" stroke="white" stroke-width="4"/>
+        <!-- Text in the center -->
+        <text x="25" y="28" font-size="18" font-weight="bold" text-anchor="middle" alignment-baseline="middle" fill="#FFFFFF">${markerLabel}</text>
+      </svg>
+    `;
+    return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svgContent)}`;
+  };
   
   
 
@@ -153,7 +162,7 @@ const MapTravelPlan = ({ lat, lng, clickedPlace, addedPlaces, setAddedPlaces,add
           className="containerStyle"
           mapContainerStyle={containerStyle}
           center={center}
-          zoom={13}
+          zoom={12}
           onLoad={(map) => {
             mapRef.current = map;
             if (lat && lng) {
@@ -178,31 +187,42 @@ const MapTravelPlan = ({ lat, lng, clickedPlace, addedPlaces, setAddedPlaces,add
           {selectedPlace && (
             <Marker
               position={{
-                lat: selectedPlace.geometry.location.lat(),
-                lng: selectedPlace.geometry.location.lng(),
+                lat: selectedPlace.lat,
+                lng: selectedPlace.longi,
               }}
             />
           )}
           {addedPlaces.map((place, index) => (
             <Marker
-              key={place.place_id}
+              key={place.id}
               position={{
-                lat: place.geometry.location.lat(),
-                lng: place.geometry.location.lng(),
+                lat: place.lat,
+                lng: place.longi,
               }}
-              icon={customMarkerIcon(index)}
-              onClick={() => handleMarkerClick(place, index)}
+              icon={customMarkerIcon(place.index)}
+              // onClick={() => handleMarkerClick(place, index)}
             />
           ))}
           {addedRestaurants.map((restaurant, index) => (
             <Marker
               key={restaurant.place_id}
               position={{
-                lat: restaurant.geometry.location.lat(),
-                lng: restaurant.geometry.location.lng(),
+                lat: restaurant.lat,
+                lng: restaurant.longi,
               }}
-              icon={restaurantMarkerIcon(index)}
+              icon={restaurantMarkerIcon(restaurant.index)}
               onClick={() => handleMarkerClick(restaurant, index)}
+            />
+          ))}
+           {addedHotels.map((hotel, index) => (
+            <Marker
+            key={hotel.id}
+            position={{
+              lat: hotel.lat,
+              lng: hotel.longi,
+            }}
+              icon={hotelMarkerIcon(hotel.index)}
+              // onClick={() => handleMarkerClick(hotel, index)}
             />
           ))}
         </GoogleMap>

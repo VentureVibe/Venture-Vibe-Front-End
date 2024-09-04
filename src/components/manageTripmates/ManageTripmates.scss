@@ -110,6 +110,16 @@
                 }
 
                 .remove-btn{
+                    text-align: center;
+                    font-size: var(--paragraph-3);
+                    width: 135px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background-color: var(--orange);
+                    padding: 4px;
+                    border-radius: 5px;
+                    color: var(--white);
                     cursor: pointer;
                 }
 

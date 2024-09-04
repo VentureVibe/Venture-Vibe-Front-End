@@ -2,18 +2,32 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import './MyplanningsAcceptedCont.scss'
 import { GetCurrentUserC } from '../../services/user/GetCurrentUserC';
+import PopUpMain from '../popupmain/PopUpMain';
+import DeleteConfirm from '../deleteConfirm/DeleteConfirm';
+import {leaveTravelPlan} from '../../services/travelplan/TravelPlan'
 
-const MyplanningsAcceptedCont = ({plan}) => {
+const MyplanningsAcceptedCont = ({plan,fetchTravelPlans}) => {
 
   const[travelPlan,setTravelPlan]=useState(plan);
   const [showPopup, setShowPopup] = useState(false);
   const userToken=GetCurrentUserC();
-  console.log(plan);
+
 
   const toggleModal = () => {
     setShowPopup(!showPopup); // Toggle the state of showPopup
   };
 
+  const leaveTravelPlan1 = async () => {
+    try {
+  
+      const { data } = await leaveTravelPlan(travelPlan.id,userToken.sub);
+      fetchTravelPlans();
+      setShowPopup(!showPopup);
+      
+    } catch (error) {
+      console.error('Error deleting travel plan:', error);
+    }
+  };
   return (
      <div className='MyplanningsAcceptedCont'>
         <img src={travelPlan.imgUrl ? travelPlan.imgUrl : Google} alt="" />
@@ -56,7 +70,7 @@ const MyplanningsAcceptedCont = ({plan}) => {
           
         </div>
         {showPopup && (
-          <PopUpMain Component={<DeleteConfirm onClose={toggleModal} onConfirm={deleteTravelPlan}/>} />
+          <PopUpMain Component={<DeleteConfirm onClose={toggleModal} onConfirm={leaveTravelPlan1} message={"Are you sure you want to leave this travel plan?"}/>} />
       )}
     </div>
   )
