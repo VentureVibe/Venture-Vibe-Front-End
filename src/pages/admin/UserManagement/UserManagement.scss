@@ -38,7 +38,7 @@
         }
   
         .edit-button, .delete-button {
-          background-color: #4CAF50; /* Green */
+          background-color: #007bff; /* Green */
           color: white;
           border: none;
           padding: 5px 10px;
@@ -82,7 +82,7 @@
           cursor: pointer;
   
           &:first-of-type {
-            background-color: #4CAF50; /* Green */
+            background-color: #007bff; /* Green */
             color: white;
             border: none;
   
@@ -105,24 +105,29 @@
       }
     }
     .modal {
-      padding: 5px;
+      padding: 10px;
       .popup{
         position: relative;
         left: 0px;
         display: flex;
         flex-direction: column;
+        
 
       }
-
       .namelabel{
+        margin-top: 20px;
         position: relative;
         padding: 10px;
-        display: block;
-        color: #161616;
+      }
+      .namelabel span{
+        
+        position:absolute;
+        left: 20px;
+        top: -10px;
+        
+      }
 
-        .namelabel span{
-          left: 0px;
-        }
+      
 
         .nametext{
           
@@ -138,7 +143,7 @@
         .nametext:focus{
           border-color: #007bff;
         }
-      }
+      
       position: fixed;
       top: 0;
       left: 0;
@@ -167,21 +172,23 @@
     
     
       .modal-actions button[type="submit"] {
-        background-color: #4CAF50;
+        font-weight: 600;
+        background-color: #007bff;
         color: white;
-        padding: 8px 15px;
+        padding: 8px 30px;
       }
       
       .modal-actions button[type="submit"]:hover {
-        background-color: #45A049;
+        background-color: #007bff;
         transform: translateY(-2px);
       }
       
       /* Cancel button styling */
       .modal-actions button[type="button"] {
+        font-weight: 600;
         background-color: #f44336;
         color: white;
-        padding: 8px 15px;
+        padding: 8px 30px;
         
       }
       .modal-actions button[type="button"]:hover {
