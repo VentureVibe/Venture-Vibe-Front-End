@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import "./UserManagement.scss";
 import axios from "axios";
+import "./UserManagement.scss";
 
-const UserManagement = () => {
+const UserTable = () => {
   const [users, setUsers] = useState([]);
   const [editingUser, setEditingUser] = useState(null);
   const [editFormData, setEditFormData] = useState({
@@ -11,9 +11,9 @@ const UserManagement = () => {
     email: "",
     role: "",
   });
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    // Fetch all users on component mount
     const fetchUsers = async () => {
       try {
         const response = await axios.get(
@@ -38,8 +38,9 @@ const UserManagement = () => {
   };
 
   const handleEdit = (user) => {
-    setEditingUser(user.id);
+    setEditingUser(user);
     setEditFormData(user);
+    setIsModalOpen(true);
   };
 
   const handleEditChange = (e) => {
@@ -50,17 +51,24 @@ const UserManagement = () => {
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(
+      const response = await axios.put(
         `http://localhost:8080/api/v1/admin/users/${editFormData.id}`,
         editFormData
       );
       setUsers(
-        users.map((user) => (user.id === editFormData.id ? editFormData : user))
+        users.map((user) =>
+          user.id === editFormData.id ? response.data : user
+        )
       );
-      setEditingUser(null);
+      setIsModalOpen(false);
     } catch (error) {
       console.error("Error updating user:", error);
     }
+  };
+
+  const handleCancelEdit = () => {
+    setIsModalOpen(false);
+    setEditingUser(null);
   };
 
   return (
@@ -70,7 +78,7 @@ const UserManagement = () => {
         <table>
           <thead>
             <tr>
-              <th>#</th> {/* Serial Number Column */}
+              <th>#</th>
               <th>Name</th>
               <th>Email</th>
               <th>Role</th>
@@ -80,7 +88,7 @@ const UserManagement = () => {
           <tbody>
             {users.map((user, index) => (
               <tr key={user.id}>
-                <td>{index + 1}</td> {/* Display Serial Number */}
+                <td>{index + 1}</td>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
                 <td>{user.role}</td>
@@ -104,46 +112,50 @@ const UserManagement = () => {
         </table>
       </div>
 
-      {editingUser && (
-        <div className="edit-form">
-          <h2>Edit User</h2>
-          <form onSubmit={handleEditSubmit}>
-            <label>
-              Name:
-              <input
-                type="text"
-                name="name"
-                value={editFormData.name}
-                onChange={handleEditChange}
-              />
-            </label>
-            <label>
-              Email:
-              <input
-                type="email"
-                name="email"
-                value={editFormData.email}
-                onChange={handleEditChange}
-              />
-            </label>
-            <label>
-              Role:
-              <input
-                type="text"
-                name="role"
-                value={editFormData.role}
-                onChange={handleEditChange}
-              />
-            </label>
-            <button type="submit">Save</button>
-            <button type="button" onClick={() => setEditingUser(null)}>
-              Cancel
-            </button>
-          </form>
+      {isModalOpen && (
+        <div className="modal">
+          <div className="modal-content">
+            <h2>Edit User</h2>
+            <form onSubmit={handleEditSubmit}>
+              <label>
+                Name:
+                <input
+                  type="text"
+                  name="name"
+                  value={editFormData.name}
+                  onChange={handleEditChange}
+                />
+              </label>
+              <label>
+                Email:
+                <input
+                  type="email"
+                  name="email"
+                  value={editFormData.email}
+                  onChange={handleEditChange}
+                />
+              </label>
+              <label>
+                Role:
+                <input
+                  type="text"
+                  name="role"
+                  value={editFormData.role}
+                  onChange={handleEditChange}
+                />
+              </label>
+              <div className="modal-actions">
+                <button type="submit">Save</button>
+                <button type="button" onClick={handleCancelEdit}>
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       )}
     </div>
   );
 };
 
-export default UserManagement;
+export default UserTable;
