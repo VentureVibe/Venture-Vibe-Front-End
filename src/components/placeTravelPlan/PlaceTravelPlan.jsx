@@ -75,7 +75,7 @@ const PlaceTravelPlan = ({ placeId, color, handleRemoveFromTrip, onClick, place,
 
 
                     <div className="added-by">
-                        <img src={profilePic} alt="" />
+                        <img src={place.traveler.profileImg} alt="" />
                      
                     </div>
                         {isDelete && (
