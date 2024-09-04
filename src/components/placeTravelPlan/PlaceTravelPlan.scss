@@ -3,11 +3,7 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        //align-items: center;
-        //width: 250px;
-        //height: 150px;
         padding: 5px;
-        //border: 1px solid red;
         background-color: #f1f4f7;
         border-radius: 10px;
         margin-left: 30px;
@@ -17,35 +13,62 @@
             display: flex;
             align-items: center;
             margin-left: -22px;
-            position: relative;
-    
+         
+            
             .icon-tag{
-                position: relative;
-                display: inline-block;
+            
     
                 i{
     
                 }
     
                 span{
-                    position: absolute;
-                    top: 8px; 
-                    right: 13.5px;
-                    font-size: var(--paragraph-1);
-                    color: white;
+                  
+            
                 }
             }
+
+        
     
-            span{
+            .name{
                 font-size: var(--sidebar);
                 color: var(--text-color);
                 font-weight: 700;
                 margin-left: 5px;
+                width: 490px;
                 cursor: pointer;
+            
+            }
+
+            .added-by{
+               
+                img{
+                    border-radius: 100%;
+                    width: 28px;
+                    height: 28px;
+                    margin-top: 4px;
+                }
+                margin-left: 10px;
+            }
+
+            .date{ 
+                width: 50px;
+                cursor: pointer;
+                display: flex;
+                align-items: center !important;
+                justify-content: center ;
+           
+               p{
+                margin-left: 4px;
+                margin-top: 3px;
+                font-size: var(--paragraph-3);
+                width: 40px;
+     
+               }
+          
             }
     
             .delete{
-                position: absolute;
                 top: 5px; 
                 right: -35px;
                 cursor: pointer;
@@ -73,44 +96,33 @@
             align-items: center;
             margin-top: -5px;
             //justify-content: center;
-    
-            .add-attachment{
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                width: 100px;
-                height: 40px;
-    
-                i{
-                    cursor: pointer;
-                }
-    
-                span{
-                    font-size: var(--paragraph-1);
-                    color: var(--text-color);
-                    font-weight: 400;
-                    margin-left: 5px;
-                    cursor: pointer;
-                }
-            }
+            width: 100%;
+         
     
             .add-cost{
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                width: 100px;
+                width: 100% !important;
+        
                 height: 40px;
-    
+                 
                 i{
                     cursor: pointer;
                     margin-top: 5px;
                 }
-    
+
+                .fa-pen{
+                    margin-top: 0px;
+                    font-size: 12px;
+                    margin-left: 5px;
+                }
                 span{
                     font-size: var(--paragraph-1);
                     color: var(--text-color);
                     font-weight: 400;
                     margin-left: 5px;
+                    width: 1000px !important;
                     cursor: pointer;
                 }
             }

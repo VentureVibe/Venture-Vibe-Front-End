@@ -1,27 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import './AddExpenseEdit.scss';
-import { editBudget } from '../../services/travelBudget/TravelBudget'; // Ensure this service function is defined
-import { getDestination } from '../../services/travelDestination/TravelDestination';
+import './AddExpenseDestination.scss';
+import { addBudget } from '../../services/travelBudget/TravelBudget'; // Ensure this service function is defined
+import { addBudgetDestination } from '../../services/travelBudget/TravelBudget';
 
-const AddExpenseEdit = ({ onClose,data, fetchTravelPlan,selectedBudget,destinationId=0}) => {
+const AddExpenseDestination = ({ onClose, data,fetchTravelPlan,destinationId,place}) => {
   const [showTypeDropdown, setShowTypeDropdown] = useState(false);
   const [showPaidByDropdown, setShowPaidByDropdown] = useState(false);
   const [selectedItem, setSelectedItem] = useState({});
-  const [selectedPayer, setSelectedPayer] = useState(selectedBudget.traveler);
-  const [selectedDate, setSelectedDate] = useState(selectedBudget.cost);
-  const [cost, setCost] = useState(selectedBudget.cost);
-  const [description, setDescription] = useState(selectedBudget.description);
+  const [selectedPayer, setSelectedPayer] = useState(null);
+  const [selectedDate, setSelectedDate] = useState('');
+  const [cost, setCost] = useState('');
+  const [description, setDescription] = useState('');
   const [travelPlan, setTravelPlan] = useState({});
 
   useEffect(() => {
     setTravelPlan(data);
-    {
-      types.map((type) => (
-        type.name === selectedBudget.type ? setSelectedItem( type) : null
-      ))
-    }
-    
-    console.log(data);
+
   }, [data]);
 
   const types = [
@@ -69,24 +63,20 @@ const AddExpenseEdit = ({ onClose,data, fetchTravelPlan,selectedBudget,destinati
       alert('Please add an expense');
       return;
     }
-    let destination=null;
-    if(destinationId!=0){
-      destination=await getDestination(destinationId)
-    } 
+
     // Create the expense data object
     const expenseData = {
-      id:selectedBudget.id,
       cost: parseFloat(cost),
       date: selectedDate,
       description:description,
-      travelDestination:destination,
       type:selectedItem.name || 'Other',
-      traveler:selectedPayer
+      traveler:selectedPayer,
+      travelDestination:place
     };
 
     try {
       // Call the API to add the budget
-      await editBudget(travelPlan.id,expenseData);
+      await addBudgetDestination(travelPlan.id,place.id,expenseData);
       fetchTravelPlan();
  
       onClose(); // Close the form after successful submission
@@ -96,10 +86,8 @@ const AddExpenseEdit = ({ onClose,data, fetchTravelPlan,selectedBudget,destinati
     }
   };
 
-
-
   return (
-    <div className="AddExpenseEdit">
+    <div className="AddExpense">
       <div className="container">
         <h4>
           <i onClick={onClose} className="fa-regular fa-circle-xmark"></i>
@@ -204,4 +192,4 @@ const AddExpenseEdit = ({ onClose,data, fetchTravelPlan,selectedBudget,destinati
   );
 };
 
-export default AddExpenseEdit;
+export default AddExpenseDestination;

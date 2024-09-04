@@ -199,7 +199,7 @@ const MapTravelPlan = ({ lat, lng, clickedPlace, addedPlaces, setAddedPlaces,add
                 lat: place.lat,
                 lng: place.longi,
               }}
-              icon={customMarkerIcon(index)}
+              icon={customMarkerIcon(place.index)}
               // onClick={() => handleMarkerClick(place, index)}
             />
           ))}
@@ -207,22 +207,22 @@ const MapTravelPlan = ({ lat, lng, clickedPlace, addedPlaces, setAddedPlaces,add
             <Marker
               key={restaurant.place_id}
               position={{
-                lat: restaurant.geometry.location.lat(),
-                lng: restaurant.geometry.location.lng(),
+                lat: restaurant.lat,
+                lng: restaurant.longi,
               }}
-              icon={restaurantMarkerIcon(index)}
+              icon={restaurantMarkerIcon(restaurant.index)}
               onClick={() => handleMarkerClick(restaurant, index)}
             />
           ))}
            {addedHotels.map((hotel, index) => (
             <Marker
-              key={hotel.place_id}
-              position={{
-                lat: hotel.geometry.location.lat(),
-                lng:hotel.geometry.location.lng(),
-              }}
-              icon={hotelMarkerIcon(index)}
-              onClick={() => handleMarkerClick(hotel, index)}
+            key={hotel.id}
+            position={{
+              lat: hotel.lat,
+              lng: hotel.longi,
+            }}
+              icon={hotelMarkerIcon(hotel.index)}
+              // onClick={() => handleMarkerClick(hotel, index)}
             />
           ))}
         </GoogleMap>

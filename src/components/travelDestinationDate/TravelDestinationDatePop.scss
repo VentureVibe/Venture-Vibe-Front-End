@@ -1,0 +1,110 @@
+.travel-destination-date-pop {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    z-index: 1000;
+  
+    .pop-header {
+      display: flex;
+      justify-content: flex-end;
+  
+      .close-btn {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #333;
+  
+        &:hover {
+          color: #ff5a5f;
+        }
+      }
+    }
+  
+    .pop-body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+  
+      input[type="date"] {
+        padding: 8px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        margin-bottom: 20px;
+        width: 100%;
+      }
+  
+      .button-group {
+        display: flex;
+        gap: 10px;
+        width: 100%;
+        
+        button {
+          flex: 1;
+          padding: 10px;
+          border-radius: 5px;
+          border: none;
+          cursor: pointer;
+          font-size: 1rem;
+          color: white;
+          transition: background 0.3s ease;
+        }
+  
+        .set-btn {
+          background-color: var(--orange);
+  
+         
+        }
+  
+        .remove-btn {
+           
+          background-color: var(--blue);
+  
+          &:hover {
+            background-color: #e53935;
+          }
+        }
+      }
+
+      .date-select {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-bottom: 20px;
+        font-size: 16px;
+        background-color: #f9f9f9;
+        box-sizing: border-box;
+        appearance: none; /* Remove default dropdown styling */
+        cursor: pointer;
+      }
+      
+      .date-select:focus {
+        outline: none;
+        border-color: #007bff;
+        box-shadow: 0 0 0 2px rgba(38, 143, 255, 0.25);
+      }
+      
+      .date-select option {
+        padding: 8px;
+        font-size: 16px;
+      }
+      input[type="date"] {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        background-color: #f9f9f9;
+        box-sizing: border-box;
+      }
+    }
+  }
+  

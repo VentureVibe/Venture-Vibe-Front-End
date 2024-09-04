@@ -27,14 +27,15 @@ const TravelPlan = () => {
   const [placeImage, setPlaceImage] = useState('');
   const [clickedPlace, setClickedPlace] = useState(null);
   const [addedPlaces, setAddedPlaces] = useState([]);
-  const [addedRestaurants, setAddedRestaurants] = useState([]);
-  const [addedHotels, setAddedHotels] = useState([]);
+ 
   const [data, setData] = useState(null);
   const { id } = useParams();
   const navigate = useNavigate();
   const [expense,setExpense]=useState(null);
   const [percentage,setPercentage]=useState(0);
-  const [newlyAddedPlaces, setNewlyAddedPlaces] = useState([]);
+  const [addedPlaces1, setAddedPlaces1] = useState([]);
+  const [addedHotels, setAddedHotels] = useState([]);
+  const [addedRestaurants, setAddedRestaurants] = useState([]);
 
   const fetchTravelPlan = async () => {
     try {
@@ -46,7 +47,7 @@ const TravelPlan = () => {
       setLat(data.lat);
       setLng(data.longi);
       setPlaceImage(data.imgUrl || Cover);
- 
+    
       const totalBudget = data.travelBudgets.reduce((sum, travelBudget) => {
         return sum + parseFloat(travelBudget.cost) || 0; // Convert to number and handle cases where cost might be null or undefined
       }, 0);
@@ -54,6 +55,7 @@ const TravelPlan = () => {
       setAddedPlaces(data.travelDestinations);
     
       setExpense(totalBudget);
+      updatePlaces();
 
       if (totalBudget <= 0) { 
         setPercentage(0);  
@@ -69,6 +71,8 @@ const TravelPlan = () => {
           setPercentage(0);
         }
       }
+
+  
       
     } catch (err) {
       navigate('/');
@@ -80,13 +84,13 @@ const TravelPlan = () => {
     return `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photo_reference}&key=${apiKey}`;
   };
 
-  const updatePlacesInBackend = async (recentPlace) => {
+  const updatePlacesInBackend = async (recentPlace,type) => {
     try {
       console.log(recentPlace);
       const traveler = await getTraveler(GetCurrentUserC().sub);
   
       if (recentPlace) {
-        // Extract lat and lng values properly
+
         const lat = recentPlace.geometry?.location?.lat() || recentPlace.lat;
         const longi = recentPlace.geometry?.location?.lng() || recentPlace.longi;
   
@@ -97,15 +101,29 @@ const TravelPlan = () => {
         const photoUrl = recentPlace.photos?.length > 0
           ? getPlaceImageUrl(recentPlace.photos[0].photo_reference)
           : null;
-  
+
+        let index=0;
+
+        if(type=="Places"){
+          index=addedPlaces.length;
+        }
+
+        if(type=="Hotels"){
+          index=addedHotels.length;
+        }
+
+        if(type=="Restrurents"){
+          index=addedRestaurants.length;
+        }
+
         const updatedPlace = {
           lat: lat,
           longi: longi,
-          description: recentPlace.name,
-          index:addedPlaces.length+1,
+          description: "",
+          index:index,
           name: recentPlace.name,
           imgUrl: photoUrl,
-          type: "Places",
+          type: type,
           rating:recentPlace.rating,
           traveler
         };
@@ -113,6 +131,7 @@ const TravelPlan = () => {
         const { data } = await addDestination(id, updatedPlace);
         console.log('Place sent successfully:', data);
         fetchTravelPlan()
+       
       } else {
        
       }
@@ -122,13 +141,30 @@ const TravelPlan = () => {
     }
   };
   
+  const updatePlaces = async () => {
+    try {
+      // Fetch the updated travel plan
+      const data1 = await getTravelPlanById(id, GetCurrentUserC().sub);
   
+      // Assuming travelDestinations is an array of destinations within the travel plan
+      const places = data1.travelDestinations.filter(dest => dest.type === 'Places');
+      const hotels = data1.travelDestinations.filter(dest => dest.type === 'Hotels');
+      const restrurents = data1.travelDestinations.filter(dest => dest.type === 'Restrurents');
+      // Set the separated data for places and hotels
+      setAddedPlaces1(places);  // Places filtered from travelDestinations
+      setAddedHotels(hotels);  
+      setAddedRestaurants(restrurents); // Hotels filtered from travelDestinations
+    } catch (error) {
+      console.error('Error updating places:', error);
+    }
+  };
   
 
 
   useEffect(() => {
-
+  
     fetchTravelPlan();
+    updatePlaces();
   }, [id]);
 
   useEffect(() => {
@@ -136,6 +172,9 @@ const TravelPlan = () => {
       updatePlacesInBackend(); // Send updated places when they change
     }
   }, [addedPlaces]);
+
+  
+
 
   
   return (
@@ -158,15 +197,15 @@ const TravelPlan = () => {
                 <>
                   <NotesTravelPlan data={data} fetchTravelPlan={fetchTravelPlan} />
                   <hr className='travelplan-hr'/>
-                  <PlacesToVisitTravelPlan lat={lat} long={lng} setClickedPlace={setClickedPlace} addedPlaces={addedPlaces} setAddedPlaces={setAddedPlaces}  updatePlacesInBackend={ updatePlacesInBackend}  fetchTravelPlan={fetchTravelPlan}/>
+                  <PlacesToVisitTravelPlan lat={lat} long={lng} setClickedPlace={setClickedPlace} addedPlaces={addedPlaces1} setAddedPlaces={setAddedPlaces}  updatePlacesInBackend={ updatePlacesInBackend}  fetchTravelPlan={fetchTravelPlan} travelPlan={data}/>
                   <hr className='travelplan-hr'/>
-                  <HotelsTravelPlan lat={lat} long={lng} setClickedPlace={setClickedPlace} addedHotels={addedHotels} setAddedHotels={setAddedHotels}/>
+                  <HotelsTravelPlan lat={lat} long={lng} setClickedPlace={setClickedPlace} addedHotels={addedHotels} setAddedHotels={setAddedHotels} setAddedPlaces={setAddedPlaces} updatePlacesInBackend={ updatePlacesInBackend}  fetchTravelPlan={fetchTravelPlan} travelPlan={data}/>
                   <hr className='travelplan-hr'/>
-                  <RestaurantsTravelPlan lat={lat} long={lng} addedRestaurants={addedRestaurants} setAddedRestaurants={setAddedRestaurants} setClickedPlace={setClickedPlace}/>
+                  <RestaurantsTravelPlan lat={lat} long={lng} setClickedPlace={setClickedPlace} addedRestaurants={addedRestaurants} setAddedRestaurants={setAddedRestaurants}  setAddedPlaces={setAddedPlaces} updatePlacesInBackend={ updatePlacesInBackend}  fetchTravelPlan={fetchTravelPlan} travelPlan={data}/>
                   <hr className='travelplan-hr-line'/>
-                  <ItineraryTravelPlan to={to} from={from} />
+                  <ItineraryTravelPlan to={to} from={from} travelPlan={data} fetchTravelPlan={fetchTravelPlan } setClickedPlace={setClickedPlace}/>
                   <hr className='travelplan-hr-line'/>
-                  <BudgetTravelPlan data={data} fetchTravelPlan1={fetchTravelPlan} expense={expense} percentage={percentage}/>
+                  <BudgetTravelPlan data={data} fetchTravelPlan1={fetchTravelPlan} expense={expense} percentage={percentage} />
                 </>
               )}
             </div>

@@ -3,12 +3,11 @@ import './RestaurantsTravelPlan.scss';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PlaceTravelPlan from '../placeTravelPlan/PlaceTravelPlan';
-import BookmarkOutlinedIcon from '@mui/icons-material/BookmarkOutlined';
-import StarRateIcon from '@mui/icons-material/StarRate';
-import { restaurants } from '../../dummyData';
 import Google from '../../assets/google-logo.png';
+import { deleteDestination, getDestination, updateDestination } from '../../services/travelDestination/TravelDestination';
 
-const RestaurantsTravelPlan = ({lat,long,addedRestaurants,setClickedPlace,setAddedRestaurants}) => {
+const RestaurantsTravelPlan = ({lat,long,addedRestaurants,setClickedPlace,updatePlacesInBackend,fetchTravelPlan,travelPlan}) => {
+    
     const [isBottomContainerVisible, setIsBottomContainerVisible] = useState(true);
     const [isplaceVisible, setIsPlaceVisible] = useState(true);
     const [bestRestrurents, setbestRestrurents] = useState([]);
@@ -60,9 +59,8 @@ const RestaurantsTravelPlan = ({lat,long,addedRestaurants,setClickedPlace,setAdd
     };
 
     const handleAddToTrip = (place) => {
-      onclickPlace(place);
+      // onclickPlace(place);
   
-      // Create a new place object with all desired attributes
       const placeDetails = {
           place_id: place.place_id,
           name: place.name,
@@ -74,22 +72,70 @@ const RestaurantsTravelPlan = ({lat,long,addedRestaurants,setClickedPlace,setAdd
           vicinity: place.vicinity  // Include vicinity if available
       };
   
-      setAddedRestaurants(prevAddedPlaces => [
-          ...prevAddedPlaces,
-          placeDetails
-      ]);
+      updatePlacesInBackend(placeDetails,"Restrurents")
     };
 
-    const onclickPlace = (place) => {
-     setClickedPlace(place);
+    const onclickPlace = ( recentPlace) => {
+        const lat = recentPlace.geometry?.location?.lat() || recentPlace.lat;
+        const longi = recentPlace.geometry?.location?.lng() || recentPlace.longi;
+  
+        if (isNaN(lat) || isNaN(longi)) {
+          throw new Error('Invalid latitude or longitude values');
+        }
+  
+        const photoUrl ='';
+  
+        const updatedPlace = {
+          lat: lat,
+          longi: longi,
+          description: recentPlace.name,
+          index:1,
+          name: recentPlace.name,
+          imgUrl: photoUrl,
+          type: "Hotels",
+          rating:recentPlace.rating,
+      
+        };
+    
+       setClickedPlace( updatedPlace );
     };
 
-    const handleRemoveFromTrip = (index) => {
-      setAddedRestaurants(prevAddedPlaces => 
-          prevAddedPlaces.filter((_, i) => i !== index)
-      );
-    };
-
+    const handleRemoveFromTrip = async (id) => {
+      try {
+          // Remove the destination
+          await deleteDestination(id);
+          
+          // Fetch the updated travel plan to refresh addedPlaces
+          await fetchTravelPlan();  // Ensure fetchTravelPlan is async if you need to wait for it
+  
+          console.log("Before update:", addedRestaurants);
+  
+          // Filter out the removed place and update the rest
+          const updatedPlaces = await Promise.all(
+              addedRestaurants
+                  .filter((place) => place.id !== id) // Exclude the place with the specified id
+                  .map(async (place, index) => {
+                      const place1 = await getDestination(place.id);
+                      place1.index = index; // Update the index (starting from 0)
+                      return place1;
+                  })
+          );
+  
+          console.log("Updated places:", updatedPlaces);
+  
+          // Optionally update the backend with the new places
+          for (let i = 0; i < updatedPlaces.length; i++) {
+              await updateDestination(updatedPlaces[i]);
+          }
+  
+          // Fetch the updated travel plan after all places are updated
+          await fetchTravelPlan(); // Ensure this fetches the latest state
+      } catch (error) {
+          console.error(error);
+      }
+  };
+  
+  
     const handleInputChange = (event) => {
       const value = event.target.value;
       setInputValue(value);
@@ -115,7 +161,7 @@ const RestaurantsTravelPlan = ({lat,long,addedRestaurants,setClickedPlace,setAdd
       const service = new window.google.maps.places.PlacesService(document.createElement('div'));
       service.getDetails({ placeId: place.place_id }, (result, status) => {
           if (status === window.google.maps.places.PlacesServiceStatus.OK && result) {
-              const details = {
+              const placeDetails = {
                   place_id: result.place_id,
                   name: result.name,
                   rating: result.rating,
@@ -126,8 +172,8 @@ const RestaurantsTravelPlan = ({lat,long,addedRestaurants,setClickedPlace,setAdd
                   vicinity: result.vicinity 
                   
               };
-              setAddedRestaurants(prevAddedPlaces => [...prevAddedPlaces,details ]); // Add to Places to Visit
-              setPlaceSuggestions([]);
+              handleAddToTrip(placeDetails); // Add place with full details to trip
+              setPlaceSuggestions([]); // Clear suggestions after selection
               setInputValue('');
           } else {
               console.error('Error fetching place details:', status);
@@ -135,21 +181,21 @@ const RestaurantsTravelPlan = ({lat,long,addedRestaurants,setClickedPlace,setAdd
       });
     };
 
-    const handleDragStart = (index) => {
-      setDraggedIndex(index);
-    };
+    // const handleDragStart = (index) => {
+    //   setDraggedIndex(index);
+    // };
 
-    const handleDragOver = (event) => {
-      event.preventDefault(); // Necessary to allow drop
-    };
+    // const handleDragOver = (event) => {
+    //   event.preventDefault(); // Necessary to allow drop
+    // };
 
-    const handleDrop = (index) => {
-      const updatedPlaces = [...addedRestaurants];
-      const [draggedPlace] = updatedPlaces.splice(draggedIndex, 1);
-      updatedPlaces.splice(index, 0, draggedPlace);
-      setAddedRestaurants(updatedPlaces);
-      setDraggedIndex(null);
-    };
+    // const handleDrop = (index) => {
+    //   const updatedPlaces = [...addedRestaurants];
+    //   const [draggedPlace] = updatedPlaces.splice(draggedIndex, 1);
+    //   updatedPlaces.splice(index, 0, draggedPlace);
+    //   setAddedRestaurants(updatedPlaces);
+    //   setDraggedIndex(null);
+    // };
 
    useEffect(() => {
     if (lat && long) {
@@ -166,37 +212,40 @@ const RestaurantsTravelPlan = ({lat,long,addedRestaurants,setClickedPlace,setAdd
   return (
     <div className='restaurantsTravelPlan' id='restaurants'>
         <div className='container'>
-            <div className='restaurants-heading-container' onClick={toggleBottomContainer}>
+            <div className='places-heading-container' onClick={toggleBottomContainer}>
                 <i><KeyboardArrowDownIcon sx={{ color: '#747474' }}/></i>
                 <h2>Restaurants</h2>
             </div>
             {isBottomContainerVisible && (
               <div className='added-places-container'>
-               {addedRestaurants.map((place, index) => (
+               {addedRestaurants.slice() // Create a copy of the array to avoid mutating the original array
+            .sort((a, b) => a.index - b.index) // Sort by place.index
+            .map((place, index) => (
                   <div
                       key={place.place_id}
-                      draggable
-                      onDragStart={() => handleDragStart(index)}
-                      onDragOver={handleDragOver}
-                      onDrop={() => handleDrop(index)}
+                      // draggable
+                      // onDragStart={() => handleDragStart(index)}
+                      // onDragOver={handleDragOver}
+                      // onDrop={() => handleDrop(index)}
                       className='draggable-item'
                  
                   >
                       <PlaceTravelPlan
                           number={index + 1}
-                          name={place.name}
-                          placeId={index}
+                          placeId={place.index}
+                          handleRemoveFromTrip={() => handleRemoveFromTrip(place.id)}
                           color='#F68712'
-                          handleRemoveFromTrip={() => handleRemoveFromTrip(index)}
                           place={place}
                           onClick={onclickPlace}
+                          travelPlan={travelPlan}
+                          fetchTravelPlan={fetchTravelPlan}
                       />
                   </div>
                 ))}
               </div>
             )}
             {isBottomContainerVisible && (
-             <div className='add-restaurant-container'>
+             <div className='add-place-container'>
                 <div className="top">
                    <i><LocationOnIcon sx={{ color: '#414143', fontSize: 25 }}/></i>
                    <input    
@@ -222,7 +271,7 @@ const RestaurantsTravelPlan = ({lat,long,addedRestaurants,setClickedPlace,setAdd
             </div>
              </div>)}
             {isBottomContainerVisible && (
-              <div className='recommended-restaurants-heading-container' onClick={togglePlace}>
+              <div className='recommended-places-heading-container' onClick={togglePlace}>
                 <i><KeyboardArrowDownIcon sx={{ color: '#747474' }}/></i>
                 <span>Recommended Restaurants</span>
             </div>)}
