@@ -35,9 +35,29 @@
     margin-bottom: 1rem;
     background-color: var(--white);
 
-    h3 {
-      color: var(--text-color);
+    .experience-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       margin-bottom: 0.5rem;
+
+      h3 {
+        color: var(--text-color);
+        margin: 0;
+      }
+
+      .delete-button {
+        background: none;
+        border: none;
+        color: var(--red);
+        cursor: pointer;
+        font-size: 1.2rem;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: darken(red, 10%);
+        }
+      }
     }
 
     input {
