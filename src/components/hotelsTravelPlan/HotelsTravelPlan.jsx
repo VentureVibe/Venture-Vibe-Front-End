@@ -1,21 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react'
 import './HotelsTravelPlan.scss';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import AddIcon from '@mui/icons-material/Add';
-import HotelIcon from '@mui/icons-material/Hotel';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import AttachFileIcon from '@mui/icons-material/AttachFile';
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-import DeleteIcon from '@mui/icons-material/Delete';
-import { hotels } from '../../dummyData';
-import StarRateIcon from '@mui/icons-material/StarRate';
-import BookmarkOutlinedIcon from '@mui/icons-material/BookmarkOutlined';
 import Google from '../../assets/google-logo.png';
 import PlaceTravelPlan from '../placeTravelPlan/PlaceTravelPlan';
+import { deleteDestination, getDestination, updateDestination } from '../../services/travelDestination/TravelDestination';
 
-const HotelsTravelPlan = ({lat,long,addedHotels,setClickedPlace, setAddedHotels}) => {
+const HotelsTravelPlan = ({lat,long,addedHotels,setClickedPlace, setAddedHotels,updatePlacesInBackend,fetchTravelPlan,travelPlan}) => {
+   
     const [isBottomContainerVisible, setIsBottomContainerVisible] = useState(true);
-
     const [isplaceVisible, setIsPlaceVisible] = useState(true);
     const [bestHotels, setbestHotels] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -56,7 +49,7 @@ const HotelsTravelPlan = ({lat,long,addedHotels,setClickedPlace, setAddedHotels}
             console.error('Error fetching best hotels:', status);
           }
         });
-      };
+    };
       
 
     const handlePreviousClick = () => {
@@ -68,7 +61,7 @@ const HotelsTravelPlan = ({lat,long,addedHotels,setClickedPlace, setAddedHotels}
     };
 
     const handleAddToTrip = (place) => {
-        onclickPlace(place);
+        // onclickPlace(place);
     
         const placeDetails = {
             place_id: place.place_id,
@@ -81,29 +74,79 @@ const HotelsTravelPlan = ({lat,long,addedHotels,setClickedPlace, setAddedHotels}
             vicinity: place.vicinity
         };
     
-        setAddedHotels(prevAddedPlaces => [...prevAddedPlaces, placeDetails]);
+        updatePlacesInBackend(placeDetails,"Hotels")
     };
     
 
-    const onclickPlace = (place) => {
-        setClickedPlace(place);
+    const onclickPlace = (recentPlace) => {
+        const lat = recentPlace.geometry?.location?.lat() || recentPlace.lat;
+        const longi = recentPlace.geometry?.location?.lng() || recentPlace.longi;
+  
+        if (isNaN(lat) || isNaN(longi)) {
+          throw new Error('Invalid latitude or longitude values');
+        }
+  
+        const photoUrl ='';
+  
+        const updatedPlace = {
+          lat: lat,
+          longi: longi,
+          description: recentPlace.name,
+          index:1,
+          name: recentPlace.name,
+          imgUrl: photoUrl,
+          type: "Hotels",
+          rating:recentPlace.rating,
+      
+        };
+    
+       setClickedPlace( updatedPlace );
     };
 
-    const handleRemoveFromTrip = (index) => {
-        setAddedHotels(prevAddedPlaces => 
-            prevAddedPlaces.filter((_, i) => i !== index)
-        );
+    const handleRemoveFromTrip = async (id) => {
+        try {
+            // Remove the destination
+            await deleteDestination(id);
+    
+            // Fetch the updated travel plan to refresh addedPlaces
+            await fetchTravelPlan();  // Ensure fetchTravelPlan is async if you need to wait for it
+    
+            console.log("Before update:",  addedHotels);
+    
+            // Filter out the removed place and update the rest
+            const updatedPlaces = await Promise.all(
+                addedHotels
+                    .filter((place) => place.id !== id) // Exclude the place with the specified id
+                    .map(async (place, index) => {
+                        const place1 = await getDestination(place.id);
+                        place1.index = index; // Update the index (starting from 0)
+                        return place1;
+                    })
+            );
+    
+            console.log("Updated places:", updatedPlaces);
+    
+            // Optionally update the backend with the new places
+            for (let i = 0; i < updatedPlaces.length; i++) {
+                await updateDestination(updatedPlaces[i]);
+            }
+    
+            // Fetch the updated travel plan after all places are updated
+            await fetchTravelPlan(); // Ensure this fetches the latest state
+        } catch (error) {
+            console.error(error);
+        }
     };
     
-    const handleInputChange = (event) => {
+     const handleInputChange = (event) => {
         const value = event.target.value;
         setInputValue(value);
-  
+
         if (value) {
             if (!autocompleteService.current) {
                 autocompleteService.current = new window.google.maps.places.AutocompleteService();
             }
-  
+
             autocompleteService.current.getPlacePredictions({ input: value, region: 'LK' }, (predictions, status) => {
                 if (status === window.google.maps.places.PlacesServiceStatus.OK && predictions) {
                     setPlaceSuggestions(predictions);
@@ -115,24 +158,24 @@ const HotelsTravelPlan = ({lat,long,addedHotels,setClickedPlace, setAddedHotels}
             setPlaceSuggestions([]);
         }
     };
-  
+
+
     const handleSuggestionClick = (place) => {
         const service = new window.google.maps.places.PlacesService(document.createElement('div'));
         service.getDetails({ placeId: place.place_id }, (result, status) => {
             if (status === window.google.maps.places.PlacesServiceStatus.OK && result) {
-                const details = {
+                const placeDetails = {
                     place_id: result.place_id,
                     name: result.name,
                     rating: result.rating,
                     user_ratings_total: result.user_ratings_total,
-                    geometry:result.geometry, // Include geometry if needed
-                    photos:result.photos,     // Include photos if available
-                    types: result.types,       // Include types if available
-                    vicinity: result.vicinity 
-                    
+                    geometry: result.geometry,  // Include geometry if needed
+                    photos: result.photos,      // Include photos if available
+                    types: result.types,        // Include types if available
+                    vicinity: result.vicinity   // Include vicinity if available
                 };
-                setAddedHotels(prevAddedPlaces => [...prevAddedPlaces,details ]); // Add to Places to Visit
-                setPlaceSuggestions([]);
+                handleAddToTrip(placeDetails); // Add place with full details to trip
+                setPlaceSuggestions([]); // Clear suggestions after selection
                 setInputValue('');
             } else {
                 console.error('Error fetching place details:', status);
@@ -140,21 +183,21 @@ const HotelsTravelPlan = ({lat,long,addedHotels,setClickedPlace, setAddedHotels}
         });
     };
   
-    const handleDragStart = (index) => {
-        setDraggedIndex(index);
-    };
+    // const handleDragStart = (index) => {
+    //     setDraggedIndex(index);
+    // };
   
-    const handleDragOver = (event) => {
-        event.preventDefault(); // Necessary to allow drop
-    };
+    // const handleDragOver = (event) => {
+    //     event.preventDefault(); // Necessary to allow drop
+    // };
   
-    const handleDrop = (index) => {
-        const updatedPlaces = [...addedHotels]; // Cloning the state
-        const [draggedPlace] = updatedPlaces.splice(draggedIndex, 1);
-        updatedPlaces.splice(index, 0, draggedPlace);
-        setAddedHotels(updatedPlaces);
-        setDraggedIndex(null);
-    };
+    // const handleDrop = (index) => {
+    //     const updatedPlaces = [...addedHotels]; // Cloning the state
+    //     const [draggedPlace] = updatedPlaces.splice(draggedIndex, 1);
+    //     updatedPlaces.splice(index, 0, draggedPlace);
+    //     setAddedHotels(updatedPlaces);
+    //     setDraggedIndex(null);
+    // };
 
 
     const isPlaceAdded = (placeId) => {
@@ -173,47 +216,50 @@ const HotelsTravelPlan = ({lat,long,addedHotels,setClickedPlace, setAddedHotels}
   return (
     <div className='hotelsTravelPlan' id='hotels-and-logging'>
         <div className='container'>
-            <div className='restaurants-heading-container' onClick={toggleBottomContainer}>
+            <div className='places-heading-container' onClick={toggleBottomContainer}>
                 <i><KeyboardArrowDownIcon sx={{ color: '#747474' }}/></i>
                 <h2>Hotels and Lodgings</h2>
             </div>
             {isBottomContainerVisible && (
               <div className='added-places-container'>
-               {addedHotels.map((place, index) => (
+               {addedHotels.slice() // Create a copy of the array to avoid mutating the original array
+            .sort((a, b) => a.index - b.index) // Sort by place.index
+            .map((place, index) => (
                   <div
                       key={place.place_id}
-                      draggable
-                      onDragStart={() => handleDragStart(index)}
-                      onDragOver={handleDragOver}
-                      onDrop={() => handleDrop(index)}
+                    //   draggable
+                    //   onDragStart={() => handleDragStart(index)}
+                    //   onDragOver={handleDragOver}
+                    //   onDrop={() => handleDrop(index)}
                       className='draggable-item'
-                 
                   >
+
                       <PlaceTravelPlan
-                          number={index + 1}
-                          name={place.name}
-                          placeId={index}
+                          index={index+1}
+                          placeId={place.index}
                           color='#0075C3'
-                          handleRemoveFromTrip={() => handleRemoveFromTrip(index)}
+                          handleRemoveFromTrip={() => handleRemoveFromTrip(place.id)}
                           place={place}
+                          travelPlan={travelPlan}
+                          fetchTravelPlan={fetchTravelPlan}
                           onClick={onclickPlace}
                       />
+                      
                   </div>
                 ))}
               </div>
             )}
             {isBottomContainerVisible && (
-             <div className='add-restaurant-container'>
+             <div className='add-place-container'>
                 <div className="top">
                    <i><LocationOnIcon sx={{ color: '#414143', fontSize: 25 }}/></i>
-                   <input    
-                      type='text'
-                      placeholder='Add a hotel or a lodging'
-                      value={inputValue}
-                      onChange={handleInputChange}
-                      ref={whereToInputRef}>
-
-                   </input>
+                   <input
+                        type='text'
+                        placeholder='Add a place'
+                        value={inputValue}
+                        onChange={handleInputChange}
+                        ref={whereToInputRef}
+                    />
                 </div>
                 <div className="bottom">
                           {placeSuggestions.length > 0 && (
@@ -229,11 +275,12 @@ const HotelsTravelPlan = ({lat,long,addedHotels,setClickedPlace, setAddedHotels}
             </div>
              </div>)}
             {isBottomContainerVisible && (
-              <div className='recommended-restaurants-heading-container' onClick={togglePlace}>
+              <div className='recommended-places-heading-container' onClick={togglePlace}>
                 <i><KeyboardArrowDownIcon sx={{ color: '#747474' }}/></i>
-                <span>Recommended Restaurants</span>
+                <span>Recommended Hotels & Lodgings</span>
             </div>)}
-            {isBottomContainerVisible && isplaceVisible && (<div className='bottom-container'>
+            {isBottomContainerVisible && isplaceVisible && (
+            <div className='bottom-container'>
            
                 <div className='bottom-container'>
                         <div className="button" onClick={handlePreviousClick}>

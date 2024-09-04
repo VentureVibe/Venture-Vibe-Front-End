@@ -10,13 +10,12 @@ import InviteTripmate from '../inviteTripmate/InviteTripmate';
 import PopUpMain from '../popupmain/PopUpMain';
 import SetBudget from './../setBudget/SetBudget';
 import { useParams } from 'react-router-dom';
-import { GetCurrentUserC } from '../../services/user/GetCurrentUserC'; // Ensure this import is correct
-import { getTravelPlanById } from '../../services/travelplan/TravelPlan';
+import { GetCurrentUserC } from '../../services/user/GetCurrentUserC'; 
 import AddExpense from '../addExpense/AddExpense';
-import { getBudgetsByTravelPlan, removeBudget } from '../../services/travelBudget/TravelBudget';
+import { removeBudget } from '../../services/travelBudget/TravelBudget';
 import AddExpenseEdit from '../addExpenseEdit/AddExpenseEdit';
 
-const BudgetTravelPlan = ({data,fetchTravelPlan1,expense,percentage}) => {
+const BudgetTravelPlan = ({ data, fetchTravelPlan1, expense, percentage }) => {
   const [isBottomContainerVisible, setIsBottomContainerVisible] = useState(true);
   const [showInviteTrip, setShowInviteTrip] = useState(false);
   const [showAddExpense, setshowAddExpense] = useState(false);
@@ -24,11 +23,11 @@ const BudgetTravelPlan = ({data,fetchTravelPlan1,expense,percentage}) => {
   const [showEditSetBudget, setEditSetBudget] = useState(false);
   const [selectedBudget, setSelectedBudget] = useState(null);
   const { id } = useParams();
-
-
   const [userId, setUserId] = useState('');
-// Initialize with an empty object
- 
+
+  // Sorting States
+  const [sortField, setSortField] = useState('date'); // date or cost
+  const [sortOrder, setSortOrder] = useState('asc'); // asc or desc
 
   const toggleBottomContainer = () => {
     setIsBottomContainerVisible(prevState => !prevState);
@@ -51,24 +50,20 @@ const BudgetTravelPlan = ({data,fetchTravelPlan1,expense,percentage}) => {
     setEditSetBudget(!showEditSetBudget);
   };
 
-  const removeBudget1=async (id)=>{
+  const removeBudget1 = async (id) => {
     try {
-      const data = await removeBudget(id);
+      await removeBudget(id);
       fetchTravelPlan1();
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
   }
-
-
-
 
   useEffect(() => {
     const fetchUserIdAndPlan = async () => {
       try {
         const currentUser = await GetCurrentUserC();
         setUserId(currentUser.sub);
-      // Assuming `sub` is the user ID or required property
         fetchTravelPlan1(); // Fetch travel plan data
       } catch (error) {
         console.error('Error fetching user or travel plan:', error);
@@ -76,7 +71,30 @@ const BudgetTravelPlan = ({data,fetchTravelPlan1,expense,percentage}) => {
     };
     
     fetchUserIdAndPlan();
-  }, [id]); // Add id as a dependency
+  }, [id]);
+
+  // Sorting logic
+  const sortedTravelBudgets = [...data.travelBudgets].sort((a, b) => {
+    if (sortField === 'date') {
+      const dateA = new Date(a.date);
+      const dateB = new Date(b.date);
+      return sortOrder === 'asc' ? dateA - dateB : dateB - dateA;
+    } else if (sortField === 'budget') {
+      return sortOrder === 'asc' ? a.cost - b.cost : b.cost - a.cost;
+    }
+    return 0;
+  });
+
+  const handleSortChange = (field) => {
+    if (sortField === field) {
+      // Toggle the sort order if the same field is selected
+      setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+    } else {
+      // Set the new sort field and default to ascending order
+      setSortField(field);
+      setSortOrder('asc');
+    }
+  };
 
   return (
     <div className='budgetTravelPlan' id='view'>
@@ -92,12 +110,11 @@ const BudgetTravelPlan = ({data,fetchTravelPlan1,expense,percentage}) => {
         </div>
         <div className='bottom-container'>
           <div className="top-budget-container">
-            <span>Rs {expense || '0.00'}</span> {/* Ensure budget displays correctly */}
+            <span>Rs {expense || '0.00'}</span> 
           </div>
           <div className="line">
              <div className="cont">
-              <div style={{ width: `${percentage}%`,height:"100%", borderRadius: "5px", backgroundColor: '#F68712' }}> {/* Corrected the inline style */}
-              
+              <div style={{ width: `${percentage}%`, height: "100%", borderRadius: "5px", backgroundColor: '#F68712' }}> 
               </div>
              </div>
           </div>
@@ -105,10 +122,10 @@ const BudgetTravelPlan = ({data,fetchTravelPlan1,expense,percentage}) => {
             <div className="set-budget-btn" onClick={toggleSetBudgetPopUp}>
               <i><EditIcon sx={{ color: '#414143', fontSize: 18 }} /></i>
               <span>
-                  { data.budget == 0 ? 'Set Budget' : 'Edit Budget'}
+                  {data.budget === 0 ? 'Set Budget' : 'Edit Budget'}
               </span>
             </div>
-            <p>Budget: ALL {data.budget || '0.00'}</p> {/* Ensure budget displays correctly */}
+            <p>Budget: ALL {data.budget || '0.00'}</p> 
             {data.travelPlanOwner.id === userId && (
               <div className="add-friend" onClick={toggleInviteTripmatePopUp}>
                 <GroupAddIcon sx={{ color: '#747474', fontSize: 27 }} />
@@ -124,30 +141,31 @@ const BudgetTravelPlan = ({data,fetchTravelPlan1,expense,percentage}) => {
             </div>
             {isBottomContainerVisible && (
               <div className='sort-btn'>
-                <span>Sort: Date</span>
+                <span onClick={() => handleSortChange(sortField === 'date' ? 'budget' : 'date')}>
+                  Sort by: {sortField === 'date' ? 'Date' : 'Budget'}
+                </span>
                 <i><ArrowDownwardIcon sx={{ color: '#414143', fontSize: 20 }} /></i>
               </div>
             )}
           </div>
           {isBottomContainerVisible && (
             <div className="list-expense">
-            {
-                  data.travelBudgets.map((travelBudget, index) => (
+              {
+                sortedTravelBudgets.map((travelBudget) => (
                   <ExpenseTravelPlan
-                      key={travelBudget.id}
-                      id={travelBudget.id} // Use a unique key if possible
-                      name={travelBudget.description}
-                      date={travelBudget.date} // Replace with the actual date if available
-                      budget={travelBudget.cost}
-                      type={travelBudget.type}
-                      removeBudget={removeBudget1}
-                      payer={travelBudget.traveler} 
-                      toggleShowEditSetBudget={toggleShowEditSetBudget}
-                      travelBudget={travelBudget}// Replace with the actual budget if available
+                    key={travelBudget.id}
+                    id={travelBudget.id}
+                    name={travelBudget.description}
+                    date={travelBudget.date}
+                    budget={travelBudget.cost}
+                    type={travelBudget.type}
+                    removeBudget={removeBudget1}
+                    payer={travelBudget.traveler}
+                    toggleShowEditSetBudget={toggleShowEditSetBudget}
+                    travelBudget={travelBudget}
                   />
-                   ))
-            }
-
+                ))
+              }
             </div>
           )}
         </div>
@@ -157,11 +175,11 @@ const BudgetTravelPlan = ({data,fetchTravelPlan1,expense,percentage}) => {
         {showSetBudget && (
           <PopUpMain Component={<SetBudget budget1={data.budget} travelPlanId={data.id} onClose={toggleSetBudgetPopUp} fetchTravelPlan={fetchTravelPlan1} />} />
         )}
-         {showAddExpense && (
-          <PopUpMain Component={<AddExpense onClose={toggleAddExpense}  data={data} fetchTravelPlan={fetchTravelPlan1}  />} />
+        {showAddExpense && (
+          <PopUpMain Component={<AddExpense onClose={toggleAddExpense} data={data} fetchTravelPlan={fetchTravelPlan1} />} />
         )}
-           {showEditSetBudget && (
-          <PopUpMain Component={<AddExpenseEdit onClose={toggleShowEditSetBudget}   fetchTravelPlan={fetchTravelPlan1}data={data}  selectedBudget={selectedBudget} />} />
+        {showEditSetBudget && (
+          <PopUpMain Component={<AddExpenseEdit onClose={toggleShowEditSetBudget} fetchTravelPlan={fetchTravelPlan1} data={data} selectedBudget={selectedBudget} />} />
         )}
       </div>
     </div>

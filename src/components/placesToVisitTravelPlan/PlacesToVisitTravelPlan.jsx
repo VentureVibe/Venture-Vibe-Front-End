@@ -4,14 +4,15 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PlaceTravelPlan from '../placeTravelPlan/PlaceTravelPlan';
 import Google from '../../assets/google-logo.png';
+import { updateDestination, getDestination,deleteDestination } from '../../services/travelDestination/TravelDestination';
 
 
-const PlacesToVisitTravelPlan = ({ lat, long ,setClickedPlace,addedPlaces,setAddedPlaces}) => {
+const PlacesToVisitTravelPlan = ({ lat, long ,setClickedPlace,addedPlaces,updatePlacesInBackend,fetchTravelPlan,travelPlan}) => {
     const [isBottomContainerVisible, setIsBottomContainerVisible] = useState(true);
     const [isPlaceVisible, setIsPlaceVisible] = useState(true);
     const [bestPlaces, setBestPlaces] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
-    
+
     const [inputValue, setInputValue] = useState('');
     const [placeSuggestions, setPlaceSuggestions] = useState([]);
     const whereToInputRef = useRef(null);
@@ -61,8 +62,8 @@ const PlacesToVisitTravelPlan = ({ lat, long ,setClickedPlace,addedPlaces,setAdd
     };
 
     const handleAddToTrip = (place) => {
-        onclickPlace(place);
-    
+        // onclickPlace(place);
+  
         // Create a new place object with all desired attributes
         const placeDetails = {
             place_id: place.place_id,
@@ -75,21 +76,71 @@ const PlacesToVisitTravelPlan = ({ lat, long ,setClickedPlace,addedPlaces,setAdd
             vicinity: place.vicinity  // Include vicinity if available
         };
     
-        setAddedPlaces(prevAddedPlaces => [
-            ...prevAddedPlaces,
-            placeDetails
-        ]);
+        updatePlacesInBackend(placeDetails,"Places")
     };
      
-    const onclickPlace = (place) => {
-        setClickedPlace(place);
+    const onclickPlace = (recentPlace) => {
+        const lat = recentPlace.geometry?.location?.lat() || recentPlace.lat;
+        const longi = recentPlace.geometry?.location?.lng() || recentPlace.longi;
+  
+        if (isNaN(lat) || isNaN(longi)) {
+          throw new Error('Invalid latitude or longitude values');
+        }
+  
+        const photoUrl ='';
+  
+        const updatedPlace = {
+          lat: lat,
+          longi: longi,
+          description: recentPlace.name,
+          index:addedPlaces.length+1,
+          name: recentPlace.name,
+          imgUrl: photoUrl,
+          type: "Places",
+          rating:recentPlace.rating,
+      
+        };
+    
+       setClickedPlace( updatedPlace );
     };
     
-    const handleRemoveFromTrip = (index) => {
-      setAddedPlaces(prevAddedPlaces => 
-          prevAddedPlaces.filter((_, i) => i !== index)
-      );
+    const handleRemoveFromTrip = async (id) => {
+        try {
+            // Remove the destination
+            await deleteDestination(id);
+            
+            // Fetch the updated travel plan to refresh addedPlaces
+            await fetchTravelPlan();  // Ensure fetchTravelPlan is async if you need to wait for it
+    
+            console.log("Before update:", addedPlaces);
+    
+            // Filter out the removed place and update the rest
+            const updatedPlaces = await Promise.all(
+                addedPlaces
+                    .filter((place) => place.id !== id) // Exclude the place with the specified id
+                    .map(async (place, index) => {
+                        const place1 = await getDestination(place.id);
+                        place1.index = index; // Update the index (starting from 0)
+                        return place1;
+                    })
+            );
+    
+            console.log("Updated places:", updatedPlaces);
+    
+            // Optionally update the backend with the new places
+            for (let i = 0; i < updatedPlaces.length; i++) {
+                await updateDestination(updatedPlaces[i]);
+            }
+    
+            // Fetch the updated travel plan after all places are updated
+            await fetchTravelPlan(); // Ensure this fetches the latest state
+        } catch (error) {
+            console.error(error);
+        }
     };
+    
+    
+    
 
     const handleInputChange = (event) => {
         const value = event.target.value;
@@ -112,45 +163,70 @@ const PlacesToVisitTravelPlan = ({ lat, long ,setClickedPlace,addedPlaces,setAdd
         }
     };
 
-    const handleSuggestionClick = (place) => {
+    const handleSuggestionClick = (suggestion) => {
         const service = new window.google.maps.places.PlacesService(document.createElement('div'));
-        service.getDetails({ placeId: place.place_id }, (result, status) => {
+        
+        // Fetch the full details of the selected place using place_id
+        service.getDetails({ placeId: suggestion.place_id }, (result, status) => {
             if (status === window.google.maps.places.PlacesServiceStatus.OK && result) {
-                const details = {
+                const placeDetails = {
                     place_id: result.place_id,
                     name: result.name,
                     rating: result.rating,
                     user_ratings_total: result.user_ratings_total,
-                    geometry:result.geometry, // Include geometry if needed
-                    photos:result.photos,     // Include photos if available
-                    types: result.types,       // Include types if available
-                    vicinity: result.vicinity 
-                    
+                    geometry: result.geometry,  // Include geometry if needed
+                    photos: result.photos,      // Include photos if available
+                    types: result.types,        // Include types if available
+                    vicinity: result.vicinity   // Include vicinity if available
                 };
-                setAddedPlaces(prevAddedPlaces => [...prevAddedPlaces,details ]); // Add to Places to Visit
-                setPlaceSuggestions([]);
-                setInputValue('');
+                
+                handleAddToTrip(placeDetails); // Add place with full details to trip
+                setPlaceSuggestions([]); // Clear suggestions after selection
+                setInputValue(''); // Optionally clear input field
             } else {
                 console.error('Error fetching place details:', status);
             }
         });
     };
+    
 
-    const handleDragStart = (index) => {
-        setDraggedIndex(index);
-    };
+    // const handleDragStart = (index) => {
+    //     setDraggedIndex(index);
+    // };
 
-    const handleDragOver = (event) => {
-        event.preventDefault(); // Necessary to allow drop
-    };
+    // const handleDragOver = (event) => {
+    //     event.preventDefault(); // Necessary to allow drop
+    // };
 
-    const handleDrop = (index) => {
-        const updatedPlaces = [...addedPlaces];
-        const [draggedPlace] = updatedPlaces.splice(draggedIndex, 1);
-        updatedPlaces.splice(index, 0, draggedPlace);
-        setAddedPlaces(updatedPlaces);
-        setDraggedIndex(null);
-    };
+    // const handleDrop = async (index) => {
+    //     const updatedPlaces = [...addedPlaces];
+      
+    //     const [draggedPlace] = updatedPlaces.splice(draggedIndex, 1);
+    //     updatedPlaces.splice(index, 0, draggedPlace);
+    
+    //     // Update the state with a function to guarantee the latest value
+    //     setAddedPlaces(() => updatedPlaces);
+     
+    //  // Correctly log the new array
+    //     for (let i = 0; i < updatedPlaces.length; i++) {
+    //         const place = updatedPlaces[i];
+      
+    //         try {
+    //             // Fetch the place data from the backend
+    //             const place1 = await getDestination(place.id);
+           
+    //             // Update only the specific attribute, e.g., the index
+    //             place1.index =i+1; // Update the index
+        
+    //             // Send the updated place with the new index to the backend
+    //             const { data } = await updateDestination(place1);
+    //         } catch (error) {
+    //             console.error('Error updating place:', error);
+    //         }
+    //     }
+    //     fetchTravelPlan();
+    //     setDraggedIndex(null);
+    // };
 
     useEffect(() => {
         if (lat && long) {
@@ -174,30 +250,34 @@ const PlacesToVisitTravelPlan = ({ lat, long ,setClickedPlace,addedPlaces,setAdd
                     <h2>Places to Visit</h2>
                 </div>
                 {isBottomContainerVisible && (
-                    <div className='added-places-container'>
-                        {addedPlaces.map((place, index) => (
-                            <div
-                                key={place.place_id}
-                                draggable
-                                onDragStart={() => handleDragStart(index)}
-                                onDragOver={handleDragOver}
-                                onDrop={() => handleDrop(index)}
-                                className='draggable-item'
-                           
-                            >
-                                <PlaceTravelPlan
-                                    number={index + 1}
-                                    name={place.name}
-                                    placeId={index}
-                                    color='#1BBC9B'
-                                    handleRemoveFromTrip={() => handleRemoveFromTrip(index)}
-                                    place={place}
-                                    onClick={onclickPlace}
-                                />
-                            </div>
-                        ))}
-                    </div>
+                  <div className='added-places-container'>
+                        {addedPlaces
+                             .slice() // Create a copy of the array to avoid mutating the original array
+                             .sort((a, b) => a.index - b.index) // Sort by place.index
+                             .map((place, index) => (
+                   <div
+                       key={place.place_id}
+                       // draggable
+                       // onDragStart={() => handleDragStart(index)}
+                       // onDragOver={handleDragOver}
+                       // onDrop={() => handleDrop(index,place)}
+                       className='draggable-item'
+                    >
+                    <PlaceTravelPlan
+
+                        placeId={place.index} // Assign index in ascending order
+                        color='#1BBC9B'
+                        handleRemoveFromTrip={() => handleRemoveFromTrip(place.id)} 
+                        place={place}
+                        onClick={onclickPlace}
+                        travelPlan={travelPlan}
+                        fetchTravelPlan={fetchTravelPlan}
+                    />
+                </div>
+            ))}
+                  </div>
                 )}
+
                 {isBottomContainerVisible && (
                     <div className='add-place-container'>
                         <div className="top">
