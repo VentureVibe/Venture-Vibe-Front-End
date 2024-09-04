@@ -145,15 +145,20 @@ const TravelPlan = () => {
     try {
       // Fetch the updated travel plan
       const data1 = await getTravelPlanById(id, GetCurrentUserC().sub);
-  
+      if(data1.travelDestinations==null){
+
+      }
+      else{
+        const places = data1.travelDestinations.filter(dest => dest.type === 'Places');
+        const hotels = data1.travelDestinations.filter(dest => dest.type === 'Hotels');
+        const restrurents = data1.travelDestinations.filter(dest => dest.type === 'Restrurents');
+        // Set the separated data for places and hotels
+        setAddedPlaces1(places);  // Places filtered from travelDestinations
+        setAddedHotels(hotels);  
+        setAddedRestaurants(restrurents); 
+      }
       // Assuming travelDestinations is an array of destinations within the travel plan
-      const places = data1.travelDestinations.filter(dest => dest.type === 'Places');
-      const hotels = data1.travelDestinations.filter(dest => dest.type === 'Hotels');
-      const restrurents = data1.travelDestinations.filter(dest => dest.type === 'Restrurents');
-      // Set the separated data for places and hotels
-      setAddedPlaces1(places);  // Places filtered from travelDestinations
-      setAddedHotels(hotels);  
-      setAddedRestaurants(restrurents); // Hotels filtered from travelDestinations
+    // Hotels filtered from travelDestinations
     } catch (error) {
       console.error('Error updating places:', error);
     }
