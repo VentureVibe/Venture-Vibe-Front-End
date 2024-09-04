@@ -116,28 +116,31 @@ const UserTable = () => {
         <div className="modal">
           <div className="modal-content">
             <h2>Edit User</h2>
-            <form onSubmit={handleEditSubmit}>
-              <label>
-                Name:
+            <form className="popup" onSubmit={handleEditSubmit}>
+              <label className="namelabel">
+                <span>Name:</span>
                 <input
+                  className="nametext"
                   type="text"
                   name="name"
                   value={editFormData.name}
                   onChange={handleEditChange}
                 />
               </label>
-              <label>
-                Email:
+              <label className="namelabel">
+                <span>Email:</span>
                 <input
+                  className="nametext"
                   type="email"
                   name="email"
                   value={editFormData.email}
                   onChange={handleEditChange}
                 />
               </label>
-              <label>
-                Role:
+              <label className="namelabel">
+                <span>Role:</span>
                 <input
+                  className="nametext"
                   type="text"
                   name="role"
                   value={editFormData.role}
@@ -145,8 +148,14 @@ const UserTable = () => {
                 />
               </label>
               <div className="modal-actions">
-                <button type="submit">Save</button>
-                <button type="button" onClick={handleCancelEdit}>
+                <button className="savebtn" type="submit">
+                  Save
+                </button>
+                <button
+                  className="cancelbtn"
+                  type="button"
+                  onClick={handleCancelEdit}
+                >
                   Cancel
                 </button>
               </div>
