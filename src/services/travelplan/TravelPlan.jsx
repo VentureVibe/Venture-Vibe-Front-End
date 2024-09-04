@@ -47,6 +47,7 @@ export const getTravelerByEmailPartially = async (email, jwtToken) => {
 
 export const getTravelPlanById = async (travelPlanId, travelerId) => {
   try {
+    
     const response = await newRequest.get(
       `/travelplan/${travelPlanId}/${travelerId}`
     
