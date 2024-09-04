@@ -1,16 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./UserManagement.scss";
+import axios from "axios";
 
 const UserManagement = () => {
-  const [users, setUsers] = useState([
-    { id: 1, name: "John Doe", email: "johndoe@example.com", role: "Admin" },
-    { id: 2, name: "Jane Smith", email: "janesmith@example.com", role: "User" },
-    { id: 3, name: "Jane Smith", email: "janesmith@example.com", role: "User" },
-    { id: 4, name: "Jane Smith", email: "janesmith@example.com", role: "User" },
-    { id: 5, name: "Jane Smith", email: "janesmith@example.com", role: "User" },
-    { id: 6, name: "Jane Smith", email: "janesmith@example.com", role: "User" },
-  ]);
-
+  const [users, setUsers] = useState([]);
   const [editingUser, setEditingUser] = useState(null);
   const [editFormData, setEditFormData] = useState({
     id: "",
@@ -19,9 +12,29 @@ const UserManagement = () => {
     role: "",
   });
 
-  const handleDelete = (userId) => {
-    const updatedUsers = users.filter((user) => user.id !== userId);
-    setUsers(updatedUsers);
+  useEffect(() => {
+    // Fetch all users on component mount
+    const fetchUsers = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:8080/api/v1/admin/users"
+        );
+        setUsers(response.data);
+      } catch (error) {
+        console.error("Error fetching users:", error);
+      }
+    };
+
+    fetchUsers();
+  }, []);
+
+  const handleDelete = async (userId) => {
+    try {
+      await axios.delete(`http://localhost:8080/api/v1/admin/users/${userId}`);
+      setUsers(users.filter((user) => user.id !== userId));
+    } catch (error) {
+      console.error("Error deleting user:", error);
+    }
   };
 
   const handleEdit = (user) => {
@@ -34,13 +47,20 @@ const UserManagement = () => {
     setEditFormData({ ...editFormData, [name]: value });
   };
 
-  const handleEditSubmit = (e) => {
+  const handleEditSubmit = async (e) => {
     e.preventDefault();
-    const updatedUsers = users.map((user) =>
-      user.id === editFormData.id ? editFormData : user
-    );
-    setUsers(updatedUsers);
-    setEditingUser(null);
+    try {
+      await axios.put(
+        `http://localhost:8080/api/v1/admin/users/${editFormData.id}`,
+        editFormData
+      );
+      setUsers(
+        users.map((user) => (user.id === editFormData.id ? editFormData : user))
+      );
+      setEditingUser(null);
+    } catch (error) {
+      console.error("Error updating user:", error);
+    }
   };
 
   return (
@@ -50,7 +70,7 @@ const UserManagement = () => {
         <table>
           <thead>
             <tr>
-              <th>ID</th>
+              <th>#</th> {/* Serial Number Column */}
               <th>Name</th>
               <th>Email</th>
               <th>Role</th>
@@ -58,9 +78,9 @@ const UserManagement = () => {
             </tr>
           </thead>
           <tbody>
-            {users.map((user) => (
+            {users.map((user, index) => (
               <tr key={user.id}>
-                <td>{user.id}</td>
+                <td>{index + 1}</td> {/* Display Serial Number */}
                 <td>{user.name}</td>
                 <td>{user.email}</td>
                 <td>{user.role}</td>

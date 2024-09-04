@@ -1,31 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./UserTable.scss";
 
 const UserTable = () => {
-  const [users, setUsers] = useState([
-    {
-      id: 1,
-      name: "John Doe",
-      email: "john@example.com",
-      role: "User",
-      profilePicture: "path/to/profile1.jpg",
-    },
-    {
-      id: 2,
-      name: "Jane Smith",
-      email: "jane@example.com",
-      role: "Admin",
-      profilePicture: "path/to/profile2.jpg",
-    },
-    {
-      id: 3,
-      name: "Sam Green",
-      email: "sam@example.com",
-      role: "User",
-      profilePicture: "path/to/profile3.jpg",
-    },
-  ]);
-
+  const [users, setUsers] = useState([]);
   const [editingUser, setEditingUser] = useState(null);
   const [newUser, setNewUser] = useState({
     name: "",
@@ -34,25 +12,66 @@ const UserTable = () => {
     profilePicture: "",
   });
 
+  // Fetch users from the backend when the component mounts
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:8080/api/v1/public/traveler"
+        );
+        console.log(response.data);
+        setUsers(response.data);
+      } catch (error) {
+        console.error("Error fetching users:", error);
+      }
+    };
+
+    fetchUsers();
+  }, []);
+
   const handleEdit = (user) => {
     setEditingUser(user);
   };
 
-  const handleSave = () => {
-    setUsers(
-      users.map((user) => (user.id === editingUser.id ? editingUser : user))
-    );
-    setEditingUser(null);
+  const handleSave = async () => {
+    try {
+      await axios.put(
+        `http://localhost:8080/api/v1/public/traveler/${editingUser.id}`,
+        editingUser
+      );
+      setUsers(
+        users.map((user) => (user.id === editingUser.id ? editingUser : user))
+      );
+      setEditingUser(null);
+    } catch (error) {
+      console.error("Error updating user:", error);
+    }
   };
 
-  const handleDelete = (id) => {
-    setUsers(users.filter((user) => user.id !== id));
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`http://localhost:8080/api/v1/public/traveler/${id}`);
+      setUsers(users.filter((user) => user.id !== id));
+    } catch (error) {
+      console.error("Error deleting user:", error);
+    }
   };
 
-  const handleAdd = () => {
+  const handleAdd = async () => {
     const newId = users.length ? users[users.length - 1].id + 1 : 1;
-    setUsers([...users, { ...newUser, id: newId }]);
-    setNewUser({ name: "", email: "", role: "User", profilePicture: "" });
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/api/v1/public/traveler",
+        {
+          ...newUser,
+          id: newId,
+        }
+      );
+      setUsers([...users, response.data]);
+      setNewUser({ name: "", email: "", role: "User", profilePicture: "" });
+    } catch (error) {
+      console.error("Error adding user:", error);
+    }
   };
 
   return (
