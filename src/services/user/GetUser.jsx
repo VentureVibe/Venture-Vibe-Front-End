@@ -16,6 +16,7 @@ export const GetUser = async () => {
     const response = await axios.get(
       `http://localhost:8080/api/v1/public/traveler/${id}`
     );
+    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error("Error fetching user:", error.message);

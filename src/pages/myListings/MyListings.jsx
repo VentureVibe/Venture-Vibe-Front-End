@@ -20,31 +20,6 @@ const MyListings = () => {
     setShowAddNew(!showAddNew);
   };
 
-  // const fetchEvents = async (page) => {
-  //   setLoading(true);
-  //   try {
-  //     const result = await getEvents(page);
-  //     const { content, totalPages, number } = result;
-
-  //     // Check if new content is being added to avoid duplication
-  //     if (page === 0) {
-  //       // Initial fetch, just set the events
-  //       setEvents(content);
-  //       //console.log(content);
-  //     } else {
-  //       // Subsequent fetches, append new events
-  //       setEvents((prevEvents) => [...prevEvents, ...content]);
-  //     }
-
-  //     // Determine if there are more pages to load
-  //     setHasMore(number < totalPages);
-  //   } catch (error) {
-  //     console.error("Error fetching events:", error);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
   const fetchEvents = async (page) => {
     setLoading(true);
     try {
