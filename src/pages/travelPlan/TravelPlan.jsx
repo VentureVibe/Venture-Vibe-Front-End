@@ -47,10 +47,16 @@ const TravelPlan = () => {
       setLat(data.lat);
       setLng(data.longi);
       setPlaceImage(data.imgUrl || Cover);
+     
+      if(data.travelBudgets==null){
+        const totalBudget =0;
+      }
+      else{
+        const totalBudget = data.travelBudgets.reduce((sum, travelBudget) => {
+          return sum + parseFloat(travelBudget.cost) || 0; // Convert to number and handle cases where cost might be null or undefined
+        }, 0);
+      }
     
-      const totalBudget = data.travelBudgets.reduce((sum, travelBudget) => {
-        return sum + parseFloat(travelBudget.cost) || 0; // Convert to number and handle cases where cost might be null or undefined
-      }, 0);
 
       setAddedPlaces(data.travelDestinations);
     
@@ -75,7 +81,8 @@ const TravelPlan = () => {
   
       
     } catch (err) {
-      navigate('/');
+         console.log(error)
+    
     }
   };
 
@@ -167,7 +174,7 @@ const TravelPlan = () => {
 
 
   useEffect(() => {
-  
+    console.log(GetCurrentUserC().sub);
     fetchTravelPlan();
     updatePlaces();
   }, [id]);
