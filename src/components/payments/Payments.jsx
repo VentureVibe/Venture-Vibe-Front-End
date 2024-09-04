@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./payment.scss";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { GetCurrentUserC } from "../../services/user/GetCurrentUserC";
 
 const Payments = ({ userDetails, selectedPlan, workExperiences }) => {
   const [orderId, setOrderId] = useState("");
   const [paymentSuccess, setPaymentSuccess] = useState(false);
   const [res, setRes] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!window.payhere) {
@@ -99,8 +101,18 @@ const Payments = ({ userDetails, selectedPlan, workExperiences }) => {
             ...serviceProviderDetails,
             workExperience: workExperiences,
           });
+          const result2 = await axios.put(
+            `http://localhost:8080/api/v1/public/traveler/${decodedToken.sub}`,
+            {
+              firstName: userDetails.firstName,
+              lastName: userDetails.lastName,
+              role: workExperiences ? "TravelGuide" : "EventPlanner",
+            }
+          );
 
           console.log("Service provider stored successfully:", result.data);
+          console.log("Service provider stored successfully:", result2.data);
+          navigate("/");
         } catch (error) {
           console.error("Error storing service provider details:", error);
         }
