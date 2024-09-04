@@ -337,18 +337,134 @@ function EditEventListing({ eventId, onClose }) {
   const [imagePreview, setImagePreview] = useState("");
   const [loading, setLoading] = useState(false);
 
+  // useEffect(() => {
+  //   const fetchEventDetails = async () => {
+  //     setLoading(true);
+  //     try {
+  //       const eventDetails = await getEventById(eventId);
+  //       setFormData({
+  //         title: eventDetails.eventTitle,
+  //         description: eventDetails.eventDescription,
+  //         price: eventDetails.eventPrice,
+  //         contactNumber: eventDetails.contactPhone,
+  //         email: eventDetails.contactEmail,
+  //         location: eventDetails.eventLocation, // Adjust based on your API response
+  //         eventImage: null,
+  //       });
+  //       setCoordinates({
+  //         lat: eventDetails.eventLat,
+  //         lng: eventDetails.eventLon,
+  //       });
+
+  //       setImagePreview(eventDetails.eventImage || "");
+
+  //       const google = window.google;
+  //       if (google) {
+  //         const map = new google.maps.Map(mapRef.current, {
+  //           center: { lat: eventDetails.eventLat, lng: eventDetails.eventLon },
+  //           zoom: 15,
+  //         });
+
+  //         markerRef.current = new google.maps.Marker({
+  //           position: new google.maps.LatLng(
+  //             eventDetails.eventLat,
+  //             eventDetails.eventLon
+  //           ),
+  //           map: map,
+  //         });
+
+  //         const input = document.getElementById("location");
+  //         input.value = eventDetails.eventLocation;
+  //         const autocomplete = new google.maps.places.Autocomplete(input);
+  //         autocomplete.addListener("place_changed", () => {
+  //           const place = autocomplete.getPlace();
+  //           if (place.geometry) {
+  //             const location = place.geometry.location;
+  //             map.setCenter(location);
+  //             map.setZoom(15);
+
+  //             setFormData((prevState) => ({
+  //               ...prevState,
+  //               location: place.formatted_address,
+  //             }));
+
+  //             setCoordinates({
+  //               lat: location.lat(),
+  //               lng: location.lng(),
+  //             });
+
+  //             if (markerRef.current) {
+  //               markerRef.current.setMap(null);
+  //             }
+
+  //             markerRef.current = new google.maps.Marker({
+  //               position: location,
+  //               map: map,
+  //             });
+
+  //             setFormData((prevState) => ({
+  //               ...prevState,
+  //               location: input.value,
+  //             }));
+  //           }
+  //         });
+  //         autocompleteRef.current = autocomplete;
+
+  //         map.addListener("click", (event) => {
+  //           const clickedLocation = event.latLng;
+
+  //           if (markerRef.current) {
+  //             markerRef.current.setMap(null);
+  //           }
+
+  //           markerRef.current = new google.maps.Marker({
+  //             position: clickedLocation,
+  //             map: map,
+  //           });
+
+  //           setCoordinates({
+  //             lat: clickedLocation.lat(),
+  //             lng: clickedLocation.lng(),
+  //           });
+
+  //           const geocoder = new google.maps.Geocoder();
+  //           geocoder.geocode(
+  //             { location: clickedLocation },
+  //             (results, status) => {
+  //               if (status === "OK" && results[0]) {
+  //                 setFormData((prevState) => ({
+  //                   ...prevState,
+  //                   location: results[0].formatted_address,
+  //                 }));
+  //                 input.value = results[0].formatted_address;
+  //               }
+  //             }
+  //           );
+  //         });
+  //       }
+  //     } catch (error) {
+  //       console.error("Error fetching event details:", error);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+
+  //   fetchEventDetails();
+  // }, [eventId]);
+
   useEffect(() => {
     const fetchEventDetails = async () => {
       setLoading(true);
       try {
         const eventDetails = await getEventById(eventId);
+
         setFormData({
           title: eventDetails.eventTitle,
           description: eventDetails.eventDescription,
           price: eventDetails.eventPrice,
           contactNumber: eventDetails.contactPhone,
           email: eventDetails.contactEmail,
-          location: eventDetails.eventLocation, // Adjust based on your API response
+          location: eventDetails.eventLocation,
           eventImage: null,
         });
         setCoordinates({
@@ -359,7 +475,7 @@ function EditEventListing({ eventId, onClose }) {
         setImagePreview(eventDetails.eventImage || "");
 
         const google = window.google;
-        if (google) {
+        if (google && mapRef.current) {
           const map = new google.maps.Map(mapRef.current, {
             center: { lat: eventDetails.eventLat, lng: eventDetails.eventLon },
             zoom: 15,
@@ -508,7 +624,7 @@ function EditEventListing({ eventId, onClose }) {
       if (formData.eventImage) {
         formDataObj.append("image", formData.eventImage);
       }
-
+      console.log(formDataObj);
       await updateEvent(formDataObj);
 
       if (onClose) onClose();
