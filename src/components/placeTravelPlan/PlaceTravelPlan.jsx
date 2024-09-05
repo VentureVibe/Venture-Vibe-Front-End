@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./PlaceTravelPlan.scss";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -49,6 +49,10 @@ const PlaceTravelPlan = ({ placeId, color, handleRemoveFromTrip, onClick, place,
         setEditSetBudget(!showEditSetBudget);
     };
 
+    useEffect(() => {
+        setDescription(place.description);
+    }, [place.description]);
+
   return (
    
     <div className='placeTravelPlan' onClick={()=>onClick(place)} >
@@ -75,7 +79,7 @@ const PlaceTravelPlan = ({ placeId, color, handleRemoveFromTrip, onClick, place,
 
 
                     <div className="added-by">
-                        <img src={profilePic} alt="" />
+                        <img src={place.traveler.profileImg} alt="" />
                      
                     </div>
                         {isDelete && (
