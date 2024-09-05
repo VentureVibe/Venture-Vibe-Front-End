@@ -44,6 +44,7 @@ import TravelInvitations from "./pages/travelInvitations/TravelInvitations";
 import DashboardOverview from "./pages/admin/Overview/DashboardOverview";
 import UserTable from "./components/admin/users/UserTable";
 import ServiceProviderListing from "./pages/admin/ServiceProviders/ServiceProviderListing";
+import EditProfile from "./pages/editProfile/EditProfile";
 
 const Layout = () => {
   return (
@@ -92,6 +93,10 @@ function App() {
         {
           path: "/events",
           element: <ShowAllEvents />,
+        },
+        {
+          path: "/editprofile",
+          element: <EditProfile />,
         },
         {
           path: "/event/:id",

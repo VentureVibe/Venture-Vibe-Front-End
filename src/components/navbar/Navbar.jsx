@@ -92,11 +92,10 @@ const Navbar = () => {
         navigate("/mylistings");
       } else if (userRole === "Admin") {
         navigate("/admin");
+      } else {
+        navigate("/editprofile");
       }
       setDropdownVisible(!dropdownVisible);
-      // } else {
-      //   navigate("/profile");
-      // }
     } catch (error) {
       console.error("Error fetching user data:", error);
       navigate("/");
