@@ -19,7 +19,7 @@ export const addDestination= async (travelerPlanId, destinationData) => {
 
 export const updateDestination= async (destinationData) => {
     try {
-      console.log(destinationData);
+      console.log("destination data" + destinationData.description);
       const response=await newRequest.put(
         `/traveldestination`,
         destinationData   
