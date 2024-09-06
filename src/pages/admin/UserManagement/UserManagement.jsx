@@ -57,7 +57,7 @@ const UserTable = () => {
     e.preventDefault();
     try {
       const response = await axios.put(
-        `http://localhost:8080/api/v1/public/travelers/${userId}`, // Update endpoint
+        `http://localhost:8080/api/v1/public/travelers/${editFormData.id}`, // Update endpoint
         editFormData
       );
       setUsers(
