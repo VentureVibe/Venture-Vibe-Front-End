@@ -133,7 +133,8 @@ const PlacesToVisitTravelPlan = ({ lat, long ,setClickedPlace,addedPlaces,update
             }
     
             // Fetch the updated travel plan after all places are updated
-            await fetchTravelPlan(); // Ensure this fetches the latest state
+            await fetchTravelPlan();
+           // Ensure this fetches the latest state
         } catch (error) {
             console.error(error);
         }

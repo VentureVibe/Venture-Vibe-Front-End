@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./PlaceTravelPlan.scss";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -48,6 +48,10 @@ const PlaceTravelPlan = ({ placeId, color, handleRemoveFromTrip, onClick, place,
     const toggleShowEditSetBudget = (travelBudget) => {
         setEditSetBudget(!showEditSetBudget);
     };
+
+    useEffect(() => {
+        setDescription(place.description);
+    }, [place.description]);
 
   return (
    
