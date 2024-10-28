@@ -2,7 +2,9 @@
     .container{
         display: grid;
         width: 100%;
-        grid-template-columns: 10% 70% 20%;
+ 
+        padding: 20px !important;
+        grid-template-columns: 10% 47% 25% 11% 3.5% 3.5%;
         align-items: center;
         justify-content: center;
         //border: 1px solid red;
@@ -21,6 +23,7 @@
         .description-container{
             //border: 1px solid red;
             margin-left: 10px;
+            padding-top: 7px;
             .place-name{
                 span{
                     font-size: var(--paragraph-2);
@@ -38,13 +41,49 @@
             }
         }
 
+        .payer-container{
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+     
+            img{
+                border-radius: 100%;
+                width: 30px;
+                height: 30px;
+                cursor: pointer;
+            }
+
+            h1{
+                width: 30px;
+                font-size: var(--paragraph-2);
+                font-weight: 500;
+                text-align: center;
+            }
+
+            font-size: var(--paragraph-2);
+        }
+
         .budget-container{
             //border: 1px solid red;
-            margin-left: 100px;
+            width: 100%;
+            text-align: right;
+            padding-right: 10px;
             span{
                 font-size: var(--header);
                 font-weight: 600;
                 color: var(--text-color);
+            }
+           
+        }
+
+        .remover{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: end;
+            i{
+                cursor: pointer;
+                font-size: var(--paragraph-1);
             }
         }
     }

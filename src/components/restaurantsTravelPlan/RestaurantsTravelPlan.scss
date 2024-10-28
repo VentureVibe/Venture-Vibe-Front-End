@@ -4,22 +4,16 @@
         flex-direction: column;
         justify-content: center;
         width: 100%;
-        //border: 1px solid red;
-        //margin-top: 30px;
         padding: 0 90px 30px 35px;
         background-color: white;
 
-        .restaurants-heading-container{
+        .places-heading-container{
             display: flex;
             align-items: center;
             width: 250px;
             height: 50px;
             margin-top: 30px;
             cursor: pointer;
-
-            i{
-
-            }
 
             h2{
                 margin-left: 15px;
@@ -29,7 +23,7 @@
 
         }
 
-        .recommended-restaurants-heading-container{
+        .recommended-places-heading-container{
             display: flex;
             align-items: center;
             width: 250px;
@@ -37,10 +31,6 @@
             margin-top: 20px;
             margin-left: 30px;
             cursor: pointer;
-
-            i{
-
-            }
 
             span{
                 margin-left: 15px;
@@ -51,21 +41,17 @@
 
         }
 
-        .show-restaurant-container{
+        .show-place-container{
             display: flex;
             flex-direction: column;
             justify-content: center;
-            //align-items: center;
-            //width: 250px;
-            //height: 150px;
             padding: 5px;
-            //border: 1px solid red;
             background-color: #f1f4f7;
             border-radius: 10px;
             margin-left: 30px;
             margin-top: 10px;
 
-            .restaurant-name{
+            .place-name{
                 display: flex;
                 align-items: center;
                 margin-left: -22px;
@@ -75,16 +61,12 @@
                     position: relative;
                     display: inline-block;
 
-                    i{
-
-                    }
-
                     span{
                         position: absolute;
                         top: 8px; 
                         right: 13.5px;
                         font-size: var(--paragraph-1);
-                        background-color: var(--orange);
+                        background-color: var(--green);
                         color: white;
                     }
                 }
@@ -120,11 +102,10 @@
                 }
             }
 
-            .bottom-show-restaurant{
+            .bottom-show-place{
                 display: flex;
                 align-items: center;
                 margin-top: -5px;
-                //justify-content: center;
 
                 .add-attachment{
                     display: flex;
@@ -168,7 +149,7 @@
             }
         }
 
-        .add-restaurant-container{
+        .add-place-container{
             position: relative; 
             margin-left: 30px;
             margin-top: 15px;
@@ -197,40 +178,41 @@
            }
 
            .bottom{ 
-            width: 100%;
-            margin-top: 4px;
-            display: flex;
-            flex-direction: column;   
-            border-radius: 10px; 
-            position: absolute;
-            background-color: var(--white);
-            border: 1px solid var(--input);
-           
-            .suggestions-list{
-                z-index: 100;
-                top: 100%;
-                list-style-type: none;
-                cursor: pointer;
-                font-size: var(--paragraph-1);
-                .cont{
-                    border-radius: 10px; 
-                    padding: 13px;
-                    i{
-                        margin-right: 10px;
-                    }
-                    width: 100%;
-                   
-                    display: flex;
-                    align-items: center;
+                width: 100%;
+                margin-top: 4px;
+                display: flex;
+                flex-direction: column;   
+                border-radius: 10px; 
+                position: absolute;
+                background-color: var(--white);
+                border: 1px solid var(--input);
+               
+                .suggestions-list{
+                    z-index: 100;
+                    top: 100%;
+                    list-style-type: none;
+                    cursor: pointer;
                     font-size: var(--paragraph-1);
+                    .cont{
+                        border-radius: 10px; 
+                        padding: 13px;
+                        i{
+                            margin-right: 10px;
+                        }
+                        width: 100%;
+                       
+                        display: flex;
+                        align-items: center;
+                        font-size: var(--paragraph-1);
+                    }
+                    .cont:hover{
+                        background-color: var(--input);
+                    }
                 }
-                .cont:hover{
-                    background-color: var(--input);
-                }
-            }
 
-          
+              
            }
+            
         }
 
         .bottom-container{

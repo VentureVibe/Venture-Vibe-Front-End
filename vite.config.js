@@ -1,7 +1,7 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import { NodeGlobalsPolyfillPlugin } from '@esbuild-plugins/node-globals-polyfill';
-import { NodeModulesPolyfillPlugin } from '@esbuild-plugins/node-modules-polyfill';
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import { NodeGlobalsPolyfillPlugin } from "@esbuild-plugins/node-globals-polyfill";
+import { NodeModulesPolyfillPlugin } from "@esbuild-plugins/node-modules-polyfill";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -12,13 +12,16 @@ export default defineConfig({
         buffer: true,
         process: true,
       }),
-      apply: 'build',
+      apply: "build",
     },
     {
       ...NodeGlobalsPolyfillPlugin(),
-      apply: 'build',
+      apply: "build",
     },
   ],
+  define: {
+    "process.env": process.env,
+  },
   optimizeDeps: {
     esbuildOptions: {
       plugins: [
@@ -32,7 +35,7 @@ export default defineConfig({
   },
   server: {
     hmr: {
-      overlay: false
-    }
-  }
-})
+      overlay: false,
+    },
+  },
+});

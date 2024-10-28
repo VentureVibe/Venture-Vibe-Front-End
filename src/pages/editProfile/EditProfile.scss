@@ -1,0 +1,209 @@
+.editProfile{
+    display: flex;
+    flex-direction: column;
+    //justify-content: center;
+    padding: 40px 350px;
+
+    h1{
+        font-weight: 600;
+        font-size: 30px;
+        color: var(--text-color);
+        margin-bottom: 30px;
+    }
+
+    .profile-container{
+        //border: 1px solid black;
+        display: flex;
+        box-shadow: var(--box-shadow-2);
+        padding: 30px;
+
+        .profile-pic{
+            width: 30%;
+            height: 200px;
+            margin: 20px 20px 20px 0;
+            //border: 1px solid black;
+
+            img{
+                width: 200px;
+                height: 200px;
+                border-radius: 50%;
+            }
+
+            .change-photo{
+                width: 230px;
+                height: 35px;
+                //background-color: var(--green);
+                //color: white;
+                border-radius: 5px;
+                font-weight: 550;
+                font-size: var(--paragraph-2);
+                margin-top: 20px;
+                box-shadow: var(--box-shadow-1);
+            }
+        }
+
+        .profile-details-container{
+            //justify-content: flex-start;
+            display: flex;
+            flex-direction: column;
+            margin-left: 10px;
+
+            .name{
+                display: flex;
+
+                .first-name{
+                    display: flex;
+                    flex-direction: column;
+                    margin-right: 20px;
+
+                    label{
+                        font-weight: 550;
+                        font-size: var(--header);
+                        color: var(--text-color);
+                        margin-bottom: 5px;
+                    }
+
+                    input{
+                        width: 250px;
+                        height: 40px;
+                        //border: 1px solid black;
+                        box-shadow: var(--box-shadow-2);
+                        padding-left: 10px;
+                    }
+                }
+
+                .last-name{
+                    display: flex;
+                    flex-direction: column;
+                    
+                    label{
+                        font-weight: 550;
+                        font-size: var(--header);
+                        color: var(--text-color);
+                        margin-bottom: 5px;
+                    }
+
+                    input{
+                        width: 250px;
+                        height: 40px;
+                        //border: 1px solid black;
+                        box-shadow: var(--box-shadow-2);
+                        padding-left: 10px;
+                    }
+                }
+            }
+
+            .email-container{
+                display: flex;
+                flex-direction: column;
+                margin-top: 20px;
+                
+                label{
+                    font-weight: 550;
+                    font-size: var(--header);
+                    color: var(--text-color);
+                    margin-bottom: 5px;
+                }
+
+                input{
+                    width: 520px;
+                    height: 40px;
+                    //border: 1px solid black;
+                    box-shadow: var(--box-shadow-2);
+                    padding-left: 10px;
+                }
+            }
+
+            .country{
+                display: flex;
+                flex-direction: column;
+                margin-top: 20px;
+                
+                label{
+                    font-weight: 550;
+                    font-size: var(--header);
+                    color: var(--text-color);
+                    margin-bottom: 5px;
+                }
+
+                input{
+                    width: 520px;
+                    height: 40px;
+                    //border: 1px solid black;
+                    box-shadow: var(--box-shadow-2);
+                    padding-left: 10px;
+                }
+            }
+
+            .change-password{
+                width: 150px;
+                height: 30px;
+                //background-color: var(--green);
+                //color: white;
+                border-radius: 5px;
+                font-weight: 450;
+                font-size: var(--paragraph-1);
+                margin-top: 20px;
+                margin-bottom: 20px;
+                box-shadow: var(--box-shadow-1);
+            }
+
+            .change-password-container{
+                display: flex;
+
+                .new-password{
+                    display: flex;
+                    flex-direction: column;
+                    margin-right: 20px;
+
+                    label{
+                        font-weight: 550;
+                        font-size: var(--header);
+                        color: var(--text-color);
+                        margin-bottom: 5px;
+                    }
+
+                    input{
+                        width: 250px;
+                        height: 40px;
+                        //border: 1px solid black;
+                        box-shadow: var(--box-shadow-2);
+                        padding-left: 10px;
+                    }
+                }
+
+                .confirm-password{
+                    display: flex;
+                    flex-direction: column;
+                    
+                    label{
+                        font-weight: 550;
+                        font-size: var(--header);
+                        color: var(--text-color);
+                        margin-bottom: 5px;
+                    }
+
+                    input{
+                        width: 250px;
+                        height: 40px;
+                        //border: 1px solid black;
+                        box-shadow: var(--box-shadow-2);
+                        padding-left: 10px;
+                    }
+                }
+            }
+
+            .submit{
+                width: 160px;
+                height: 35px;
+                background-color: var(--blue);
+                color: white;
+                border-radius: 5px;
+                font-weight: 550;
+                font-size: var(--paragraph-2);
+                margin-top: 20px;
+                box-shadow: var(--box-shadow-1);
+            }
+        }
+    }
+}

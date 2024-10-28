@@ -8,6 +8,7 @@ import "./Home.scss";
 import { useAlert } from "../../context/errAlert/AlertContext";
 import { exchangeCodeForTokens } from "../../services/user/LoginSignup";
 import Loading from "../../components/loading/Loading";
+import { GetUser } from "../../services/user/GetUser";
 
 const Home = () => {
   const showAlert = useAlert();

@@ -4,6 +4,8 @@ import noAvatar from '../../assets/noavatar.jpg';
 import { format } from 'date-fns';
 import newRequest from '../../services/NewRequst';
 import { GetCurrentUserC } from './../../services/user/GetCurrentUserC';
+import ReportPost from '../reportPost/ReportPost';
+import PopUpMain from '../popupmain/PopUpMain';
 
 const CommunityPostPop = ({ onClose, data1, user }) => {
   const [isPopupVisible, setIsPopupVisible] = useState(false);
@@ -13,8 +15,17 @@ const CommunityPostPop = ({ onClose, data1, user }) => {
   const [error, setError] = useState(null);
   const [responseMessage, setResponseMessage] = useState('');
   const [like, setLike] = useState(false);
+  const [follow, setFollow] = useState(false);
+  const [reportPost, setReportPost] = useState(false);
+
+     const toggleReportPopUp = () => {
+        setReportPost(!reportPost);
+     };
+
+  const userId = GetCurrentUserC().sub;
 
   useEffect(() => {
+    // Fetch comments for the post
     newRequest
       .get(`comments/${data1.postId}`)
       .then((response) => {
@@ -23,30 +34,30 @@ const CommunityPostPop = ({ onClose, data1, user }) => {
       })
       .catch((error) => {
         console.error('There was an error!', error);
-        setError('There was an error fetching the posts.');
+        setError('There was an error fetching the comments.');
         setLoading(false);
       });
-  }, [data1.postId]);
 
-  useEffect(() => {
-    // Check if the user already liked the post
+    // Fetch the like status for the post by the current user
     newRequest
-      .get(`likes/${data1.postId}/${GetCurrentUserC().sub}`)
+      .get(`likes/${data1.postId}/${userId}`)
       .then((response) => {
-        setLike(response.data.liked);
+        setLike(response.data);
       })
       .catch((error) => {
         console.error('There was an error checking the like status!', error);
       });
-  }, [data1.postId]);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+      newRequest
+      .get(`following/${userId}/${user.id}`)
+      .then((response) => {
+        setFollow(response.data);
+      })
+      .catch((error) => {
+        console.error('There was an error checking the follow status!', error);
+      });
 
-  if (error) {
-    return <div>{error}</div>;
-  }
+  }, [data1.postId, userId, user.id]);
 
   const togglePopup = () => {
     setIsPopupVisible(!isPopupVisible);
@@ -57,8 +68,6 @@ const CommunityPostPop = ({ onClose, data1, user }) => {
   };
 
   const formattedDate = format(new Date(data1.createdAt), 'yyyy-MM-dd');
-
-  const userId = GetCurrentUserC().sub;
 
   const handleCommentSubmit = async (event) => {
     event.preventDefault();
@@ -123,8 +132,28 @@ const CommunityPostPop = ({ onClose, data1, user }) => {
     }
   };
 
-  console.log(data1.postId);
-  console.log(user.id);
+  const handleFollow = async (event) => {
+    event.preventDefault();
+
+    const followData = {
+      traveler: {
+        id: userId,
+      },
+      followedTraveler: {
+        id: user.id,
+      },
+    };
+
+    try {
+      const response = await newRequest.post('following/follow', followData);
+      setResponseMessage('Follow created successfully');
+      console.log('Success:', response.data);
+      setFollow(true);
+    } catch (error) {
+      console.error('Error:', error);
+      setResponseMessage('Failed to follow user');
+    }
+  };
 
   return (
     <div className='CommunityPostPop' onClick={handleClick}>
@@ -132,22 +161,28 @@ const CommunityPostPop = ({ onClose, data1, user }) => {
         <img className='image' src={data1.imageSrc} alt="" />
       </div>
       <div className="content">
-        <div className="top">
-          <img src={user.profileImg ? user.profileImg : noAvatar} alt="" />
-          <div className="details">
-            <h4>{user.name}</h4>
-            <p>{formattedDate}</p>
-          </div>
+        <div className="super-top">
+          <div className="icons">
           {!isPopupVisible ? (
             <i className="fa-solid fa-ellipsis" onClick={togglePopup}></i>
           ) : (
             <div className="report">
               <i className="fa-solid fa-times" onClick={togglePopup}></i>
-              <span onClick={togglePopup}>Report</span>
+              <span onClick={toggleReportPopUp}>Report</span>
             </div>
           )}
           <i className="fa-regular fa-circle-xmark" onClick={onClose}></i>
+          </div>
+          <div className="top">
+            <img src={user.profileImg ? user.profileImg : noAvatar} alt="" />
+            <div className="details">
+              <h4>{user.name}</h4>
+              <p>{formattedDate}</p>
+            </div>
+            {!follow && (userId != user.id) && (<button className='follow-btn' onClick={handleFollow}>Follow</button>)}
         </div>
+        </div>
+        
         <p className="p">
           {data1.description}
         </p>
@@ -159,7 +194,7 @@ const CommunityPostPop = ({ onClose, data1, user }) => {
         <div className="react">
           <div className="cont">
             {like ? (
-              <i className="fa-solid fa-heart" onClick={handleUnLikeSubmit}></i>
+              <i className="fa-solid fa-heart" style={{color: "#F68712"}} onClick={handleUnLikeSubmit}></i>
             ) : (
               <i className="fa-regular fa-heart" onClick={handleLikeSubmit}></i>
             )}
@@ -198,6 +233,9 @@ const CommunityPostPop = ({ onClose, data1, user }) => {
           ))}
         </div>
       </div>
+      {reportPost && (
+        <PopUpMain Component={<ReportPost onClose={toggleReportPopUp} id={data1.postId}/>} />
+      )}
     </div>
   );
 };

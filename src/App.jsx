@@ -37,11 +37,14 @@ import { AlertProvider } from "./context/errAlert/AlertContext";
 import NotAuthorized from "./components/notAuthorized/NotAuthorized";
 import withRole from "./components/hoc/withRole";
 import { AuthProvider } from "./context/authContext";
+import MyPlanings from "./pages/myplanings/MyPlanings";
+import MyPlaningsContent from "./pages/myplaningscontent/MyPlaningsContent";
+import TravelInvitations from "./pages/travelInvitations/TravelInvitations";
 
 import DashboardOverview from "./pages/admin/Overview/DashboardOverview";
 import UserTable from "./components/admin/users/UserTable";
 import ServiceProviderListing from "./pages/admin/ServiceProviders/ServiceProviderListing";
-
+import EditProfile from "./pages/editProfile/EditProfile";
 
 const Layout = () => {
   return (
@@ -52,11 +55,18 @@ const Layout = () => {
   );
 };
 
-
 function App() {
-  
-  const GuidePro = withRole(GuideProfile, ['travelGuide']);
-  const TravelPlann = withRole(TravelPlan, ['travelGuide','User']);
+  const GuidePro = withRole(GuideProfile, ["TravelGuide"]);
+  const TravelPlann = withRole(TravelPlan, ["TravelGuide", "Traveler","EventPlanner"]);
+  const AdminA = withRole(Admin, ["Admin"]);
+  const MyListingss = withRole(MyListings, ["EventPlanner"]);
+  const Communityy = withRole(Community, [
+    "EventPlanner",
+    "TravelGuide",
+    "Traveler",
+    "Admin",
+  ]);
+
   // const InviteTravelMatess = withRole(InviteTravelMates, ['travelGuide','User']);
 
   const router = createBrowserRouter([
@@ -74,7 +84,7 @@ function App() {
         },
         {
           path: "/mylistings",
-          element: <MyListings />,
+          element: <MyListingss />,
         },
         {
           path: "/travelguides",
@@ -83,6 +93,10 @@ function App() {
         {
           path: "/events",
           element: <ShowAllEvents />,
+        },
+        {
+          path: "/editprofile",
+          element: <EditProfile />,
         },
         {
           path: "/event/:id",
@@ -105,14 +119,26 @@ function App() {
           path: "/guideprofile",
 
           element: <GuidePro />,
-
-
+        },
+        {
+          path: "/myplannings",
+          element: <MyPlanings />,
+          children: [
+            {
+              path: "",
+              element: <MyPlaningsContent />,
+            },
+            {
+              path: "travelinvitations",
+              element: <TravelInvitations />,
+            },
+          ],
         },
       ],
     },
     {
       path: "/admin/*",
-      element: <Admin />,
+      element: <AdminA />,
       // children: [
       //   {
       //     path: "",
@@ -130,7 +156,7 @@ function App() {
     },
 
     {
-      path: "/travelplan/:to/:from/:location/:lat/:lng",
+      path: "/travelplan/:id",
       element: <TravelPlann />,
     },
     {
@@ -140,7 +166,7 @@ function App() {
 
     {
       path: "/community",
-      element: <Community />,
+      element: <Communityy />,
       children: [
         {
           path: "",
@@ -175,11 +201,11 @@ function App() {
           ],
         },
         {
-          path: "friends",
+          path: "following",
           element: <CommunityFriends />,
         },
         {
-          path: "requests",
+          path: "followers",
           element: <CommunityRequest />,
         },
         {
@@ -201,19 +227,20 @@ function App() {
     {
       path: "serviceprovideruser",
       element: <ServiceProviderUser />,
-
-
     },
     {
       path: "/not-authorized",
-      element: <NotAuthorized />
-    }
-
+      element: <NotAuthorized />,
+    },
   ]);
 
-  return (<AlertProvider><AuthProvider><RouterProvider router={router} /></AuthProvider></AlertProvider>);
-  
-
+  return (
+    <AlertProvider>
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
+    </AlertProvider>
+  );
 }
 
 export default App;

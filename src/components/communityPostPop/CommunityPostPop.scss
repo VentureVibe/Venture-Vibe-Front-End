@@ -34,75 +34,109 @@
         padding: 0 20px 20px 20px;
         margin: 0px;
         overflow: scroll;
-  
-    .top{
-        width: 100%;
-        display: flex;
-        align-items: center;
-        margin-bottom: 10px;
-        padding: 20px 0 0 0;
-        position: -webkit-sticky; /* For Safari */
-        position: sticky;
-        top: 0;
-        z-index: 5500;
-        background-color: white;
-       
-        .details{
+
+        .super-top{
             display: flex;
-            justify-content: center;
             flex-direction: column;
-            width:85%;
-            margin-left: 15px;
-            height: 100%;
-            h4{
-                font-weight: 500;
-                font-size: var(--sidebar);
-                letter-spacing: 0.01rem;
-                color: var(--text-color);
-            }
-            P{
-                font-size: var(--paragraph-1);
-                letter-spacing: 0.01rem;
-                color: var(--text-color);
-            }
-        }
+            padding: 10px 0 0 0;
+            position: -webkit-sticky; /* For Safari */
+            position: sticky;
+            top: 0;
+            z-index: 5500;
+            background-color: white;
+
+            .icons{
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                gap: 8px;
+
+                .report{
+                    display: flex;
+                    align-items: center;
+                    margin-right: 5px;
+                    background-color: var(--input);
+                    padding: 5px;
+                    border-radius: 5px;
+                    width: 80px;
+                    height: 30px;
+                    cursor: pointer;
     
-        .report{
-            display: flex;
-            align-items: center;
-            margin-right: 5px;
-            background-color: var(--input);
-            padding: 2px;
-            border-radius: 5px;
-            cursor: pointer;
-            span{
-                font-size: var(--paragraph-1);
-                color: var(--text-color);
-            }
-
-            i{
-                font-size: var(--paragraph-1);
-
-            }
-        }
+                    span{
+                        font-size: var(--paragraph-1);
+                        color: var(--text-color);
+                        margin-left: 15px;
+                    }
         
-       
-        i{
-            cursor: pointer;
-            font-size: var(--topic);
-            margin: 5px;
+                    i{
+                        font-size: var(--paragraph-1);
+                    }
+                }
+                
+               
+                i{
+                    cursor: pointer;
+                    font-size: var(--topic);
+                    //margin: 5px;
+                }
+            }
+
+            
+
+            .top{
+                width: 100%;
+                display: flex;
+                align-items: center;
+                margin-bottom: 10px;
+                padding: 5px 0 0 0;
+               
+                .details{
+                    display: flex;
+                    justify-content: center;
+                    flex-direction: column;
+                    width:85%;
+                    margin-left: 15px;
+                    height: 100%;
+                    h4{
+                        font-weight: 500;
+                        font-size: var(--sidebar);
+                        letter-spacing: 0.01rem;
+                        color: var(--text-color);
+                    }
+                    P{
+                        font-size: var(--paragraph-1);
+                        letter-spacing: 0.01rem;
+                        color: var(--text-color);
+                    }
+                }
+            
+                
+        
+        
+        
+                img{
+                    width: 55px;
+                    height: 55px;
+                    border-radius: 100%;
+                    margin: 0px;
+                    object-fit: cover;
+                } 
+
+                .follow-btn{
+                    width: 90px;
+                    height: 30px;
+                    border-radius: 5px;
+                    color: white;
+                    background-color: var(--orange);
+                    margin-bottom: 5px;
+                    box-shadow: var(--box-shadow-1);
+                    font-size: var(--paragraph-1);
+                    font-weight: 400;
+                }
+            }
         }
-
-
-
-        img{
-            width: 55px;
-            height: 55px;
-            border-radius: 100%;
-            margin: 0px;
-            object-fit: cover;
-        } 
-    }
+  
+    
 
     .p{
         font-size: var(--paragraph-2);

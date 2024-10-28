@@ -141,13 +141,14 @@ export const changePassword = (
 
 export const handleGoogleSignIn = () => {
   const url =
-    "https://venturevibe24.auth.eu-north-1.amazoncognito.com/oauth2/authorize";
+    "https://venture.auth.eu-north-1.amazoncognito.com/oauth2/authorize";
+  // "https://venturevibe24.auth.eu-north-1.amazoncognito.com/oauth2/authorize";
   const currentUrl = window.location.href;
   const params = new URLSearchParams({
     identity_provider: "Google",
     redirect_uri: "http://localhost:5173",
     response_type: "CODE",
-    client_id: "1ffq0p2st2vs1l9a4p2ga20gd5",
+    client_id: import.meta.env.VITE_CLIENT_ID,
     scope: "email openid profile",
     state: encodeURIComponent(currentUrl), // Add current URL as state
   });
@@ -160,9 +161,11 @@ export const handleLogout = () => {
   localStorage.removeItem("idToken");
   localStorage.removeItem("refreshToken");
 
-  const url = "https://venturevibe24.auth.eu-north-1.amazoncognito.com/logout";
+  const url =
+    // "https://venturevibe24.auth.eu-north-1.amazoncognito.com/logout"
+    "https://venture.auth.eu-north-1.amazoncognito.com/logout";
   const params = new URLSearchParams({
-    client_id: "1ffq0p2st2vs1l9a4p2ga20gd5",
+    client_id: import.meta.env.VITE_CLIENT_ID,
     logout_uri: "http://localhost:5173",
   });
 
@@ -172,14 +175,15 @@ export const handleLogout = () => {
 export const exchangeCodeForTokens = async (code, state) => {
   const params = new URLSearchParams();
   params.append("grant_type", "authorization_code");
-  params.append("client_id", "1ffq0p2st2vs1l9a4p2ga20gd5");
+  params.append("client_id", import.meta.env.VITE_CLIENT_ID);
   params.append("redirect_uri", "http://localhost:5173");
   params.append("code", code);
 
   try {
     // Make POST request using Axios
     const response = await axios.post(
-      "https://venturevibe24.auth.eu-north-1.amazoncognito.com/oauth2/token",
+      // "https://venturevibe24.auth.eu-north-1.amazoncognito.com/oauth2/token"
+      "https://venture.auth.eu-north-1.amazoncognito.com/oauth2/token",
       params.toString(),
       {
         headers: {

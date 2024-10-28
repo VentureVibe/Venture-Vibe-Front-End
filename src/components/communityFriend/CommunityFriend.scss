@@ -15,12 +15,25 @@
             height: 45px;
             border-radius: 100%;
             margin-right: 18px;
+            object-fit: cover;
         }
 
-        p{
-            font-size: var(--paragraph-2);
-            letter-spacing: 0.03rem;
-            width: 200px; 
+        .message-container{
+            display: flex;
+            flex-direction: column;
+
+            span{
+                font-size: var(--paragraph-3);
+                color: var(--text-color);
+                font-weight: 400;
+            }
+            p{
+                font-size: var(--paragraph-2);
+                color: var(--text-color);
+                letter-spacing: 0.03rem;
+                width: 200px;
+                font-weight: 500; 
+            }
         }
 
         .circle{
