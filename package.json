@@ -40,7 +40,8 @@
     "react-router-dom": "^6.24.1",
     "recharts": "^2.12.7",
     "sass": "^1.77.5",
-    "swiper": "^11.1.4"
+    "swiper": "^11.1.4",
+    "venture-vibe-front-end": "file:"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
