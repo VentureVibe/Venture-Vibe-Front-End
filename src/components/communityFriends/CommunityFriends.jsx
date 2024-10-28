@@ -10,12 +10,14 @@ const CommunityFriends = () => {
   const [selectedFriend, setSelectedFriend] = useState(null);
   const [selectedFriendImg, setSelectedFriendImg] = useState(null);
   const [selectedFriendId, setselectedFriendId] = useState(null);
+  const [selectedConversationId, setSelectedConversationId] = useState(null);
 
-  const handleClickFriend = (friendName,imageSrc,selectedFriendId) => {
+  const handleClickFriend = (friendName,imageSrc,selectedFriendId, conversationId) => {
     console.log(selectedFriendId);
     setSelectedFriend(friendName);
     setSelectedFriendImg(imageSrc);
     setselectedFriendId(selectedFriendId);
+    setSelectedConversationId(conversationId);
   };
 
   const handleClickFriends = () => {
@@ -35,7 +37,7 @@ const CommunityFriends = () => {
         </div>
         <div className="bottom">
         {selectedFriend ? (
-          <CommunityFriendChat friendName={selectedFriend} imageSrc={selectedFriendImg} friendId={selectedFriendId} />
+          <CommunityFriendChat friendName={selectedFriend} imageSrc={selectedFriendImg} friendId={selectedFriendId} conversationId={selectedConversationId}/>
         ) : (
           <CommunityFriendList handleClickFriend={handleClickFriend}/>
 

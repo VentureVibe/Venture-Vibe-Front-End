@@ -1,82 +1,75 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./ContentOversight.scss";
+import newRequest from "../../../services/NewRequst";
 
 const ContentOversight = () => {
-  const [reports, setReports] = useState([
-    {
-      id: 1,
-      blogTitle: "Sample Blog Post",
-      blogAuthor: "user123",
-      reportedBy: "user456",
-      reportReason: "Inappropriate content",
-      status: "Pending",
-    },
-    {
-      id: 2,
-      blogTitle: "Sample Blog Post",
-      blogAuthor: "user123",
-      reportedBy: "user456",
-      reportReason: "Inappropriate content",
-      status: "Pending",
-    },
-    {
-      id: 3,
-      blogTitle: "Sample Blog Post",
-      blogAuthor: "user123",
-      reportedBy: "user456",
-      reportReason: "Inappropriate content",
-      status: "Pending",
-    },
-    {
-      id: 4,
-      blogTitle: "Sample Blog Post",
-      blogAuthor: "user123",
-      reportedBy: "user456",
-      reportReason: "Inappropriate content",
-      status: "Pending",
-    },
-    {
-      id: 5,
-      blogTitle: "Sample Blog Post",
-      blogAuthor: "user123",
-      reportedBy: "user456",
-      reportReason: "Inappropriate content",
-      status: "Pending",
-    },
-    {
-      id: 6,
-      blogTitle: "Sample Blog Post",
-      blogAuthor: "user123",
-      reportedBy: "user456",
-      reportReason: "Inappropriate content",
-      status: "Pending",
-    },
-    {
-      id: 7,
-      blogTitle: "Sample Blog Post",
-      blogAuthor: "user123",
-      reportedBy: "user456",
-      reportReason: "Inappropriate content",
-      status: "Pending",
-    },
-    // Add more report objects as needed
-  ]);
+  const [reports, setReports] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const handleRemove = (id) => {
+  useEffect(() => {
+    const fetchReports = async () => {
+      try {
+        const response = await newRequest.get(`reports`);
+        setReports(response.data);
+      } catch (error) {
+        console.error("There was an error!", error);
+        setError("There was an error fetching the Reports.");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchReports();
+  }, []);
+
+  const handleDelete = async (id) => {
+    try {
+      await newRequest.delete(`communityPost/${id}`);
+      console.log("Post deleted successfully");
+    } catch (error) {
+      setError("There was an error deleting the post.");
+      console.error("Error deleting post:", error);
+    }
+  };
+
+  const handleReportUpdate = async (id) => {
+    const reportData = {
+      status: "REMOVED",
+    };
+    try {
+      const response = await newRequest.put(`reports/${id}`, reportData);
+      console.log("Success:", response.data);
+    } catch (error) {
+      setError("There was an error updating the report.");
+      console.error("Error:", error);
+    }
+  };
+
+  const handleRemove = async (reportId, postId) => {
+    await handleReportUpdate(reportId);
+    await handleDelete(postId);
     setReports(
       reports.map((report) =>
-        report.id === id ? { ...report, status: "Removed" } : report
+        report.id === reportId ? { ...report, status: "REMOVED" } : report
       )
     );
   };
 
-  const handleKeep = (id) => {
+  const handleKeep = (reportId) => {
     setReports(
       reports.map((report) =>
-        report.id === id ? { ...report, status: "Post" } : report
+        report.id === reportId ? { ...report, status: "POST" } : report
       )
     );
   };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   return (
     <div className="content-oversight">
@@ -85,7 +78,7 @@ const ContentOversight = () => {
         <thead>
           <tr>
             <th>ID</th>
-            <th>Blog Title</th>
+            <th>Blog Content</th>
             <th>Blog Author</th>
             <th>Reported By</th>
             <th>Report Reason</th>
@@ -97,17 +90,17 @@ const ContentOversight = () => {
           {reports.map((report) => (
             <tr key={report.id}>
               <td>{report.id}</td>
-              <td>{report.blogTitle}</td>
-              <td>{report.blogAuthor}</td>
-              <td>{report.reportedBy}</td>
-              <td>{report.reportReason}</td>
+              <td className="content">{report.post.content}</td>
+              <td>{report.post.userId}</td>
+              <td>{report.userReported.id}</td>
+              <td>{report.reason}</td>
               <td>{report.status}</td>
               <td>
-                {report.status === "Pending" ? (
+                {report.status === "PENDING" ? (
                   <>
                     <button
                       className="action-button remove"
-                      onClick={() => handleRemove(report.id)}
+                      onClick={() => handleRemove(report.id, report.post.id)}
                     >
                       Remove
                     </button>

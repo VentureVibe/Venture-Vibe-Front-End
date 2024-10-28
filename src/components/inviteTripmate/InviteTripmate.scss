@@ -112,7 +112,10 @@
             margin-top: 20px;
             width: 90%;
             height: 50px;
-
+            font-size: var(--paragraph-1);
+            font-weight: 400;
+            color: var(--text-color-light);
+            outline: none;
             i{
                 margin-top: 5px;
             }
@@ -123,6 +126,31 @@
                 font-weight: 400;
                 color: var(--text-color-light);
                 outline: none;
+            }
+
+            .selected-user{
+                margin-left: -160px;
+                width: 160px;
+            }
+           
+            .copy-btn{
+                width: 70px;
+                height: 30px;
+                background-color: var(--orange);
+                border-radius: 20px;
+                padding: 5px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-left: 70px;
+                cursor: pointer;
+
+                span{
+                    font-size: var(--paragraph-3);
+                    font-weight: 550;
+                    color: white;
+                   
+                }
             }
         }
 

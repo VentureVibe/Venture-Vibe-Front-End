@@ -1,80 +1,161 @@
-/* AddEventListing.scss */
+$color-text: #414143;
+$color-text-light: #747474;
+$color-orange: #f68712;
+$color-green: #1bbc9b;
+$color-blue: #0075c3;
+$color-blue-2: #0075c3;
+$color-white: white;
+$color-input: #f1f4f7;
+$color-popup-background: rgba(0, 0, 0, 0.2);
+
 .add-event-listing-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: $color-white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 70vw;
+  margin: 0 auto;
+
+  .head-add-event {
     display: flex;
-    flex-direction: column;
-    width: 600px;
-    height: 675px;
-    margin: 0 auto;
-    padding: 5px 20px 20px 20px;
-    box-shadow: var(--box-shadow-2);
-    border-radius: 8px;
-    background-color: #fff;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
 
-    .closing-i{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 5px;
-      height: 25px;
-      width: 25px;
-      margin-left: 550px;
-      background-color: var(--input);
-      border-radius: 50%;
-      cursor: pointer;
-      
-
-      i{
-          margin-top: 3px
-      }
-  }
-  
     h2 {
-      text-align: center;
-      color: var(--text-color);
-      margin-top: -15px;
+      font-family: "Roboto", sans-serif;
+      color: $color-blue;
     }
-  
-    div {
-      margin-bottom: 20px;
-    }
-  
-    label {
-      display: block;
-      margin-bottom: 5px;
-      color: var(--text-color);
-      font-weight: 400;
-    }
-  
-    input[type="text"],
-    input[type="email"],
-    input[type="number"],
-    textarea {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      box-sizing: border-box;
-      color: var(--text-color);
-    }
-  
-    textarea {
-      height: 100px;
-      resize: vertical;
-    }
-  
-    button {
-      width: 100%;
-      padding: 10px;
-      background-color: var(--blue);
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      font-weight: 500;
+
+    i {
       cursor: pointer;
-      transition: background-color 0.3s ease;
-  
+      transition: transform 0.3s ease;
+
       &:hover {
-        background-color: #0056b3;
+        transform: rotate(90deg);
       }
     }
   }
+
+  .form-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+
+    .add-event-left,
+    .add-event-right {
+      display: flex;
+      flex-direction: column;
+      width: 48%;
+
+      div {
+        margin-bottom: 15px;
+
+        label {
+          display: block;
+          font-family: "Roboto", sans-serif;
+          color: $color-text;
+          margin-bottom: 5px;
+        }
+
+        input,
+        textarea {
+          width: 100%;
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          font-family: "Roboto", sans-serif;
+          background-color: $color-input;
+          transition: border-color 0.3s ease;
+
+          &:focus {
+            border-color: $color-blue;
+            outline: none;
+          }
+        }
+
+        textarea {
+          height: 5vw;
+        }
+
+        input[type="file"] {
+          padding: 0;
+        }
+
+        img {
+          display: block;
+          margin-top: 10px;
+          border-radius: 5px;
+        }
+      }
+
+      button {
+        padding: 10px 20px;
+        background-color: $color-green;
+        color: $color-white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-family: "Roboto", sans-serif;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: darken($color-green, 10%);
+        }
+      }
+    }
+
+    .add-event-left {
+      div#eventImage-container {
+        display: none;
+      }
+    }
+
+    .add-event-right {
+      div#eventImage-container {
+        display: block;
+      }
+
+      .image-preview-container {
+        display: flex;
+        align-items: center;
+        position: relative;
+
+        i {
+          cursor: pointer;
+          margin-left: 10px;
+          transition: color 0.3s ease;
+
+          &:hover {
+            color: $color-text-light;
+          }
+        }
+        .close-btn-image {
+          position: absolute;
+          display: flex;
+          justify-content: center;
+          border-radius: 50%;
+          border: 2px solid var(--orange);
+          background-color: white;
+          top: 0;
+          left: -20px;
+        }
+      }
+
+      .enter-location {
+        margin-bottom: 15px;
+      }
+
+      .map-container {
+        height: 300px;
+        background-color: $color-popup-background;
+        border-radius: 5px;
+      }
+    }
+  }
+}

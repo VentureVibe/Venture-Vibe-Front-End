@@ -6,14 +6,17 @@ import Payments from "../../../components/payments/Payments";
 import CheckOut from "../../../components/checkout/Checkout";
 
 const EventRegistration = () => {
+  const [userDetails, setUserDetails] = useState(null);
+  const [selectedPlan, setSelectedPlan] = useState(null);
+
   const [steps, setSteps] = useState([
     {
       step_no: "Step 1",
-      topic: "Personal Infomation",
+      topic: "Personal Information",
       icon: "fa-regular fa-user",
       active: true,
       left_cont: "Enter Your Personal Information",
-      right_cont: "Enter your Personal information to proceed to the payments",
+      right_cont: "Enter your personal information to proceed to the payments",
     },
     {
       step_no: "Step 2",
@@ -24,25 +27,28 @@ const EventRegistration = () => {
       right_cont: "Select a plan to proceed to the payments",
     },
     {
-      step_no: "Step3",
+      step_no: "Step 3",
       topic: "Payment",
       icon: "fa-regular fa-credit-card",
       active: false,
       left_cont: "Enter Your Payment Details",
-      right_cont: "Enter your payement details to procees to the payment",
+      right_cont: "Enter your payment details to proceed with the payment",
     },
   ]);
 
   const handleStepClick = (index) => {
     const newSteps = [...steps];
     newSteps.forEach((step, i) => {
-      if (i === index) {
-        step.active = true;
-      } else {
-        step.active = false;
-      }
+      step.active = i === index;
     });
     setSteps(newSteps);
+  };
+
+  const handleNext = () => {
+    const currentIndex = steps.findIndex((step) => step.active);
+    if (currentIndex < steps.length - 1) {
+      handleStepClick(currentIndex + 1);
+    }
   };
 
   const activeStep = steps.find((step) => step.active);
@@ -70,15 +76,21 @@ const EventRegistration = () => {
         <div className="top">
           <h3>{activeStep.topic}</h3>
           <p>{activeStep.right_cont}</p>
-          <p></p>
         </div>
         <div className="bottom">
           {activeStep.topic === "Payment" ? (
-            <Payments />
+            <Payments userDetails={userDetails} selectedPlan={selectedPlan} />
           ) : activeStep.topic === "Check out" ? (
-            <CheckOut />
+            <CheckOut
+              selectedPlan={selectedPlan}
+              setSelectedPlan={setSelectedPlan}
+              onNext={handleNext}
+            />
           ) : (
-            <RegistrationPersonalInfo />
+            <RegistrationPersonalInfo
+              setUserDetails={setUserDetails}
+              onNext={handleNext}
+            />
           )}
         </div>
       </div>

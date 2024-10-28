@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './CommunityPostPublish.scss';
 import image1 from '../../assets/man.jpg';
 import newRequest from '../../services/NewRequst';
 import { GetCurrentUserC } from '../../services/user/GetCurrentUserC';
-import { useNavigate } from 'react-router-dom';
 
 const CommunityPostPublish = ({ onClose }) => {
   const [isPrivate, setIsPrivate] = useState(false);
@@ -11,6 +10,22 @@ const CommunityPostPublish = ({ onClose }) => {
   const [image, setImage] = useState(null);
   const [content, setContent] = useState('');
   const [responseMessage, setResponseMessage] = useState('');
+  const [userCurrent, setUserCurrent] = useState([]);
+
+  const userId = GetCurrentUserC().sub;
+
+  useEffect(() => {
+    newRequest
+      .get(`public/traveler/${userId}`)
+      .then((response) => {
+        setUserCurrent(response.data);
+      })
+      .catch((error) => {
+        console.error('There was an error!', error);
+        setError('There was an error fetching the user.');
+        setLoading(false);
+      });
+  }, [userId]);
 
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible);
@@ -21,7 +36,6 @@ const CommunityPostPublish = ({ onClose }) => {
     setDropdownVisible(false);
   };
 
-  const userId = GetCurrentUserC().sub;
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -60,9 +74,9 @@ const CommunityPostPublish = ({ onClose }) => {
           <i className="fa-regular fa-circle-xmark" onClick={onClose}></i>
         </div>
         <div className="top-detail">
-          <img src={image1} alt="User" />
+          <img src={userCurrent.profileImg} alt="User" />
           <div className="top-right">
-            <h1>Kaveesha Weerakoon</h1>
+            <h1>{userCurrent.name}</h1>
             <button onClick={toggleDropdown}>
               {isPrivate ? 'Private' : 'Public'}
               <i className="fa-solid fa-sort-down"></i>
@@ -89,7 +103,8 @@ const CommunityPostPublish = ({ onClose }) => {
         </div>
         <div className="add">
           <div className="cont">
-            <i className="fa-regular fa-image"></i>
+            {image && <img src={URL.createObjectURL(image)} alt="Upload Preview" />}
+            {!image && (<>
             <p>Add a photo</p>
             <input
               type="file"
@@ -97,6 +112,7 @@ const CommunityPostPublish = ({ onClose }) => {
               name="file-upload"
               onChange={(e) => setImage(e.target.files[0])}
             />
+            </>)}
           </div>
         </div>
         <button onClick={handleSubmit}>

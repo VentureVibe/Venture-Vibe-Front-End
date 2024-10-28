@@ -1,0 +1,85 @@
+.AddTravelGuideService{
+    .add-service-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+      
+      .modal-content {
+        background-color: #fff;
+        padding: 2rem;
+        border-radius: 10px;
+        width: 400px;
+        position: relative;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      
+      .close-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #555;
+      }
+      
+      .close-button:hover {
+        color: #000;
+      }
+      
+      h3 {
+        margin-bottom: 1.5rem;
+        text-align: center;
+        color: #333;
+      }
+      
+      .form-group {
+        margin-bottom: 1rem;
+      
+        label {
+          display: block;
+          margin-bottom: 0.5rem;
+          font-weight: 500;
+          color: #333;
+        }
+      
+        input {
+          width: 100%;
+          padding: 0.5rem;
+          border: 1px solid #ddd;
+          border-radius: 5px;
+          font-size: 1rem;
+          transition: border-color 0.3s;
+      
+          &:focus {
+            border-color: #0075c3;
+            outline: none;
+          }
+        }
+      }
+      
+      .submit-button {
+        width: 100%;
+        padding: 0.75rem;
+        background-color: #0075c3;
+        border: none;
+        border-radius: 5px;
+        color: #fff;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      
+        &:hover {
+          background-color: #005fa1;
+        }
+      }
+      
+}
