@@ -126,5 +126,6 @@ for (let i = 0; i < 50; i++) {
     console.log(`Random Value ${getRandomInt(1, 100)}`);
     console.log(`Productivity Score: ${productivityScore}`);
     console.log(`Worker Efficiency: ${workerEfficiency[i % workerEfficiency.length]}`);
+        console.log(`--- ${APP_NAME} Report ---`);
 }
 
