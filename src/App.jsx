@@ -45,6 +45,7 @@ import DashboardOverview from "./pages/admin/Overview/DashboardOverview";
 import UserTable from "./components/admin/users/UserTable";
 import ServiceProviderListing from "./pages/admin/ServiceProviders/ServiceProviderListing";
 import EditProfile from "./pages/editProfile/EditProfile";
+import TravelGuideProfile from "./pages/travelGuide/TravelGuide";
 
 const Layout = () => {
   return (
@@ -57,7 +58,11 @@ const Layout = () => {
 
 function App() {
   const GuidePro = withRole(GuideProfile, ["TravelGuide"]);
-  const TravelPlann = withRole(TravelPlan, ["TravelGuide", "Traveler","EventPlanner"]);
+  const TravelPlann = withRole(TravelPlan, [
+    "TravelGuide",
+    "Traveler",
+    "EventPlanner",
+  ]);
   const AdminA = withRole(Admin, ["Admin"]);
   const MyListingss = withRole(MyListings, ["EventPlanner"]);
   const Communityy = withRole(Community, [
@@ -89,6 +94,10 @@ function App() {
         {
           path: "/travelguides",
           element: <ShowAllTravelGuides />,
+        },
+        {
+          path: "/travelguides/:id",
+          element: <TravelGuideProfile />,
         },
         {
           path: "/events",

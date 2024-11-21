@@ -104,25 +104,17 @@
                         margin-left: auto; 
                         cursor: pointer;/* Push icon to the far right */
                       }
-                  }
+                }
 
             }
+
             .down-right{
                 width: 100%;
                 height: 100%;
                 display: grid;
-                grid-template-rows: 12% 88%;
-                
-                h3{
-                    font-size: var(--heading);
-                    margin:13px;
-                    font-weight: 500;
-                }
-                .down{
-                    display: grid;
-                    grid-template-columns: 50% 50%;
-
-                    .left{
+                grid-template-columns: 50% 50%;
+               
+                .left{
                         display: flex;
                         align-items: center;
                         justify-content: center;
@@ -130,43 +122,74 @@
                         height: 100%;
                         box-shadow: none;
 
-                         .date-container{
+                        .date-container{
                             
-                         }
+                        }
+
                        .react-datepicker__navigation{
-                       
                             margin-top: 0px;
                        }
-                    }
-                    .right{
-                        display: grid;
-                        grid-template-columns:50% 50%;
-                        font-size:31px;
-                        align-items: center; 
-                        justify-items: center;
-                        i{
-                            cursor: pointer;
-                            display: flex;
-                            text-align: center;
-                        }
-                        span{
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            flex-direction: column;
-                           
-                            border-radius: 10px;
-                            width: 95px;
-                            height: 95px;
-                           box-shadow: var(--box-shadow-2);
-                        }
-                        p{
-                            margin-top: 8px;
-                            font-size: var(--paragraph-1);
-                        }
-                    }                     
                 }
-               
+
+                .right{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-direction: column;
+                    width: 100%;
+                    height: 100%;
+                    box-shadow: none;
+                
+
+                    .bottom{
+                        width: 100%;
+                        height: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        overflow: scroll !important;
+                        .cont{
+                            width: 90%;
+                            padding: 10px;
+                            border-radius: 5px;
+                            margin-top: 5px;
+                            box-shadow: var(--box-shadow-2);
+                            font-size: var(--paragraph-1) !important;
+                            p{
+                                font-size: var(--paragraph-1) !important;
+                                margin-left: 15px;
+                            }
+                            h5{  
+                                font-size: var(--paragraph-1) ;
+                                width: 100px;
+                            }
+
+                            .cname{
+                                display: flex;
+                                flex-direction: row;
+                                margin-bottom: 2px;
+                            }
+
+                            .crole{
+                                display: flex;
+                                flex-direction: row;
+                                margin-bottom: 2px;
+                            }
+
+                            .cexperience{
+                                display: flex;
+                                flex-direction: row;
+                            }
+                        }
+                    }
+
+                    h3{
+                        margin: 5px;
+                        font-size: var(--heading);
+                        font-weight: 550;
+                        margin-top: 25px;
+                    }
+                }                         
             
             }
         }
