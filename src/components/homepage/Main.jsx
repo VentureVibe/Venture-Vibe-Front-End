@@ -142,9 +142,8 @@ const Main = () => {
           <i className="fa-solid fa-hand-holding-dollar fa-2xl"></i>
           <p className="head">Worth of Money</p>
           <p className="des">
-            We hve a lot of hotels and packages
-            <br />
-            so save your money
+              Save money effortlessly  
+
           </p>
         </div>
       </div>

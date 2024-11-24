@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './ManageTripmates.scss';
 import WestIcon from '@mui/icons-material/West';
 import CloseIcon from '@mui/icons-material/Close';
@@ -57,7 +57,7 @@ const ManageTripmates = ({ onClose,travelPlan,fetchTravelPlan}) => {
                     <div className="profile-pic">
                         <img src={tripmate.profileImg} alt={tripmate.email} />
                     </div>
-                    <span className="email">{tripmate.name}</span>
+                    <span className="email">{tripmate.email}</span>
                     <div className="remove-btn" onClick={() => leaveTravelPlan1(travelPlan.id, tripmate.id)}>
                          Remove
                     </div>
@@ -69,7 +69,7 @@ const ManageTripmates = ({ onClose,travelPlan,fetchTravelPlan}) => {
                     <div className="profile-pic">
                         <img src={travelInvitation.travelPlanInvitee.profileImg} alt={travelInvitation.travelPlanInvitee.email} />
                     </div>
-                    <span className="email">{travelInvitation.travelPlanInvitee.name}</span>
+                    <span className="email">{travelInvitation.travelPlanInvitee.email}</span>
                     <div className="remove-btn" onClick={() => deleteTravelInvitation (travelInvitation.id)}>
                             Cancel Invite
                     </div>
