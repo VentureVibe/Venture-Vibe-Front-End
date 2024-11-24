@@ -149,7 +149,7 @@ const AddExpense = ({ onClose, data,fetchTravelPlan}) => {
           {selectedPayer ? (
             <div className="selected-payer-1" onClick={handlePaidByClick}>
               <img src={selectedPayer.profileImg} alt={selectedPayer.name} />
-              <p>{selectedPayer.name}</p>
+              <p>{selectedPayer.email}</p>
             </div>
           ) : (
             <div className="selected-payer-2" onClick={handlePaidByClick}>
@@ -167,7 +167,7 @@ const AddExpense = ({ onClose, data,fetchTravelPlan}) => {
                 onClick={() => handlePayerClick(traveler)}
               >
                 <img src={traveler.profileImg} alt={traveler.name} />
-                {traveler.name}
+                {traveler.email}
               </div>
             ))}
           </div>
