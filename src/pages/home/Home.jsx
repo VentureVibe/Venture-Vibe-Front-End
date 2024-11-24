@@ -35,7 +35,7 @@ const Home = () => {
       <Main />
       <DestinationDiv />
       <StoryDiv />
-      <MilestonesDiv />
+      {/* <MilestonesDiv /> */}
       <SubscribeDiv />
     </div>
   );

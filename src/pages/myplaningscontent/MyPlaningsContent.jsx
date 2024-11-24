@@ -3,17 +3,13 @@ import './MyPlaningsContent.scss';
 import MyplanningsAccepted from '../../components/MyplanningsAccepted/MyplanningsAccepted';
 import MyplanningsOwnedPlans from '../../components/myplanningsOwnedPlans/MyplanningsOwnedPlans';
 
-const MyPlaningsContent = () => {
+const MyPlaningsContent = ({setLocations}) => {
   const [activeTab, setActiveTab] = useState('owned');
 
   return (
     <div className='MyPlanningsContent'>
       <div className="content-top">
-        <div className="search">
-          <i className="fa-solid fa-magnifying-glass"></i>
-          <input type="text" placeholder='Search your content'/>
-          <button>Search</button>
-        </div>
+   
         <div className="menu">
           <div className="cont">
             <p 
@@ -32,8 +28,8 @@ const MyPlaningsContent = () => {
         </div>
       </div>
       <div className="content-bottom">
-        {activeTab === 'owned' && <MyplanningsOwnedPlans />}
-        {activeTab === 'accepted' && <MyplanningsAccepted />}
+        {activeTab === 'owned' && <MyplanningsOwnedPlans setLocations={setLocations}/>}
+        {activeTab === 'accepted' && <MyplanningsAccepted setLocations={setLocations}/>}
       </div>
     </div>
   );
