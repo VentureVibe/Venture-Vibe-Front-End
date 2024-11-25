@@ -1,55 +1,46 @@
 import "./ServiceProviderListing.scss";
 import React, { useState, useEffect } from "react";
-import event1 from "../../../assets/event1.jpg";
-import event2 from "../../../assets/event2.jpg";
-import event3 from "../../../assets/event3.jpg";
+import axios from "axios";
 
 const ServiceProviderListing = () => {
   const [listings, setListings] = useState([]);
 
+  // Fetch listings from the backend
   useEffect(() => {
-    // Fetch listings from the server (mock data used here for illustration)
     const fetchListings = async () => {
-      const mockData = [
-        {
-          id: 1,
-          img: event1,
-
-          title: "Whales Watching Tour Transfer - Galle",
-          description: "Whales Watching Tour Transfer - Galle",
-          price: 200,
-          status: "pending",
-        },
-        {
-          id: 2,
-          img: event2,
-          title: "Whales Watching Tour Transfer - Galle",
-          description: "River Safari, Sea Turtle & Stilt Fishermen",
-          price: 300,
-          status: "pending",
-        },
-        {
-          id: 3,
-          img: event3,
-          title: "Safari Trip to Yala & Udawalawe",
-          description: "Safari Trip to Yala & Udawalawe",
-          price: 150,
-          status: "approved",
-        },
-      ];
-      setListings(mockData);
+      try {
+        const response = await axios.get(
+          "http://localhost:8080/api/v1/serviceProvider/travel-guides"
+        );
+        setListings(response.data);
+      } catch (error) {
+        console.error("Error fetching listings:", error);
+      }
     };
 
     fetchListings();
   }, []);
 
-  const handleStatusChange = (id, status) => {
-    setListings(
-      listings.map((listing) =>
-        listing.id === id ? { ...listing, status } : listing
-      )
-    );
-    // Update status on the server here
+  const handleStatusChange = async (id, status) => {
+    try {
+      // Update the listing status on the backend
+      await axios.put(
+        `http://localhost:8080/api/v1/serviceProvider/update-travel-guide`,
+        {
+          id,
+          status,
+        }
+      );
+
+      // Update the state to reflect the new status
+      setListings(
+        listings.map((listing) =>
+          listing.id === id ? { ...listing, status } : listing
+        )
+      );
+    } catch (error) {
+      console.error("Error updating listing status:", error);
+    }
   };
 
   return (
