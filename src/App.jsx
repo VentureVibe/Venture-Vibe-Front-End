@@ -1,7 +1,7 @@
 import "./App.css";
 
 import "./App.css";
-import React from "react";
+import React, { useState } from "react";
 import Home from "./pages/home/Home";
 import TravelPlan from "./pages/travelPlan/TravelPlan";
 
@@ -45,6 +45,7 @@ import DashboardOverview from "./pages/admin/Overview/DashboardOverview";
 import UserTable from "./components/admin/users/UserTable";
 import ServiceProviderListing from "./pages/admin/ServiceProviders/ServiceProviderListing";
 import EditProfile from "./pages/editProfile/EditProfile";
+import TravelGuideProfile from "./pages/travelGuide/TravelGuide";
 
 const Layout = () => {
   return (
@@ -71,6 +72,7 @@ function App() {
     "Admin",
   ]);
 
+  const [locations,setLocations]=useState([]);
   // const InviteTravelMatess = withRole(InviteTravelMates, ['travelGuide','User']);
 
   const router = createBrowserRouter([
@@ -93,6 +95,10 @@ function App() {
         {
           path: "/travelguides",
           element: <ShowAllTravelGuides />,
+        },
+        {
+          path: "/travelguides/:id",
+          element: <TravelGuideProfile />,
         },
         {
           path: "/events",
@@ -126,15 +132,15 @@ function App() {
         },
         {
           path: "/myplannings",
-          element: <MyPlanings />,
+          element: <MyPlanings locations={locations}/>,
           children: [
             {
               path: "",
-              element: <MyPlaningsContent />,
+              element: <MyPlaningsContent setLocations={setLocations}/>,
             },
             {
               path: "travelinvitations",
-              element: <TravelInvitations />,
+              element: <TravelInvitations setLocations={setLocations} />,
             },
           ],
         },
