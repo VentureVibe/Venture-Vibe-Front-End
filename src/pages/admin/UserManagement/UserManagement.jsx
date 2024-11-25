@@ -48,8 +48,8 @@ const UserTable = () => {
 
   // Handle form input changes
   const handleEditChange = (e) => {
-    const { name, value } = e.target;
-    setEditFormData({ ...editFormData, [name]: value }); // Update form data state
+    const { firstname, value } = e.target;
+    setEditFormData({ ...editFormData, [firstname]: value }); // Update form data state
   };
 
   // Handle form submission for editing user details
@@ -95,7 +95,7 @@ const UserTable = () => {
             {users.map((user, index) => (
               <tr key={user.id}>
                 <td>{index + 1}</td>
-                <td>{user.name}</td>
+                <td>{user.firstname}</td>
                 <td>{user.email}</td>
                 <td>{user.role}</td>
                 <td>
@@ -129,7 +129,7 @@ const UserTable = () => {
                   className="nametext"
                   type="text"
                   name="name"
-                  value={editFormData.name}
+                  value={editFormData.firstname}
                   onChange={handleEditChange}
                   required
                 />
