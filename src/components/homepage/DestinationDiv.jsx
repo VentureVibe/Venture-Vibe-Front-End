@@ -31,7 +31,7 @@ const DestinationDiv = () => {
         title: "Hikkaduwa Beach",
         name: "Hotel Coral Sands",
         city: "Hikkaduwa",
-        price: "3.8/5",
+        price: "4.5/5",
       },
       {
         id: 2,
@@ -39,7 +39,7 @@ const DestinationDiv = () => {
         title: "Sigiriya Rock Fortress",
         name: "Hotel Sigiriya",
         city: "Sigiriya",
-        price: "3.6/5",
+        price: "4.8/5",
       },
       {
         id: 3,
@@ -47,7 +47,7 @@ const DestinationDiv = () => {
         title: "Little Adam's Peak",
         name: "98 Acres Resort",
         city: "Ella",
-        price: "4.1/5",
+        price: "4.6/5",
       },
       {
         id: 4,
@@ -55,7 +55,7 @@ const DestinationDiv = () => {
         title: "Horton Plains",
         name: "The Grand Hotel",
         city: "Nuwara Eliya",
-        price: "4.4/5",
+        price: "4.6/5",
       },
       {
         id: 5,

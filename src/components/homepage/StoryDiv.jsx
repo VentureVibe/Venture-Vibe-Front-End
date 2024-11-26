@@ -29,7 +29,7 @@ const StoryDiv = () => {
           <br />
           to meet your unique needs.
         </p>
-        <button>See More</button>
+        {/* <button>See More</button> */}
       </div>
     </div>
   );

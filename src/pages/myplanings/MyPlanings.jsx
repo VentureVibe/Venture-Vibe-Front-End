@@ -1,7 +1,7 @@
 import React from 'react';
 import './MyPlanings.scss';
 import { Link, Outlet } from 'react-router-dom';
-import { GoogleMap, LoadScript } from '@react-google-maps/api';
+import { GoogleMap,Marker} from '@react-google-maps/api';
 
 const containerStyle = {
   width: '100%',
@@ -13,7 +13,7 @@ const center = {
   lng: 80.7718,
 };
 
-const MyPlanings = () => {
+const MyPlanings = ({locations}) => {
   return (
     <div className='myplannings'>
       <div className="left">
@@ -34,13 +34,20 @@ const MyPlanings = () => {
         </div>
       </div>
       <div className="right">
-          <GoogleMap
-            mapContainerStyle={containerStyle}
-            center={center}
-            zoom={7.7}
-          >
-            { /* Additional components like markers can be added here */ }
-          </GoogleMap>
+      <GoogleMap
+          mapContainerStyle={containerStyle}
+          center={center}
+          zoom={7.7}
+        >
+          {/* Render markers for each location */}
+          {locations?.map(location => (
+            <Marker
+              key={location.id} // Unique key for each marker
+              position={{ lat: location.lat, lng: location.lng }}
+              title={location.location} // Display location name on hover
+            />
+          ))}
+        </GoogleMap>
  
       </div>
     </div>
