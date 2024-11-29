@@ -13,6 +13,7 @@ import FinancialInsights from "./Financial/FinancialInsights";
 import Reports from "./Reports/Reports";
 import Recommendations from "./Recommendation/Recommendations";
 import Settings from "./Settings/Settings";
+import TravelGuideListing from "./Travel Guide/TravelGuideListing";
 // import Navbar from "../components/navbar/Navbar";
 
 const Admin = () => {
@@ -34,6 +35,7 @@ const Admin = () => {
               path="/service-providers"
               element={<ServiceProviderListing />}
             />
+            <Route path="/travel-guide" element={<TravelGuideListing />} />
             <Route path="/content" element={<ContentOversight />} />
             <Route path="/financials" element={<FinancialInsights />} />
             <Route path="/reports" element={<Reports />} />
