@@ -10,7 +10,7 @@ const ServiceProviderListing = () => {
     const fetchListings = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8080/api/v1/serviceProvider/travel-guides"
+          "http://localhost:8080/api/v1/serviceProvider/event-planners"
         );
         setListings(response.data);
       } catch (error) {
@@ -25,7 +25,7 @@ const ServiceProviderListing = () => {
     try {
       // Update the listing status on the backend
       await axios.put(
-        `http://localhost:8080/api/v1/serviceProvider/update-travel-guide`,
+        `http://localhost:8080/api/v1/serviceProvider/update-event-planner`,
         {
           id,
           status,
