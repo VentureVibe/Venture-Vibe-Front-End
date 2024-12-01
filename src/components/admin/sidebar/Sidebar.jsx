@@ -26,6 +26,11 @@ const Sidebar = () => {
             </NavLink>
           </li>
           <li>
+            <NavLink to="/admin/travel-guide" activeClassName="active">
+              Travel Guide Listings
+            </NavLink>
+          </li>
+          <li>
             <NavLink to="/admin/content" activeClassName="active">
               Content Oversight
             </NavLink>

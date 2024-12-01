@@ -1,8 +1,7 @@
-import "./ServiceProviderListing.scss";
-import React, { useState, useEffect } from "react";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
 
-const ServiceProviderListing = () => {
+const TravelGuideListing = () => {
   const [listings, setListings] = useState([]);
 
   // Fetch listings from the backend
@@ -10,7 +9,7 @@ const ServiceProviderListing = () => {
     const fetchListings = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8080/api/v1/serviceProvider/event-planners"
+          "http://localhost:8080/api/v1/serviceProvider/travel-guides"
         );
         setListings(response.data);
       } catch (error) {
@@ -25,7 +24,7 @@ const ServiceProviderListing = () => {
     try {
       // Update the listing status on the backend
       await axios.put(
-        `http://localhost:8080/api/v1/serviceProvider/update-event-planner`,
+        `http://localhost:8080/api/v1/serviceProvider/update-travel-guide`,
         {
           id,
           status,
@@ -45,7 +44,7 @@ const ServiceProviderListing = () => {
 
   return (
     <div className="service-provider-listing-admin">
-      <h1>Event Listings</h1>
+      <h1>Travel Guide Listings</h1>
       <div className="listing-container">
         {listings.map((listing) => (
           <div key={listing.id} className="listing-item">
@@ -89,4 +88,4 @@ const ServiceProviderListing = () => {
   );
 };
 
-export default ServiceProviderListing;
+export default TravelGuideListing;
