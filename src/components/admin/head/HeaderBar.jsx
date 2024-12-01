@@ -12,7 +12,10 @@ const HeaderBar = () => {
   return (
     <header className="header-bar">
       <div className="header-left">
-        <img src={logo} alt="Venture Vibe Logo" className="logo" />
+        <a href="/">
+          <img src={logo} alt="Venture Vibe Logo" className="logo" />
+        </a>
+
         <nav>
           <ul>
             <li>
