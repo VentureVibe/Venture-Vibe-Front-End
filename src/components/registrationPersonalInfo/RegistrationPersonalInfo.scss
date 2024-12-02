@@ -1,113 +1,108 @@
-// .RegistrationPersonalInfo {
+// .registration-personal-info-container {
+//   height: 67vh;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   //border: 1px solid red;
+// }
+
+// .registration-personal-info {
 //   height: 100%;
+//   //border: 1px solid green;
 //   width: 100%;
 //   box-sizing: border-box;
-//   padding-left: 120px;
-
+//   padding: 0px 120px;
 //   display: flex;
 //   flex-direction: column;
+//   overflow-y: auto;
 
-//   .name {
+//   .form-container {
 //     display: flex;
-//     width: 100%;
-//     margin-bottom: 30px;
-//     margin-top: 50px;
-//     input {
-//       height: 32px;
-//       width: 250px;
-//       background-color: var(--input);
-//       border-radius: 5px;
-//       margin-right: 40px;
-//       padding-left: 5px;
-//     }
+//     gap: 2rem;
+//   }
 
-//     p {
+//   .form-fields {
+//     flex: 1;
+//   }
+
+//   .form-group {
+//     margin-bottom: 30px;
+
+//     label {
+//       display: block;
 //       font-size: var(--paragraph-2);
 //       margin-bottom: 5px;
 //     }
-//   }
-
-//   .bday {
-//     display: flex;
-//     margin-bottom: 30px;
-//     flex-direction: column;
-//     gap: 5px;
-
-//     .input {
-//       display: flex;
-//       input {
-//         width: 40px; /* Adjust width as needed */
-//         height: 30px; /* Adjust height as needed */
-//         padding: 5px;
-//         text-align: center;
-//         border: 1px solid #ccc;
-//         border-radius: 4px;
-//         font-size: 14px;
-//         padding-left: 5px;
-//       }
-
-//       span {
-//         width: 10px;
-//       }
-//     }
-
-//     p {
-//       font-size: var(--paragraph-2);
-//       margin-bottom: 5px;
-//     }
-//   }
-
-//   .contact {
-//     display: flex;
-//     width: 100%;
-//     flex-direction: column;
-//     margin-bottom: 30px;
 
 //     input {
 //       height: 32px;
-//       width: 540px;
+//       width: 400px;
 //       background-color: var(--input);
 //       border-radius: 5px;
 //       padding-left: 5px;
 //     }
-
-//     p {
-//       font-size: var(--paragraph-2);
-//       margin-bottom: 5px;
-//     }
 //   }
 
-//   .email {
+//   .dob-inputs {
 //     display: flex;
-//     width: 100%;
-//     flex-direction: column;
+//     gap: 10px;
+
 //     input {
-//       height: 32px;
-//       width: 540px;
+//       width: 40px;
+//       height: 30px;
+//       padding: 5px;
+//       text-align: center;
+//       border: 1px solid #ccc;
+//       border-radius: 4px;
+//       font-size: 14px;
 //       background-color: var(--input);
-//       border-radius: 5px;
-//       padding-left: 5px;
 //     }
+//   }
 
-//     p {
+//   .map-section {
+//     flex: 1;
+
+//     label {
+//       display: block;
 //       font-size: var(--paragraph-2);
 //       margin-bottom: 5px;
 //     }
 //   }
 
-//   .next {
-//     margin-top: 50px;
-//     display: flex;
-//     width: 540px;
-//     justify-content: flex-end;
+//   .map-container {
+//     width: 100%;
+//     height: 370px;
+//     border-radius: 5px;
+//     overflow: hidden;
+//   }
 
-//     button {
-//       padding: 10px 20px;
-//       background-color: var(--orange);
-//       border-radius: 10px;
-//       color: var(--white);
-//       font-size: var(--paragraph-2);
-//       cursor: pointer;
+//   .next-button {
+//     align-self: flex-end;
+//     padding: 10px 20px;
+//     background-color: var(--orange);
+//     border-radius: 10px;
+//     color: var(--white);
+//     font-size: var(--paragraph-2);
+//     cursor: pointer;
+//     border: none;
+//   }
+// }
+
+// @media (max-width: 768px) {
+//   .registration-personal-info {
+//     padding-left: 20px;
+//     padding-right: 20px;
+
+//     .form-container {
+//       flex-direction: column;
+//     }
+
+//     .form-group input {
+//       width: 100%;
+//     }
+
+//     .map-container {
+//       height: 200px;
 //     }
 //   }
 // }
@@ -117,12 +112,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  //border: 1px solid red;
 }
 
 .registration-personal-info {
   height: 100%;
-  //border: 1px solid green;
   width: 100%;
   box-sizing: border-box;
   padding: 0px 120px;
@@ -154,6 +147,23 @@
       background-color: var(--input);
       border-radius: 5px;
       padding-left: 5px;
+    }
+
+    .suggestions {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      max-height: 150px;
+      overflow-y: auto;
+      background-color: white;
+
+      .suggestion {
+        padding: 10px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #f0f0f0;
+        }
+      }
     }
   }
 

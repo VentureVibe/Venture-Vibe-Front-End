@@ -57,19 +57,34 @@ const Layout = () => {
 };
 
 function App() {
-  const GuidePro = withRole(GuideProfile, ["TravelGuide"]);
+  const GuidePro = withRole(GuideProfile, [
+    "TravelGuide",
+    "TravelGuide_EventPlanner",
+  ]);
   const TravelPlann = withRole(TravelPlan, [
     "TravelGuide",
     "Traveler",
     "EventPlanner",
   ]);
   const AdminA = withRole(Admin, ["Admin"]);
-  const MyListingss = withRole(MyListings, ["EventPlanner"]);
+  const MyListingss = withRole(MyListings, [
+    "EventPlanner",
+    "TravelGuide_EventPlanner",
+  ]);
   const Communityy = withRole(Community, [
     "EventPlanner",
     "TravelGuide",
     "Traveler",
     "Admin",
+    "TravelGuide_EventPlanner",
+  ]);
+  const EventRegistrationWithRole = withRole(EventRegistration, [
+    "Traveler",
+    "TravelGuide",
+  ]);
+  const GuideRegistrationWithRole = withRole(GuideRegistration, [
+    "Traveler",
+    "EventPlanner",
   ]);
 
   // const InviteTravelMatess = withRole(InviteTravelMates, ['travelGuide','User']);
@@ -117,11 +132,11 @@ function App() {
         },
         {
           path: "/eventregister",
-          element: <EventRegistration />,
+          element: <EventRegistrationWithRole />,
         },
         {
           path: "/guideregister",
-          element: <GuideRegistration />,
+          element: <GuideRegistrationWithRole />,
         },
 
         {

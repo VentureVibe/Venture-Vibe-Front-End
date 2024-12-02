@@ -14,7 +14,7 @@ const GuideCard = ({
 }) => {
   return (
     <div className="guide">
-      <Link to={`/guideprofile`}>
+      <Link to={`/travelguides/${id}`}>
         <div className="body-container">
           <img src={img} alt={name} />
           <span className="title">{name}</span>
@@ -32,8 +32,8 @@ const GuideCard = ({
               <StarRateIcon sx={{ color: "#414143", fontSize: 15 }} />
             </i>
           </div>
-          <span className="location">Location : {location}</span>
-          <span className="price">{price}$</span>
+          {/* <span className="location">Location : {location}</span> */}
+          <span className="price">{price}$ / per day</span>
           <span className="contactNumber">{contactNumber}</span>
         </div>
       </Link>
