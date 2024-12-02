@@ -105,7 +105,7 @@ const AddExpenseEdit = ({ onClose,data, fetchTravelPlan,selectedBudget,destinati
           <i onClick={onClose} className="fa-regular fa-circle-xmark"></i>
         </h4>
 
-        <h1>Add Expense</h1>
+        <h1>Edit Expense</h1>
         <div className="input">
           <p><i className="fa-solid fa-coins"></i></p>
           <input
