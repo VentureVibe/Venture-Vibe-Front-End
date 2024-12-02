@@ -18,9 +18,11 @@ const Payments = ({ userDetails, selectedPlan, workExperiences }) => {
     }
     console.log("User Details : ", userDetails);
     console.log("Selected Plan : ", selectedPlan);
-    console.log("Work Experience : ", workExperiences.experiences);
-    console.log("Languages : ", workExperiences.languages);
-    console.log("Specialties : ", workExperiences.specialties);
+    if (workExperiences) {
+      console.log("Work Experience : ", workExperiences.experiences);
+      console.log("Languages : ", workExperiences.languages);
+      console.log("Specialties : ", workExperiences.specialties);
+    }
   }, [selectedPlan, workExperiences]);
 
   const handlePayment = async () => {
