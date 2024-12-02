@@ -192,7 +192,7 @@ const TravelPlan = () => {
                 <img src={placeImage} alt="Location Image" />
                 <TripToTravelPlan location={location} from={from} to={to} />
               </div>
-              <ExploreTravelPlan />
+              {/* <ExploreTravelPlan /> */}
               {data && (
                 <>
                   <NotesTravelPlan data={data} fetchTravelPlan={fetchTravelPlan} />
