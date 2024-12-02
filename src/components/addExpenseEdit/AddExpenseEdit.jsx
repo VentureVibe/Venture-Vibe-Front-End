@@ -105,7 +105,7 @@ const AddExpenseEdit = ({ onClose,data, fetchTravelPlan,selectedBudget,destinati
           <i onClick={onClose} className="fa-regular fa-circle-xmark"></i>
         </h4>
 
-        <h1>Add Expense</h1>
+        <h1>Edit Expense</h1>
         <div className="input">
           <p><i className="fa-solid fa-coins"></i></p>
           <input
@@ -162,8 +162,8 @@ const AddExpenseEdit = ({ onClose,data, fetchTravelPlan,selectedBudget,destinati
         <div className="selected-payer">
           {selectedPayer ? (
             <div className="selected-payer-1" onClick={handlePaidByClick}>
-              <img src={selectedPayer.profileImg} alt={selectedPayer.name} />
-              <p>{selectedPayer.name}</p>
+              <img src={selectedPayer.profileImg} alt={selectedPayer.email} />
+              <p>{selectedPayer.email}</p>
             </div>
           ) : (
             <div className="selected-payer-2" onClick={handlePaidByClick}>
@@ -180,8 +180,8 @@ const AddExpenseEdit = ({ onClose,data, fetchTravelPlan,selectedBudget,destinati
                 className="dropdown2-item"
                 onClick={() => handlePayerClick(traveler)}
               >
-                <img src={traveler.profileImg} alt={traveler.name} />
-                {traveler.name}
+                <img src={traveler.profileImg} alt={traveler.email} />
+                {traveler.email}
               </div>
             ))}
           </div>

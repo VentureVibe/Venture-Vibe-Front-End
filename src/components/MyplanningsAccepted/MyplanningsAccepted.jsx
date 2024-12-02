@@ -4,7 +4,7 @@ import MyplanningsAcceptedCont from '../../components/MyplanningsAcceptedCont/My
 import { GetCurrentUserC } from '../../services/user/GetCurrentUserC';
 import { getAcceptedTravelPlansByUser } from '../../services/travelplan/TravelPlan';
 
-const MyplanningsAccepted = () => {
+const MyplanningsAccepted = ({setLocations}) => {
   const [currentPage1, setCurrentPage1] = useState(0);
   const [travelPlans2, setTravelPlans2] = useState({});
 
@@ -14,6 +14,13 @@ const MyplanningsAccepted = () => {
       const { data } = await getAcceptedTravelPlansByUser(travelerId, page, size);
       setTravelPlans2(data);
       setCurrentPage1(page);
+      const locations = data?.content?.map(plan => ({
+        id: plan.id,          // Unique identifier for the location
+        lat: plan.lat,        // Latitude from the travel plan
+        lng: plan.longi,      // Longitude from the travel plan
+        location: plan.location, // Additional location name or details if needed
+      }));
+      setLocations(locations || []);
     } catch (error) {
       console.error('Error fetching travel plans:', error);
     }

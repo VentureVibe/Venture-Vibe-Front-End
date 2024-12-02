@@ -1,7 +1,7 @@
 import "./App.css";
 
 import "./App.css";
-import React from "react";
+import React, { useState } from "react";
 import Home from "./pages/home/Home";
 import TravelPlan from "./pages/travelPlan/TravelPlan";
 
@@ -87,6 +87,7 @@ function App() {
     "EventPlanner",
   ]);
 
+  const [locations,setLocations]=useState([]);
   // const InviteTravelMatess = withRole(InviteTravelMates, ['travelGuide','User']);
 
   const router = createBrowserRouter([
@@ -146,15 +147,15 @@ function App() {
         },
         {
           path: "/myplannings",
-          element: <MyPlanings />,
+          element: <MyPlanings locations={locations}/>,
           children: [
             {
               path: "",
-              element: <MyPlaningsContent />,
+              element: <MyPlaningsContent setLocations={setLocations}/>,
             },
             {
               path: "travelinvitations",
-              element: <TravelInvitations />,
+              element: <TravelInvitations setLocations={setLocations} />,
             },
           ],
         },

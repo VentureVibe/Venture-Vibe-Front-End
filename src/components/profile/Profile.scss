@@ -6,6 +6,11 @@
   img {
     border-radius: 50%;
     cursor: pointer;
+    width: 50px; /* Adjust size */
+    height: 50px; /* Keep it consistent */
+    border-radius: 50%; /* Circular shape */
+    object-fit: cover; /* Prevent distortion */
+    cursor: pointer;
   }
 
   h4 {

@@ -1,3 +1,4 @@
+
 // import React, { useState, useEffect } from "react";
 // import "./subscribeDiv.scss";
 // import { useNavigate } from "react-router-dom";
@@ -96,8 +97,27 @@ const SubscribeDiv = () => {
     };
     fetchUser();
   }, [token]);
-
+  
   const navigate = useNavigate();
+
+  const handleSubscribe = async () => {
+    if (!email) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/api/subscribers",
+        { email }
+      );
+      alert(response.data.message || "Subscribed successfully!");
+      setEmail(""); // Clear the input after submission
+    } catch (error) {
+      console.error("Error subscribing:", error);
+      alert("Failed to subscribe. Please try again.");
+    }
+  };
 
   const loadEventRegister = () => {
     localStorage.setItem("registration_role", "EventPlanner");
@@ -116,8 +136,13 @@ const SubscribeDiv = () => {
         <br /> THE LATEST NEWS
       </h1>
       <div className="input-btn">
-        <input type="text" placeholder="Enter E-mail address" />
-        <button>Subscribe Now</button>
+        <input
+          type="text"
+          placeholder="Enter E-mail address"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <button onClick={handleSubscribe}>Subscribe Now</button>
       </div>
       {token && user ? (
         user.role === "Traveler" ? (
