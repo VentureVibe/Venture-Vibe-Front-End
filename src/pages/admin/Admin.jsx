@@ -14,6 +14,7 @@ import Reports from "./Reports/Reports";
 import Recommendations from "./Recommendation/Recommendations";
 import Settings from "./Settings/Settings";
 import TravelGuideListing from "./Travel Guide/TravelGuideListing";
+import SubscriberEmail from "./subscribers/SubscriberEmail";
 // import Navbar from "../components/navbar/Navbar";
 
 const Admin = () => {
@@ -41,6 +42,7 @@ const Admin = () => {
             <Route path="/reports" element={<Reports />} />
             <Route path="/recommendations" element={<Recommendations />} />
             <Route path="/settings" element={<Settings />} />
+            <Route path="/subscribers" element={<SubscriberEmail />} />
             {/* <Route path="/users" element={<UserTable />} />
         <Route path="/users" element={<UserTable />} />
         <Route path="/users" element={<UserTable />} />

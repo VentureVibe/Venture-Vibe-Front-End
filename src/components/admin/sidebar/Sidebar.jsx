@@ -55,6 +55,11 @@ const Sidebar = () => {
               Settings
             </NavLink>
           </li>
+          <li>
+            <NavLink to="/admin/subscribers" activeClassName="active">
+              Subscribers
+            </NavLink>
+          </li>
           {/* <li>
             <a href="dashboard">User Management</a>
           </li>
