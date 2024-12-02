@@ -62,9 +62,7 @@ const PlacesToVisitTravelPlan = ({ lat, long ,setClickedPlace,addedPlaces,update
     };
 
     const handleAddToTrip = (place) => {
-        // onclickPlace(place);
-  
-        // Create a new place object with all desired attributes
+   
         const placeDetails = {
             place_id: place.place_id,
             name: place.name,
@@ -75,7 +73,7 @@ const PlacesToVisitTravelPlan = ({ lat, long ,setClickedPlace,addedPlaces,update
             types: place.types,       // Include types if available
             vicinity: place.vicinity  // Include vicinity if available
         };
-    
+
         updatePlacesInBackend(placeDetails,"Places")
     };
      
