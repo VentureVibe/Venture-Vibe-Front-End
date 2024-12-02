@@ -71,7 +71,7 @@ const ShowAllTravelGuides = () => {
               key={index}
               img={guide.imageSrc}
               name={guide.name}
-              price={guide.radius}
+              price="100" /*{guide.radius}*/
               location={guide.sp_lat}
               contactNumber={guide.contactNumber}
               id={guide.id}
