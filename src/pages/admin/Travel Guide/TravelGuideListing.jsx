@@ -30,6 +30,7 @@ const TravelGuideListing = () => {
           status,
         }
       );
+      consol.log("Fetched Listings:", response.data);
 
       // Update the state to reflect the new status
       setListings(
