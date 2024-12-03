@@ -37,10 +37,6 @@ const HeaderBar = () => {
         </nav>
       </div>
       <div className="header-right">
-        <div className="search-bar">
-          <FreeSolo />
-        </div>
-
         <div className="profile">
           <Profile />
         </div>

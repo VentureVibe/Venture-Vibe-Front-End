@@ -12,20 +12,26 @@
     h1 {
       font-size: 2em;
       margin-bottom: 20px;
+      justify-content: center;
     }
   
     .user-table {
       width: 100%;
       overflow-x: auto;
+      
   
       table {
         width: 100%;
         border-collapse: collapse;
-        margin: 20px 0px;  
+        margin: 20px 0px; 
+        height: 50vh;
+      overflow: scroll;
+
         th, td {
           padding: 10px 20px 10px 20px;
           border: 1px solid #ddd;
           text-align: left;
+          width: auto;
           
         }
   
@@ -38,6 +44,7 @@
         }
   
         .edit-button, .delete-button {
+          padding: 20px 20px;
           background-color: #007bff; /* Green */
           color: white;
           border: none;

@@ -10,16 +10,36 @@ const ServiceProviderListing = () => {
     const fetchListings = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8080/api/v1/serviceProvider/event-planners"
+          "http://localhost:8080/api/v1/serviceProvider/event-planner"
         );
-        setListings(response.data);
+        const guidesWithDetails = await Promise.all(
+          response.data.map(async (guide) => {
+            try {
+              const detailsResponse = await axios.get(
+                `http://localhost:8080/api/v1/public/traveler/${guide.id}`
+              );
+              return {
+                ...guide,
+                imageSrc: detailsResponse.data.profileImg,
+                name: detailsResponse.data.firstName,
+              }; // Combine guide with extra details
+            } catch (err) {
+              console.error(
+                `Error fetching details for guide ID ${guide.id}`,
+                err
+              );
+              return guide; // Fallback to guide without additional details
+            }
+          })
+        );
+        setListings(guidesWithDetails);
       } catch (error) {
         console.error("Error fetching listings:", error);
       }
     };
 
     fetchListings();
-  }, []);
+  }, []); // Empty dependency array ensures this effect runs only once
 
   const handleStatusChange = async (id, status) => {
     try {
@@ -48,8 +68,8 @@ const ServiceProviderListing = () => {
       <h1>Event Listings</h1>
       <div className="listing-container">
         {listings.map((listing) => (
-          <div key={listing.id} className="listing-item">
-            <img src={listing.img} alt={listing.title} />
+          <div className="listing-item">
+            <img src={listing.imageSrc} alt={listing.title} />
             <div className="listing-details">
               <h2>{listing.title}</h2>
               <p>{listing.description}</p>
