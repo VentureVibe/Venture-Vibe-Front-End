@@ -159,13 +159,34 @@
 //         console.log("Booking details:", bookingDetails);
 
 //         try {
-//           const response = await axios.post(
+//           const bookingResponse = await axios.post(
 //             "http://localhost:8080/api/v1/booking/store",
 //             bookingDetails
 //           );
-//           if (response.status === 200) {
-//             //alert("Booking confirmed and stored successfully!");
-//             setBooked(true);
+//           if (bookingResponse.status === 200) {
+//             console.log("Booking confirmed and stored successfully!");
+
+//             const paymentDetails = {
+//               sender: userDetails.id,
+//               receiver: guide.id, // Assuming guide has a name property
+//               dateTime: new Date().toISOString(),
+//               amount: calculateTotalPrice(),
+//               category: "Guide_Booking",
+//             };
+
+//             try {
+//               const paymentResponse = await axios.post(
+//                 "http://localhost:8080/api/v1/payment/store",
+//                 paymentDetails
+//               );
+//               if (paymentResponse.status === 200) {
+//                 alert("Payment details stored successfully!");
+//                 setBooked(true);
+//               }
+//             } catch (error) {
+//               console.error("Error storing payment details:", error);
+//               alert("Failed to store payment details.");
+//             }
 //           }
 //         } catch (error) {
 //           console.error("Error storing booking details:", error);
@@ -283,6 +304,7 @@ const Booking = ({ guide }) => {
   const [paymentSuccess, setPaymentSuccess] = useState(false);
   const [userDetails, setUserDetails] = useState(null);
   const [booked, setBooked] = useState(false);
+  const [unavailableDates, setUnavailableDates] = useState([]);
 
   useEffect(() => {
     const fetchUserDetails = async () => {
@@ -291,7 +313,25 @@ const Booking = ({ guide }) => {
     };
     fetchUserDetails();
     setBooked(false);
-  }, []);
+
+    const fetchUnavailableDates = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8080/api/v1/unavailable-dates/user/${guide.id}`
+        );
+        if (response.data) {
+          const fetchedUnavailableDates = response.data.unavailableDates.map(
+            (date) => new Date(date)
+          );
+          setUnavailableDates(fetchedUnavailableDates);
+        }
+      } catch (error) {
+        console.error("Error fetching unavailable dates:", error);
+      }
+    };
+
+    fetchUnavailableDates();
+  }, [guide.id]);
 
   const getMonthYear = (date) => {
     return {
@@ -309,11 +349,11 @@ const Booking = ({ guide }) => {
   };
 
   const isDateUnavailable = (date) => {
-    return guide.unavailableDates.some(
+    return unavailableDates.some(
       (unavailableDate) =>
         date.getDate() === unavailableDate.getDate() &&
         date.getMonth() === unavailableDate.getMonth() &&
-        date.getYear() === unavailableDate.getYear()
+        date.getFullYear() === unavailableDate.getFullYear()
     );
   };
 

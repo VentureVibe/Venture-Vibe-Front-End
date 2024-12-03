@@ -1,40 +1,294 @@
+// .combined-specialties {
+//   width: 97vw;
+//   height: 79vh;
+//   background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+//   padding: 10px; /* Reduced padding */
+//   border-radius: 10px;
+//   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+//     0 2px 4px -2px rgba(0, 0, 0, 0.1);
+//   margin-bottom: 20px;
+//   overflow-y: auto;
+
+//   .specialties-languages {
+//     display: flex;
+//     justify-content: space-between;
+//     gap: 10px; /* Reduced gap */
+//     margin: 10px 0;
+//   }
+
+//   .specialties-section,
+//   .languages-section {
+//     flex: 1;
+//     margin-right: 10px; /* Reduced margin */
+//     background: white;
+//     padding: 20px; /* Reduced padding */
+//     border-radius: 10px;
+//     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+//       0 2px 4px -2px rgba(0, 0, 0, 0.1);
+
+//     h3 {
+//       margin-top: 0;
+//       color: #1f2937;
+//       font-size: 1.5rem;
+//       font-weight: 600;
+//     }
+
+//     .form-group {
+//       display: flex;
+//       align-items: center;
+//       gap: 5px; /* Reduced gap */
+//       margin-bottom: 10px; /* Reduced margin */
+
+//       label {
+//         display: block;
+//         margin-bottom: 5px;
+//         color: #4b5563;
+//         font-weight: 500;
+//       }
+
+//       select,
+//       input {
+//         flex: 1;
+//         padding: 8px; /* Reduced padding */
+//         border: 1px solid #e5e7eb;
+//         border-radius: 5px;
+//         font-size: 1rem;
+//         color: #1f2937;
+//         transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+//         &:focus {
+//           outline: none;
+//           border-color: #3b82f6;
+//           box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+//         }
+//       }
+
+//       button {
+//         padding: 8px 16px; /* Reduced padding */
+//         background-color: #2563eb;
+//         color: white;
+//         border: none;
+//         border-radius: 5px;
+//         cursor: pointer;
+//         transition: background-color 0.2s ease, transform 0.2s ease;
+
+//         &:hover {
+//           background-color: darken(#2563eb, 5%);
+//           transform: scale(1.05);
+//         }
+//       }
+//     }
+
+//     .specialties-list,
+//     .languages-list {
+//       display: flex;
+//       flex-wrap: wrap;
+//       gap: 5px; /* Reduced gap */
+
+//       .specialty,
+//       .language {
+//         background: #f3f4f6;
+//         padding: 8px; /* Reduced padding */
+//         border-radius: 5px;
+//         display: flex;
+//         align-items: center;
+//         justify-content: space-between;
+//         gap: 5px; /* Reduced gap */
+//         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+//         button {
+//           background: none;
+//           border: none;
+//           color: #2563eb;
+//           cursor: pointer;
+//           transition: color 0.2s ease, transform 0.2s ease;
+
+//           &:hover {
+//             color: #3b82f6;
+//             transform: scale(1.1);
+//           }
+//         }
+//       }
+//     }
+//   }
+
+//   .experiences-section {
+//     flex: 1;
+//     background: white;
+//     padding: 20px;
+//     margin-top: 20px; /* Reduced padding */
+//     border-radius: 10px;
+//     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+//       0 2px 4px -2px rgba(0, 0, 0, 0.1);
+//     height: 40vh;
+//     overflow: scroll;
+
+//     h3 {
+//       margin-top: 0;
+//       color: #1f2937;
+//       font-size: 1.5rem;
+//       font-weight: 600;
+//     }
+
+//     .form-group {
+//       display: flex;
+//       flex-direction: column;
+//       gap: 5px; /* Reduced gap */
+//       margin-bottom: 10px; /* Reduced margin */
+
+//       label {
+//         display: block;
+//         margin-bottom: 5px;
+//         color: #4b5563;
+//         font-weight: 500;
+//       }
+
+//       input {
+//         padding: 8px; /* Reduced padding */
+//         border: 1px solid #e5e7eb;
+//         border-radius: 5px;
+//         font-size: 1rem;
+//         color: #1f2937;
+//         transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+//         &:focus {
+//           outline: none;
+//           border-color: #3b82f6;
+//           box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+//         }
+//       }
+
+//       button {
+//         padding: 8px 16px; /* Reduced padding */
+//         background-color: #2563eb;
+//         color: white;
+//         border: none;
+//         border-radius: 5px;
+//         cursor: pointer;
+//         transition: background-color 0.2s ease, transform 0.2s ease;
+
+//         &:hover {
+//           background-color: darken(#2563eb, 5%);
+//           transform: scale(1.05);
+//         }
+//       }
+//     }
+
+//     .experiences-list {
+//       display: flex;
+//       flex-wrap: wrap;
+//       gap: 5px; /* Reduced gap */
+
+//       .experience {
+//         background: #f3f4f6;
+//         padding: 8px; /* Reduced padding */
+//         border-radius: 5px;
+//         display: flex;
+//         flex-direction: column;
+//         gap: 5px; /* Reduced gap */
+//         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+//         button {
+//           align-self: flex-end;
+//           background: none;
+//           border: none;
+//           color: #2563eb;
+//           cursor: pointer;
+//           transition: color 0.2s ease, transform 0.2s ease;
+
+//           &:hover {
+//             color: #3b82f6;
+//             transform: scale(1.1);
+//           }
+//         }
+//       }
+//     }
+
+//     .add-experience-button {
+//       padding: 8px 16px; /* Reduced padding */
+//       background-color: #2563eb;
+//       color: white;
+//       border: none;
+//       border-radius: 5px;
+//       cursor: pointer;
+//       transition: background-color 0.2s ease, transform 0.2s ease;
+
+//       &:hover {
+//         background-color: darken(#2563eb, 5%);
+//         transform: scale(1.05);
+//       }
+//     }
+//   }
+
+//   .save-button {
+//     padding: 8px 16px; /* Reduced padding */
+//     margin-top: 20px;
+//     background-color: #10b981;
+//     color: white;
+//     border: none;
+//     border-radius: 5px;
+//     cursor: pointer;
+//     transition: background-color 0.2s ease, transform 0.2s ease;
+
+//     &:hover {
+//       background-color: darken(#10b981, 5%);
+//       transform: scale(1.05);
+//     }
+//   }
+// }
+
 .combined-specialties {
-  background: white;
-  padding: 20px;
+  width: 97vw;
+  height: 79vh;
+  background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+  padding: 10px; /* Reduced padding */
   border-radius: 10px;
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -2px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
+  overflow-y: auto;
 
   .specialties-languages {
     display: flex;
     justify-content: space-between;
+    gap: 10px; /* Reduced gap */
+    margin: 10px 0;
   }
 
   .specialties-section,
   .languages-section {
     flex: 1;
-    margin-right: 20px;
+    margin-right: 10px; /* Reduced margin */
+    background: white;
+    padding: 20px; /* Reduced padding */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -2px rgba(0, 0, 0, 0.1);
 
     h3 {
       margin-top: 0;
       color: #1f2937;
+      font-size: 1.5rem;
+      font-weight: 600;
     }
 
     .form-group {
       display: flex;
       align-items: center;
-      gap: 10px;
-      margin-bottom: 20px;
+      gap: 5px; /* Reduced gap */
+      margin-bottom: 10px; /* Reduced margin */
 
       label {
         display: block;
         margin-bottom: 5px;
         color: #4b5563;
+        font-weight: 500;
       }
 
-      select {
+      select,
+      input {
         flex: 1;
-        padding: 10px;
+        padding: 8px; /* Reduced padding */
         border: 1px solid #e5e7eb;
         border-radius: 5px;
         font-size: 1rem;
@@ -49,16 +303,17 @@
       }
 
       button {
-        padding: 10px 20px;
+        padding: 8px 16px; /* Reduced padding */
         background-color: #2563eb;
         color: white;
         border: none;
         border-radius: 5px;
         cursor: pointer;
-        transition: background-color 0.2s ease;
+        transition: background-color 0.2s ease, transform 0.2s ease;
 
         &:hover {
           background-color: darken(#2563eb, 5%);
+          transform: scale(1.05);
         }
       }
     }
@@ -67,27 +322,29 @@
     .languages-list {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 5px; /* Reduced gap */
 
       .specialty,
       .language {
         background: #f3f4f6;
-        padding: 10px;
+        padding: 8px; /* Reduced padding */
         border-radius: 5px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 10px;
+        gap: 5px; /* Reduced gap */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
         button {
           background: none;
           border: none;
           color: #2563eb;
           cursor: pointer;
-          transition: color 0.2s ease;
+          transition: color 0.2s ease, transform 0.2s ease;
 
           &:hover {
             color: #3b82f6;
+            transform: scale(1.1);
           }
         }
       }
@@ -95,53 +352,135 @@
   }
 
   .experiences-section {
-    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    background: white;
+    padding: 10px;
+    margin-top: 10px; /* Reduced padding */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    height: 44vh;
+    overflow: scroll;
 
     h3 {
       margin-top: 0;
       color: #1f2937;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px; /* Reduced gap */
+      margin-bottom: 10px; /* Reduced margin */
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+        color: #4b5563;
+        font-weight: 500;
+      }
+
+      input {
+        padding: 8px; /* Reduced padding */
+        border: 1px solid #e5e7eb;
+        border-radius: 5px;
+        font-size: 1rem;
+        color: #1f2937;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+        &:focus {
+          outline: none;
+          border-color: #3b82f6;
+          box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+      }
+
+      button {
+        padding: 8px 16px; /* Reduced padding */
+        background-color: #2563eb;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.2s ease, transform 0.2s ease;
+
+        &:hover {
+          background-color: darken(#2563eb, 5%);
+          transform: scale(1.05);
+        }
+      }
+    }
+
+    .experiences-form {
+      flex: 1;
+      margin-right: 20px;
     }
 
     .experiences-list {
+      flex: 1;
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 10px; /* Reduced gap */
 
       .experience {
         background: #f3f4f6;
-        padding: 10px;
+        padding: 8px; /* Reduced padding */
         border-radius: 5px;
         display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 10px;
+        flex-direction: column;
+        gap: 5px; /* Reduced gap */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        width: 20vw;
+        height: 15vh;
 
         button {
+          align-self: flex-end;
           background: none;
           border: none;
           color: #2563eb;
           cursor: pointer;
-          transition: color 0.2s ease;
+          transition: color 0.2s ease, transform 0.2s ease;
 
           &:hover {
             color: #3b82f6;
+            transform: scale(1.1);
           }
         }
+      }
+    }
+
+    .add-experience-button {
+      padding: 8px 16px; /* Reduced padding */
+      background-color: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+
+      &:hover {
+        background-color: darken(#2563eb, 5%);
+        transform: scale(1.05);
       }
     }
   }
 
   .save-button {
-    padding: 10px 20px;
+    padding: 8px 16px; /* Reduced padding */
+    margin-top: 20px;
     background-color: #10b981;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease, transform 0.2s ease;
 
     &:hover {
       background-color: darken(#10b981, 5%);
+      transform: scale(1.05);
     }
   }
 }
