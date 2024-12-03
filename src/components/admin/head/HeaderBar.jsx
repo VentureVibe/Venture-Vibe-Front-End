@@ -3,7 +3,8 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import React from "react";
 import "./HeaderBar.scss";
 import logo from "../../../assets/Logo2.png";
-import profile from "../../../assets/profilepics/Profile1.jpg";
+import Profile from "../../profile/Profile";
+import FreeSolo from "../search/Search";
 
 const HeaderBar = () => {
   const notificationsCount = 5; // Example notification count
@@ -11,7 +12,10 @@ const HeaderBar = () => {
   return (
     <header className="header-bar">
       <div className="header-left">
-        <img src={logo} alt="Venture Vibe Logo" className="logo" />
+        <a href="/">
+          <img src={logo} alt="Venture Vibe Logo" className="logo" />
+        </a>
+
         <nav>
           <ul>
             <li>
@@ -33,16 +37,12 @@ const HeaderBar = () => {
         </nav>
       </div>
       <div className="header-right">
-        <input type="text" placeholder="Search..." className="search-bar" />
-        <div className="notification-icon">
-          <NotificationsIcon />
-          <span className="notification-count">{notificationsCount}</span>
+        <div className="search-bar">
+          <FreeSolo />
         </div>
+
         <div className="profile">
-          <span>
-            Admin
-            <img src={profile} alt="" />
-          </span>
+          <Profile />
         </div>
       </div>
     </header>

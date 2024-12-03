@@ -1,4 +1,5 @@
 import newRequest from '../NewRequst';
+import { insertNotification } from '../traveler/Traveler';
 
 export const deleteTravelInvitationById=async(travelerInvitationId)=>{
     try {
@@ -55,6 +56,19 @@ export const sendTravelInvitation = async (travelerPlanId, travelerId) => {
       
     
     );
+    
+    const notificationData = {
+      title: "Travel Invitation",
+      message: "You have an invitation for a travel plan",
+      isRead: false, // Default value for new notifications,
+      timestamp: "2024-12-02T14:30:00",
+      link: "http://localhost:5173/myplannings/travelinvitations",
+      traveler: {
+        id: travelerId // Use the travelerId dynamically
+      }
+    };
+
+    const response2 = await insertNotification(travelerId, notificationData);
     return response.data; // Return response data if you only need the data
   } catch (error) {
     console.error('Error sending travel invitation:', error);

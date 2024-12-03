@@ -26,6 +26,11 @@ const Sidebar = () => {
             </NavLink>
           </li>
           <li>
+            <NavLink to="/admin/travel-guide" activeClassName="active">
+              Travel Guide Listings
+            </NavLink>
+          </li>
+          <li>
             <NavLink to="/admin/content" activeClassName="active">
               Content Oversight
             </NavLink>
@@ -48,6 +53,11 @@ const Sidebar = () => {
           <li>
             <NavLink to="/admin/settings" activeClassName="active">
               Settings
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/admin/subscribers" activeClassName="active">
+              Subscribers
             </NavLink>
           </li>
           {/* <li>

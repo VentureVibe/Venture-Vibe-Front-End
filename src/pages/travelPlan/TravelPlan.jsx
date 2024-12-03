@@ -86,7 +86,7 @@ const TravelPlan = () => {
 
   const updatePlacesInBackend = async (recentPlace,type) => {
     try {
-      console.log(recentPlace);
+
       const traveler = await getTraveler(GetCurrentUserC().sub);
   
       if (recentPlace) {
@@ -105,7 +105,7 @@ const TravelPlan = () => {
         let index=0;
 
         if(type=="Places"){
-          index=addedPlaces.length;
+          index=addedPlaces1.length;
         }
 
         if(type=="Hotels"){
@@ -143,14 +143,11 @@ const TravelPlan = () => {
   
   const updatePlaces = async () => {
     try {
-      // Fetch the updated travel plan
       const data1 = await getTravelPlanById(id, GetCurrentUserC().sub);
   
-      // Assuming travelDestinations is an array of destinations within the travel plan
       const places = data1.travelDestinations.filter(dest => dest.type === 'Places');
       const hotels = data1.travelDestinations.filter(dest => dest.type === 'Hotels');
       const restrurents = data1.travelDestinations.filter(dest => dest.type === 'Restrurents');
-      // Set the separated data for places and hotels
       setAddedPlaces1(places);  // Places filtered from travelDestinations
       setAddedHotels(hotels);  
       setAddedRestaurants(restrurents); // Hotels filtered from travelDestinations
@@ -192,7 +189,7 @@ const TravelPlan = () => {
                 <img src={placeImage} alt="Location Image" />
                 <TripToTravelPlan location={location} from={from} to={to} />
               </div>
-              <ExploreTravelPlan />
+              {/* <ExploreTravelPlan /> */}
               {data && (
                 <>
                   <NotesTravelPlan data={data} fetchTravelPlan={fetchTravelPlan} />

@@ -213,7 +213,7 @@ const CreateTravelPlan = () => {
           </div>
         </div>
       </div>
-      {showInviteTripmatesIcon && (
+      {/* {showInviteTripmatesIcon && (
         <div className="invite-trip" onClick={handleInviteTripmates}>
           <AddIcon sx={{ color: '#747474', fontSize: 18 }} />
           <span>Invite tripmates</span>
@@ -226,7 +226,7 @@ const CreateTravelPlan = () => {
             <input type="text" placeholder="Enter an email address" />
           </div>
         </div>
-      )}
+      )} */}
       <div className="btn-container" onClick={handleStartPlanning}>
         <span>Start Planning</span>
       </div>
