@@ -46,7 +46,7 @@ const CommunityPost = ({ postId, userId, likes, comments, description, imageSrc,
       <img src={imageSrc} alt="" />
       <div className="detail">
         <img src={(user.profileImg != null) ? user.profileImg : noAvatar} alt="" />
-        <h2>{user.name}</h2>
+        <h2>{user.firstName + " " + user.lastName}</h2>
         <div className="like">
           <i className="fa-solid fa-heart"></i>
           <p>{likes}</p>
