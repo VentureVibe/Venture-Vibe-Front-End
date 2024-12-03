@@ -15,6 +15,7 @@ import Recommendations from "./Recommendation/Recommendations";
 import Settings from "./Settings/Settings";
 import TravelGuideListing from "./Travel Guide/TravelGuideListing";
 import SubscriberEmail from "./subscribers/SubscriberEmail";
+import Revenue from "./revenue/Revenue";
 // import Navbar from "../components/navbar/Navbar";
 
 const Admin = () => {
@@ -39,9 +40,11 @@ const Admin = () => {
             <Route path="/travel-guide" element={<TravelGuideListing />} />
             <Route path="/content" element={<ContentOversight />} />
             <Route path="/financials" element={<FinancialInsights />} />
+            <Route path="/revenue" element={<Revenue />} />
             <Route path="/reports" element={<Reports />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/subscribers" element={<SubscriberEmail />} />
+            <Route path="/overview" element={<DashboardOverview />} />
             {/* <Route path="/users" element={<UserTable />} />
         <Route path="/users" element={<UserTable />} />
         <Route path="/users" element={<UserTable />} />
