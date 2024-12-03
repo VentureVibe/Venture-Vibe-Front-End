@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./FinancialInsights.scss";
+import "./Revenue.scss";
 
-const FinancialInsights = () => {
+const Revenue = () => {
   const [financialData, setFinancialData] = useState([]);
   const [totalPayment, setTotalPayment] = useState(null);
 
@@ -11,7 +11,7 @@ const FinancialInsights = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8080/api/v1/payment/category/Registration_Fee"
+          "http://localhost:8080/api/v1/payment/category/Guide_Booking"
         );
         setFinancialData(response.data);
       } catch (error) {
@@ -21,9 +21,11 @@ const FinancialInsights = () => {
     fetchData();
   }, []);
 
-  // Calculate total payment
   const generateMonthlyPayment = () => {
-    const total = financialData.reduce((sum, record) => sum + record.amount, 0);
+    const total = financialData.reduce(
+      (sum, record) => sum + record.amount * 0.15,
+      0
+    );
     setTotalPayment(total);
   };
 
@@ -48,7 +50,7 @@ const FinancialInsights = () => {
                 <td>{item.sender || "N/A"}</td>
                 {/* <td>{item.receiver || "N/A"}</td> */}
                 <td>{item.category}</td>
-                <td>${item.amount.toFixed(2)}</td>
+                <td>${(item.amount * 0.15).toFixed(2)}</td>
               </tr>
             ))}
           </tbody>
@@ -66,4 +68,4 @@ const FinancialInsights = () => {
   );
 };
 
-export default FinancialInsights;
+export default Revenue;

@@ -24,7 +24,7 @@ const TravelGuideListing = () => {
                 imageSrc: detailsResponse.data.profileImg,
                 name: detailsResponse.data.firstName,
                 status: guide.status || "listed",
-                price: detailsResponse.data.price || "Negotiable",
+                // price: detailsResponse.data.price || "Negotiable",
                 description:
                   detailsResponse.data.description ||
                   "No description available.",
@@ -92,7 +92,7 @@ const TravelGuideListing = () => {
                   className="reject-btn"
                   onClick={() => handleDeleteListing(listing.id)}
                 >
-                  Reject
+                  Delete
                 </button>
               </div>
             </div>

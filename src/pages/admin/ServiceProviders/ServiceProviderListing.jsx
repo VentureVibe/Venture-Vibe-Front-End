@@ -89,7 +89,7 @@ const ServiceProviderListing = () => {
                   className="reject-btn"
                   onClick={() => handleDeleteListing(listing.id)}
                 >
-                  Reject
+                  Delete
                 </button>
               </div>
             </div>

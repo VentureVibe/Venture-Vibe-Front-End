@@ -40,6 +40,11 @@ const Sidebar = () => {
               Financial Insights
             </NavLink>
           </li>
+          <li>
+            <NavLink to="/admin/revenue" activeClassName="active">
+              Our Revenue
+            </NavLink>
+          </li>
 
           <li>
             <NavLink to="/admin/subscribers" activeClassName="active">
