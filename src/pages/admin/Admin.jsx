@@ -42,6 +42,7 @@ const Admin = () => {
             <Route path="/reports" element={<Reports />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/subscribers" element={<SubscriberEmail />} />
+            <Route path="/overview" element={<DashboardOverview />} />
             {/* <Route path="/users" element={<UserTable />} />
         <Route path="/users" element={<UserTable />} />
         <Route path="/users" element={<UserTable />} />

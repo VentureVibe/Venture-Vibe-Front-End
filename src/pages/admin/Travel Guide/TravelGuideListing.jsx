@@ -24,10 +24,11 @@ const TravelGuideListing = () => {
                 imageSrc: detailsResponse.data.profileImg,
                 name: detailsResponse.data.firstName,
                 status: guide.status || "listed",
-                price: detailsResponse.price,
-                description: detailsResponse.guidesWithDetails,
-
-                // Default status
+                price: detailsResponse.data.price || "Negotiable",
+                description:
+                  detailsResponse.data.description ||
+                  "No description available.",
+                plan: guide.plan || "1-month plan", // Default plan
               };
             } catch (err) {
               console.error(
@@ -40,6 +41,7 @@ const TravelGuideListing = () => {
         );
         setListings(guidesWithDetails);
       } catch (err) {
+        console.error("Error fetching travel guide listings:", err);
         setError("Failed to fetch travel guide listings.");
       } finally {
         setLoading(false);
@@ -61,11 +63,11 @@ const TravelGuideListing = () => {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="loading">Loading travel guides...</div>;
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return <div className="error-message">{error}</div>;
   }
 
   return (
@@ -73,14 +75,17 @@ const TravelGuideListing = () => {
       <h1>Travel Guide Listings</h1>
       <div className="listing-container">
         {listings.map((listing) => (
-          <div className="listing-item">
+          <div className="listing-item" key={listing.id}>
             <span className={`status-label ${listing.status}`}>
               {listing.status.toUpperCase()}
             </span>
+            {/* <span className="plan-label">{listing.plan}</span>{" "} */}
+            {/* Plan label */}
             <img src={listing.imageSrc} alt={listing.name || "Travel Guide"} />
             <div className="listing-details">
               <h2>{listing.name || "Travel Guide"}</h2>
               <p>{listing.description || "No description available."}</p>
+              <p>{listing.contactNumber}</p>
               <div className="admin-actions">
                 <p>{listing.price || "Negotiable"}</p>
                 <button

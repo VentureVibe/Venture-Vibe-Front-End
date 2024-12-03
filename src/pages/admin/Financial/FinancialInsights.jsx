@@ -1,69 +1,67 @@
-import React from "react";
-import {
-  LineChart,
-  Line,
-  CartesianGrid,
-  XAxis,
-  YAxis,
-  Tooltip,
-  BarChart,
-  Bar,
-  Legend,
-} from "recharts";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./FinancialInsights.scss";
 
-const data = [
-  { name: "Jan", revenue: 4000, expenses: 2400 },
-  { name: "Feb", revenue: 3000, expenses: 1398 },
-  { name: "Mar", revenue: 2000, expenses: 9800 },
-  { name: "Apr", revenue: 2780, expenses: 3908 },
-  { name: "May", revenue: 1890, expenses: 4800 },
-  { name: "Jun", revenue: 2390, expenses: 3800 },
-  { name: "Jul", revenue: 3490, expenses: 4300 },
-  { name: "Aug", revenue: 3000, expenses: 2400 },
-  { name: "Sep", revenue: 2000, expenses: 1398 },
-  { name: "Oct", revenue: 2780, expenses: 3908 },
-  { name: "Nov", revenue: 1890, expenses: 4800 },
-  { name: "Dec", revenue: 2390, expenses: 3800 },
-];
-
 const FinancialInsights = () => {
+  const [financialData, setFinancialData] = useState([]);
+  const [totalPayment, setTotalPayment] = useState(null);
+
+  // Fetch data from backend
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:8080/api/v1/payment/category/Registration_Fee"
+        );
+        setFinancialData(response.data);
+      } catch (error) {
+        console.error("Error fetching financial data:", error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  // Calculate total payment
+  const generateMonthlyPayment = () => {
+    const total = financialData.reduce((sum, record) => sum + record.amount, 0);
+    setTotalPayment(total);
+  };
+
   return (
     <div className="financial-insights">
-      <div className="chart-container">
-        <h2>Revenue vs Expenses</h2>
-        <LineChart
-          width={600}
-          height={300}
-          data={data}
-          margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Line type="monotone" dataKey="revenue" stroke="#8884d8" />
-          <Line type="monotone" dataKey="expenses" stroke="#82ca9d" />
-        </LineChart>
+      <h1>Financial Outcome Overview</h1>
+      <div className="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              {/* <th>Sender</th>
+              <th>Receiver</th> */}
+              <th>Category</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            {financialData.map((item) => (
+              <tr key={item.id}>
+                <td>{item.id}</td>
+                {/* <td>{item.sender || "N/A"}</td>
+                <td>{item.receiver || "N/A"}</td> */}
+                <td>{item.category}</td>
+                <td>${item.amount.toFixed(2)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
-      <div className="chart-container">
-        <h2>Monthly Revenue</h2>
-        <BarChart
-          width={600}
-          height={300}
-          data={data}
-          margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Bar dataKey="revenue" fill="#8884d8" />
-          <Bar dataKey="expenses" fill="#82ca9d" />
-        </BarChart>
-      </div>
+      <button className="generate-button" onClick={generateMonthlyPayment}>
+        Generate Total Payment
+      </button>
+      {totalPayment !== null && (
+        <div className="total-payment">
+          <h3>Total Payment: ${totalPayment.toFixed(2)}</h3>
+        </div>
+      )}
     </div>
   );
 };
