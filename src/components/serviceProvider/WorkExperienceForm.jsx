@@ -98,6 +98,7 @@ const WorkExperienceForm = ({ setWorkExperiences, onNext }) => {
   ]);
   const [specialties, setSpecialties] = useState([]);
   const [languages, setLanguages] = useState([]);
+  const [pricePerDay, setPricePerDay] = useState("");
 
   const specialtiesOptions = [
     "Urban Tours",
@@ -168,7 +169,7 @@ const WorkExperienceForm = ({ setWorkExperiences, onNext }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setWorkExperiences({ experiences, specialties, languages });
+    setWorkExperiences({ experiences, specialties, languages, pricePerDay });
     onNext();
   };
 
@@ -266,6 +267,17 @@ const WorkExperienceForm = ({ setWorkExperiences, onNext }) => {
             </div>
           ))}
         </div>
+      </div>
+      <div className="form-group">
+        <label htmlFor="pricePerDay">Price Per Day</label>
+        <input
+          type="number"
+          id="pricePerDay"
+          name="pricePerDay"
+          placeholder="Enter your price per day"
+          value={pricePerDay}
+          onChange={(e) => setPricePerDay(e.target.value)}
+        />
       </div>
       <button type="submit">Next</button>
     </form>

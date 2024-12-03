@@ -110,10 +110,12 @@ const TravelGuideProfile = () => {
           `http://localhost:8080/api/v1/serviceProvider/travel-guide/${id}`
         );
         const data = await response.json();
+        console.log(data);
         setGuide({
+          id: id,
           name: "Sarah Anderson", // Demo data
           experience: "8 years", // Demo data
-          price: data.price ? data.price : 150,
+          price: data.price,
           phone: data.contactNumber,
           email: data.email,
           location: "Sri Lanka", // Demo data
