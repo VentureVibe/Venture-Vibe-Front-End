@@ -10,11 +10,11 @@ const Sidebar = () => {
         <img src="" alt="" />
         {/* <h1 className="dashboard">Dashboard</h1> */}
         <ul className="side-menu">
-          <li>
+          {/* <li>
             <NavLink to="/admin" activeClassName="active">
               Dashboard Overview
             </NavLink>
-          </li>
+          </li> */}
           <li>
             <NavLink to="/admin/users" activeClassName="active">
               User Management
@@ -40,21 +40,7 @@ const Sidebar = () => {
               Financial Insights
             </NavLink>
           </li>
-          <li>
-            <NavLink to="/admin/reports" activeClassName="active">
-              Reports
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/admin/recommendations" activeClassName="active">
-              Recommendations
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/admin/settings" activeClassName="active">
-              Settings
-            </NavLink>
-          </li>
+
           <li>
             <NavLink to="/admin/subscribers" activeClassName="active">
               Subscribers
