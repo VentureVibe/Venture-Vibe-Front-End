@@ -13,6 +13,7 @@ const UserTable = () => {
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // Fetch users when the component mounts
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -28,47 +29,52 @@ const UserTable = () => {
     fetchUsers();
   }, []);
 
+  // Handle delete functionality
   const handleDelete = async (userId) => {
     try {
       await axios.delete(`http://localhost:8080/api/v1/admin/users/${userId}`);
-      setUsers(users.filter((user) => user.id !== userId));
+      setUsers(users.filter((user) => user.id !== userId)); // Remove user from state
     } catch (error) {
       console.error("Error deleting user:", error);
     }
   };
 
+  // Handle edit button click
   const handleEdit = (user) => {
-    setEditingUser(user);
-    setEditFormData(user);
-    setIsModalOpen(true);
+    setEditingUser(user); // Set the user to be edited
+    setEditFormData(user); // Populate form with existing user data
+    setIsModalOpen(true); // Open modal
   };
 
+  // Handle form input changes
   const handleEditChange = (e) => {
     const { name, value } = e.target;
-    setEditFormData({ ...editFormData, [name]: value });
+    setEditFormData({ ...editFormData, [name]: value }); // Update form data state
   };
 
+  // Handle form submission for editing user details
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.put(
-        `http://localhost:8080/api/v1/admin/users/${editFormData.id}`,
+        `http://localhost:8080/api/v1/public/travelers/${editFormData.id}`, // Update endpoint
         editFormData
       );
       setUsers(
         users.map((user) =>
           user.id === editFormData.id ? response.data : user
         )
-      );
-      setIsModalOpen(false);
+      ); // Update user in the table
+      setIsModalOpen(false); // Close modal after successful update
     } catch (error) {
       console.error("Error updating user:", error);
     }
   };
 
+  // Handle canceling the edit operation
   const handleCancelEdit = () => {
-    setIsModalOpen(false);
-    setEditingUser(null);
+    setIsModalOpen(false); // Close modal
+    setEditingUser(null); // Reset editing user state
   };
 
   return (
@@ -125,6 +131,7 @@ const UserTable = () => {
                   name="name"
                   value={editFormData.name}
                   onChange={handleEditChange}
+                  required
                 />
               </label>
               <label className="namelabel">
@@ -135,6 +142,7 @@ const UserTable = () => {
                   name="email"
                   value={editFormData.email}
                   onChange={handleEditChange}
+                  required
                 />
               </label>
               <label className="namelabel">
@@ -145,6 +153,7 @@ const UserTable = () => {
                   name="role"
                   value={editFormData.role}
                   onChange={handleEditChange}
+                  required
                 />
               </label>
               <div className="modal-actions">

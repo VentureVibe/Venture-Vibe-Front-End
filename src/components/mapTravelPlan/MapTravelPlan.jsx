@@ -139,7 +139,6 @@ const MapTravelPlan = ({ lat, lng, clickedPlace, addedPlaces, setAddedPlaces,add
     return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svgContent)}`;
   };
   
-  
   const hotelMarkerIcon = (index) => {
     const markerLabel = String(index + 1); // Index starts from 1
     const svgContent = `
@@ -234,10 +233,10 @@ const MapTravelPlan = ({ lat, lng, clickedPlace, addedPlaces, setAddedPlaces,add
                 <div className="top">
                   <div className="left"> 
                     <h3><i className="fa-solid fa-location-dot"></i> {selectedPlace.name}</h3>
-                    <button onClick={() => handleAddToTrip(selectedPlace)}>
+                    {/* <button onClick={() => handleAddToTrip(selectedPlace)}>
                       <i className="fa-solid fa-bookmark"></i> 
                       Add to places
-                    </button>
+                    </button> */}
                     <div className="rating">
                       <i className="fa-solid fa-star"></i>
                       <p>{selectedPlace.rating || 'No rating available'}</p>

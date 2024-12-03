@@ -3,6 +3,7 @@ import "./payment.scss";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { GetCurrentUserC } from "../../services/user/GetCurrentUserC";
+import { GetUser } from "../../services/user/GetUser";
 
 const Payments = ({ userDetails, selectedPlan, workExperiences }) => {
   const [orderId, setOrderId] = useState("");
@@ -17,7 +18,11 @@ const Payments = ({ userDetails, selectedPlan, workExperiences }) => {
     }
     console.log("User Details : ", userDetails);
     console.log("Selected Plan : ", selectedPlan);
-    console.log("Work Experience : ", workExperiences);
+    if (workExperiences) {
+      console.log("Work Experience : ", workExperiences.experiences);
+      console.log("Languages : ", workExperiences.languages);
+      console.log("Specialties : ", workExperiences.specialties);
+    }
   }, [selectedPlan, workExperiences]);
 
   const handlePayment = async () => {
@@ -80,9 +85,18 @@ const Payments = ({ userDetails, selectedPlan, workExperiences }) => {
         }
 
         try {
+          const user = await GetUser();
+          console.log("User: ", user);
+
           const serviceProviderDetails = {
             id: decodedToken.sub,
-            role: workExperiences ? "TravelGuide" : "EventPlanner",
+            role:
+              (user.role == "TravelGuide" && !workExperiences) ||
+              (user.role == "EventPlanner" && workExperiences)
+                ? "TravelGuide_EventPlanner"
+                : workExperiences
+                ? "TravelGuide"
+                : "EventPlanner",
             purchaseDate: purchaseDate.toISOString(),
             expirationDate: expirationDate.toISOString(),
             planType: selectedPlan,
@@ -93,20 +107,50 @@ const Payments = ({ userDetails, selectedPlan, workExperiences }) => {
           };
 
           // Check if workExperiences is defined
-          const endpoint = workExperiences
-            ? "http://localhost:8080/api/v1/serviceProvider/add-travel-guide"
-            : "http://localhost:8080/api/v1/serviceProvider/add-event-planner";
+          // const endpoint = workExperiences
+          //   ? "http://localhost:8080/api/v1/serviceProvider/add-travel-guide"
+          //   : "http://localhost:8080/api/v1/serviceProvider/add-event-planner";
 
-          const result = await axios.post(endpoint, {
-            ...serviceProviderDetails,
-            workExperience: workExperiences,
-          });
+          const endpoint =
+            !workExperiences && user.role === "TravelGuide"
+              ? "http://localhost:8080/api/v1/serviceProvider/update-travel-guide"
+              : workExperiences && user.role === "EventPlanner"
+              ? "http://localhost:8080/api/v1/serviceProvider/add-service-provider"
+              : workExperiences
+              ? "http://localhost:8080/api/v1/serviceProvider/add-travel-guide"
+              : "http://localhost:8080/api/v1/serviceProvider/add-event-planner";
+
+          // const result = await axios.post(endpoint, {
+          //   ...serviceProviderDetails,
+          //   workExperience: workExperiences,
+          //   radius: userDetails.radius,
+          // });
+
+          const result =
+            !workExperiences && user.role === "TravelGuide"
+              ? await axios.put(endpoint, {
+                  ...serviceProviderDetails,
+                })
+              : await axios.post(endpoint, {
+                  ...serviceProviderDetails,
+                  workExperience: workExperiences.experiences,
+                  radius: userDetails.radius,
+                  specialties: workExperiences.specialties,
+                  languages: workExperiences.languages,
+                });
+
           const result2 = await axios.put(
             `http://localhost:8080/api/v1/public/traveler/${decodedToken.sub}`,
             {
               firstName: userDetails.firstName,
               lastName: userDetails.lastName,
-              role: workExperiences ? "TravelGuide" : "EventPlanner",
+              role:
+                (user.role == "TravelGuide" && !workExperiences) ||
+                (user.role == "EventPlanner" && workExperiences)
+                  ? "TravelGuide_EventPlanner"
+                  : workExperiences
+                  ? "TravelGuide"
+                  : "EventPlanner",
             }
           );
 

@@ -3,7 +3,9 @@ import React from "react";
 
 const StoryDiv = () => {
   return (
-    <div className="story-div">
+    <div className="story-div" >
+
+
       <div className="left-story-div">
         <div className="column">
           <img src="/src/assets/homepage/beach.jpeg" />

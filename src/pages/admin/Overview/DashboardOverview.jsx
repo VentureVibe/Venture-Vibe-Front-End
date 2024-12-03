@@ -1,6 +1,7 @@
 // src/pages/admin/panel/DashboardOverview.jsx
 import React from "react";
 import "./DashboardOverview.scss";
+import SubscriberEmail from "../subscribers/SubscriberEmail";
 
 const DashboardOverview = () => {
   return (
@@ -35,6 +36,9 @@ const DashboardOverview = () => {
           <li>New user registration: Alice Johnson.</li>
           <li>New user registration: Alice Johnson.</li>
         </ul>
+      </div>
+      <div>
+        <SubscriberEmail />
       </div>
     </div>
   );
