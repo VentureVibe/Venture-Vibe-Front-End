@@ -8,7 +8,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   scroll-behavior: auto;
-  
+
 
   
 h1 {
@@ -68,24 +68,26 @@ h2 {
   font-size: 20px;
   margin: 10px 0;
   color: #444;
+
+  p {
+    font-size: 14px;
+    color: #666;
+  }
 }
 
-p {
-  font-size: 14px;
-  color: #666;
-}
+
 
 .admin-actions {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 10px;
+  p {
+    color: #000;
+  }
 }
 
-p {
-  font-weight: bold;
-  color: #000;
-}
+
 
 .status {
   display: inline-block;
