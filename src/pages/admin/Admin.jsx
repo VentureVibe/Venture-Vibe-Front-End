@@ -30,7 +30,7 @@ const Admin = () => {
         </div>
         <div className="main-content">
           <Routes>
-            <Route path="/" element={<DashboardOverview />} />
+            <Route path="/" element={<UserManagement />} />
             <Route path="/users" element={<UserManagement />} />
             <Route
               path="/service-providers"
@@ -40,7 +40,6 @@ const Admin = () => {
             <Route path="/content" element={<ContentOversight />} />
             <Route path="/financials" element={<FinancialInsights />} />
             <Route path="/reports" element={<Reports />} />
-            <Route path="/recommendations" element={<Recommendations />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/subscribers" element={<SubscriberEmail />} />
             {/* <Route path="/users" element={<UserTable />} />

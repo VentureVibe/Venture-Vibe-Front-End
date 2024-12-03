@@ -43,6 +43,8 @@ const NavbarCommunity = () => {
     return <div>{error}</div>;
   }
 
+  console.log(user);
+
   return (
     <div className='navbar'>
       <Link to='/'>
@@ -67,7 +69,7 @@ const NavbarCommunity = () => {
       </div>
       <div className="profile-bar">
         <i className="fa-regular fa-bell"></i>
-        <h4>{user.name}</h4>
+        <h4>{user.firstName + " " + user.lastName}</h4>
         <img src={user.profileImg} alt="" />
       </div>
     </div>

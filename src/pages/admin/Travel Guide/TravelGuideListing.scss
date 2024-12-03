@@ -1,114 +1,194 @@
 .service-provider-listing-admin {
-    position: relative;
-    padding: 20px;
-    // background-color: #f9f9f9;
-    margin: 30px 10px 20px 100px;
-    // padding: 20px;
-    background-color: #f5f5f5;
-    /* justify-content: center; */
+  position: relative;
+  padding: 20px;
+  background-color: #f5f5f5;
+  margin: 30px auto;
+  border-radius: 10px;
+  max-width: 1200px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  scroll-behavior: auto;
+
+
+  
+h1 {
+  text-align: center;
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.listing-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+
+  .listing-item {
+    background-color: #fff;
     border-radius: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  
-    h1 {
-      // font-size: 24px;
-      margin-bottom: 20px;
-    }
-  
-    .listing-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      position: relative;
-    
-  
-    .listing-item {
-      background-color: #fff;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-      width: 300px;
-      position: relative;
-  
-      img {
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
-      }
-  
-      .listing-details {
-        padding: 15px;
-  
-        h2 {
-          font-size: 20px;
-          margin: 10px 0;
-        }
-  
-        p {
-          font-size: 14px;
-          color: #666;
-        }
-  
-        .admin-actions {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          margin-top: 10px;
-  
-          p{
-            font-weight: bold;
-            color: #000000;
-          }
-  
-          .status {
-            position: absolute;
-            top: 0;
-            right: 0;
-            padding: 5px 10px;
-            border-radius: 3px;
-            
-            &.pending {
-              background-color: #ffeb3b;
-              color: #856404;
-            }
-  
-            &.approved {
-              background-color: #4caf50;
-              color: #fff;
-            }
-  
-            &.rejected {
-              background-color: #f44336;
-              color: #fff;
-            }
-          }
-  
-          .buttonsofChoice{
-            display: flex;
-            gap: 10px;
-            .approve-btn, .reject-btn {
-              padding: 8px 12px;
-              border: none;
-              border-radius: 3px;
-              cursor: pointer;
-              font-size: 14px;
-              color: #fff;
-              margin-top: 5px;
-            }
-    
-            .approve-btn {
-              background-color: #4caf50;
-            }
-    
-            .reject-btn {
-              background-color: #f44336;
-            }
-  
-          }
-  
-          
-        }
-      }
-    }
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 300px;
+    transition: transform 0.3s, box-shadow 0.3s;
+
+}
+
+
+
+  span{
+    width: 30px;
+    height: 20px;
   }
-  }
+}
+
+.listing-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+
   
+}
+  
+}
+
+
+
+// img {
+//   width: 100%;
+//   height: 200px;
+//   object-fit: cover;
+// }
+
+.listing-details {
+  padding: 15px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 20px;
+  margin: 10px 0;
+  color: #444;
+
+  p {
+    font-size: 14px;
+    color: #666;
+  }
+}
+
+
+
+.admin-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+  p {
+    color: #000;
+  }
+}
+
+
+
+.status {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 3px;
+  margin-top: 10px;
+  font-size: 12px;
+}
+
+.status.pending {
+  background-color: #ffeb3b;
+  color: #856404;
+}
+
+.status.approved {
+  background-color: #4caf50;
+  color: #fff;
+}
+
+.status.rejected {
+  background-color: #f44336;
+  color: #fff;
+}
+
+.buttonsofChoice {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.approve-btn,
+.reject-btn {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #fff;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+
+.approve-btn {
+  background-color: #4caf50;
+}
+
+.approve-btn:hover {
+  background-color: #388e3c;
+}
+
+.reject-btn {
+  background-color: white;
+  color: red;
+  border: 1px solid red;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.reject-btn:hover {
+  background-color: red;
+  color: white;
+}
+
+.listing-item {
+  position: relative; /* Required for positioning the status label */
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 300px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.listing-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.status-label {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.status-label.pending {
+  background-color: #ffeb3b;
+  color: #856404;
+}
+
+.status-label.approved {
+  background-color: #4caf50;
+}
+
+.status-label.rejected {
+  background-color: #f44336;
+}
+

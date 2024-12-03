@@ -99,12 +99,12 @@ const UserTable = () => {
                 <td>{user.email}</td>
                 <td>{user.role}</td>
                 <td>
-                  <button
+                  {/* <button
                     className="edit-button"
                     onClick={() => handleEdit(user)}
                   >
                     Edit
-                  </button>
+                  </button> */}
                   <button
                     className="delete-button"
                     onClick={() => handleDelete(user.id)}
