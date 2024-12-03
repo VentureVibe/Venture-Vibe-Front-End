@@ -125,6 +125,15 @@
         z-index: 10;
         overflow: hidden;
 
+        .header{
+          font-size: var(--paragraph-2);
+          font-weight: 600;
+        }  
+        p{
+          font-size: var(--paragraph-1);
+          font-weight: 400;
+        }
+
         ul {
           display: block;
           list-style: none;

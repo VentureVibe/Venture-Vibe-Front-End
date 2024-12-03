@@ -34,7 +34,7 @@ const Home = () => {
       {loading && <Loading />}
       <Main />
       <DestinationDiv />
-      <StoryDiv />
+      <StoryDiv id="#our-story"/>
       {/* <MilestonesDiv /> */}
       <SubscribeDiv />
     </div>

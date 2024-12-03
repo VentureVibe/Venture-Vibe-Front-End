@@ -15,14 +15,14 @@ const NavbarTravelplan = () => {
         </div>
         </Link>
         <div className='nav-right'>
-            <div className='share'>
+            {/* <div className='share'>
               <i><ShareOutlinedIcon sx={{ fontSize: 18 }}/></i>
               <h3>Share</h3>
             </div>
             <div className='print'>
               <i><PrintOutlinedIcon sx={{ fontSize: 18 }}/></i>
               <h3>Print</h3>
-            </div>
+            </div> */}
         </div>
     </div>
   )

@@ -1,0 +1,147 @@
+.combined-specialties {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  margin-bottom: 20px;
+
+  .specialties-languages {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .specialties-section,
+  .languages-section {
+    flex: 1;
+    margin-right: 20px;
+
+    h3 {
+      margin-top: 0;
+      color: #1f2937;
+    }
+
+    .form-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+        color: #4b5563;
+      }
+
+      select {
+        flex: 1;
+        padding: 10px;
+        border: 1px solid #e5e7eb;
+        border-radius: 5px;
+        font-size: 1rem;
+        color: #1f2937;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+        &:focus {
+          outline: none;
+          border-color: #3b82f6;
+          box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+      }
+
+      button {
+        padding: 10px 20px;
+        background-color: #2563eb;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+
+        &:hover {
+          background-color: darken(#2563eb, 5%);
+        }
+      }
+    }
+
+    .specialties-list,
+    .languages-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+
+      .specialty,
+      .language {
+        background: #f3f4f6;
+        padding: 10px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+
+        button {
+          background: none;
+          border: none;
+          color: #2563eb;
+          cursor: pointer;
+          transition: color 0.2s ease;
+
+          &:hover {
+            color: #3b82f6;
+          }
+        }
+      }
+    }
+  }
+
+  .experiences-section {
+    flex: 1;
+
+    h3 {
+      margin-top: 0;
+      color: #1f2937;
+    }
+
+    .experiences-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+
+      .experience {
+        background: #f3f4f6;
+        padding: 10px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+
+        button {
+          background: none;
+          border: none;
+          color: #2563eb;
+          cursor: pointer;
+          transition: color 0.2s ease;
+
+          &:hover {
+            color: #3b82f6;
+          }
+        }
+      }
+    }
+  }
+
+  .save-button {
+    padding: 10px 20px;
+    background-color: #10b981;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: darken(#10b981, 5%);
+    }
+  }
+}

@@ -16,17 +16,17 @@
       
     .bottom{
         position: absolute;
-        margin-top: -170px;
+        margin-top: -130px;
         width: 100%; 
         padding: 10px;       
-       
+  
         .cont{
             background-color: var(--white);
             border-radius: 10px;
             width: 100%;
             display: flex;
             flex-direction: column;
-            height:147px;
+            height:90px;
             overflow: scroll;
             padding: 0px 15px;
 
@@ -41,7 +41,7 @@
             .details{
                 display: flex;
                 flex-direction: column;
-                margin-top: 13px;
+              
                 .top{
                     display: grid;
                     grid-template-columns: 50% 50%;
