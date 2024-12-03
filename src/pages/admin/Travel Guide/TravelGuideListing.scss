@@ -68,23 +68,26 @@ h2 {
   font-size: 20px;
   margin: 10px 0;
   color: #444;
+
+  p {
+    font-size: 14px;
+    color: #666;
+  }
 }
 
-p {
-  font-size: 14px;
-  color: #666;
-}
+
 
 .admin-actions {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 10px;
+  p {
+    color: #000;
+  }
 }
 
-p {
-  color: #000;
-}
+
 
 .status {
   display: inline-block;
