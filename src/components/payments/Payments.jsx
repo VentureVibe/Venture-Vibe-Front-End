@@ -18,9 +18,11 @@ const Payments = ({ userDetails, selectedPlan, workExperiences }) => {
     }
     console.log("User Details : ", userDetails);
     console.log("Selected Plan : ", selectedPlan);
-    console.log("Work Experience : ", workExperiences.experiences);
-    console.log("Languages : ", workExperiences.languages);
-    console.log("Specialties : ", workExperiences.specialties);
+    if (workExperiences) {
+      console.log("Work Experience : ", workExperiences.experiences);
+      console.log("Languages : ", workExperiences.languages);
+      console.log("Specialties : ", workExperiences.specialties);
+    }
   }, [selectedPlan, workExperiences]);
 
   const handlePayment = async () => {
@@ -129,6 +131,10 @@ const Payments = ({ userDetails, selectedPlan, workExperiences }) => {
               ? await axios.put(endpoint, {
                   ...serviceProviderDetails,
                 })
+              : !workExperiences && user.role === "Traveler"
+              ? await axios.post(endpoint, {
+                  ...serviceProviderDetails,
+                })
               : await axios.post(endpoint, {
                   ...serviceProviderDetails,
                   workExperience: workExperiences.experiences,
@@ -155,6 +161,7 @@ const Payments = ({ userDetails, selectedPlan, workExperiences }) => {
           console.log("Service provider stored successfully:", result.data);
           console.log("Service provider stored successfully:", result2.data);
           navigate("/");
+          window.location.reload();
         } catch (error) {
           console.error("Error storing service provider details:", error);
         }

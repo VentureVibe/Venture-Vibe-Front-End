@@ -1,4 +1,3 @@
-
 // import React, { useState, useEffect } from "react";
 // import "./subscribeDiv.scss";
 // import { useNavigate } from "react-router-dom";
@@ -80,9 +79,11 @@
 import React, { useState, useEffect } from "react";
 import "./subscribeDiv.scss";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import { GetUser } from "../../services/user/GetUser";
 
 const SubscribeDiv = () => {
+  const [email, setEmail] = useState("");
   const [user, setUser] = useState(null);
   const token = localStorage.getItem("idToken");
 
@@ -97,7 +98,7 @@ const SubscribeDiv = () => {
     };
     fetchUser();
   }, [token]);
-  
+
   const navigate = useNavigate();
 
   const handleSubscribe = async () => {
