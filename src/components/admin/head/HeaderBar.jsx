@@ -30,17 +30,10 @@ const HeaderBar = () => {
             <li>
               <a href="/admin/reports">Reports</a>
             </li>
-            <li>
-              <a href="/admin/settings">Settings</a>
-            </li>
           </ul>
         </nav>
       </div>
       <div className="header-right">
-        <div className="search-bar">
-          <FreeSolo />
-        </div>
-
         <div className="profile">
           <Profile />
         </div>

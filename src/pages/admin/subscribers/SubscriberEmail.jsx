@@ -12,7 +12,6 @@ const SubscriberEmail = () => {
           "http://localhost:8080/api/subscribers"
         );
         setSubscribers(response.data);
-        console.log(resoponse.data);
       } catch (error) {
         console.error("Error fetching subscribers:", error);
       }
@@ -21,29 +20,35 @@ const SubscriberEmail = () => {
     fetchSubscribers();
   }, []);
 
+  const handleSendNewsletter = () => {
+    alert("Newsletter has been sent to all subscribers!");
+    // Add actual functionality to send newsletters via backend here.
+  };
+
   return (
-    <div>
-      <div className="subscriber-container">
-        <h1 className="subscriber-title">Subscribers List</h1>
-        <table className="subscriber-table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Email</th>
-              <th>Subscribed At</th>
+    <div className="subscriber-container">
+      <h1 className="subscriber-title">Subscribers List</h1>
+      <button className="send-newsletter-button" onClick={handleSendNewsletter}>
+        Send Newsletter
+      </button>
+      <table className="subscriber-table">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Email</th>
+            <th>Role</th>
+          </tr>
+        </thead>
+        <tbody>
+          {subscribers.map((subscriber, index) => (
+            <tr key={subscriber.id}>
+              <td>{index + 1}</td>
+              <td>{subscriber.email}</td>
+              <td>Traveler</td>
             </tr>
-          </thead>
-          <tbody>
-            {subscribers.map((subscriber) => (
-              <tr key={subscriber.id}>
-                <td>{subscriber.id}</td>
-                <td>{subscriber.email}</td>
-                <td>{subscriber.subscribedAt}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
