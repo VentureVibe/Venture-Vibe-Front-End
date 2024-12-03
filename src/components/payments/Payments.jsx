@@ -344,7 +344,7 @@ const Payments = ({ userDetails, selectedPlan, workExperiences }) => {
           );
 
           const paymentDetails = {
-            sender: userDetails.id,
+            sender: user.id,
             dateTime: new Date().toISOString(),
             amount: selectedPlan === "annual" ? "500.00" : "50.00",
             category: "Registration_Fee",

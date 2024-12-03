@@ -131,7 +131,7 @@ const EditDetails = ({ guide, onUpdateGuide }) => {
             <input
               type="text"
               name="contactNumber"
-              value={details.contactNumber}
+              value={details.phone}
               onChange={handleChange}
               required
             />
