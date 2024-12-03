@@ -176,7 +176,7 @@ const CommunityPostPop = ({ onClose, data1, user }) => {
           <div className="top">
             <img src={user.profileImg ? user.profileImg : noAvatar} alt="" />
             <div className="details">
-              <h4>{user.name}</h4>
+              <h4>{user.firstName + " " + user.lastName}</h4>
               <p>{formattedDate}</p>
             </div>
             {!follow && (userId != user.id) && (<button className='follow-btn' onClick={handleFollow}>Follow</button>)}
