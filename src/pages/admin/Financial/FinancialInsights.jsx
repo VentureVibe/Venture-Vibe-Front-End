@@ -48,7 +48,7 @@ const FinancialInsights = () => {
                 <td>{item.sender || "N/A"}</td>
                 {/* <td>{item.receiver || "N/A"}</td> */}
                 <td>{item.category}</td>
-                <td>${item.amount.toFixed(2)}</td>
+                <td>LKR {item.amount.toFixed(2)}</td>
               </tr>
             ))}
           </tbody>
@@ -59,7 +59,7 @@ const FinancialInsights = () => {
       </button>
       {totalPayment !== null && (
         <div className="total-payment">
-          <h3>Total Payment: ${totalPayment.toFixed(2)}</h3>
+          <h3>Total Payment: LKR {totalPayment.toFixed(2)}</h3>
         </div>
       )}
     </div>

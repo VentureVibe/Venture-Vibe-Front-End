@@ -482,10 +482,22 @@ $transition-speed: 0.2s;
     flex-shrink: 0;
     margin-bottom: 2rem;
 
-    h1 {
-      font-size: 2.5rem;
-      color: $text-primary;
-      margin-bottom: 1.5rem;
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      h1 {
+        font-size: 2.5rem;
+        color: $text-primary;
+        margin-bottom: 1.5rem;
+      }
+
+      .guide-image {
+        width: 5vw;
+        height: 5vw;
+        border-radius: 50%;
+      }
     }
 
     .tabs {

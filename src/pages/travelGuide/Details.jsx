@@ -149,7 +149,7 @@ const Details = ({ guide }) => {
 
       <div className="contact-info card">
         <div className="price">
-          <p className="amount">${guide.price}</p>
+          <p className="amount">LKR {guide.price}</p>
           <p className="period">per day</p>
         </div>
 

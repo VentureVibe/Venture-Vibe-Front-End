@@ -1,269 +1,3 @@
-// $primary-color: #2563eb;
-// $secondary-color: #3b82f6;
-// $text-primary: #1f2937;
-// $text-secondary: #4b5563;
-// $border-color: #e5e7eb;
-// $success-color: #10b981;
-// $card-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-// $transition-speed: 0.2s;
-
-// .booking-container {
-//   width: 100%;
-//   padding: 1rem;
-
-//   .booking-grid {
-//     display: grid;
-//     grid-template-columns: 1fr;
-//     gap: 1.5rem;
-//     width: 100%;
-//     height: 60vh;
-
-//     @media (min-width: 768px) {
-//       grid-template-columns: 2fr 1fr;
-//     }
-//   }
-
-//   .card {
-//     background: white;
-//     border-radius: 0.5rem;
-//     padding: 1.25rem;
-//     box-shadow: $card-shadow;
-//     display: flex;
-//     flex-direction: column;
-//     overflow: hidden;
-//   }
-
-//   h2 {
-//     color: $text-primary;
-//     margin-bottom: 1rem;
-//     font-size: 1.5rem;
-//     font-weight: 700;
-//     flex-shrink: 0;
-//   }
-// }
-
-// .calendar-section {
-//   .calendar {
-//     display: flex;
-//     flex-direction: column;
-//     height: 100%;
-
-//     .calendar-header {
-//       flex-shrink: 0;
-//       margin-bottom: 0.75rem;
-
-//       .month-navigation {
-//         display: flex;
-//         align-items: center;
-//         justify-content: space-between;
-//         margin-bottom: 0.75rem;
-
-//         .month-nav-btn {
-//           background: none;
-//           border: 1px solid $border-color;
-//           border-radius: 0.375rem;
-//           padding: 0.375rem;
-//           cursor: pointer;
-//           transition: all $transition-speed;
-//           display: flex;
-//           align-items: center;
-//           justify-content: center;
-
-//           &:hover {
-//             background: $border-color;
-//           }
-//         }
-
-//         .month-year {
-//           color: $text-primary;
-//           font-weight: 600;
-//           font-size: 1.25rem;
-//         }
-//       }
-
-//       .weekdays {
-//         display: grid;
-//         grid-template-columns: repeat(7, 1fr);
-//         text-align: center;
-//         gap: 2px;
-
-//         .weekday {
-//           color: $text-secondary;
-//           font-size: 0.875rem;
-//           padding: 0.25rem;
-//           font-weight: 600;
-//         }
-//       }
-//     }
-
-//     .calendar-body {
-//       display: grid;
-//       grid-template-columns: repeat(7, 1fr);
-//       gap: 2px;
-//       width: 100%;
-//       flex-grow: 1;
-
-//       .calendar-day {
-//         width: 100%;
-//         position: relative;
-//         padding-top: 100%;
-//         border: 1px solid $border-color;
-//         border-radius: 0.25rem;
-//         font-size: 1rem;
-//         color: $text-primary;
-//         cursor: pointer;
-//         transition: all $transition-speed;
-//         background: none;
-
-//         &::after {
-//           content: attr(data-content);
-//           position: absolute;
-//           top: 0;
-//           left: 0;
-//           right: 0;
-//           bottom: 0;
-//           display: flex;
-//           align-items: center;
-//           justify-content: center;
-//         }
-
-//         &:not(.empty):hover:not(.unavailable) {
-//           background: lighten($primary-color, 35%);
-//           border-color: $primary-color;
-//         }
-
-//         &.selected {
-//           background: $primary-color;
-//           color: white;
-//           border-color: $primary-color;
-//         }
-
-//         &.unavailable {
-//           background: $border-color;
-//           color: $text-secondary;
-//           cursor: not-allowed;
-//           opacity: 0.5;
-//         }
-
-//         &.empty {
-//           border: none;
-//           padding: 0;
-
-//           &::after {
-//             content: none;
-//           }
-//         }
-//       }
-//     }
-//   }
-// }
-
-// .booking-summary {
-//   display: flex;
-//   flex-direction: column;
-//   height: 100%;
-
-//   .summary {
-//     display: flex;
-//     flex-direction: column;
-//     height: 100%;
-
-//     .selected-dates {
-//       flex: 1;
-//       min-height: 0;
-//       overflow-y: auto;
-//       margin-bottom: 1rem;
-//       padding-right: 0.5rem;
-
-//       &::-webkit-scrollbar {
-//         width: 4px;
-//       }
-
-//       &::-webkit-scrollbar-track {
-//         background: $border-color;
-//         border-radius: 2px;
-//       }
-
-//       &::-webkit-scrollbar-thumb {
-//         background: $secondary-color;
-//         border-radius: 2px;
-//       }
-
-//       h3 {
-//         color: $text-primary;
-//         margin-bottom: 0.75rem;
-//         font-size: 1.25rem;
-//         font-weight: 600;
-//         position: sticky;
-//         top: 0;
-//         background: white;
-//         padding: 0.5rem 0;
-//       }
-
-//       .dates {
-//         display: flex;
-//         flex-direction: column;
-//         gap: 0.5rem;
-
-//         .date {
-//           display: flex;
-//           align-items: center;
-//           gap: 0.5rem;
-//           color: $text-secondary;
-
-//           svg {
-//             color: $primary-color;
-//             font-size: 1.5rem;
-//           }
-//         }
-//       }
-//     }
-
-//     .total {
-//       border-top: 1px solid $border-color;
-//       padding-top: 1rem;
-//       flex-shrink: 0;
-
-//       .days,
-//       .price {
-//         display: flex;
-//         justify-content: space-between;
-//         margin-bottom: 0.75rem;
-//         color: $text-secondary;
-
-//         &:last-child {
-//           color: $text-primary;
-//           font-weight: 700;
-//           font-size: 1.25rem;
-//         }
-//       }
-
-//       .book-button {
-//         width: 100%;
-//         background: $success-color;
-//         color: white;
-//         padding: 0.75rem;
-//         border: none;
-//         border-radius: 0.375rem;
-//         font-weight: 600;
-//         margin-top: 1rem;
-//         cursor: pointer;
-//         transition: all $transition-speed;
-
-//         &:hover {
-//           background: darken($success-color, 5%);
-//         }
-//       }
-//     }
-//   }
-
-//   .empty-message {
-//     color: $text-secondary;
-//     text-align: center;
-//     padding: 2rem 0;
-//   }
-// }
-
 $primary-color: #2563eb;
 $secondary-color: #3b82f6;
 $text-primary: #1f2937;
@@ -536,3 +270,146 @@ $transition-speed: 0.2s;
     padding: 2rem 0;
   }
 }
+
+// .booking-container {
+//   .booking-grid {
+//     display: flex;
+//     justify-content: space-between;
+
+//     .calendar-section,
+//     .booking-summary {
+//       flex: 1;
+//       margin: 0 10px;
+
+//       .calendar {
+//         .calendar-header {
+//           display: flex;
+//           justify-content: space-between;
+//           align-items: center;
+
+//           .month-navigation {
+//             display: flex;
+//             align-items: center;
+
+//             .month-nav-btn {
+//               background: none;
+//               border: none;
+//               cursor: pointer;
+//               font-size: 1.5em;
+//             }
+
+//             .month-year {
+//               margin: 0 10px;
+//               font-size: 1.2em;
+//             }
+//           }
+
+//           .weekdays {
+//             display: flex;
+//             justify-content: space-between;
+
+//             .weekday {
+//               width: 14.28%;
+//               text-align: center;
+//               font-weight: bold;
+//             }
+//           }
+//         }
+
+//         .calendar-body {
+//           display: flex;
+//           flex-wrap: wrap;
+
+//           .calendar-day {
+//             width: 14.28%;
+//             height: 40px;
+//             display: flex;
+//             justify-content: center;
+//             align-items: center;
+//             cursor: pointer;
+//             border: 1px solid #ddd;
+//             margin: -1px 0 0 -1px;
+
+//             &.empty {
+//               background-color: #f9f9f9;
+//               cursor: default;
+//             }
+
+//             &.selected {
+//               background-color: #4caf50;
+//               color: #fff;
+//             }
+
+//             &.unavailable {
+//               background-color: #333;
+//               color: #fff;
+//               cursor: not-allowed;
+//             }
+//           }
+//         }
+//       }
+
+//       .card {
+//         padding: 20px;
+//         border: 1px solid #ddd;
+//         border-radius: 8px;
+//         background-color: #fff;
+//         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+//       }
+//     }
+
+//     .booking-summary {
+//       .summary {
+//         .selected-dates {
+//           .dates {
+//             display: flex;
+//             flex-wrap: wrap;
+
+//             .date {
+//               display: flex;
+//               align-items: center;
+//               margin: 5px 0;
+
+//               svg {
+//                 margin-right: 5px;
+//               }
+//             }
+//           }
+//         }
+
+//         .total {
+//           display: flex;
+//           justify-content: space-between;
+//           align-items: center;
+//           margin-top: 20px;
+
+//           .days,
+//           .price {
+//             display: flex;
+//             flex-direction: column;
+//             align-items: center;
+//           }
+
+//           .book-button {
+//             background-color: #4caf50;
+//             color: #fff;
+//             border: none;
+//             border-radius: 4px;
+//             padding: 10px 15px;
+//             cursor: pointer;
+//             font-size: 1em;
+
+//             &:hover {
+//               background-color: #45a049;
+//             }
+//           }
+//         }
+//       }
+
+//       .empty-message {
+//         text-align: center;
+//         color: #999;
+//       }
+//     }
+//   }
+// }
