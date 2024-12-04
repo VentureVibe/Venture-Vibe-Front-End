@@ -119,7 +119,8 @@ const GuideProfile = () => {
   return (
     <div className="edit-guide-profile">
       <div className="header">
-        <h1>Edit Profile: {guide ? guide.name : "Loading..."}</h1>
+        <h1>Edit Profile</h1>
+        {/* {guide ? guide.name : "Loading..."} */}
         <div className="tabs">
           {["details", "specialties", "availability"].map((tab) => (
             <button

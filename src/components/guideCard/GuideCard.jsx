@@ -33,7 +33,7 @@ const GuideCard = ({
             </i>
           </div>
           {/* <span className="location">Location : {location}</span> */}
-          <span className="price">{price}$ / per day</span>
+          <span className="price">{price} LKR / per day</span>
           <span className="contactNumber">{contactNumber}</span>
         </div>
       </Link>
