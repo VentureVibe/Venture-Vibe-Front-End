@@ -15,7 +15,7 @@
   }
 
   .listing-container {
-    height: 70vh;
+    height: 50vh;
     width: 70vh;
   
 
@@ -41,10 +41,10 @@
         margin: 10px 0;
       }
 
-      p {
-        font-size: 14px;
-        color: #666;
-      }
+      // p {
+      //   font-size: 14px;
+      //   color: #666;
+      // }
 
       .admin-actions {
         display: flex;
@@ -55,6 +55,7 @@
         p{
           font-weight: bold;
           color: #000000;
+          padding: 10px;
         }
 
         .status {
