@@ -17,11 +17,10 @@ const CommunityFeedLeft = () => {
                  <Cont Icon="fa-solid fa-square-rss" name="Feed" link="/community" path={["/community", "/community/popular", "/community/all"]} />
                  <Cont Icon="fa-solid fa-user-plus" name="Following" link="/community/following" path={["/community/following"]}/>
                  <Cont Icon="fa-solid fa-user-group" name="Followers" link="/community/followers" path={["/community/followers"]} />
-                 <Cont Icon="fa-solid fa-square-check" name="My Plannings" link="/community" path={["/"]} />
-                 <Cont Icon="fa-solid fa-hotel" name="Accomodations" link="/community" path={["/"]} />
-                 <Cont Icon="fa-solid fa-person-hiking" name="Event & Activities" link="/community" path={["/"]} />
-                 <Cont Icon="fa-solid fa-car-side" name="Travel Guide" link="/community" path={["/"]} />
-                 <Cont Icon="fa-solid fa-person-snowboarding" name="Plan Now" link="/travelplan" path={["/"]} />
+                 <Cont Icon="fa-solid fa-square-check" name="My Plannings" link="/myplannings" path={["/myplannings"]} />
+                 <Cont Icon="fa-solid fa-person-hiking" name="Event & Activities" link="/events" path={["/events"]} />
+                 <Cont Icon="fa-solid fa-car-side" name="Travel Guide" link="/travelguides" path={["/travelguides"]} />
+                 <Cont Icon="fa-solid fa-person-snowboarding" name="Plan Now" link="/travelplan" path={["/travelplan"]} />
                  <i class=""></i>
                   <div className="publish" onClick={toggleModal}>
                     <i class="fa-solid fa-upload"></i>
