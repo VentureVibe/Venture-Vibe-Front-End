@@ -1,9 +1,11 @@
 .main-content{
-  margin-left: -4px;
+
   display: flex;
-  justify-content: center;
-  margin-top: 20px;
-  width: 65%;
+  // justify-content: center;
+  height: 90vh;
+  // width: %;
+  overflow: scroll;
+  width: 80vw;
 }
 
 .headerBar{

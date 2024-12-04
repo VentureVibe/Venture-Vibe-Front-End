@@ -1,14 +1,15 @@
 .sidebar-admin {
   // display: flex;
-  width: 280px;
+  width: 20vw;
   background-color: var(--white);
   height: 90vh;
-  padding: 20px;
+  padding: 10px;
   box-sizing: border-box;
   box-shadow: var(--box-shadow-2);
   position: relative;
   top: 0;
   left: 0;
+  overflow: scroll;
 
 
   .tophead {

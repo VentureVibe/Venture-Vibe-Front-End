@@ -40,12 +40,22 @@ const Sidebar = () => {
               Financial Insights
             </NavLink>
           </li>
+          <li>
+            <NavLink to="/admin/revenue" activeClassName="active">
+              Our Revenue
+            </NavLink>
+          </li>
 
           <li>
             <NavLink to="/admin/subscribers" activeClassName="active">
               Subscribers
             </NavLink>
           </li>
+          {/* <li>
+            <NavLink to="/admin/overview" activeClassName="active">
+              Overview
+            </NavLink>
+          </li> */}
           {/* <li>
             <a href="dashboard">User Management</a>
           </li>
