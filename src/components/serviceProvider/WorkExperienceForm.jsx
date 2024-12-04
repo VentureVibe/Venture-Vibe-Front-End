@@ -6,8 +6,33 @@
 //   const [experiences, setExperiences] = useState([
 //     { companyName: "", role: "", yearsOfExperience: "" },
 //   ]);
+//   const [specialties, setSpecialties] = useState([]);
+//   const [languages, setLanguages] = useState([]);
+//   const [pricePerDay, setPricePerDay] = useState("");
 
-//   const handleChange = (index, event) => {
+//   const specialtiesOptions = [
+//     "Urban Tours",
+//     "Historical Sites",
+//     "Nature Walks",
+//     "Adventure Tours",
+//     "Cultural Experiences",
+//     "Food Tours",
+//     "Wildlife Safaris",
+//     "Photography Tours",
+//   ];
+
+//   const languagesOptions = [
+//     "English",
+//     "Spanish",
+//     "French",
+//     "German",
+//     "Mandarin",
+//     "Japanese",
+//     "Russian",
+//     "Arabic",
+//   ];
+
+//   const handleExperienceChange = (index, event) => {
 //     const { name, value } = event.target;
 //     const newExperiences = experiences.map((exp, i) => {
 //       if (i === index) {
@@ -30,9 +55,31 @@
 //     setExperiences(newExperiences);
 //   };
 
+//   const handleSpecialtiesChange = (e) => {
+//     const value = e.target.value;
+//     if (value && !specialties.includes(value)) {
+//       setSpecialties([...specialties, value]);
+//     }
+//   };
+
+//   const handleLanguagesChange = (e) => {
+//     const value = e.target.value;
+//     if (value && !languages.includes(value)) {
+//       setLanguages([...languages, value]);
+//     }
+//   };
+
+//   const removeSpecialty = (specialty) => {
+//     setSpecialties(specialties.filter((s) => s !== specialty));
+//   };
+
+//   const removeLanguage = (language) => {
+//     setLanguages(languages.filter((l) => l !== language));
+//   };
+
 //   const handleSubmit = (event) => {
 //     event.preventDefault();
-//     setWorkExperiences(experiences);
+//     setWorkExperiences({ experiences, specialties, languages, pricePerDay });
 //     onNext();
 //   };
 
@@ -62,24 +109,85 @@
 //               name="companyName"
 //               placeholder="Company Name"
 //               value={exp.companyName}
-//               onChange={(event) => handleChange(index, event)}
+//               onChange={(event) => handleExperienceChange(index, event)}
 //             />
 //             <input
 //               type="text"
 //               name="role"
 //               placeholder="Role"
 //               value={exp.role}
-//               onChange={(event) => handleChange(index, event)}
+//               onChange={(event) => handleExperienceChange(index, event)}
 //             />
 //             <input
 //               type="number"
 //               name="yearsOfExperience"
 //               placeholder="Years of Experience"
 //               value={exp.yearsOfExperience}
-//               onChange={(event) => handleChange(index, event)}
+//               onChange={(event) => handleExperienceChange(index, event)}
 //             />
 //           </div>
 //         ))}
+//       </div>
+//       <div className="form-group">
+//         <label htmlFor="specialties">Specialties</label>
+//         <div className="select-container">
+//           <select id="specialties" value="" onChange={handleSpecialtiesChange}>
+//             <option value="" disabled>
+//               Select specialties
+//             </option>
+//             {specialtiesOptions.map((specialty, index) => (
+//               <option key={index} value={specialty}>
+//                 {specialty}
+//               </option>
+//             ))}
+//           </select>
+//         </div>
+//         <div className="selected-items">
+//           {specialties.map((specialty, index) => (
+//             <div key={index} className="selected-item">
+//               {specialty}
+//               <button type="button" onClick={() => removeSpecialty(specialty)}>
+//                 <DeleteIcon />
+//               </button>
+//             </div>
+//           ))}
+//         </div>
+//       </div>
+//       <div className="form-group">
+//         <label htmlFor="languages">Languages</label>
+//         <div className="select-container">
+//           <select id="languages" value="" onChange={handleLanguagesChange}>
+//             <option value="" disabled>
+//               Select languages
+//             </option>
+//             {languagesOptions.map((language, index) => (
+//               <option key={index} value={language}>
+//                 {language}
+//               </option>
+//             ))}
+//           </select>
+//         </div>
+//         <div className="selected-items">
+//           {languages.map((language, index) => (
+//             <div key={index} className="selected-item">
+//               {language}
+//               <button type="button" onClick={() => removeLanguage(language)}>
+//                 <DeleteIcon />
+//               </button>
+//             </div>
+//           ))}
+//         </div>
+//       </div>
+//       <div className="form-group">
+//         <label htmlFor="pricePerDay">Price Per Day</label>
+//         <input
+//           type="number"
+//           id="pricePerDay"
+//           name="pricePerDay"
+//           placeholder="Enter your price per day"
+//           value={pricePerDay}
+//           onChange={(e) => setPricePerDay(e.target.value)}
+//         />
 //       </div>
 //       <button type="submit">Next</button>
 //     </form>
@@ -268,7 +376,7 @@ const WorkExperienceForm = ({ setWorkExperiences, onNext }) => {
           ))}
         </div>
       </div>
-      <div className="form-group">
+      <div className="form-group price-container">
         <label htmlFor="pricePerDay">Price Per Day</label>
         <input
           type="number"

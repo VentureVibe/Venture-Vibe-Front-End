@@ -153,17 +153,17 @@
 
 .payment {
   height: 100%;
-  width: 90%;
+  width: 70vw;
   box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #ffffff;
-  padding: 20px;
+  padding: 10px;
   margin-left: 10%;
 
   .payment-left {
-    width: 540px;
+    width: 50vw;
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;

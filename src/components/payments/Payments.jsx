@@ -425,10 +425,10 @@ const Payments = ({ userDetails, selectedPlan, workExperiences }) => {
             <p>
               <strong>Languages:</strong> {workExperiences.languages.join(", ")}
             </p>
-            <p>
+            {/* <p>
               <strong>Experiences:</strong>{" "}
               {workExperiences.experiences.join(", ")}
-            </p>
+            </p> */}
             <p>
               <strong>Price Per Day:</strong> LKR {workExperiences.pricePerDay}
             </p>

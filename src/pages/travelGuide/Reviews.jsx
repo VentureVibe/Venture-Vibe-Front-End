@@ -223,7 +223,7 @@ const Reviews = ({ guide, onAddReview }) => {
     const fetchUserDetails = async () => {
       const user = await GetUser();
       setUserDetails(user);
-      console.log(user);
+      console.log("my user", user);
     };
     fetchUserDetails();
   }, []); // Empty dependency array ensures this runs only once
