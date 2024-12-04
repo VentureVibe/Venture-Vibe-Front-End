@@ -87,7 +87,7 @@ const TravelGuideListing = () => {
               <p>{listing.email || "No description available."}</p>
               <p>{listing.contactNumber}</p>
               <div className="admin-actions">
-                <p>$ {listing.price || "Negotiable"}</p>
+                <p>LKR {listing.price || "Negotiable"}</p>
                 <button
                   className="reject-btn"
                   onClick={() => handleDeleteListing(listing.id)}
