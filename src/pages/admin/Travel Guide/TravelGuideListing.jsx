@@ -84,10 +84,10 @@ const TravelGuideListing = () => {
             <img src={listing.imageSrc} alt={listing.name || "Travel Guide"} />
             <div className="listing-details">
               <h2>{listing.name || "Travel Guide"}</h2>
-              <p>{listing.description || "No description available."}</p>
+              <p>{listing.email || "No description available."}</p>
               <p>{listing.contactNumber}</p>
               <div className="admin-actions">
-                <p>{listing.price || "Negotiable"}</p>
+                <p>$ {listing.price || "Negotiable"}</p>
                 <button
                   className="reject-btn"
                   onClick={() => handleDeleteListing(listing.id)}
