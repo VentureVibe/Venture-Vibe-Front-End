@@ -10,7 +10,7 @@ const EventCard = ({ img, title, price, id, location }) => {
           <img src={img} alt={title} />
           <span className="title">{title}</span>
           {/* <span className='location'>Location : {location}</span> */}
-          <span className="price">{price}$</span>
+          <span className="price">{price} LKR</span>
         </div>
       </Link>
     </div>

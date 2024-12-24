@@ -166,7 +166,6 @@ const TravelGuideProfile = () => {
           (acc, exp) => acc + exp.yearsOfExperience,
           0
         );
-
         // Fetch reviews
         const reviewsResponse = await axios.get(
           `http://localhost:8080/api/v1/review/receiver/${id}`
